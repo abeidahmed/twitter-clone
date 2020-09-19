@@ -17,6 +17,11 @@ ActiveRecord::Schema.define(version: 2020_09_19_135601) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
+    t.string "twitter_handle", null: false
+    t.string "name"
+    t.text "bio"
+    t.string "location"
+    t.string "website"
     t.string "password_digest"
     t.string "slug"
     t.datetime "created_at", precision: 6, null: false
