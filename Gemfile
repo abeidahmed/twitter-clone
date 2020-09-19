@@ -12,6 +12,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
+  gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
