@@ -62,4 +62,20 @@ RSpec.describe User, type: :model do
 
     it { should validate_length_of(:website).is_at_most(100) }
   end
+
+  describe '::find_by_credentials' do
+    let(:user) { create(:user) }
+
+    it 'is expected to return the user when user credentials are valid (downcase email)' do
+      expect(described_class.find_by_credentials(user.email.upcase, user.password)).to eq(user)
+    end
+
+    it 'is expected to return nil when user credentials are invalid' do
+      expect(described_class.find_by_credentials(user.email, 'helloworld')).to be_nil
+    end
+
+    it 'is expected to return nil when user is invalid' do
+      expect(described_class.find_by_credentials('mamakane@example.com', 'helloworld')).to be_nil
+    end
+  end
 end

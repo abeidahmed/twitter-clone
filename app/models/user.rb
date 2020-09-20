@@ -28,4 +28,10 @@ class User < ApplicationRecord
   validates_length_of :bio, maximum: 160
   validates_length_of :location, maximum: 30
   validates_length_of :website, maximum: 100
+
+  def self.find_by_credentials(email, password)
+    user = self.find_by(email: email.downcase)
+    return nil unless user
+    user.authenticate(password) ? user : nil
+  end
 end
