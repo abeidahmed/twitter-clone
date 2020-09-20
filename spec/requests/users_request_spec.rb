@@ -43,6 +43,15 @@ RSpec.describe "Users", type: :request do
         expect(User.all.size).to eq(1)
       end
 
+      it 'is expected to return user detail' do
+        user = json[:user]
+        expect(user.keys).to match_array([:id, :twitter_handle, :token])
+      end
+
+      it 'is expected to return jwt token' do
+        expect(json.dig(:user, :token)).to_not be_nil
+      end
+
       it 'is expected to throw created status' do
         expect(response).to have_http_status(:created)
       end
