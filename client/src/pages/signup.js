@@ -68,7 +68,6 @@ export default function Signup() {
               type="password"
               error={error}
               errorType="password"
-              extraLink={{ to: '/', name: 'Forgot password?' }}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
