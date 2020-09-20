@@ -23,9 +23,7 @@ RSpec.describe "Sessions", type: :request do
         post sessions_url, params: invalid_user, headers: default_header
       end
 
-      it 'is expected to throw bad_request status' do
-        expect(response).to have_http_status(:bad_request)
-      end
+      include_examples 'bad_request'
 
       it 'is expected to return an error message' do
         expect(json[:message]).to match(/Invalid credentials/)
@@ -39,7 +37,7 @@ RSpec.describe "Sessions", type: :request do
 
       it 'is expected to return user detail' do
         user = json[:user]
-        expect(user.keys).to match_array([:id, :twitter_handle, :token])
+        expect(user.keys).to match_array([:id, :twitterHandle, :token])
       end
 
       it 'is expected to return jwt token' do

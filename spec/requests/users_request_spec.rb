@@ -25,9 +25,7 @@ RSpec.describe "Users", type: :request do
         post users_url, params: invalid_user, headers: default_header
       end
 
-      it 'is expected to throw bad_request status' do
-        expect(response).to have_http_status(:bad_request)
-      end
+      include_examples 'bad_request'
 
       it 'is expected to return an error message' do
         expect(json[:message]).to_not be_nil
@@ -45,16 +43,14 @@ RSpec.describe "Users", type: :request do
 
       it 'is expected to return user detail' do
         user = json[:user]
-        expect(user.keys).to match_array([:id, :twitter_handle, :token])
+        expect(user.keys).to match_array([:id, :twitterHandle, :token])
       end
 
       it 'is expected to return jwt token' do
         expect(json.dig(:user, :token)).to_not be_nil
       end
 
-      it 'is expected to throw created status' do
-        expect(response).to have_http_status(:created)
-      end
+      include_examples 'created'
     end
   end
 end
