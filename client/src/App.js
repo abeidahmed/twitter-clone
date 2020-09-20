@@ -1,11 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from 'pages/index';
+import Signup from 'pages/signup';
+import Login from 'pages/login';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1 className="text-indigo-500">hello world</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
