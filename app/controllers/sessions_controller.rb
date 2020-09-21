@@ -10,6 +10,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    if current_user.nil?
+      render json: { message: 'Please login to continue' }, status: :unauthorized
+    else
+      render :show
+    end
+  end
+
   private
     def email
       params.dig(:user, :email)
