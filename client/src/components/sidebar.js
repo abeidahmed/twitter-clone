@@ -2,87 +2,108 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from './icon';
 
+const links = [
+  {
+    title: 'Home',
+    path: '/',
+    icon: 'home',
+  },
+  {
+    title: 'Explore',
+    path: '/',
+    icon: 'hashtag',
+  },
+  {
+    title: 'Notifications',
+    path: '/',
+    icon: 'bell',
+  },
+  {
+    title: 'Bookmarks',
+    path: '/',
+    icon: 'bookmark',
+  },
+  {
+    title: 'Profile',
+    path: '/',
+    icon: 'user',
+  },
+];
+
 export function Sidebar() {
   return (
-    <div className="hidden">
-      <div className="fixed inset-0 z-10 lg:hidden">
-        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-      </div>
-      <aside className="fixed top-0 z-50 flex flex-col flex-shrink-0 w-64 h-screen transition duration-150 ease-in-out transform bg-white lg:translate-x-0 lg:sticky">
-        <header className="flex items-center justify-between px-4 border-b h-14">
-          <h2 className="text-lg font-extrabold">Account info</h2>
-          <button className="p-1 -mr-2 rounded-full focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue">
-            <Icon icon="x" className="w-6 h-6 text-blue-500" />
-          </button>
-        </header>
-        <div className="py-3">
-          <div className="px-4">
-            <div>
-              <img
-                className="w-10 h-10 rounded-full"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
-                alt=""
-              />
-              <div className="mt-2 text-sm">
-                <p className="font-semibold">Abeid Ahmed</p>
-                <p className="text-gray-500">@iamhawaabi</p>
-              </div>
-            </div>
-            <div className="flex items-center mt-4 space-x-4 text-sm">
-              <p className="font-bold">
-                39{' '}
-                <span className="font-normal text-gray-500 pl-0.5">
-                  Following
+    <div className="hidden h-screen px-6 sm:block lg:col-span-3">
+      <div className="ml-auto lg:ml-0">
+        <NavHead />
+        <div
+          className="flex flex-col justify-between px-2 py-3"
+          style={{ height: 'calc(100vh - 56px)' }}
+        >
+          <nav className="flex-1 space-y-3">
+            {links.map(({ title, path, icon }) => (
+              <Link
+                key={title}
+                to={path}
+                className="flex items-center justify-center p-2 text-gray-700 transition duration-150 ease-in-out rounded-full lg:justify-start focus:outline-none hover:bg-blue-50 hover:text-blue-500 focus:shadow-outline-blue"
+              >
+                <Icon icon={icon} className="w-6 h-6 lg:w-7 lg:h-7" />
+                <span className="hidden pl-3 text-lg font-semibold leading-5 lg:block">
+                  {title}
                 </span>
-              </p>
-              <p className="font-bold">
-                17{' '}
-                <span className="font-normal text-gray-500 pl-0.5">
-                  Followers
-                </span>
-              </p>
-            </div>
-          </div>
-          <nav className="mt-2 text-sm">
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="user" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Profile</span>
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="hashtag" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Explore</span>
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="bookmark" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Bookmarks</span>
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="cog" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Settings and Privacy</span>
-            </Link>
-            <hr className="my-3 text-gray-200" />
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="logout" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Logout</span>
-            </Link>
+              </Link>
+            ))}
+            <TweetButton />
           </nav>
+          <ProfileDropdown />
         </div>
-      </aside>
+      </div>
     </div>
+  );
+}
+
+function TweetButton() {
+  return (
+    <>
+      <button className="flex items-center justify-center p-2 text-white bg-blue-500 rounded-full lg:hidden hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
+        <Icon icon="magic-wand" className="w-6 h-6" />
+      </button>
+      <button className="hidden w-full py-3 font-medium text-white transition duration-150 ease-in-out bg-blue-500 rounded-full lg:block hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
+        Tweet
+      </button>
+    </>
+  );
+}
+
+function ProfileDropdown() {
+  return (
+    <div className="flex items-center justify-center">
+      <button className="flex items-center w-full transition duration-150 ease-in-out rounded-full lg:p-2 hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue">
+        <img
+          className="flex-shrink-0 w-10 h-10 rounded-full"
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
+          alt=""
+        />
+        <span className="items-center justify-between flex-1 hidden lg:pl-3 lg:flex">
+          <span className="text-sm">
+            <p className="font-semibold leading-5">Abeid Ahmed</p>
+            <p className="leading-5 text-gray-500">@iamhawaabi</p>
+          </span>
+          <Icon icon="chevron-down" className="w-6 h-6 -mr-1 text-gray-500" />
+        </span>
+      </button>
+    </div>
+  );
+}
+
+function NavHead() {
+  return (
+    <header className="flex items-center justify-center lg:px-2 lg:justify-start h-14">
+      <Link
+        to="/"
+        className="flex items-center justify-center p-2 text-gray-700 transition duration-150 ease-in-out rounded-full hover:text-blue-500 lg:justify-start focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue"
+      >
+        <Icon icon="twitter-solid" className="text-blue-500 w-9 h-9" />
+      </Link>
+    </header>
   );
 }
