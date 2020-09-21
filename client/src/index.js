@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Store from 'store';
-import App from './App';
+import App from './app';
 import 'assets/stylesheets/font.css';
 import 'assets/stylesheets/main.css';
 

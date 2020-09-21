@@ -116,7 +116,7 @@ function LoginFooter() {
         <div className="mt-4">
           <span className="rounded-md shadow-sm">
             <Link
-              to="/signup"
+              to="/secure/signup"
               className="block w-full px-3 py-2 text-base font-medium leading-6 text-center text-gray-700 whitespace-no-wrap transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50"
             >
               Create an account

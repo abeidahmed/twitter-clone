@@ -2,9 +2,8 @@ import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Context } from 'store';
 import { currentUser } from 'api/current-user';
-import Home from 'pages/index';
-import Signup from 'pages/signup';
-import Login from 'pages/login';
+import Regular from 'layouts/regular';
+import Slate from 'layouts/slate';
 
 export default function App() {
   const [state, dispatch] = useContext(Context);
@@ -23,12 +22,13 @@ export default function App() {
   }, [state.token]);
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route path="/" component={Home} />
-      </Switch>
-    </Router>
+    <div className="min-h-screen text-gray-900">
+      <Router>
+        <Switch>
+          <Route path="/secure" component={Slate} />
+          <Route path="/" component={Regular} />
+        </Switch>
+      </Router>
+    </div>
   );
 }

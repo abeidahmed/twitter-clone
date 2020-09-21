@@ -103,7 +103,7 @@ function SignupHeader() {
       <p className="mt-2 text-sm leading-5 text-center text-gray-600">
         Already have an account?{' '}
         <Link
-          to="/login"
+          to="/secure/login"
           className="font-medium text-blue-600 transition duration-150 ease-in-out hover:text-blue-500"
         >
           Login
