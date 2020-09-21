@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useMutation } from 'react-query';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Context } from 'store';
 import { signupUser } from 'api/signup-user';
 import { Icon } from 'components/icon';
@@ -14,12 +14,15 @@ export default function Signup() {
 
   const [state, dispatch] = useContext(Context);
 
+  const history = useHistory();
+
   const [mutate, { isLoading }] = useMutation(signupUser, {
     onSuccess({ data }) {
       dispatch({
         type: 'SET_USER',
         payload: data,
       });
+      history.push('/');
     },
     throwOnError: true,
   });

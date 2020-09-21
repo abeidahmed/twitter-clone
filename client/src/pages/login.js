@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Context } from 'store';
 import { loginUser } from 'api/login-user';
@@ -13,12 +13,15 @@ export default function Login() {
 
   const [state, dispatch] = useContext(Context);
 
+  const history = useHistory();
+
   const [mutate, { isLoading }] = useMutation(loginUser, {
     onSuccess({ data }) {
       dispatch({
         type: 'SET_USER',
         payload: data,
       });
+      history.push('/');
     },
     throwOnError: true,
   });
