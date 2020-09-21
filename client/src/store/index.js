@@ -1,8 +1,10 @@
 import React, { createContext, useReducer } from 'react';
+import Cookies from 'js-cookie';
 import { reducer } from 'reducers';
 
 const initialState = {
   user: {},
+  token: Cookies.get('token'),
 };
 
 export const Context = createContext(initialState);
