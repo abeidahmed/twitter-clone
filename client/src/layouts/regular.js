@@ -4,6 +4,7 @@ import MobileSidebar from 'lib/mobile-sidebar';
 import MobileMenu from 'lib/mobile-menu';
 import Header from 'lib/header';
 import Sidebar from 'lib/sidebar';
+import Explore from 'pages/explore';
 import Home from 'pages';
 import Profile from 'pages/profile';
 
@@ -16,6 +17,7 @@ export default function Regular() {
         <Header />
         <div className="flex-1 overflow-y-auto border-l border-r border-gray-200">
           <Switch>
+            <Route path="/explore" component={Explore} />
             <Route exact path="/" component={Home} />
             <Route path="/:id" component={Profile} />
           </Switch>

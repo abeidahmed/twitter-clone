@@ -12,7 +12,7 @@ function Sidebar({ user }) {
     },
     {
       title: 'Explore',
-      path: '/',
+      path: '/explore',
       icon: 'hashtag',
     },
     {
