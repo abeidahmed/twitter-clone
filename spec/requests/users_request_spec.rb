@@ -54,6 +54,18 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  describe '#show' do
+    let(:user) { create(:user) }
+
+    context 'when the user is signed in' do
+      before do
+        get user_url(user.twitter_handle), headers: auth_header(user)
+      end
+
+      include_examples 'user_json_return'
+    end
+  end
+
   describe '#update' do
     let(:user) { create(:user) }
 

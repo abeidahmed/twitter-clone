@@ -8,11 +8,9 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string  :location
       t.string  :website
       t.string  :password_digest
-      t.string  :slug
 
       t.timestamps
     end
     add_index :users, :email
-    add_index :users, :slug, unique: true
   end
 end

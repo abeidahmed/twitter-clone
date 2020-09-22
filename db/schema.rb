@@ -23,11 +23,9 @@ ActiveRecord::Schema.define(version: 2020_09_19_135601) do
     t.string "location"
     t.string "website"
     t.string "password_digest"
-    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email"
-    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
 end

@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  extend FriendlyId
-  friendly_id :email, use: :slugged
-
   has_secure_password
 
   before_save do
