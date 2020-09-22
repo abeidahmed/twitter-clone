@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
+  describe '#index' do
+    let(:user) { create(:user) }
+
+    context 'when the user is logged in' do
+      before do
+        get users_url, headers: auth_header(user)
+      end
+
+      it 'is expected to return all users' do
+        users = json.dig(:users)
+        user = users.first
+        expect(user.keys).to match_array([
+          :id,
+          :twitterHandle,
+          :email,
+          :name,
+          :location,
+          :bio,
+          :createdAt,
+          :updatedAt
+        ])
+      end
+    end
+  end
+
   describe '#create' do
     let(:user) { build(:user) }
 
