@@ -1,10 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Icon } from 'components/icon';
 import { connect } from 'react-redux';
 import { closeSidebar } from 'actions/sidebar';
+import { logout } from 'actions/current-user';
 
-function MobileSidebar({ isActive, closeSidebar }) {
+function MobileSidebar({ user, isActive, logout, closeSidebar }) {
+  const links = [
+    {
+      title: 'Profile',
+      icon: 'user',
+      path: `/${user.twitterHandle}`,
+    },
+    {
+      title: 'Explore',
+      icon: 'hashtag',
+      path: '/explore',
+    },
+    {
+      title: 'Bookmarks',
+      icon: 'bookmark',
+      path: '/',
+    },
+    {
+      title: 'Settings and Privacy',
+      icon: 'cog',
+      path: '/',
+    },
+  ];
+
+  const history = useHistory();
+  function handleLogout() {
+    logout();
+    history.push('/secure/login');
+  }
+
   return (
     <div className="sm:hidden">
       <div
@@ -57,42 +87,24 @@ function MobileSidebar({ isActive, closeSidebar }) {
             </div>
           </div>
           <nav className="mt-2 text-sm">
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="user" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Profile</span>
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="hashtag" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Explore</span>
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="bookmark" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Bookmarks</span>
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
-            >
-              <Icon icon="cog" className="w-5 h-5 text-gray-500 -ml-0.5" />
-              <span className="pl-3 leading-5">Settings and Privacy</span>
-            </Link>
+            {links.map(({ title, path, icon }) => (
+              <Link
+                key={title}
+                to={path}
+                className="flex items-center px-4 py-3 hover:bg-gray-100"
+              >
+                <Icon icon={icon} className="w-5 h-5 text-gray-500 -ml-0.5" />
+                <span className="pl-3 leading-5">{title}</span>
+              </Link>
+            ))}
             <hr className="my-3 text-gray-200" />
-            <Link
-              to="/"
-              className="flex items-center px-4 py-3 hover:bg-gray-100"
+            <button
+              onClick={handleLogout}
+              className="flex items-center w-full px-4 py-3 text-left hover:bg-gray-100"
             >
               <Icon icon="logout" className="w-5 h-5 text-gray-500 -ml-0.5" />
               <span className="pl-3 leading-5">Logout</span>
-            </Link>
+            </button>
           </nav>
         </div>
       </aside>
@@ -103,12 +115,14 @@ function MobileSidebar({ isActive, closeSidebar }) {
 function mapStateToProps(state) {
   return {
     isActive: state.sidebar.sidebar,
+    user: state.currentUser.user,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     closeSidebar: () => dispatch(closeSidebar()),
+    logout: () => dispatch(logout()),
   };
 }
 
