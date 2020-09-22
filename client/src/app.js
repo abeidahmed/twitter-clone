@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { currentUser } from 'api/current-user';
-import Regular from 'layouts/regular';
-import Slate from 'layouts/slate';
 import { Provider } from 'react-redux';
 import { store } from 'store';
+import Regular from 'layouts/regular';
+import Slate from 'layouts/slate';
 import { setCurrentUser } from 'actions/current-user';
+import { currentUser } from 'api/current-user';
 
 export default function App() {
   useEffect(() => {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { useMutation } from 'react-query';
+import { setCurrentUser } from 'actions/current-user';
 import { loginUser } from 'api/login-user';
 import { Icon } from 'components/icon';
 import { Input } from 'components/input';
-import { connect } from 'react-redux';
-import { setCurrentUser } from 'actions/current-user';
 
 function Login({ setCurrentUser }) {
   const [email, setEmail] = useState('');

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from 'pages';
-import { MobileSidebar } from 'components/mobile-sidebar';
+import MobileSidebar from 'components/mobile-sidebar';
 import { MobileMenu } from 'components/mobile-menu';
-import { Header } from 'components/header';
+import Header from 'components/header';
 import { Sidebar } from 'components/sidebar';
 
 export default function Regular() {

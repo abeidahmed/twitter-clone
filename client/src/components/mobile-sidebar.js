@@ -1,17 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from './icon';
+import { connect } from 'react-redux';
+import { closeSidebar } from 'actions/sidebar';
 
-export function MobileSidebar() {
+function MobileSidebar({ isActive, closeSidebar }) {
   return (
-    <div className="hidden">
-      <div className="fixed inset-0 z-10 lg:hidden">
+    <div className="sm:hidden">
+      <div
+        className={`${
+          isActive ? 'block' : 'hidden'
+        } fixed inset-0 z-10 lg:hidden`}
+      >
         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
-      <aside className="fixed top-0 z-50 flex flex-col flex-shrink-0 w-64 h-screen transition duration-150 ease-in-out transform bg-white lg:translate-x-0 lg:sticky">
+      <aside
+        className={`${
+          isActive ? 'translate-x-0' : '-translate-x-full'
+        } fixed top-0 z-50 flex flex-col flex-shrink-0 w-64 h-screen transition duration-150 ease-in-out transform bg-white`}
+      >
         <header className="flex items-center justify-between px-4 border-b h-14">
           <h2 className="text-lg font-extrabold">Account info</h2>
-          <button className="p-1 -mr-2 rounded-full focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue">
+          <button
+            onClick={closeSidebar}
+            className="p-1 -mr-2 rounded-full focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue"
+          >
             <Icon icon="x" className="w-6 h-6 text-blue-500" />
           </button>
         </header>
@@ -86,3 +99,17 @@ export function MobileSidebar() {
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    isActive: state.sidebar.sidebar,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    closeSidebar: () => dispatch(closeSidebar()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MobileSidebar);
