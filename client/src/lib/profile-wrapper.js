@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
 import { Tab } from 'components/tab';
 
-function ProfileWrapper({ user, children }) {
+function ProfileWrapper({ user, currentUser, children }) {
   const links = [
     {
       title: 'Tweets',
@@ -41,48 +42,18 @@ function ProfileWrapper({ user, children }) {
             />
           </div>
           <div className="py-2">
-            <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
-              Edit profile
-            </button>
+            {user.id === currentUser.id ? (
+              <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+                Edit profile
+              </button>
+            ) : (
+              <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+                Follow
+              </button>
+            )}
           </div>
         </div>
-        <div className="mt-1">
-          <h2 className="text-lg font-semibold">
-            {user.name || 'Twitter user'}
-          </h2>
-          <p className="text-sm leading-5 text-gray-600">
-            @{user.twitterHandle}
-          </p>
-          <p className="mt-2 text-gray-600">
-            {user.bio || 'The user is too busy!'}
-          </p>
-          <div className="flex items-center py-2 space-x-3">
-            <p className="flex items-center text-sm text-gray-500">
-              <Icon icon="location" className="w-5 h-5 text-gray-400" />
-              <span className="pl-1 leading-5">
-                {user.location || 'Around the world'}
-              </span>
-            </p>
-            <p className="flex items-center text-sm text-gray-500">
-              <Icon icon="calendar" className="w-5 h-5 text-gray-400" />
-              <span className="pl-1 leading-5">Joined February 2017</span>
-            </p>
-          </div>
-          <div className="flex items-center space-x-4 text-sm">
-            <p className="font-bold">
-              39{' '}
-              <span className="font-normal text-gray-500 pl-0.5">
-                Following
-              </span>
-            </p>
-            <p className="font-bold">
-              17{' '}
-              <span className="font-normal text-gray-500 pl-0.5">
-                Followers
-              </span>
-            </p>
-          </div>
-        </div>
+        <UserDetail user={user} />
         <div className="-mx-4">
           <Tab links={links} />
         </div>
@@ -92,4 +63,42 @@ function ProfileWrapper({ user, children }) {
   );
 }
 
-export default ProfileWrapper;
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser.user,
+  };
+}
+
+export default connect(mapStateToProps, null)(ProfileWrapper);
+
+function UserDetail({ user }) {
+  return (
+    <div className="mt-1">
+      <h2 className="text-lg font-semibold">{user.name || 'Twitter user'}</h2>
+      <p className="text-sm leading-5 text-gray-600">@{user.twitterHandle}</p>
+      <p className="mt-2 text-gray-600">
+        {user.bio || 'The user is too busy!'}
+      </p>
+      <div className="flex items-center py-2 space-x-3">
+        <p className="flex items-center text-sm text-gray-500">
+          <Icon icon="location" className="w-5 h-5 text-gray-400" />
+          <span className="pl-1 leading-5">
+            {user.location || 'Around the world'}
+          </span>
+        </p>
+        <p className="flex items-center text-sm text-gray-500">
+          <Icon icon="calendar" className="w-5 h-5 text-gray-400" />
+          <span className="pl-1 leading-5">Joined February 2017</span>
+        </p>
+      </div>
+      <div className="flex items-center space-x-4 text-sm">
+        <p className="font-bold">
+          39 <span className="font-normal text-gray-500 pl-0.5">Following</span>
+        </p>
+        <p className="font-bold">
+          17 <span className="font-normal text-gray-500 pl-0.5">Followers</span>
+        </p>
+      </div>
+    </div>
+  );
+}
