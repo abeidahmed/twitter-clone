@@ -1,36 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
 
-const links = [
-  {
-    title: 'Home',
-    path: '/',
-    icon: 'home',
-  },
-  {
-    title: 'Explore',
-    path: '/',
-    icon: 'hashtag',
-  },
-  {
-    title: 'Notifications',
-    path: '/',
-    icon: 'bell',
-  },
-  {
-    title: 'Bookmarks',
-    path: '/',
-    icon: 'bookmark',
-  },
-  {
-    title: 'Profile',
-    path: '/profile',
-    icon: 'user',
-  },
-];
+function Sidebar({ user }) {
+  const links = [
+    {
+      title: 'Home',
+      path: '/',
+      icon: 'home',
+    },
+    {
+      title: 'Explore',
+      path: '/',
+      icon: 'hashtag',
+    },
+    {
+      title: 'Notifications',
+      path: '/',
+      icon: 'bell',
+    },
+    {
+      title: 'Bookmarks',
+      path: '/',
+      icon: 'bookmark',
+    },
+    {
+      title: 'Profile',
+      path: `/${user.twitterHandle}`,
+      icon: 'user',
+    },
+  ];
 
-function Sidebar() {
   return (
     <div className="hidden h-screen px-6 sm:block lg:col-span-3">
       <div className="ml-auto lg:ml-0">
@@ -61,7 +62,13 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+function mapStateToProps(state) {
+  return {
+    user: state.currentUser.user,
+  };
+}
+
+export default connect(mapStateToProps, null)(Sidebar);
 
 function TweetButton() {
   return (

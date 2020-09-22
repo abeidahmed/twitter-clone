@@ -17,7 +17,7 @@ export default function Regular() {
         <div className="flex-1 overflow-y-auto border-l border-r border-gray-200">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/:id" component={Profile} />
           </Switch>
         </div>
         <MobileMenu />

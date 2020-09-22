@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by(twitter_handle: params[:id])
+  end
+
   def update
     @user = User.find(params[:id])
 
