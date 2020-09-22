@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { updateHeader } from 'actions/update-header';
+import { useSetTitle } from 'hooks/set-title';
 
 function Home({ updateHeader }) {
-  const meta = {
+  useSetTitle({
     title: 'Home',
     description: null,
-  };
-
-  useEffect(() => {
-    updateHeader(meta);
-  }, [meta]);
+    func: updateHeader,
+  });
 
   return <div></div>;
 }

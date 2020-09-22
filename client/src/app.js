@@ -8,16 +8,18 @@ import { setCurrentUser } from 'actions/current-user';
 import { currentUser } from 'api/current-user';
 
 export default function App() {
+  const token = store.getState().currentUser.token;
+
   useEffect(() => {
     async function getCurrentUser() {
-      if (store.getState().currentUser.token) {
+      if (token) {
         const { data } = await currentUser();
         store.dispatch(setCurrentUser(data));
       }
     }
 
     getCurrentUser();
-  }, [store.getState().currentUser.token]);
+  }, [token]);
 
   return (
     <Provider store={store}>

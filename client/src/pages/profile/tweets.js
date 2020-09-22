@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { updateHeader } from 'actions/update-header';
+import { useSetTitle } from 'hooks/set-title';
 
-function Tweets({ updateHeader }) {
-  const meta = {
-    title: 'Abeid Ahmed',
-    description: '@iamhawaabi',
-  };
-
-  useEffect(() => {
-    updateHeader(meta);
-  }, [meta]);
+function Tweets({ user, updateHeader }) {
+  useSetTitle({
+    title: user.name,
+    description: user.twitterHandle,
+    func: updateHeader,
+  });
 
   return (
     <div>

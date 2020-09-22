@@ -11,12 +11,11 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
-      maxWidth: {
-        '8xl': '90rem',
-        ...defaultTheme.maxWidth,
-      },
     },
   },
-  variants: {},
+  variants: {
+    textColor: ['responsive', 'hover', 'focus', 'focus-within'],
+    borderWidth: ['responsive', 'last'],
+  },
   plugins: [require('@tailwindcss/ui')],
 };
