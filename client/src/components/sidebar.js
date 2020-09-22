@@ -65,7 +65,12 @@ function TweetButton() {
   return (
     <>
       <button className="flex items-center justify-center p-2 text-white bg-blue-500 rounded-full lg:hidden hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
-        <Icon icon="magic-wand" className="w-6 h-6" />
+        <Icon
+          icon="magic-wand"
+          stroke="none"
+          fill="currentColor"
+          className="w-6 h-6"
+        />
       </button>
       <button className="hidden w-full py-3 font-medium text-white transition duration-150 ease-in-out bg-blue-500 rounded-full lg:block hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
         Tweet
@@ -102,7 +107,12 @@ function NavHead() {
         to="/"
         className="flex items-center justify-center p-2 text-gray-700 transition duration-150 ease-in-out rounded-full hover:text-blue-500 lg:justify-start focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue"
       >
-        <Icon icon="twitter-solid" className="text-blue-500 w-9 h-9" />
+        <Icon
+          icon="twitter-solid"
+          stroke="none"
+          fill="currentColor"
+          className="text-blue-500 w-9 h-9"
+        />
       </Link>
     </header>
   );
