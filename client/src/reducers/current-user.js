@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { SET_CURRENT_USER } from 'actions/types';
+import { SET_CURRENT_USER, LOGOUT } from 'actions/types';
 
 const initialState = {
   user: {},
@@ -13,6 +13,12 @@ export function currentUser(state = initialState, action) {
       return {
         user: action.payload.user,
         token: action.payload.token,
+      };
+    case LOGOUT:
+      Cookies.remove('token');
+      return {
+        user: {},
+        token: null,
       };
     default:
       return state;

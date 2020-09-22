@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
+import { logout } from 'actions/current-user';
 
-function Sidebar({ user }) {
+function Sidebar({ user, logout }) {
   const links = [
     {
       title: 'Home',
@@ -55,7 +56,7 @@ function Sidebar({ user }) {
             ))}
             <TweetButton />
           </nav>
-          <ProfileDropdown />
+          <ProfileDropdown logout={logout} />
         </div>
       </div>
     </div>
@@ -68,7 +69,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Sidebar);
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => dispatch(logout()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
 function TweetButton() {
   return (
@@ -88,10 +95,21 @@ function TweetButton() {
   );
 }
 
-function ProfileDropdown() {
+function ProfileDropdown({ logout }) {
+  const [dropActive, setDropActive] = useState(false);
+
+  const history = useHistory();
+  function handleLogout() {
+    logout();
+    history.push('/secure/login');
+  }
+
   return (
-    <div className="flex items-center justify-center">
-      <button className="flex items-center w-full transition duration-150 ease-in-out rounded-full lg:p-2 hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue">
+    <div className="relative flex items-center justify-center">
+      <button
+        onClick={() => setDropActive(!dropActive)}
+        className="flex items-center w-full transition duration-150 ease-in-out rounded-full lg:p-2 hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue"
+      >
         <img
           className="flex-shrink-0 w-10 h-10 rounded-full"
           src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
@@ -105,6 +123,24 @@ function ProfileDropdown() {
           <Icon icon="chevron-down" className="w-5 h-5 -mr-1 text-gray-500" />
         </span>
       </button>
+      <div
+        className={`${
+          dropActive ? 'block' : 'hidden'
+        } absolute z-50 w-48 mb-2 bg-white rounded-md shadow-xl`}
+        style={{ bottom: '100%' }}
+      >
+        <ul className="py-1 rounded-md shadow-xs">
+          <button className="block w-full px-3 py-2 text-left whitespace-no-wrap transition duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+            Settings
+          </button>
+          <button
+            onClick={handleLogout}
+            className="block w-full px-3 py-2 text-left whitespace-no-wrap transition duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
+          >
+            Log out
+          </button>
+        </ul>
+      </div>
     </div>
   );
 }
