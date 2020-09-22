@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from './icon';
+import { Icon } from 'components/icon';
 
 const links = [
   {
@@ -21,7 +21,7 @@ const links = [
   },
 ];
 
-export function MobileMenu() {
+function MobileMenu() {
   return (
     <div className="flex-shrink-0 px-8 border-t border-gray-200 sm:hidden">
       <nav className="flex items-center justify-between h-14">
@@ -38,3 +38,5 @@ export function MobileMenu() {
     </div>
   );
 }
+
+export default MobileMenu;

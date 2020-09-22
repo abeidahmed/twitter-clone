@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from './icon';
+import { Icon } from 'components/icon';
 
 const links = [
   {
@@ -30,7 +30,7 @@ const links = [
   },
 ];
 
-export function Sidebar() {
+function Sidebar() {
   return (
     <div className="hidden h-screen px-6 sm:block lg:col-span-3">
       <div className="ml-auto lg:ml-0">
@@ -60,6 +60,8 @@ export function Sidebar() {
     </div>
   );
 }
+
+export default Sidebar;
 
 function TweetButton() {
   return (

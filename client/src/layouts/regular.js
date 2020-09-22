@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import MobileSidebar from 'components/mobile-sidebar';
-import { MobileMenu } from 'components/mobile-menu';
-import Header from 'components/header';
-import { Sidebar } from 'components/sidebar';
+import MobileSidebar from 'lib/mobile-sidebar';
+import MobileMenu from 'lib/mobile-menu';
+import Header from 'lib/header';
+import Sidebar from 'lib/sidebar';
 import Home from 'pages';
 import Profile from 'pages/profile';
 

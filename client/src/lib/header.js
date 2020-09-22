@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { openSidebar } from 'actions/sidebar';
 
-function Header({ openSidebar }) {
+function Header({ openSidebar, title, description }) {
   return (
     <header className="sticky top-0 flex-shrink-0 border border-gray-200">
       <div className="flex items-center px-4 h-14">
@@ -17,11 +17,22 @@ function Header({ openSidebar }) {
           />
         </button>
         <div className="px-4 sm:px-0">
-          <h1 className="text-lg font-extrabold">Home</h1>
+          <h1 className="text-lg font-extrabold leading-6">{title}</h1>
+          {description && (
+            <p className="text-xs leading-5 text-gray-500">{description}</p>
+          )}
         </div>
       </div>
     </header>
   );
+}
+
+function mapStateToProps(state) {
+  const { title, description } = state.header;
+  return {
+    title,
+    description,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -30,4 +41,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
