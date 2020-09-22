@@ -1,10 +1,29 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Likes from './likes';
+import Tweets from './tweets';
 import { Icon } from 'components/icon';
+import { Tab } from 'components/tab';
 
 function Profile() {
   return (
-    <main className="px-4">
-      <div className="flex flex-col">
+    <div>
+      <ProfileWrapper>
+        <Switch>
+          <Route path="/profile/likes" component={Likes} />
+          <Route path="/profile" component={Tweets} />
+        </Switch>
+      </ProfileWrapper>
+    </div>
+  );
+}
+
+export default Profile;
+
+function ProfileWrapper({ children }) {
+  return (
+    <main>
+      <div className="flex flex-col px-4 border-b border-gray-200">
         <div className="-mx-4">
           <img
             className="flex-shrink-0 object-cover w-full h-48"
@@ -57,9 +76,30 @@ function Profile() {
             </p>
           </div>
         </div>
+        <div className="-mx-4">
+          <Tab links={links} />
+        </div>
       </div>
+      <div className="px-4">{children}</div>
     </main>
   );
 }
 
-export default Profile;
+const links = [
+  {
+    title: 'Tweets',
+    path: '/',
+  },
+  {
+    title: 'Tweets & replies',
+    path: '/',
+  },
+  {
+    title: 'Media',
+    path: '/',
+  },
+  {
+    title: 'Likes',
+    path: '/',
+  },
+];
