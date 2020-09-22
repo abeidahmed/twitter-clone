@@ -53,4 +53,31 @@ RSpec.describe "Users", type: :request do
       include_examples 'created'
     end
   end
+
+  describe '#update' do
+    let(:user) { create(:user) }
+
+    let(:valid_user) { {
+      user: {
+        name: 'Abeid Ahmed',
+        location: 'India',
+        bio: 'Hello world'
+      }
+    }.to_json }
+
+    context 'when the post request is valid' do
+      before do
+        patch user_url(user.id), params: valid_user, headers: auth_header(user)
+      end
+
+      it 'is expected to update the user' do
+        user.reload
+        expect(user.name).to eq('Abeid Ahmed')
+        expect(user.location).to eq('India')
+        expect(user.bio).to eq('Hello world')
+      end
+
+      include_examples 'user_json_return'
+    end
+  end
 end

@@ -54,10 +54,7 @@ RSpec.describe "Sessions", type: :request do
         get session_url('current_user'), headers: auth_header(user)
       end
 
-      it 'is expected to return the details of the current user' do
-        user = json[:user]
-        expect(user.keys).to match_array([:id, :twitterHandle, :email])
-      end
+      include_examples 'user_json_return'
 
       it 'is expected to return jwt token' do
         expect(json[:token]).to_not be_nil
