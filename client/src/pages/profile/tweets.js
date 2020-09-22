@@ -6,7 +6,7 @@ import { useSetTitle } from 'hooks/set-title';
 function Tweets({ user, updateHeader }) {
   useSetTitle({
     title: user.name,
-    description: user.twitterHandle,
+    description: `@${user.twitterHandle}`,
     func: updateHeader,
   });
 
