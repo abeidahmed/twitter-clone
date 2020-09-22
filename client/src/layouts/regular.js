@@ -1,10 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from 'pages';
 import MobileSidebar from 'components/mobile-sidebar';
 import { MobileMenu } from 'components/mobile-menu';
 import Header from 'components/header';
 import { Sidebar } from 'components/sidebar';
+import Home from 'pages';
+import Profile from 'pages/profile';
 
 export default function Regular() {
   return (
@@ -15,7 +16,8 @@ export default function Regular() {
         <Header />
         <div className="flex-1 overflow-y-auto border-l border-r border-gray-200">
           <Switch>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </div>
         <MobileMenu />

@@ -25,7 +25,7 @@ const links = [
   },
   {
     title: 'Profile',
-    path: '/',
+    path: '/profile',
     icon: 'user',
   },
 ];
