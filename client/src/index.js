@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Store from 'store';
 import App from './app';
 import 'assets/stylesheets/font.css';
 import 'assets/stylesheets/main.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Store>
-      <App />
-    </Store>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

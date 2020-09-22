@@ -1,34 +1,34 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Context } from 'store';
 import { currentUser } from 'api/current-user';
 import Regular from 'layouts/regular';
 import Slate from 'layouts/slate';
+import { Provider } from 'react-redux';
+import { store } from 'store';
+import { setCurrentUser } from 'actions/current-user';
 
 export default function App() {
-  const [state, dispatch] = useContext(Context);
-
   useEffect(() => {
     async function getCurrentUser() {
-      if (state.token) {
+      if (store.getState().currentUser.token) {
         const { data } = await currentUser();
-        dispatch({
-          type: 'SET_USER',
-          payload: data,
-        });
+        store.dispatch(setCurrentUser(data));
       }
     }
+
     getCurrentUser();
-  }, [state.token]);
+  }, [store.getState().currentUser.token]);
 
   return (
-    <div className="min-h-screen text-gray-900">
-      <Router>
-        <Switch>
-          <Route path="/secure" component={Slate} />
-          <Route path="/" component={Regular} />
-        </Switch>
-      </Router>
-    </div>
+    <Provider store={store}>
+      <div className="min-h-screen text-gray-900">
+        <Router>
+          <Switch>
+            <Route path="/secure" component={Slate} />
+            <Route path="/" component={Regular} />
+          </Switch>
+        </Router>
+      </div>
+    </Provider>
   );
 }

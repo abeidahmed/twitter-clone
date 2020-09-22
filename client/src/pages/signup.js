@@ -1,27 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { Link, useHistory } from 'react-router-dom';
-import { Context } from 'store';
 import { signupUser } from 'api/signup-user';
 import { Icon } from 'components/icon';
 import { Input } from 'components/input';
+import { setCurrentUser } from 'actions/current-user';
+import { connect } from 'react-redux';
 
-export default function Signup() {
+function Signup({ setCurrentUser }) {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState([]);
 
-  const [state, dispatch] = useContext(Context);
-
   const history = useHistory();
 
   const [mutate, { isLoading }] = useMutation(signupUser, {
     onSuccess({ data }) {
-      dispatch({
-        type: 'SET_USER',
-        payload: data,
-      });
+      setCurrentUser(data);
       history.push('/');
     },
     throwOnError: true,
@@ -92,6 +88,14 @@ export default function Signup() {
     </main>
   );
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentUser: (payload) => dispatch(setCurrentUser(payload)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Signup);
 
 function SignupHeader() {
   return (

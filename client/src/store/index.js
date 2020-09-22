@@ -1,18 +1,9 @@
-import React, { createContext, useReducer } from 'react';
-import Cookies from 'js-cookie';
-import { reducer } from 'reducers';
+import { createStore, compose } from 'redux';
+import { rootReducer } from 'reducers';
 
-const initialState = {
-  user: {},
-  token: Cookies.get('token'),
-};
+const composeEnhancers =
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    trace: true,
+  }) || compose;
 
-export const Context = createContext(initialState);
-
-export default function Store({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return (
-    <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>
-  );
-}
+export const store = createStore(rootReducer, composeEnhancers());
