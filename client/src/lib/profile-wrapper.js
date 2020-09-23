@@ -1,8 +1,12 @@
 import React from 'react';
+import { useMutation, queryCache } from 'react-query';
 import { connect } from 'react-redux';
+import { follow } from 'api/follow';
+import { unfollow } from 'api/unfollow';
 import { Icon } from 'components/icon';
 import { Tab } from 'components/tab';
 import { FollowStat } from 'components/follow-stat';
+import { FollowBtn } from 'components/follow-btn';
 
 function ProfileWrapper({ user, currentUser, children }) {
   const links = [
@@ -43,15 +47,7 @@ function ProfileWrapper({ user, currentUser, children }) {
             />
           </div>
           <div className="py-2">
-            {user.id === currentUser.id ? (
-              <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
-                Edit profile
-              </button>
-            ) : (
-              <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
-                Follow
-              </button>
-            )}
+            <DynamicFollowBtn user={user} currentUser={currentUser} />
           </div>
         </div>
         <UserDetail user={user} />
@@ -71,6 +67,53 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(ProfileWrapper);
+
+function DynamicFollowBtn({ user, currentUser }) {
+  const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
+    onSuccess() {
+      queryCache.refetchQueries('showUser');
+    },
+  });
+
+  async function handleFollow(id) {
+    await followMutate({
+      id,
+    });
+  }
+
+  const [unfollowMutate, { isLoading: unfollowLoading }] = useMutation(
+    unfollow,
+    {
+      onSuccess() {
+        queryCache.refetchQueries('showUser');
+      },
+    }
+  );
+
+  async function handleUnfollow(id) {
+    await unfollowMutate({
+      id,
+    });
+  }
+
+  if (user.id === currentUser.id) {
+    return (
+      <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+        Edit profile
+      </button>
+    );
+  }
+  return (
+    <FollowBtn
+      isFollowing={user.isFollowing}
+      onFollow={() => handleFollow(user.id)}
+      onUnfollow={() => handleUnfollow(user.id)}
+      followLoading={followLoading}
+      unfollowLoading={unfollowLoading}
+      size="md"
+    />
+  );
+}
 
 function UserDetail({ user }) {
   return (

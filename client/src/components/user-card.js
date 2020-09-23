@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useMutation, queryCache } from 'react-query';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
+import { FollowBtn } from 'components/follow-btn';
 
 function UserCard({ user, currentUser }) {
   return (
@@ -32,7 +33,7 @@ function UserCard({ user, currentUser }) {
               )}
             </div>
           </div>
-          <FollowBtn user={user} currentUser={currentUser} />
+          <DynamicFollowBtn user={user} currentUser={currentUser} />
         </div>
         <div className="mt-1">
           <p className="text-sm text-gray-700">
@@ -53,7 +54,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, null)(UserCard);
 
-function FollowBtn({ user, currentUser }) {
+function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
     onSuccess() {
       queryCache.refetchQueries('allUsers');
@@ -85,31 +86,18 @@ function FollowBtn({ user, currentUser }) {
     });
   }
 
-  const [following, setFollowing] = useState('Following');
-
   if (user.id === currentUser) return null;
 
   return (
     <div>
-      {user.isFollowing ? (
-        <button
-          disabled={unfollowLoading}
-          onMouseEnter={() => setFollowing('Unfollow')}
-          onMouseLeave={() => setFollowing('Following')}
-          onClick={() => handleUnfollow(user.id)}
-          className="px-3 py-1 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-pink-600 hover:border-pink-600"
-        >
-          {following}
-        </button>
-      ) : (
-        <button
-          disabled={followLoading}
-          onClick={() => handleFollow(user.id)}
-          className="px-3 py-1 text-sm font-semibold leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
-        >
-          Follow
-        </button>
-      )}
+      <FollowBtn
+        isFollowing={user.isFollowing}
+        onFollow={() => handleFollow(user.id)}
+        onUnfollow={() => handleUnfollow(user.id)}
+        followLoading={followLoading}
+        unfollowLoading={unfollowLoading}
+        size="sm"
+      />
     </div>
   );
 }
