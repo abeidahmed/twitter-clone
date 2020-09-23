@@ -37,7 +37,7 @@ RSpec.describe "Sessions", type: :request do
 
       it 'is expected to return user detail' do
         user = json[:user]
-        expect(user.keys).to match_array([:id, :twitterHandle])
+        expect(user.keys).to match_array([:id, :twitterHandle, :name])
       end
 
       it 'is expected to return jwt token' do
