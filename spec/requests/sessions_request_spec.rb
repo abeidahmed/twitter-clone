@@ -66,13 +66,7 @@ RSpec.describe "Sessions", type: :request do
         get session_url('current_user'), headers: default_header
       end
 
-      it 'is expected to throw unauthorized_status' do
-        expect(response).to be_unauthorized
-      end
-
-      it 'is expected to return an error message' do
-        expect(json[:message]).to_not be_nil
-      end
+      include_examples 'unauthorized'
     end
   end
 end

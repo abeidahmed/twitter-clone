@@ -9,3 +9,9 @@ RSpec.shared_examples "created" do
     expect(response).to be_created
   end
 end
+
+RSpec.shared_examples "unauthorized" do
+  it 'is expected to throw unauthorized status' do
+    expect(response).to be_unauthorized
+  end
+end

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:create]
+
   def create
     @user = User.find_by_credentials(email, password)
 
@@ -11,11 +13,8 @@ class SessionsController < ApplicationController
   end
 
   def show
-    if current_user.nil?
-      render json: { message: 'Please login to continue' }, status: :unauthorized
-    else
-      render :show
-    end
+    @current_user = current_user
+    render :show
   end
 
   private

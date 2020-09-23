@@ -24,6 +24,14 @@ RSpec.describe "Users", type: :request do
         ])
       end
     end
+
+    context 'when the user is not logged in' do
+      before do
+        get users_url, headers: default_header
+      end
+
+      include_examples 'unauthorized'
+    end
   end
 
   describe '#create' do
@@ -89,6 +97,14 @@ RSpec.describe "Users", type: :request do
 
       include_examples 'user_json_return'
     end
+
+    context 'when the user is not logged in' do
+      before do
+        get user_url(user.twitter_handle), headers: default_header
+      end
+
+      include_examples 'unauthorized'
+    end
   end
 
   describe '#update' do
@@ -102,7 +118,7 @@ RSpec.describe "Users", type: :request do
       }
     }.to_json }
 
-    context 'when the post request is valid' do
+    context 'when the post request is valid and the user is logged in' do
       before do
         patch user_url(user.id), params: valid_user, headers: auth_header(user)
       end
@@ -115,6 +131,14 @@ RSpec.describe "Users", type: :request do
       end
 
       include_examples 'user_json_return'
+    end
+
+    context 'when the user is not logged in' do
+      before do
+        patch user_url(user.id), params: valid_user, headers: default_header
+      end
+
+      include_examples 'unauthorized'
     end
   end
 end

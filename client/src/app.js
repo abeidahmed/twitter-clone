@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'store';
+import ProtectedRoute from 'lib/protected-route';
 import Regular from 'layouts/regular';
 import Slate from 'layouts/slate';
 import { setCurrentUser } from 'actions/current-user';
@@ -27,7 +28,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route path="/secure" component={Slate} />
-            <Route path="/" component={Regular} />
+            <ProtectedRoute path="/" component={Regular} />
           </Switch>
         </Router>
       </div>
