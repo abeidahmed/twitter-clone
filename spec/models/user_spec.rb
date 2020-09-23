@@ -78,4 +78,35 @@ RSpec.describe User, type: :model do
       expect(described_class.find_by_credentials('mamakane@example.com', 'helloworld')).to be_nil
     end
   end
+
+  describe '#follow' do
+    it 'is expected to successfully follow the user' do
+      user1 = create(:user)
+      user2 = create(:user)
+
+      user1.follow(user2)
+      expect(user1.following.size).to eq(1)
+    end
+  end
+
+  describe '#unfollow' do
+    it 'is expected to successfully unfollow the user' do
+      user1 = create(:user)
+      user2 = create(:user)
+
+      user1.follow(user2)
+      user1.unfollow(user2)
+      expect(user1.following.size).to eq(0)
+    end
+  end
+
+  describe '#following?' do
+    it 'is expected to return a boolean value' do
+      user1 = create(:user)
+      user2 = create(:user)
+
+      user1.follow(user2)
+      expect(user1.following?(user2)).to be_truthy
+    end
+  end
 end
