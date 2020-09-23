@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(create_user_params)
 
     if @user.save
       @token = Token.new(user_id: @user.id).encode
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(user_params)
+    if @user.update(update_user_params)
       render :edit
     else
       render json: { message: @user.errors.full_messages }, status: :bad_request
@@ -43,15 +43,22 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
+    def create_user_params
       params.require(:user).permit(
         :email,
         :twitter_handle,
+        :password
+      )
+    end
+
+    def update_user_params
+      params.require(:user).permit(
         :name,
         :bio,
         :location,
         :website,
-        :password
+        :avatar,
+        :banner,
       )
     end
 end

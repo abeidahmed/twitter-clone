@@ -18,6 +18,9 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_one_attached :avatar
+  has_one_attached :banner
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_TWITTER_HANDLE_REGEX = /\A[a-z0-9_]+\z/i
 
