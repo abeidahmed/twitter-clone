@@ -56,7 +56,7 @@ function Sidebar({ user, logout }) {
             ))}
             <TweetButton />
           </nav>
-          <ProfileDropdown logout={logout} />
+          <ProfileDropdown logout={logout} user={user} />
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@ function TweetButton() {
   );
 }
 
-function ProfileDropdown({ logout }) {
+function ProfileDropdown({ logout, user }) {
   const [dropActive, setDropActive] = useState(false);
 
   const history = useHistory();
@@ -117,8 +117,10 @@ function ProfileDropdown({ logout }) {
         />
         <span className="items-center justify-between flex-1 hidden lg:pl-3 lg:flex">
           <span className="text-sm lg:pr-2">
-            <p className="font-semibold leading-5">Abeid Ahmed</p>
-            <p className="leading-5 text-gray-500">@iamhawaabi</p>
+            <p className="font-semibold leading-5">
+              {user.name || 'Twitter user'}
+            </p>
+            <p className="leading-5 text-gray-500">@{user.twitterHandle}</p>
           </span>
           <Icon icon="chevron-down" className="w-5 h-5 -mr-1 text-gray-500" />
         </span>

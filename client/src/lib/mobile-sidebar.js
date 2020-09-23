@@ -67,8 +67,8 @@ function MobileSidebar({ user, isActive, logout, closeSidebar }) {
                 alt=""
               />
               <div className="mt-2 text-sm">
-                <p className="font-semibold">Abeid Ahmed</p>
-                <p className="text-gray-500">@iamhawaabi</p>
+                <p className="font-semibold">{user.name || 'Twitter user'}</p>
+                <p className="text-gray-500">@{user.twitterHandle}</p>
               </div>
             </div>
             <div className="flex items-center mt-4 space-x-4 text-sm">
