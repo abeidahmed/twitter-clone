@@ -8,10 +8,6 @@ RSpec.describe "Users", type: :request do
       before do
         get users_url, headers: auth_header(user)
       end
-
-      it 'is expected to return all users' do
-        show_user_attr
-      end
     end
 
     context 'when the user is not logged in' do
@@ -63,11 +59,6 @@ RSpec.describe "Users", type: :request do
         expect(User.all.size).to eq(1)
       end
 
-      it 'is expected to return user detail' do
-        user = json[:user]
-        expect(user.keys).to match_array([:id, :twitterHandle, :name])
-      end
-
       it 'is expected to return jwt token' do
         expect(json[:token]).to_not be_nil
       end
@@ -84,7 +75,9 @@ RSpec.describe "Users", type: :request do
         get user_url(user.twitter_handle), headers: auth_header(user)
       end
 
-      include_examples 'user_json_return'
+      it 'is expected to return user detail' do
+        expect(json[:user]).to_not be_nil
+      end
     end
 
     context 'when the user is not logged in' do
@@ -140,10 +133,6 @@ RSpec.describe "Users", type: :request do
         user1.follow(user2)
         get following_user_url(user1.twitter_handle), headers: auth_header(user1)
       end
-
-      it 'is expected to show all the following users' do
-        show_user_attr
-      end
     end
 
     context 'when the user is not logged in' do
@@ -165,10 +154,6 @@ RSpec.describe "Users", type: :request do
         user1.follow(user2)
         get followers_user_url(user2.twitter_handle), headers: auth_header(user2)
       end
-
-      it 'is expected to show all the followers' do
-        show_user_attr
-      end
     end
 
     context 'when the user is not logged in' do
@@ -180,22 +165,4 @@ RSpec.describe "Users", type: :request do
       include_examples 'unauthorized'
     end
   end
-
-  private
-    def show_user_attr
-      users = json.dig(:users)
-      user = users.first
-      expect(user.keys).to match_array(
-        [
-          :id,
-          :twitterHandle,
-          :email,
-          :name,
-          :location,
-          :bio,
-          :createdAt,
-          :updatedAt
-        ]
-      )
-    end
 end

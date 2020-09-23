@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export function UserCard({ user }) {
+function UserCard({ user, currentUser }) {
   return (
     <div className="flex w-full px-4 py-5 space-x-3 transition duration-150 ease-in-out border-t border-gray-200 last:border-b hover:bg-gray-50">
       <div>
@@ -12,7 +13,7 @@ export function UserCard({ user }) {
         />
       </div>
       <div className="flex flex-col flex-1">
-        <div className="flex">
+        <div className="flex justify-between">
           <div>
             <Link to={`/${user.twitterHandle}`} className="hover:underline">
               <p className="text-sm font-semibold">
@@ -21,16 +22,14 @@ export function UserCard({ user }) {
             </Link>
             <div className="flex items-center space-x-2">
               <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
-              <span className="px-1 text-xs leading-5 text-gray-500 bg-gray-200 rounded">
-                Follows you
-              </span>
+              {user.isFollowed && (
+                <span className="px-1 text-xs leading-5 text-gray-500 bg-gray-200 rounded">
+                  Follows you
+                </span>
+              )}
             </div>
           </div>
-          <div className="ml-auto">
-            <button className="px-3 py-1 text-sm font-semibold leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
-              Follow
-            </button>
-          </div>
+          <FollowBtn user={user} currentUser={currentUser} />
         </div>
         <div className="mt-1">
           <p className="text-sm text-gray-700">
@@ -39,6 +38,38 @@ export function UserCard({ user }) {
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser.user.id,
+  };
+}
+
+export default connect(mapStateToProps, null)(UserCard);
+
+function FollowBtn({ user, currentUser }) {
+  const [following, setFollowing] = useState('Following');
+
+  if (user.id === currentUser) return null;
+
+  return (
+    <div>
+      {user.isFollowing ? (
+        <button
+          onMouseEnter={() => setFollowing('Unfollow')}
+          onMouseLeave={() => setFollowing('Following')}
+          className="px-3 py-1 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-pink-600 hover:border-pink-600"
+        >
+          {following}
+        </button>
+      ) : (
+        <button className="px-3 py-1 text-sm font-semibold leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+          Follow
+        </button>
+      )}
     </div>
   );
 }

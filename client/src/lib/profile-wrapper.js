@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
 import { Tab } from 'components/tab';
@@ -94,8 +93,8 @@ function UserDetail({ user }) {
         </p>
       </div>
       <FollowStat
-        follower="17"
-        following="39"
+        follower={user.followersCount}
+        following={user.followingCount}
         followingTo={`/${user.twitterHandle}/followings`}
         followerTo={`/${user.twitterHandle}/followers`}
       />

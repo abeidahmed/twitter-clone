@@ -4,6 +4,7 @@ import { Icon } from 'components/icon';
 import { connect } from 'react-redux';
 import { closeSidebar } from 'actions/sidebar';
 import { logout } from 'actions/current-user';
+import { FollowStat } from 'components/follow-stat';
 
 function MobileSidebar({ user, isActive, logout, closeSidebar }) {
   const links = [
@@ -71,19 +72,13 @@ function MobileSidebar({ user, isActive, logout, closeSidebar }) {
                 <p className="text-gray-500">@{user.twitterHandle}</p>
               </div>
             </div>
-            <div className="flex items-center mt-4 space-x-4 text-sm">
-              <p className="font-bold">
-                39{' '}
-                <span className="font-normal text-gray-500 pl-0.5">
-                  Following
-                </span>
-              </p>
-              <p className="font-bold">
-                17{' '}
-                <span className="font-normal text-gray-500 pl-0.5">
-                  Followers
-                </span>
-              </p>
+            <div className="mt-4">
+              <FollowStat
+                follower={user.followersCount}
+                following={user.followingCount}
+                followingTo={`/${user.twitterHandle}/followings`}
+                followerTo={`/${user.twitterHandle}/followers`}
+              />
             </div>
           </div>
           <nav className="mt-2 text-sm">

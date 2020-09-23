@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { allFollowers } from 'api/all-followers';
 import { updateHeader } from 'actions/update-header';
 import { useSetTitle } from 'hooks/set-title';
-import { UserCard } from 'components/user-card';
+import UserCard from 'components/user-card';
 
 function Followers({ user, updateHeader }) {
   useSetTitle({

@@ -1,7 +1,6 @@
 json.user do
-  json.id @user.id
-  json.twitter_handle @user.twitter_handle
-  json.name @user.name
+  json.partial! 'user', user: @user
+  json.partial! 'follow_count', user: @user
 end
 
 json.token @token

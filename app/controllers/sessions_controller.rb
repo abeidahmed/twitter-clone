@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       render json: { message: 'Invalid credentials' }, status: :bad_request
     else
       @token = Token.new(user_id: @user.id).encode
-      render 'users/new'
+      render :new
     end
   end
 

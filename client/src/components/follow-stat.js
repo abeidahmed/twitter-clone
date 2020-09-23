@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { pluralize } from 'utils/helpers';
 
 export function FollowStat({ follower, following, followerTo, followingTo }) {
   return (
@@ -10,7 +11,9 @@ export function FollowStat({ follower, following, followerTo, followingTo }) {
       </Link>
       <Link to={followerTo} className="font-bold hover:underline">
         {follower}{' '}
-        <span className="font-normal text-gray-500 pl-0.5">Followers</span>
+        <span className="font-normal text-gray-500 pl-0.5">
+          {pluralize(parseInt(follower), 'Follower')}
+        </span>
       </Link>
     </div>
   );

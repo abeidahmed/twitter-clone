@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useQuery } from 'react-query';
 import { Icon } from 'components/icon';
-import { UserCard } from 'components/user-card';
+import UserCard from 'components/user-card';
 import { allUsers } from 'api/all-users';
 import { updateHeader } from 'actions/update-header';
 import { useSetTitle } from 'hooks/set-title';
