@@ -4,6 +4,8 @@ import { useQuery } from 'react-query';
 import { showUser } from 'api/show-user';
 import Likes from './likes';
 import Tweets from './tweets';
+import Followers from './followers';
+import Followings from './following';
 import ProfileWrapper from 'lib/profile-wrapper';
 
 function Profile() {
@@ -16,18 +18,28 @@ function Profile() {
 
   return (
     <div>
-      <ProfileWrapper user={user}>
-        <Switch>
+      <Switch>
+        <Route
+          path="/:id/followers"
+          render={(props) => <Followers {...props} user={user} />}
+        />
+        <Route
+          path="/:id/followings"
+          render={(props) => <Followings {...props} user={user} />}
+        />
+        <ProfileWrapper user={user}>
           <Route
+            exact
             path={`/${id}/likes`}
             render={(props) => <Likes {...props} user={user} />}
           />
           <Route
+            exact
             path={`/${id}`}
             render={(props) => <Tweets {...props} user={user} />}
           />
-        </Switch>
-      </ProfileWrapper>
+        </ProfileWrapper>
+      </Switch>
     </div>
   );
 }

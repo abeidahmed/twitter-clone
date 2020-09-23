@@ -138,7 +138,7 @@ RSpec.describe "Users", type: :request do
     context 'when the get request is valid and the user is logged in' do
       before do
         user1.follow(user2)
-        get following_user_url(user1), headers: auth_header(user1)
+        get following_user_url(user1.twitter_handle), headers: auth_header(user1)
       end
 
       it 'is expected to show all the following users' do
@@ -149,7 +149,7 @@ RSpec.describe "Users", type: :request do
     context 'when the user is not logged in' do
       before do
         user1.follow(user2)
-        get following_user_url(user1), headers: default_header
+        get following_user_url(user1.twitter_handle), headers: default_header
       end
 
       include_examples 'unauthorized'
@@ -163,7 +163,7 @@ RSpec.describe "Users", type: :request do
     context 'when the get request is valid and the user is logged in' do
       before do
         user1.follow(user2)
-        get followers_user_url(user2), headers: auth_header(user2)
+        get followers_user_url(user2.twitter_handle), headers: auth_header(user2)
       end
 
       it 'is expected to show all the followers' do
@@ -174,7 +174,7 @@ RSpec.describe "Users", type: :request do
     context 'when the user is not logged in' do
       before do
         user1.follow(user2)
-        get followers_user_url(user2), headers: default_header
+        get followers_user_url(user2.twitter_handle), headers: default_header
       end
 
       include_examples 'unauthorized'

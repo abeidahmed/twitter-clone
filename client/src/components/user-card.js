@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from 'components/icon';
 
 export function UserCard({ user }) {
   return (
@@ -13,36 +12,31 @@ export function UserCard({ user }) {
         />
       </div>
       <div className="flex flex-col flex-1">
-        <div className="flex items-center space-x-3">
-          <Link to={`/${user.twitterHandle}`} className="hover:underline">
-            <p className="text-sm font-semibold">
-              {user.name || 'Twitter user'}
-            </p>
-          </Link>
-          <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
+        <div className="flex">
+          <div>
+            <Link to={`/${user.twitterHandle}`} className="hover:underline">
+              <p className="text-sm font-semibold">
+                {user.name || 'Twitter user'}
+              </p>
+            </Link>
+            <div className="flex items-center space-x-2">
+              <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
+              <span className="px-1 text-xs leading-5 text-gray-500 bg-gray-200 rounded">
+                Follows you
+              </span>
+            </div>
+          </div>
+          <div className="ml-auto">
+            <button className="px-3 py-1 text-sm font-semibold leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+              Follow
+            </button>
+          </div>
         </div>
-        <div className="flex items-center mt-1 space-x-3 -ml-0.5">
-          <p className="flex items-center text-sm text-gray-500">
-            <Icon icon="location" className="w-5 h-5 text-gray-400" />
-            <span className="pl-1 leading-5">
-              {user.location || 'Around the world'}
-            </span>
-          </p>
-          <p className="flex items-center text-sm text-gray-500">
-            <Icon icon="calendar" className="w-5 h-5 text-gray-400" />
-            <span className="pl-1 leading-5">Joined February 2017</span>
-          </p>
-        </div>
-        <div className="mt-3">
+        <div className="mt-1">
           <p className="text-sm text-gray-700">
             {user.bio ||
               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, a.'}
           </p>
-        </div>
-        <div className="mt-2 ml-auto">
-          <button className="px-3 py-1 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
-            Follow
-          </button>
         </div>
       </div>
     </div>

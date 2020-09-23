@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
 import { Tab } from 'components/tab';
+import { FollowStat } from 'components/follow-stat';
 
 function ProfileWrapper({ user, currentUser, children }) {
   const links = [
@@ -91,14 +93,12 @@ function UserDetail({ user }) {
           <span className="pl-1 leading-5">Joined February 2017</span>
         </p>
       </div>
-      <div className="flex items-center space-x-4 text-sm">
-        <p className="font-bold">
-          39 <span className="font-normal text-gray-500 pl-0.5">Following</span>
-        </p>
-        <p className="font-bold">
-          17 <span className="font-normal text-gray-500 pl-0.5">Followers</span>
-        </p>
-      </div>
+      <FollowStat
+        follower="17"
+        following="39"
+        followingTo={`/${user.twitterHandle}/followings`}
+        followerTo={`/${user.twitterHandle}/followers`}
+      />
     </div>
   );
 }

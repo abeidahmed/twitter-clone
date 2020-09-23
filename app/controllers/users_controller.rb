@@ -31,13 +31,13 @@ class UsersController < ApplicationController
   end
 
   def following
-    user = User.find(params[:id])
+    user = User.find_by(twitter_handle: params[:id])
     @users = user.following.all
     render :show_follow
   end
 
   def followers
-    user = User.find(params[:id])
+    user = User.find_by(twitter_handle: params[:id])
     @users = user.followers.all
     render :show_follow
   end
