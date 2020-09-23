@@ -4,20 +4,29 @@ button[disabled] {
   cursor: auto;
 }
 
-@keyframes spin {
+.lds-dual-ring {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 4px solid #3f83f8;
+  border-color: #3f83f8 transparent #3f83f8 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
-}
-
-.loader {
-  border: 4px solid #ebf4ff;
-  border-radius: 50%;
-  border-top: 4px solid #3f83f8;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
 }
