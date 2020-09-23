@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useMutation, queryCache } from 'react-query';
+import { follow } from 'api/follow';
+import { unfollow } from 'api/unfollow';
 
 function UserCard({ user, currentUser }) {
   return (
@@ -51,6 +54,37 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, null)(UserCard);
 
 function FollowBtn({ user, currentUser }) {
+  const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
+    onSuccess() {
+      queryCache.refetchQueries('allUsers');
+      queryCache.refetchQueries('fetchFollowings');
+      queryCache.refetchQueries('fetchFollowers');
+    },
+  });
+
+  async function handleFollow(id) {
+    await followMutate({
+      id,
+    });
+  }
+
+  const [unfollowMutate, { isLoading: unfollowLoading }] = useMutation(
+    unfollow,
+    {
+      onSuccess() {
+        queryCache.refetchQueries('allUsers');
+        queryCache.refetchQueries('fetchFollowings');
+        queryCache.refetchQueries('fetchFollowers');
+      },
+    }
+  );
+
+  async function handleUnfollow(id) {
+    await unfollowMutate({
+      id,
+    });
+  }
+
   const [following, setFollowing] = useState('Following');
 
   if (user.id === currentUser) return null;
@@ -59,14 +93,20 @@ function FollowBtn({ user, currentUser }) {
     <div>
       {user.isFollowing ? (
         <button
+          disabled={unfollowLoading}
           onMouseEnter={() => setFollowing('Unfollow')}
           onMouseLeave={() => setFollowing('Following')}
+          onClick={() => handleUnfollow(user.id)}
           className="px-3 py-1 text-sm font-semibold leading-5 text-white transition duration-150 ease-in-out bg-blue-600 border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-pink-600 hover:border-pink-600"
         >
           {following}
         </button>
       ) : (
-        <button className="px-3 py-1 text-sm font-semibold leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+        <button
+          disabled={followLoading}
+          onClick={() => handleFollow(user.id)}
+          className="px-3 py-1 text-sm font-semibold leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
+        >
           Follow
         </button>
       )}
