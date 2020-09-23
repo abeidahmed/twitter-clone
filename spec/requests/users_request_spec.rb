@@ -10,18 +10,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it 'is expected to return all users' do
-        users = json.dig(:users)
-        user = users.first
-        expect(user.keys).to match_array([
-          :id,
-          :twitterHandle,
-          :email,
-          :name,
-          :location,
-          :bio,
-          :createdAt,
-          :updatedAt
-        ])
+        show_user_attr
       end
     end
 
@@ -141,4 +130,72 @@ RSpec.describe "Users", type: :request do
       include_examples 'unauthorized'
     end
   end
+
+  describe '#following' do
+    let(:user1) { create(:user) }
+    let(:user2) { create(:user) }
+
+    context 'when the get request is valid and the user is logged in' do
+      before do
+        user1.follow(user2)
+        get following_user_url(user1), headers: auth_header(user1)
+      end
+
+      it 'is expected to show all the following users' do
+        show_user_attr
+      end
+    end
+
+    context 'when the user is not logged in' do
+      before do
+        user1.follow(user2)
+        get following_user_url(user1), headers: default_header
+      end
+
+      include_examples 'unauthorized'
+    end
+  end
+
+  describe '#followers' do
+    let(:user1) { create(:user) }
+    let(:user2) { create(:user) }
+
+    context 'when the get request is valid and the user is logged in' do
+      before do
+        user1.follow(user2)
+        get followers_user_url(user2), headers: auth_header(user2)
+      end
+
+      it 'is expected to show all the followers' do
+        show_user_attr
+      end
+    end
+
+    context 'when the user is not logged in' do
+      before do
+        user1.follow(user2)
+        get followers_user_url(user2), headers: default_header
+      end
+
+      include_examples 'unauthorized'
+    end
+  end
+
+  private
+    def show_user_attr
+      users = json.dig(:users)
+      user = users.first
+      expect(user.keys).to match_array(
+        [
+          :id,
+          :twitterHandle,
+          :email,
+          :name,
+          :location,
+          :bio,
+          :createdAt,
+          :updatedAt
+        ]
+      )
+    end
 end
