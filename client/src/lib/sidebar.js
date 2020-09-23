@@ -9,26 +9,31 @@ function Sidebar({ user, logout }) {
     {
       title: 'Home',
       path: '/',
+      exact: true,
       icon: 'home',
     },
     {
       title: 'Explore',
       path: '/explore',
+      exact: false,
       icon: 'hashtag',
     },
     {
       title: 'Notifications',
       path: '/asdasd',
+      exact: false,
       icon: 'bell',
     },
     {
       title: 'Bookmarks',
       path: '/asd',
+      exact: false,
       icon: 'bookmark',
     },
     {
       title: 'Profile',
       path: `/${user.twitterHandle}`,
+      exact: false,
       icon: 'user',
     },
   ];
@@ -42,10 +47,10 @@ function Sidebar({ user, logout }) {
           style={{ height: 'calc(100vh - 56px)' }}
         >
           <nav className="flex-1 space-y-3">
-            {links.map(({ title, path, icon }) => (
+            {links.map(({ title, path, icon, exact }) => (
               <NavLink
                 key={title}
-                exact
+                exact={exact}
                 to={path}
                 activeClassName="text-blue-500"
                 className="flex items-center justify-center p-2 text-gray-700 transition duration-150 ease-in-out rounded-full lg:justify-start focus:outline-none hover:bg-blue-50 hover:text-blue-500 focus:shadow-outline-blue"
