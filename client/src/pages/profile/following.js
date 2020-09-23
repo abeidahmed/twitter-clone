@@ -6,6 +6,7 @@ import { allFollowings } from 'api/all-followings';
 import { updateHeader } from 'actions/update-header';
 import { useSetTitle } from 'hooks/set-title';
 import UserCard from 'components/user-card';
+import { Spinner } from 'components/spinner';
 
 function Following({ user, updateHeader }) {
   useSetTitle({
@@ -20,7 +21,7 @@ function Following({ user, updateHeader }) {
     allFollowings
   );
 
-  if (isLoading || isError) return null;
+  if (isLoading || isError) return <Spinner />;
 
   const users = data.data.users;
 

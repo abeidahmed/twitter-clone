@@ -6,6 +6,7 @@ import UserCard from 'components/user-card';
 import { allUsers } from 'api/all-users';
 import { updateHeader } from 'actions/update-header';
 import { useSetTitle } from 'hooks/set-title';
+import { Spinner } from 'components/spinner';
 
 function Explore({ updateHeader }) {
   useSetTitle({
@@ -16,7 +17,7 @@ function Explore({ updateHeader }) {
 
   const { data, isLoading, isError } = useQuery('allUsers', allUsers);
 
-  if (isLoading || isError) return null;
+  if (isLoading || isError) return <Spinner />;
 
   return (
     <main className="py-3">

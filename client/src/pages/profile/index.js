@@ -7,12 +7,13 @@ import Tweets from './tweets';
 import Followers from './followers';
 import Followings from './following';
 import ProfileWrapper from 'lib/profile-wrapper';
+import { Spinner } from 'components/spinner';
 
 function Profile() {
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery(['showUser', { id }], showUser);
 
-  if (isLoading || isError) return null;
+  if (isLoading || isError) return <Spinner />;
 
   const user = data.data.user;
 
