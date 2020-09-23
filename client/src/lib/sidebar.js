@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
 import { logout } from 'actions/current-user';
@@ -18,12 +18,12 @@ function Sidebar({ user, logout }) {
     },
     {
       title: 'Notifications',
-      path: '/',
+      path: '/asdasd',
       icon: 'bell',
     },
     {
       title: 'Bookmarks',
-      path: '/',
+      path: '/asd',
       icon: 'bookmark',
     },
     {
@@ -43,16 +43,18 @@ function Sidebar({ user, logout }) {
         >
           <nav className="flex-1 space-y-3">
             {links.map(({ title, path, icon }) => (
-              <Link
+              <NavLink
                 key={title}
+                exact
                 to={path}
+                activeClassName="text-blue-500"
                 className="flex items-center justify-center p-2 text-gray-700 transition duration-150 ease-in-out rounded-full lg:justify-start focus:outline-none hover:bg-blue-50 hover:text-blue-500 focus:shadow-outline-blue"
               >
                 <Icon icon={icon} className="w-6 h-6 lg:w-7 lg:h-7" />
                 <span className="hidden pl-3 text-lg font-semibold leading-5 lg:block">
                   {title}
                 </span>
-              </Link>
+              </NavLink>
             ))}
             <TweetButton />
           </nav>
