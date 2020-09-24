@@ -1,13 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { openSidebar } from 'actions/sidebar';
+import React, { useContext } from 'react';
+import { PageTitleContext } from 'store/page-title';
+import { useSidebarToggle } from 'store/sidebar';
 
-function Header({ openSidebar, title, description }) {
+function Header() {
+  const [{ title, description }] = useContext(PageTitleContext);
+  const { setOn } = useSidebarToggle();
+
   return (
     <header className="sticky top-0 flex-shrink-0 border border-gray-200">
       <div className="flex items-center px-4 h-14">
         <button
-          onClick={openSidebar}
+          onClick={setOn}
           className="rounded-full sm:hidden focus:outline-none focus:shadow-outline-blue"
         >
           <img
@@ -27,18 +30,4 @@ function Header({ openSidebar, title, description }) {
   );
 }
 
-function mapStateToProps(state) {
-  const { title, description } = state.header;
-  return {
-    title,
-    description,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    openSidebar: () => dispatch(openSidebar()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

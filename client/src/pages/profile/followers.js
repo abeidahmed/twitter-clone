@@ -1,19 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { connect } from 'react-redux';
 import { allFollowers } from 'api/all-followers';
-import { updateHeader } from 'actions/update-header';
-import { useSetTitle } from 'hooks/set-title';
+import { useSetTitle } from 'store/page-title';
 import UserCard from 'components/user-card';
 import { Spinner } from 'components/spinner';
 
-function Followers({ user, updateHeader }) {
-  useSetTitle({
-    title: user.name,
-    description: `@${user.twitterHandle}`,
-    func: updateHeader,
-  });
+function Followers({ user }) {
+  useSetTitle(user.name, `@${user.twitterHandle}`);
 
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery(
@@ -34,10 +28,4 @@ function Followers({ user, updateHeader }) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateHeader: (payload) => dispatch(updateHeader(payload)),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Followers);
+export default Followers;

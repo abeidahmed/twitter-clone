@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useSidebarToggle } from 'store/sidebar';
+import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
-import { connect } from 'react-redux';
-import { closeSidebar } from 'actions/sidebar';
-import { logout } from 'actions/current-user';
 import { FollowStat } from 'components/follow-stat';
 
-function MobileSidebar({ user, isActive, logout, closeSidebar }) {
+function MobileSidebar() {
+  const { logout, user } = useCurrentUser();
+
   const links = [
     {
       title: 'Profile',
@@ -36,6 +37,8 @@ function MobileSidebar({ user, isActive, logout, closeSidebar }) {
     history.push('/secure/login');
   }
 
+  const { setOff, isActive } = useSidebarToggle();
+
   return (
     <div className="sm:hidden">
       <div
@@ -53,7 +56,7 @@ function MobileSidebar({ user, isActive, logout, closeSidebar }) {
         <header className="flex items-center justify-between px-4 border-b h-14">
           <h2 className="text-lg font-extrabold">Account info</h2>
           <button
-            onClick={closeSidebar}
+            onClick={setOff}
             className="p-1 -mr-2 rounded-full focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue"
           >
             <Icon icon="x" className="w-6 h-6 text-blue-500" />
@@ -107,18 +110,4 @@ function MobileSidebar({ user, isActive, logout, closeSidebar }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    isActive: state.sidebar.sidebar,
-    user: state.currentUser.user,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    closeSidebar: () => dispatch(closeSidebar()),
-    logout: () => dispatch(logout()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MobileSidebar);
+export default MobileSidebar;

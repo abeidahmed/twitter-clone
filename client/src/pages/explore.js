@@ -1,19 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { useQuery } from 'react-query';
+import { useSetTitle } from 'store/page-title';
 import { Icon } from 'components/icon';
 import UserCard from 'components/user-card';
 import { allUsers } from 'api/all-users';
-import { updateHeader } from 'actions/update-header';
-import { useSetTitle } from 'hooks/set-title';
 import { Spinner } from 'components/spinner';
 
-function Explore({ updateHeader }) {
-  useSetTitle({
-    title: 'Explore',
-    description: null,
-    func: updateHeader,
-  });
+function Explore() {
+  useSetTitle('Explore', null);
 
   const { data, isLoading, isError } = useQuery('allUsers', allUsers);
 
@@ -40,10 +34,4 @@ function Explore({ updateHeader }) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateHeader: (payload) => dispatch(updateHeader(payload)),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Explore);
+export default Explore;

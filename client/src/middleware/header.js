@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
+import { TOKEN } from 'store/current-user';
 
 export function header() {
-  const token = Cookies.get('token');
+  const token = Cookies.get(TOKEN);
 
   const config = {
     headers: {

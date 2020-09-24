@@ -1,14 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { updateHeader } from 'actions/update-header';
-import { useSetTitle } from 'hooks/set-title';
+import { useSetTitle } from 'store/page-title';
 
-function Tweets({ user, updateHeader }) {
-  useSetTitle({
-    title: user.name,
-    description: `@${user.twitterHandle}`,
-    func: updateHeader,
-  });
+function Tweets({ user }) {
+  useSetTitle(user.name, `@${user.twitterHandle}`);
 
   return (
     <div>
@@ -17,10 +11,4 @@ function Tweets({ user, updateHeader }) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateHeader: (payload) => dispatch(updateHeader(payload)),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Tweets);
+export default Tweets;

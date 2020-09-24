@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { useMutation, queryCache } from 'react-query';
+import { useCurrentUser } from 'store/current-user';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
 
-function UserCard({ user, currentUser }) {
+function UserCard({ user }) {
+  const { user: currentUser } = useCurrentUser();
+
   return (
     <div className="flex w-full px-4 py-5 space-x-3 transition duration-150 ease-in-out border-t border-gray-200 last:border-b hover:bg-gray-50">
       <div>
@@ -46,13 +48,7 @@ function UserCard({ user, currentUser }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser.user.id,
-  };
-}
-
-export default connect(mapStateToProps, null)(UserCard);
+export default UserCard;
 
 function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {

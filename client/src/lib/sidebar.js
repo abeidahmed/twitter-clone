@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory, NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Icon } from 'components/icon';
-import { logout } from 'actions/current-user';
+import { useCurrentUser } from 'store/current-user';
 
-function Sidebar({ user, logout }) {
+function Sidebar() {
+  const { user, logout } = useCurrentUser();
+
   const links = [
     {
       title: 'Home',
@@ -70,19 +71,7 @@ function Sidebar({ user, logout }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.currentUser.user,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    logout: () => dispatch(logout()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default Sidebar;
 
 function TweetButton() {
   return (

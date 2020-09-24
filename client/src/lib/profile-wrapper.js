@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation, queryCache } from 'react-query';
-import { connect } from 'react-redux';
+import { useCurrentUser } from 'store/current-user';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { Icon } from 'components/icon';
@@ -8,7 +8,9 @@ import { Tab } from 'components/tab';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
 
-function ProfileWrapper({ user, currentUser, children }) {
+function ProfileWrapper({ user, children }) {
+  const { user: currentUser } = useCurrentUser();
+
   const links = [
     {
       title: 'Tweets',
@@ -60,13 +62,7 @@ function ProfileWrapper({ user, currentUser, children }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser.user,
-  };
-}
-
-export default connect(mapStateToProps, null)(ProfileWrapper);
+export default ProfileWrapper;
 
 function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { useMutation } from 'react-query';
-import { setCurrentUser } from 'actions/current-user';
+import { useCurrentUser } from 'store/current-user';
 import { loginUser } from 'api/login-user';
 import { Icon } from 'components/icon';
 import { Input } from 'components/input';
 
-function Login({ setCurrentUser }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const history = useHistory();
+  const { setUser } = useCurrentUser();
 
   const [mutate, { isLoading }] = useMutation(loginUser, {
     onSuccess({ data }) {
-      setCurrentUser(data);
+      setUser(data);
       history.push('/');
     },
     throwOnError: true,
@@ -78,13 +78,7 @@ function Login({ setCurrentUser }) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setCurrentUser: (payload) => dispatch(setCurrentUser(payload)),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
 
 function LoginHeader() {
   return (
