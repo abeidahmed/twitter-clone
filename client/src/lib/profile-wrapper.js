@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
+import { useModalType } from 'store/modal';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { Icon } from 'components/icon';
@@ -92,9 +93,23 @@ function DynamicFollowBtn({ user, currentUser }) {
     });
   }
 
+  const { modalOn } = useModalType();
+
+  function openModal() {
+    modalOn({
+      modalType: 'EDIT_PROFILE',
+      modalProps: {
+        title: 'hello world',
+      },
+    });
+  }
+
   if (user.id === currentUser.id) {
     return (
-      <button className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
+      <button
+        onClick={openModal}
+        className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
+      >
         Edit profile
       </button>
     );
