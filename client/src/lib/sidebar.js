@@ -111,7 +111,7 @@ function ProfileDropdown({ logout, user }) {
           src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
           alt=""
         />
-        <span className="items-center justify-between flex-1 hidden lg:pl-3 lg:flex">
+        <span className="items-center justify-between flex-1 hidden text-left lg:pl-3 lg:flex">
           <span className="text-sm lg:pr-2">
             <p className="font-semibold leading-5">
               {user.name || 'Twitter user'}
