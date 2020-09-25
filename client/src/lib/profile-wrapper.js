@@ -38,15 +38,15 @@ function ProfileWrapper({ user, children }) {
           <img
             className="flex-shrink-0 object-cover w-full h-48"
             src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
-            alt=""
+            alt={`${user.twitterHandle}'s twitter banner`}
           />
         </div>
         <div className="flex justify-between">
           <div className="-mt-10 lg:-mt-16">
             <img
               className="w-20 h-20 border-4 border-white rounded-full lg:w-32 lg:h-32"
-              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
-              alt=""
+              src={user.avatar}
+              alt={`${user.twitterHandle}'s profile picture`}
             />
           </div>
           <div className="py-2">
@@ -95,11 +95,17 @@ function DynamicFollowBtn({ user, currentUser }) {
 
   const { modalOn } = useModalType();
 
-  function openModal() {
+  function openModal(currentUser) {
     modalOn({
       modalType: 'EDIT_PROFILE',
       modalProps: {
-        title: 'hello world',
+        id: currentUser.id,
+        name: currentUser.name,
+        bio: currentUser.bio,
+        location: currentUser.location,
+        website: currentUser.website,
+        avatar: currentUser.avatar,
+        banner: currentUser.banner,
       },
     });
   }
@@ -107,7 +113,7 @@ function DynamicFollowBtn({ user, currentUser }) {
   if (user.id === currentUser.id) {
     return (
       <button
-        onClick={openModal}
+        onClick={() => openModal(currentUser)}
         className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
       >
         Edit profile

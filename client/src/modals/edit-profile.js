@@ -3,21 +3,56 @@ import { ModalWrapper } from 'components/modal-wrapper';
 import { Icon } from 'components/icon';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
+import { useMutation } from 'react-query';
+import { updateUser } from 'api/update-user';
+import { useModalType } from 'store/modal';
 
 function EditProfile() {
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState('');
-  const [location, setLocation] = useState('');
-  const [website, setWebsite] = useState('');
+  const { modalProps } = useModalType();
+
+  const [name, setName] = useState(modalProps.name || '');
+  const [bio, setBio] = useState(modalProps.bio || '');
+  const [location, setLocation] = useState(modalProps.location || '');
+  const [website, setWebsite] = useState(modalProps.website || '');
+  const [avatar, setAvatar] = useState(modalProps.avatar || '');
+  const [banner, setBanner] = useState(modalProps.banner || '');
   const [error, setError] = useState([]);
 
   function isThreshold(current, limit) {
     return current > limit;
   }
 
+  const [mutate, { isLoading }] = useMutation(updateUser, {
+    onSuccess() {
+      console.log('success');
+    },
+    throwOnError: true,
+  });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      await mutate({
+        id: modalProps.id,
+        name,
+        bio,
+        location,
+        website,
+        avatar,
+        banner,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <ModalWrapper modalTitle="Edit profile">
-      <div className="flex flex-col -mt-10">
+    <ModalWrapper
+      modalTitle="Edit profile"
+      button={{ title: 'Save', onSubmit: handleSubmit }}
+    >
+      <form onSubmit={handleSubmit} className="flex flex-col -mt-10">
         <section className="flex flex-col">
           <div className="-mx-4">
             <div className="relative">
@@ -27,7 +62,8 @@ function EditProfile() {
                   <input
                     type="file"
                     className="hidden"
-                    accept="image/png, image/jpeg"
+                    name="banner"
+                    onChange={(e) => setBanner(e.target.files[0])}
                   />
                   <Icon className="w-5 h-5 text-white" icon="camera" />
                 </label>
@@ -35,7 +71,7 @@ function EditProfile() {
               <img
                 className="flex-shrink-0 object-cover w-full h-48 bg-gray-100"
                 src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
-                alt=""
+                alt="User twitter banner"
               />
             </div>
           </div>
@@ -47,15 +83,16 @@ function EditProfile() {
                   <input
                     type="file"
                     className="hidden"
-                    accept="image/png, image/jpeg"
+                    name="avatar"
+                    onChange={(e) => setAvatar(e.target.files[0])}
                   />
                   <Icon className="w-5 h-5 text-white" icon="camera" />
                 </label>
               </div>
               <img
                 className="w-20 h-20 rounded-full lg:w-32 lg:h-32"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
-                alt=""
+                src={modalProps.avatar}
+                alt="User profile picture"
               />
             </div>
           </div>
@@ -140,7 +177,7 @@ function EditProfile() {
             </p>
           </div>
         </section>
-      </div>
+      </form>
     </ModalWrapper>
   );
 }

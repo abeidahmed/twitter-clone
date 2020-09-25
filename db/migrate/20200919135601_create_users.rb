@@ -8,6 +8,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string  :location
       t.string  :website
       t.string  :password_digest
+      t.string  :avatar
+      t.string  :banner
 
       t.timestamps
     end

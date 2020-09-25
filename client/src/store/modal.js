@@ -6,7 +6,7 @@ const actionTypes = {
 };
 
 const initialState = {
-  modalType: 'EDIT_PROFILE',
+  modalType: null,
   modalProps: {},
 };
 

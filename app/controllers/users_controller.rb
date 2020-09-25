@@ -23,7 +23,24 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(update_user_params)
+    avatar = FileUpload.new(
+      params[:avatar],
+      file_location: @user.avatar
+    ).upload_image!
+
+    banner = FileUpload.new(
+      params[:banner],
+      file_location: @user.banner
+    ).upload_image!
+
+    if @user.update(
+      name: params[:name],
+      bio: params[:bio],
+      location: params[:location],
+      website: params[:website],
+      avatar: avatar['url'] || params[:avatar],
+      banner: banner['url'] || params[:banner]
+    )
       render :edit
     else
       render json: { message: @user.errors.full_messages }, status: :bad_request
@@ -48,17 +65,6 @@ class UsersController < ApplicationController
         :email,
         :twitter_handle,
         :password
-      )
-    end
-
-    def update_user_params
-      params.require(:user).permit(
-        :name,
-        :bio,
-        :location,
-        :website,
-        :avatar,
-        :banner,
       )
     end
 end
