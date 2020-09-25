@@ -3,7 +3,7 @@ import { Link, useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { Avatar } from 'components/avatar';
-import { Button } from 'components/button';
+import { Button, IconButton } from 'components/button';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -146,17 +146,14 @@ function ProfileDropdown({ logout, user }) {
 function NavHead() {
   return (
     <header className="flex items-center justify-center lg:px-2 lg:justify-start h-14">
-      <Link
-        to="/"
-        className="flex items-center justify-center p-2 text-gray-700 transition duration-150 ease-in-out rounded-full hover:text-blue-500 lg:justify-start focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue"
-      >
+      <IconButton size="md" position="left" to="/">
         <Icon
           icon="twitter-solid"
           stroke="none"
           fill="currentColor"
           className="text-blue-500 w-9 h-9"
         />
-      </Link>
+      </IconButton>
     </header>
   );
 }

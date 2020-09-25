@@ -1,7 +1,7 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/icon';
-import { Button } from './button';
+import { Button, IconButton } from './button';
 
 export function ModalWrapper({ button, modalTitle, children }) {
   return (
@@ -35,12 +35,9 @@ function Header({ modalTitle, button }) {
   return (
     <header className="flex items-center justify-between px-4 border-b border-gray-200 h-14">
       <div className="flex items-center">
-        <button
-          onClick={modalOff}
-          className="p-2 -ml-2 text-blue-500 transition duration-150 ease-in-out rounded-full hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue"
-        >
+        <IconButton size="md" onClick={modalOff} position="left">
           <Icon icon="x" className="w-6 h-6" />
-        </button>
+        </IconButton>
         <div className="ml-5">
           <h2 className="text-lg font-bold">{modalTitle}</h2>
         </div>

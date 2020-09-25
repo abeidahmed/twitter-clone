@@ -50,4 +50,27 @@ function StyledButton({ size, color, variant, children, ...props }) {
   );
 }
 
+function buttonIconClass(size, position) {
+  return cn([
+    'text-blue-500 transition duration-150 ease-in-out rounded-full hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue',
+    {
+      'p-1': size === 'sm',
+      'p-2': size === 'md',
+      '-ml-1': position === 'left',
+      '-mr-1': position === 'right',
+    },
+  ]);
+}
+
+function StyledIconButton({ size, position, children, ...props }) {
+  return (
+    <button className={buttonIconClass(size, position)} {...props}>
+      {children}
+    </button>
+  );
+}
+
 export const Button = (props) => handleLinkWrapping(StyledButton, props);
+
+export const IconButton = (props) =>
+  handleLinkWrapping(StyledIconButton, props);

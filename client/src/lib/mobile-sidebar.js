@@ -5,6 +5,7 @@ import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { FollowStat } from 'components/follow-stat';
 import { Avatar } from 'components/avatar';
+import { IconButton } from 'components/button';
 
 function MobileSidebar() {
   const { logout, user } = useCurrentUser();
@@ -108,12 +109,9 @@ function Header({ setOff }) {
   return (
     <header className="flex items-center justify-between px-4 border-b h-14">
       <h2 className="text-lg font-extrabold">Account info</h2>
-      <button
-        onClick={setOff}
-        className="p-1 -mr-2 rounded-full focus:outline-none hover:bg-blue-50 focus:shadow-outline-blue"
-      >
+      <IconButton size="md" onClick={setOff} position="right">
         <Icon icon="x" className="w-6 h-6 text-blue-500" />
-      </button>
+      </IconButton>
     </header>
   );
 }
