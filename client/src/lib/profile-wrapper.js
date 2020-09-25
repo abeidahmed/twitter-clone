@@ -4,7 +4,6 @@ import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
-import { Icon } from 'components/icon';
 import { Tab } from 'components/tab';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
