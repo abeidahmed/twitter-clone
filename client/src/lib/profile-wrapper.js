@@ -46,7 +46,7 @@ function ProfileWrapper({ user, children }) {
             <img
               className="w-20 h-20 border-4 border-white rounded-full lg:w-32 lg:h-32"
               src={user.avatar}
-              alt={`${user.twitterHandle}'s profile picture`}
+              alt={`${user.twitterHandle}'s profile`}
             />
           </div>
           <div className="py-2">
@@ -62,8 +62,6 @@ function ProfileWrapper({ user, children }) {
     </main>
   );
 }
-
-export default ProfileWrapper;
 
 function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
@@ -161,3 +159,5 @@ function UserDetail({ user }) {
     </div>
   );
 }
+
+export default ProfileWrapper;
