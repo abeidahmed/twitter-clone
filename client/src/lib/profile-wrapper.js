@@ -18,18 +18,22 @@ function ProfileWrapper({ user, children }) {
     {
       title: 'Tweets',
       path: `/${user.twitterHandle}`,
+      exact: true,
     },
     {
       title: 'Tweets & replies',
       path: '/',
+      exact: true,
     },
     {
       title: 'Media',
       path: '/',
+      exact: true,
     },
     {
       title: 'Likes',
       path: `/${user.twitterHandle}/likes`,
+      exact: true,
     },
   ];
 
