@@ -4,10 +4,10 @@ import { useMutation, queryCache } from 'react-query';
 import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
 import { updateUser } from 'api/update-user';
-import { Icon } from 'components/icon';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
 import { Avatar } from 'components/avatar';
+import { FileUpload } from 'components/file-upload';
 
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
@@ -67,15 +67,10 @@ function EditProfile() {
             <div className="relative">
               <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <label className="p-2 transition duration-150 ease-in-out rounded-full cursor-pointer focus:outline-none focus:shadow-outline-gray hover:bg-gray-600">
-                  <input
-                    type="file"
-                    className="hidden"
-                    name="banner"
-                    onChange={(e) => setBanner(e.target.files[0])}
-                  />
-                  <Icon className="w-5 h-5 text-white" icon="camera" />
-                </label>
+                <FileUpload
+                  name="banner"
+                  onChange={(e) => setBanner(e.target.files[0])}
+                />
               </div>
               <img
                 className="flex-shrink-0 object-cover w-full h-48 bg-gray-100"
@@ -88,15 +83,10 @@ function EditProfile() {
             <div className="relative w-20 h-20 overflow-hidden border-4 border-white rounded-full lg:w-32 lg:h-32">
               <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <label className="p-2 transition duration-150 ease-in-out rounded-full cursor-pointer focus:outline-none focus:shadow-outline-gray hover:bg-gray-600">
-                  <input
-                    type="file"
-                    className="hidden"
-                    name="avatar"
-                    onChange={(e) => setAvatar(e.target.files[0])}
-                  />
-                  <Icon className="w-5 h-5 text-white" icon="camera" />
-                </label>
+                <FileUpload
+                  name="avatar"
+                  onChange={(e) => setAvatar(e.target.files[0])}
+                />
               </div>
               <Avatar
                 size="xl"
