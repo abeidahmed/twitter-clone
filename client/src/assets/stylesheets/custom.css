@@ -1,7 +1,8 @@
 button:disabled,
 button[disabled] {
   opacity: 0.8;
-  cursor: auto;
+  cursor: default;
+  pointer-events: none;
 }
 
 .lds-dual-ring {
