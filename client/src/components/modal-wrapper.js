@@ -1,6 +1,7 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/icon';
+import { Button } from './button';
 
 export function ModalWrapper({ button, modalTitle, children }) {
   return (
@@ -45,13 +46,14 @@ function Header({ modalTitle, button }) {
         </div>
       </div>
       {button && (
-        <button
+        <Button
+          size="sm"
+          color="primary"
           onClick={onSubmit}
           disabled={disabled}
-          className="px-3 py-1 font-semibold text-white transition duration-150 ease-in-out bg-blue-500 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-600"
         >
           {title}
-        </button>
+        </Button>
       )}
     </header>
   );

@@ -10,6 +10,7 @@ import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/avatar';
 import { TwitterBanner } from 'components/twitter-banner';
 import { UserMeta } from 'components/user-meta';
+import { Button } from 'components/button';
 
 function ProfileWrapper({ user, children }) {
   const { user: currentUser } = useCurrentUser();
@@ -116,12 +117,13 @@ function DynamicFollowBtn({ user, currentUser }) {
 
   if (user.id === currentUser.id) {
     return (
-      <button
+      <Button
+        size="md"
+        color="primary-outline"
         onClick={() => openModal(currentUser)}
-        className="px-3 py-2 text-sm font-medium leading-5 text-blue-600 transition duration-150 ease-in-out bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
       >
         Edit profile
-      </button>
+      </Button>
     );
   }
   return (

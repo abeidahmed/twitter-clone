@@ -3,6 +3,7 @@ import { Link, useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { Avatar } from 'components/avatar';
+import { Button } from 'components/button';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -83,9 +84,9 @@ function TweetButton() {
           className="w-6 h-6"
         />
       </button>
-      <button className="hidden w-full py-3 font-medium text-white transition duration-150 ease-in-out bg-blue-500 rounded-full lg:block hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
+      <Button size="lg" color="primary" variant="block">
         Tweet
-      </button>
+      </Button>
     </>
   );
 }
