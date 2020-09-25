@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { PageTitleContext } from 'store/page-title';
 import { useSidebarToggle } from 'store/sidebar';
+import { useCurrentUser } from 'store/current-user';
 
 function Header() {
   const [{ title, description }] = useContext(PageTitleContext);
   const { setOn } = useSidebarToggle();
+
+  const { user } = useCurrentUser();
 
   return (
     <header className="sticky top-0 flex-shrink-0 border border-gray-200">
@@ -15,8 +18,8 @@ function Header() {
         >
           <img
             className="flex-shrink-0 w-8 h-8 rounded-full"
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
-            alt=""
+            src={user.avatar}
+            alt={`${user.twitterHandle}'s profile`}
           />
         </button>
         <div className="px-4 sm:px-0">

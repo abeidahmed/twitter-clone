@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory, NavLink } from 'react-router-dom';
-import { Icon } from 'components/icon';
 import { useCurrentUser } from 'store/current-user';
+import { Icon } from 'components/icon';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -108,8 +108,8 @@ function ProfileDropdown({ logout, user }) {
       >
         <img
           className="flex-shrink-0 w-10 h-10 rounded-full"
-          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
-          alt=""
+          src={user.avatar}
+          alt={`${user.twitterHandle}'s profile`}
         />
         <span className="items-center justify-between flex-1 hidden text-left lg:pl-3 lg:flex">
           <span className="text-sm lg:pr-2">
