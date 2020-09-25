@@ -23,24 +23,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    avatar = FileUpload.new(
-      params[:avatar],
-      file_location: @user.avatar
-    ).upload_image!
-
-    banner = FileUpload.new(
-      params[:banner],
-      file_location: @user.banner
-    ).upload_image!
-
-    if @user.update(
-      name: params[:name],
-      bio: params[:bio],
-      location: params[:location],
-      website: params[:website],
-      avatar: avatar['url'] || params[:avatar],
-      banner: banner['url'] || params[:banner]
-    )
+    if user_updated?(@user)
+      @token = Token.new(user_id: @user.id).encode
       render :edit
     else
       render json: { message: @user.errors.full_messages }, status: :bad_request
@@ -60,11 +44,32 @@ class UsersController < ApplicationController
   end
 
   private
-    def create_user_params
-      params.require(:user).permit(
-        :email,
-        :twitter_handle,
-        :password
-      )
-    end
+  def create_user_params
+    params.require(:user).permit(
+      :email,
+      :twitter_handle,
+      :password
+    )
+  end
+
+  def user_updated?(user)
+    avatar = FileUpload.new(
+      params[:avatar],
+      file_location: user.avatar
+    ).upload_image!
+
+    banner = FileUpload.new(
+      params[:banner],
+      file_location: user.banner
+    ).upload_image!
+
+    user.update(
+      name: params[:name],
+      bio: params[:bio],
+      location: params[:location],
+      website: params[:website],
+      avatar: avatar['url'] || params[:avatar],
+      banner: banner['url'] || params[:banner]
+    )
+  end
 end
