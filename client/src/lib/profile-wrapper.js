@@ -9,6 +9,7 @@ import { Tab } from 'components/tab';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/avatar';
+import { TwitterBanner } from 'components/twitter-banner';
 
 function ProfileWrapper({ user, children }) {
   const { user: currentUser } = useCurrentUser();
@@ -36,8 +37,7 @@ function ProfileWrapper({ user, children }) {
     <main>
       <div className="flex flex-col px-4 border-b border-gray-200">
         <div className="-mx-4">
-          <img
-            className="flex-shrink-0 object-cover w-full h-48"
+          <TwitterBanner
             src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
             alt={`${user.twitterHandle}'s twitter banner`}
           />

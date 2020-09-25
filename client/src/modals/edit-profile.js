@@ -8,6 +8,7 @@ import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
 import { Avatar } from 'components/avatar';
 import { FileUpload } from 'components/file-upload';
+import { TwitterBanner } from 'components/twitter-banner';
 
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
@@ -72,8 +73,7 @@ function EditProfile() {
                   onChange={(e) => setBanner(e.target.files[0])}
                 />
               </div>
-              <img
-                className="flex-shrink-0 object-cover w-full h-48 bg-gray-100"
+              <TwitterBanner
                 src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
                 alt="User twitter banner"
               />
