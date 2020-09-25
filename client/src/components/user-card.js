@@ -5,6 +5,7 @@ import { useCurrentUser } from 'store/current-user';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
+import { Avatar } from './avatar';
 
 function UserCard({ user }) {
   const { user: currentUser } = useCurrentUser();
@@ -12,8 +13,8 @@ function UserCard({ user }) {
   return (
     <div className="flex w-full px-4 py-5 space-x-3 transition duration-150 ease-in-out border-t border-gray-200 last:border-b hover:bg-gray-50">
       <div>
-        <img
-          className="flex-shrink-0 w-12 h-12 rounded-full"
+        <Avatar
+          size="lg"
           src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
           alt=""
         />
@@ -48,8 +49,6 @@ function UserCard({ user }) {
   );
 }
 
-export default UserCard;
-
 function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
     onSuccess() {
@@ -82,7 +81,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     });
   }
 
-  if (user.id === currentUser) return null;
+  if (user.id === currentUser.id) return null;
 
   return (
     <div>
@@ -97,3 +96,5 @@ function DynamicFollowBtn({ user, currentUser }) {
     </div>
   );
 }
+
+export default UserCard;

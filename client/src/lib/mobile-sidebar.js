@@ -4,6 +4,7 @@ import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { FollowStat } from 'components/follow-stat';
+import { Avatar } from 'components/avatar';
 
 function MobileSidebar() {
   const { logout, user } = useCurrentUser();
@@ -81,8 +82,8 @@ function UserDetails({ user }) {
   return (
     <div className="px-4">
       <div>
-        <img
-          className="w-10 h-10 rounded-full"
+        <Avatar
+          size="md"
           src={user.avatar}
           alt={`${user.twitterHandle}'s profile`}
         />

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { ModalWrapper } from 'components/modal-wrapper';
+import { useMutation, queryCache } from 'react-query';
 import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
 import { updateUser } from 'api/update-user';
 import { Icon } from 'components/icon';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
-import { useMutation, queryCache } from 'react-query';
+import { Avatar } from 'components/avatar';
 
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
@@ -97,8 +98,8 @@ function EditProfile() {
                   <Icon className="w-5 h-5 text-white" icon="camera" />
                 </label>
               </div>
-              <img
-                className="w-20 h-20 rounded-full lg:w-32 lg:h-32"
+              <Avatar
+                size="xl"
                 src={modalProps.avatar}
                 alt="User profile picture"
               />

@@ -8,6 +8,7 @@ import { Icon } from 'components/icon';
 import { Tab } from 'components/tab';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
+import { Avatar } from 'components/avatar';
 
 function ProfileWrapper({ user, children }) {
   const { user: currentUser } = useCurrentUser();
@@ -43,8 +44,9 @@ function ProfileWrapper({ user, children }) {
         </div>
         <div className="flex justify-between">
           <div className="-mt-10 lg:-mt-16">
-            <img
-              className="w-20 h-20 border-4 border-white rounded-full lg:w-32 lg:h-32"
+            <Avatar
+              size="xl"
+              variant="bordered"
               src={user.avatar}
               alt={`${user.twitterHandle}'s profile`}
             />

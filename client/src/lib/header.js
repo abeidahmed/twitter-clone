@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { PageTitleContext } from 'store/page-title';
 import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
+import { Avatar } from 'components/avatar';
 
 function Header() {
   const [{ title, description }] = useContext(PageTitleContext);
@@ -16,8 +17,8 @@ function Header() {
           onClick={setOn}
           className="rounded-full sm:hidden focus:outline-none focus:shadow-outline-blue"
         >
-          <img
-            className="flex-shrink-0 w-8 h-8 rounded-full"
+          <Avatar
+            size="sm"
             src={user.avatar}
             alt={`${user.twitterHandle}'s profile`}
           />

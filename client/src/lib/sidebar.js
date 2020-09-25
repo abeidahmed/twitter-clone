@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
+import { Avatar } from 'components/avatar';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -71,8 +72,6 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
-
 function TweetButton() {
   return (
     <>
@@ -106,8 +105,8 @@ function ProfileDropdown({ logout, user }) {
         onClick={() => setDropActive(!dropActive)}
         className="flex items-center w-full transition duration-150 ease-in-out rounded-full lg:p-2 hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue"
       >
-        <img
-          className="flex-shrink-0 w-10 h-10 rounded-full"
+        <Avatar
+          size="md"
           src={user.avatar}
           alt={`${user.twitterHandle}'s profile`}
         />
@@ -160,3 +159,5 @@ function NavHead() {
     </header>
   );
 }
+
+export default Sidebar;
