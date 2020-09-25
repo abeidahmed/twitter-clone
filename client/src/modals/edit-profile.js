@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { ModalWrapper } from 'components/modal-wrapper';
+import { useModalType } from 'store/modal';
+import { useCurrentUser } from 'store/current-user';
+import { updateUser } from 'api/update-user';
 import { Icon } from 'components/icon';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
-import { useMutation } from 'react-query';
-import { updateUser } from 'api/update-user';
-import { useModalType } from 'store/modal';
+import { useMutation, queryCache } from 'react-query';
 
 function EditProfile() {
-  const { modalProps } = useModalType();
+  const { modalProps, modalOff } = useModalType();
+  const { setUser } = useCurrentUser();
 
   const [name, setName] = useState(modalProps.name || '');
   const [bio, setBio] = useState(modalProps.bio || '');
@@ -23,8 +25,10 @@ function EditProfile() {
   }
 
   const [mutate, { isLoading }] = useMutation(updateUser, {
-    onSuccess() {
-      console.log('success');
+    onSuccess({ data }) {
+      queryCache.refetchQueries('showUser');
+      setUser(data);
+      modalOff();
     },
     throwOnError: true,
   });
@@ -43,14 +47,18 @@ function EditProfile() {
         banner,
       });
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     }
   }
 
   return (
     <ModalWrapper
       modalTitle="Edit profile"
-      button={{ title: 'Save', onSubmit: handleSubmit }}
+      button={{
+        title: 'Save',
+        onSubmit: handleSubmit,
+        disabled: isLoading,
+      }}
     >
       <form onSubmit={handleSubmit} className="flex flex-col -mt-10">
         <section className="flex flex-col">
@@ -103,6 +111,7 @@ function EditProfile() {
               label="Name"
               placeholder="Add your name"
               id="profile-name"
+              autoComplete="off"
               value={name}
               error={error}
               errorType="name"
@@ -121,6 +130,7 @@ function EditProfile() {
               label="Bio"
               placeholder="Add your bio"
               id="profile-bio"
+              autoComplete="off"
               rows="4"
               resize={false}
               value={bio}
@@ -141,6 +151,7 @@ function EditProfile() {
               label="Location"
               placeholder="Add your location"
               id="profile-location"
+              autoComplete="off"
               value={location}
               error={error}
               errorType="location"
@@ -161,6 +172,7 @@ function EditProfile() {
               label="Website"
               placeholder="Add your website"
               id="profile-website"
+              autoComplete="off"
               value={website}
               error={error}
               errorType="website"
