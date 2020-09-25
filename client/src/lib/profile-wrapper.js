@@ -10,6 +10,7 @@ import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/avatar';
 import { TwitterBanner } from 'components/twitter-banner';
+import { UserMeta } from 'components/user-meta';
 
 function ProfileWrapper({ user, children }) {
   const { user: currentUser } = useCurrentUser();
@@ -140,17 +141,14 @@ function UserDetail({ user }) {
       <p className="mt-2 text-gray-600">
         {user.bio || 'The user is too busy!'}
       </p>
-      <div className="flex items-center py-2 space-x-3">
-        <p className="flex items-center text-sm text-gray-500">
-          <Icon icon="location" className="w-5 h-5 text-gray-400" />
-          <span className="pl-1 leading-5">
-            {user.location || 'Around the world'}
-          </span>
-        </p>
-        <p className="flex items-center text-sm text-gray-500">
-          <Icon icon="calendar" className="w-5 h-5 text-gray-400" />
-          <span className="pl-1 leading-5">Joined February 2017</span>
-        </p>
+      <div className="py-2 space-y-2 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:space-x-3">
+        {user.location && <UserMeta icon="location" title={user.location} />}
+        {user.website && (
+          <UserMeta icon="link" title={user.website} linkTo={user.website} />
+        )}
+        {user.createdAt && (
+          <UserMeta icon="calendar" title="Joined February 2017" />
+        )}
       </div>
       <FollowStat
         follower={user.followersCount}
