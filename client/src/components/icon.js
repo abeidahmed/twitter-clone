@@ -158,6 +158,17 @@ const Glyph = ({ icon }) => {
           />
         </g>
       );
+    case 'photograph':
+      return (
+        <g>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </g>
+      );
     case 'search':
       return (
         <g>
@@ -166,6 +177,17 @@ const Glyph = ({ icon }) => {
             strokeLinejoin="round"
             strokeWidth="2"
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </g>
+      );
+    case 'smiley':
+      return (
+        <g>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </g>
       );
