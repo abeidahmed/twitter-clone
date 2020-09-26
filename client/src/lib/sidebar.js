@@ -4,6 +4,8 @@ import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { Avatar } from 'components/avatar';
 import { Button, IconButton, IconWithTextButton } from 'components/button';
+import { DropdownContainer } from 'components/container';
+import { UserButton } from 'components/user-button';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -106,31 +108,8 @@ function ProfileDropdown({ logout, user }) {
 
   return (
     <div className="relative flex items-center justify-center">
-      <button
-        onClick={() => setDropActive(!dropActive)}
-        className="flex items-center w-full transition duration-150 ease-in-out rounded-full lg:p-2 hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue"
-      >
-        <Avatar
-          size="md"
-          src={user.avatar}
-          alt={`${user.twitterHandle}'s profile`}
-        />
-        <span className="items-center justify-between flex-1 hidden text-left lg:pl-3 lg:flex">
-          <span className="text-sm lg:pr-2">
-            <p className="font-semibold leading-5">
-              {user.name || 'Twitter user'}
-            </p>
-            <p className="leading-5 text-gray-500">@{user.twitterHandle}</p>
-          </span>
-          <Icon icon="chevron-down" className="w-5 h-5 -mr-1 text-gray-500" />
-        </span>
-      </button>
-      <div
-        className={`${
-          dropActive ? 'block' : 'hidden'
-        } absolute z-50 w-56 mb-2 bg-white rounded-md shadow-xl`}
-        style={{ bottom: '100%' }}
-      >
+      <UserButton user={user} onClick={() => setDropActive(!dropActive)} />
+      <DropdownContainer position="bottom" isActive={dropActive}>
         <ul className="py-2 rounded-md shadow-xs">
           <IconWithTextButton
             to="/"
@@ -151,7 +130,7 @@ function ProfileDropdown({ logout, user }) {
             Logout
           </IconWithTextButton>
         </ul>
-      </div>
+      </DropdownContainer>
     </div>
   );
 }
