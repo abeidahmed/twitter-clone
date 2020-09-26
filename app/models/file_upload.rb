@@ -13,7 +13,7 @@ class FileUpload
 
   private
   def upload_new_image
-    if file.present? && !file.instance_of?(String)
+    if uploadable?
       Cloudinary::Uploader.upload(file)
     else
       Hash['url': nil]
@@ -27,5 +27,9 @@ class FileUpload
 
   def deletable?
     file_location.present? && !file.instance_of?(String)
+  end
+
+  def uploadable?
+    file.present? && !file.instance_of?(String)
   end
 end
