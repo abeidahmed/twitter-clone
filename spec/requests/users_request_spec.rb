@@ -8,6 +8,32 @@ RSpec.describe "Users", type: :request do
       before do
         get users_url, headers: auth_header(user)
       end
+
+      it 'is expected to return all the users' do
+        expect(json[:users]).to_not be_nil
+      end
+    end
+
+    context 'when the search is performed' do
+      before do
+        user1 = create(:user, name: 'Abeid Ahmed')
+        user1 = create(:user, name: 'Suhail Ahmed')
+        get users_url, params: { q: 'abeid' }, headers: auth_header(user)
+      end
+
+      it 'is expected to return the filtered user' do
+        users = json[:users]
+        users.each do |user|
+          expect(user[:name]).to eq('Abeid Ahmed')
+        end
+      end
+
+      it 'is expected to not return the undesired user' do
+        users = json[:users]
+        users.each do |user|
+          expect(user[:name]).to_not eq('Suhail Ahmed')
+        end
+      end
     end
 
     context 'when the user is not logged in' do

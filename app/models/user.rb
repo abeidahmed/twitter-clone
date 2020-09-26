@@ -25,5 +25,6 @@ class User < ApplicationRecord
   validates_length_of :website, maximum: 100
 
   include Authentication
+  include Filterable
   include Friendship
 end
