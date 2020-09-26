@@ -1,14 +1,19 @@
 class FileUpload
-  def initialize(file, file_location:, **options)
+  def initialize(file:, file_location:, action:, **options)
     @file = file
     @file_location = file_location
+    @action = action
   end
 
-  attr_reader :file, :file_location
+  attr_reader :file, :file_location, :action
 
   def upload_image!
     delete_prev_image if deletable?
     upload_new_image
+  end
+
+  def delete_image!
+    delete_prev_image
   end
 
   private
@@ -26,10 +31,14 @@ class FileUpload
   end
 
   def deletable?
-    file_location.present? && !file.instance_of?(String)
+    is_update_action? && file_location.present? && !file.instance_of?(String)
   end
 
   def uploadable?
     file.present? && !file.instance_of?(String)
+  end
+
+  def is_update_action?
+    action == 'update'
   end
 end
