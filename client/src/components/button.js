@@ -125,6 +125,24 @@ function StyledIconWithTextButton({
   );
 }
 
+function TextButtonClass(size) {
+  return cn([
+    'text-blue-500 leading-5 hover:underline focus:outline-none',
+    {
+      'text-sm': size === 'sm',
+      'text-base': size === 'md',
+    },
+  ]);
+}
+
+function StyledTextButton({ size, className, children, ...props }) {
+  return (
+    <button className={`${TextButtonClass(size)} ${className}`} {...props}>
+      {children}
+    </button>
+  );
+}
+
 export const Button = (props) => handleLinkWrapping(StyledButton, props);
 
 export const IconButton = (props) =>
@@ -132,3 +150,6 @@ export const IconButton = (props) =>
 
 export const IconWithTextButton = (props) =>
   handleLinkWrapping(StyledIconWithTextButton, props);
+
+export const TextButton = (props) =>
+  handleLinkWrapping(StyledTextButton, props);
