@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory, NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { Avatar } from 'components/avatar';
