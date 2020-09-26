@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :tweet do
     body { 'hello world' }
-    image { 'imageurl' }
+    image { Rails.root.join('spec', 'factories', 'test_image', 'image.jpg') }
     reply_status { 'everyone' }
     user factory: :user
 
