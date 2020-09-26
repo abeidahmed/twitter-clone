@@ -1,14 +1,28 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import Cookies from 'js-cookie';
-import { LOGGED_IN } from 'store/current-user';
+import { currentUser } from 'api/current-user';
+import { TOKEN } from 'store/current-user';
+import { Spinner } from 'components/spinner';
 
 function ProtectedRoute({ component: Component, ...rest }) {
+  const { data, isLoading, isError } = useQuery(
+    'fetchCurrentUser',
+    currentUser
+  );
+
+  if (!Cookies.get(TOKEN) || isError) window.location.href = '/secure/login';
+
+  if (isLoading) return <Spinner />;
+
+  const token = data.data.token;
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (Cookies.get(LOGGED_IN)) {
+        if (token) {
           return <Component {...props} />;
         }
         return (

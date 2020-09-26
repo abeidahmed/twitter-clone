@@ -2,7 +2,6 @@ import React, { useReducer, createContext, useContext } from 'react';
 import Cookies from 'js-cookie';
 
 const TOKEN = 'TWITTER_CLONE_TOKEN';
-const LOGGED_IN = 'TWITTER_CLONE_LOGGEDIN';
 
 const actionTypes = {
   setUser: 'SET_USER',
@@ -18,7 +17,6 @@ function currentUserReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.setUser:
       Cookies.set(TOKEN, action.payload.token, { expires: 7 });
-      Cookies.set(LOGGED_IN, JSON.stringify(true));
       return {
         ...state,
         user: action.payload.user,
@@ -26,7 +24,6 @@ function currentUserReducer(state = initialState, action) {
       };
     case actionTypes.logout:
       Cookies.remove(TOKEN);
-      Cookies.remove(LOGGED_IN);
       return {
         user: {},
         token: null,
@@ -58,10 +55,4 @@ function CurrentUserStore({ children }) {
   );
 }
 
-export {
-  CurrentUserStore,
-  CurrentUserContext,
-  useCurrentUser,
-  LOGGED_IN,
-  TOKEN,
-};
+export { CurrentUserStore, CurrentUserContext, useCurrentUser, TOKEN };
