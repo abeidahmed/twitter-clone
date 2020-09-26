@@ -109,7 +109,12 @@ function Header({ setOff }) {
   return (
     <header className="flex items-center justify-between px-4 border-b h-14">
       <h2 className="text-lg font-extrabold">Account info</h2>
-      <IconButton size="md" onClick={setOff} position="right">
+      <IconButton
+        size="md"
+        color="primary-text"
+        onClick={setOff}
+        position="right"
+      >
         <Icon icon="x" className="w-6 h-6 text-blue-500" />
       </IconButton>
     </header>

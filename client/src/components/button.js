@@ -1,9 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
 
 function handleLinkWrapping(Component, props) {
-  const { href, to, target, children, disabled, isLoading, ...rest } = props;
+  const {
+    href,
+    to,
+    activeClassName,
+    passiveClassName,
+    exact,
+    target,
+    children,
+    disabled,
+    isLoading,
+    ...rest
+  } = props;
   const button = (
     <Component disabled={disabled || isLoading} {...rest}>
       {children}
@@ -20,7 +31,18 @@ function handleLinkWrapping(Component, props) {
         {button}
       </a>
     );
-  if (to) return <Link to={to}>{button}</Link>;
+  if (to && !exact) return <Link to={to}>{button}</Link>;
+  if (activeClassName)
+    return (
+      <NavLink
+        to={to}
+        activeClassName={activeClassName}
+        className={passiveClassName}
+        exact={exact}
+      >
+        {button}
+      </NavLink>
+    );
   return button;
 }
 
@@ -50,21 +72,23 @@ function StyledButton({ size, color, variant, children, ...props }) {
   );
 }
 
-function buttonIconClass(size, position) {
+function buttonIconClass(size, color, position) {
   return cn([
-    'text-blue-500 transition duration-150 ease-in-out rounded-full hover:bg-blue-50 focus:outline-none focus:shadow-outline-blue',
+    'transition duration-150 ease-in-out rounded-full focus:outline-none focus:shadow-outline-blue',
     {
       'p-1': size === 'sm',
       'p-2': size === 'md',
-      '-ml-1': position === 'left',
-      '-mr-1': position === 'right',
+      '-ml-2': position === 'left',
+      '-mr-2': position === 'right',
+      'text-white bg-blue-500 hover:bg-blue-600': color === 'primary',
+      'text-blue-500 hover:bg-blue-50': color === 'primary-text',
     },
   ]);
 }
 
-function StyledIconButton({ size, position, children, ...props }) {
+function StyledIconButton({ size, color, position, children, ...props }) {
   return (
-    <button className={buttonIconClass(size, position)} {...props}>
+    <button className={buttonIconClass(size, color, position)} {...props}>
       {children}
     </button>
   );

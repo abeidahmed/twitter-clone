@@ -76,14 +76,16 @@ function Sidebar() {
 function TweetButton() {
   return (
     <>
-      <button className="flex items-center justify-center p-2 text-white bg-blue-500 rounded-full lg:hidden hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
-        <Icon
-          icon="magic-wand"
-          stroke="none"
-          fill="currentColor"
-          className="w-6 h-6"
-        />
-      </button>
+      <span className="block lg:hidden">
+        <IconButton size="md" color="primary">
+          <Icon
+            icon="magic-wand"
+            stroke="none"
+            fill="currentColor"
+            className="w-6 h-6"
+          />
+        </IconButton>
+      </span>
       <span className="hidden lg:block">
         <Button size="lg" color="primary" variant="block">
           Tweet
@@ -148,7 +150,7 @@ function ProfileDropdown({ logout, user }) {
 function NavHead() {
   return (
     <header className="flex items-center justify-center lg:px-2 lg:justify-start h-14">
-      <IconButton size="md" position="left" to="/">
+      <IconButton size="md" to="/">
         <Icon
           icon="twitter-solid"
           stroke="none"

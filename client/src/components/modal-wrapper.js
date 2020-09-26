@@ -35,7 +35,12 @@ function Header({ modalTitle, button }) {
   return (
     <header className="flex items-center justify-between px-4 border-b border-gray-200 h-14">
       <div className="flex items-center">
-        <IconButton size="md" onClick={modalOff} position="left">
+        <IconButton
+          size="md"
+          color="primary-text"
+          onClick={modalOff}
+          position="left"
+        >
           <Icon icon="x" className="w-6 h-6" />
         </IconButton>
         <div className="ml-5">
