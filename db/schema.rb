@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_130616) do
+ActiveRecord::Schema.define(version: 2020_09_26_142608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,19 +25,14 @@ ActiveRecord::Schema.define(version: 2020_09_26_130616) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "tweet_auths", force: :cascade do |t|
-    t.bigint "tweet_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["tweet_id"], name: "index_tweet_auths_on_tweet_id"
-  end
-
   create_table "tweets", force: :cascade do |t|
     t.text "body", null: false
     t.string "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reply_status", default: "everyone", null: false
+    t.index ["reply_status"], name: "index_tweets_on_reply_status"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
@@ -56,6 +51,5 @@ ActiveRecord::Schema.define(version: 2020_09_26_130616) do
     t.index ["email"], name: "index_users_on_email"
   end
 
-  add_foreign_key "tweet_auths", "tweets"
   add_foreign_key "tweets", "users"
 end
