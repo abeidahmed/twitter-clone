@@ -53,6 +53,10 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'associations' do
+    it { should have_many(:tweets) }
+  end
+
   describe 'user profile validations' do
     it { should validate_length_of(:name).is_at_most(50) }
 

@@ -4,6 +4,8 @@ class User < ApplicationRecord
     twitter_handle.downcase!
   end
 
+  has_many :tweets
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_TWITTER_HANDLE_REGEX = /\A[a-z0-9_]+\z/i
 
