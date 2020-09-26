@@ -35,9 +35,7 @@ RSpec.describe "Sessions", type: :request do
         post sessions_url, params: valid_user, headers: default_header
       end
 
-      it 'is expected to return jwt token' do
-        expect(json[:token]).to_not be_nil
-      end
+      include_examples 'user_token_return'
     end
   end
 
@@ -49,9 +47,7 @@ RSpec.describe "Sessions", type: :request do
         get session_url('current_user'), headers: auth_header(user)
       end
 
-      it 'is expected to return jwt token' do
-        expect(json[:token]).to_not be_nil
-      end
+      include_examples 'user_token_return'
     end
 
     context 'when the user is not logged in' do

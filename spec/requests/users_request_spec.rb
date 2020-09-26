@@ -59,9 +59,7 @@ RSpec.describe "Users", type: :request do
         expect(User.all.size).to eq(1)
       end
 
-      it 'is expected to return jwt token' do
-        expect(json[:token]).to_not be_nil
-      end
+      include_examples 'user_token_return'
 
       include_examples 'created'
     end
@@ -93,11 +91,9 @@ RSpec.describe "Users", type: :request do
     let(:user) { create(:user) }
 
     let(:valid_user) { {
-      user: {
-        name: 'Abeid Ahmed',
-        location: 'India',
-        bio: 'Hello world'
-      }
+      name: 'Abeid Ahmed',
+      location: 'India',
+      bio: 'Hello world'
     }.to_json }
 
     context 'when the post request is valid and the user is logged in' do
@@ -112,7 +108,7 @@ RSpec.describe "Users", type: :request do
         expect(user.bio).to eq('Hello world')
       end
 
-      include_examples 'user_json_return'
+      include_examples 'user_token_return'
     end
 
     context 'when the user is not logged in' do
