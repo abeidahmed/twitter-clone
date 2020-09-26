@@ -65,31 +65,35 @@ function buttonClass(size, color, variant) {
   ]);
 }
 
-function StyledButton({ size, color, variant, children, ...props }) {
+function StyledButton({ size, color, variant, className, children, ...props }) {
   return (
-    <button className={buttonClass(size, color, variant)} {...props}>
+    <button
+      className={`${buttonClass(size, color, variant)} ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );
 }
 
-function buttonIconClass(size, color, position) {
+function buttonIconClass(size, color) {
   return cn([
     'transition duration-150 ease-in-out rounded-full focus:outline-none focus:shadow-outline-blue',
     {
       'p-1': size === 'sm',
       'p-2': size === 'md',
-      '-ml-2': position === 'left',
-      '-mr-2': position === 'right',
       'text-white bg-blue-500 hover:bg-blue-600': color === 'primary',
       'text-blue-500 hover:bg-blue-50': color === 'primary-text',
     },
   ]);
 }
 
-function StyledIconButton({ size, color, position, children, ...props }) {
+function StyledIconButton({ size, color, className, children, ...props }) {
   return (
-    <button className={buttonIconClass(size, color, position)} {...props}>
+    <button
+      className={`${buttonIconClass(size, color)} ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );
@@ -111,12 +115,17 @@ function StyledIconWithTextButton({
   color,
   variant,
   icon,
+  className,
   children,
   ...props
 }) {
   return (
     <button
-      className={IconWithTextButtonClass(size, color, variant)}
+      className={`${IconWithTextButtonClass(
+        size,
+        color,
+        variant
+      )} ${className}`}
       {...props}
     >
       <Icon icon={icon} className="w-5 h-5 text-gray-500" />

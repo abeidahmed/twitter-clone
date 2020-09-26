@@ -113,7 +113,7 @@ function Header({ setOff }) {
         size="md"
         color="primary-text"
         onClick={setOff}
-        position="right"
+        className="-mr-2"
       >
         <Icon icon="x" className="w-6 h-6 text-blue-500" />
       </IconButton>

@@ -77,21 +77,22 @@ function Sidebar() {
 function TweetButton() {
   return (
     <>
-      <span className="block lg:hidden">
-        <IconButton size="md" color="primary">
-          <Icon
-            icon="magic-wand"
-            stroke="none"
-            fill="currentColor"
-            className="w-6 h-6"
-          />
-        </IconButton>
-      </span>
-      <span className="hidden lg:block">
-        <Button size="lg" color="primary" variant="block">
-          Tweet
-        </Button>
-      </span>
+      <IconButton size="md" color="primary" className="lg:hidden">
+        <Icon
+          icon="magic-wand"
+          stroke="none"
+          fill="currentColor"
+          className="w-6 h-6"
+        />
+      </IconButton>
+      <Button
+        size="lg"
+        color="primary"
+        variant="block"
+        className="hidden lg:block"
+      >
+        Tweet
+      </Button>
     </>
   );
 }

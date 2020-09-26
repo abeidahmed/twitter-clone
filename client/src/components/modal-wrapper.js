@@ -39,7 +39,7 @@ function Header({ modalTitle, button }) {
           size="md"
           color="primary-text"
           onClick={modalOff}
-          position="left"
+          className="-ml-2"
         >
           <Icon icon="x" className="w-6 h-6" />
         </IconButton>
