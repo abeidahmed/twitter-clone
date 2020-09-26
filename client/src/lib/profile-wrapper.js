@@ -151,9 +151,7 @@ function UserDetail({ user }) {
         {user.website && (
           <UserMeta icon="link" title={user.website} linkTo={user.website} />
         )}
-        {user.createdAt && (
-          <UserMeta icon="calendar" title="Joined February 2017" />
-        )}
+        <UserMeta icon="calendar" title={`Joined ${user.createdAt}`} />
       </div>
       <FollowStat
         follower={user.followersCount}
