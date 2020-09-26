@@ -54,13 +54,15 @@ class UsersController < ApplicationController
 
   def user_updated?(user)
     avatar = FileUpload.new(
-      params[:avatar],
-      file_location: user.avatar
+      file: params[:avatar],
+      file_location: user.avatar,
+      action: params[:action]
     ).upload_image!
 
     banner = FileUpload.new(
-      params[:banner],
-      file_location: user.banner
+      file: params[:banner],
+      file_location: user.banner,
+      action: params[:action]
     ).upload_image!
 
     user.update(
