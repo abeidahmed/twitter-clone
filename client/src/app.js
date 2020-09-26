@@ -21,7 +21,7 @@ export default function App() {
   }, [token]);
 
   return (
-    <div className="min-h-screen text-gray-900">
+    <div className="min-h-screen text-gray-900 bg-white">
       <Router>
         <Switch>
           <Route path="/secure" component={Slate} />
