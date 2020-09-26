@@ -84,9 +84,11 @@ function TweetButton() {
           className="w-6 h-6"
         />
       </button>
-      <Button size="lg" color="primary" variant="block">
-        Tweet
-      </Button>
+      <span className="hidden lg:block">
+        <Button size="lg" color="primary" variant="block">
+          Tweet
+        </Button>
+      </span>
     </>
   );
 }
