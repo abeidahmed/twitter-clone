@@ -1,22 +1,8 @@
 class User < ApplicationRecord
-  has_secure_password
-
-  before_save do
+  before_create do
     email.downcase!
     twitter_handle.downcase!
   end
-
-  has_many :active_relationships,
-    class_name: 'Relationship',
-    foreign_key: 'follower_id',
-    dependent: :destroy
-  has_many :following, through: :active_relationships, source: :followed
-
-  has_many :passive_relationships,
-    class_name: 'Relationship',
-    foreign_key: 'followed_id',
-    dependent: :destroy
-  has_many :followers, through: :passive_relationships, source: :follower
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_TWITTER_HANDLE_REGEX = /\A[a-z0-9_]+\z/i
@@ -38,21 +24,6 @@ class User < ApplicationRecord
   validates_length_of :location, maximum: 30
   validates_length_of :website, maximum: 100
 
-  def self.find_by_credentials(email, password)
-    user = self.find_by(email: email.downcase)
-    return nil unless user
-    user.authenticate(password) ? user : nil
-  end
-
-  def follow(other_user)
-    active_relationships.create!(followed_id: other_user.id)
-  end
-
-  def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
-  end
-
-  def following?(other_user)
-    following.include?(other_user)
-  end
+  include Authentication
+  include Friendship
 end
