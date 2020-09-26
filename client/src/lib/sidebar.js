@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
-import { Avatar } from 'components/avatar';
 import { Button, IconButton, IconWithTextButton } from 'components/button';
 import { DropdownContainer } from 'components/container';
 import { UserButton } from 'components/user-button';
