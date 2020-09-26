@@ -6,6 +6,7 @@ import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from './avatar';
+import { TextButton } from './button';
 
 function UserCard({ user }) {
   const { user: currentUser } = useCurrentUser();
@@ -22,11 +23,14 @@ function UserCard({ user }) {
       <div className="flex flex-col flex-1">
         <div className="flex justify-between">
           <div>
-            <Link to={`/${user.twitterHandle}`} className="hover:underline">
-              <p className="text-sm font-semibold">
-                {user.name || 'Twitter user'}
-              </p>
-            </Link>
+            <TextButton
+              to={`/${user.twitterHandle}`}
+              size="sm"
+              color="black"
+              className="font-semibold"
+            >
+              {user.name || 'Twitter user'}
+            </TextButton>
             <div className="flex items-center space-x-2">
               <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
               {user.isFollowed && (

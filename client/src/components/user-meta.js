@@ -8,7 +8,7 @@ export function UserMeta({ title, icon, linkTo }) {
     <p className="flex items-center space-x-1 text-sm text-gray-500">
       <Icon icon={icon} className="w-5 h-5 text-gray-400" />
       {linkTo ? (
-        <TextButton href={linkTo} size="sm">
+        <TextButton href={linkTo} color="primary" size="sm">
           {normalizeLink(linkTo)}
         </TextButton>
       ) : (

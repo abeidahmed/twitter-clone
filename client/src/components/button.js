@@ -134,19 +134,24 @@ function StyledIconWithTextButton({
   );
 }
 
-function TextButtonClass(size) {
+function TextButtonClass(size, color) {
   return cn([
-    'text-blue-500 leading-5 hover:underline focus:outline-none',
+    'leading-5 hover:underline focus:outline-none',
     {
       'text-sm': size === 'sm',
       'text-base': size === 'md',
+      'text-blue-500': color === 'primary',
+      'text-gray-900': color === 'black',
     },
   ]);
 }
 
-function StyledTextButton({ size, className, children, ...props }) {
+function StyledTextButton({ size, className, color, children, ...props }) {
   return (
-    <button className={`${TextButtonClass(size)} ${className}`} {...props}>
+    <button
+      className={`${TextButtonClass(size, color)} ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );
