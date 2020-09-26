@@ -5,8 +5,11 @@ export function DropdownContainer({ isActive, position, children }) {
     <div
       className={`${
         isActive ? 'block' : 'hidden'
-      } absolute z-50 w-56 mb-2 bg-white rounded-md shadow-xl`}
-      style={position === 'bottom' ? { bottom: '100%' } : { top: '100%' }}
+      } absolute z-50 w-56 mb-2 bg-white rounded-md shadow-xl ${
+        position === 'bottom'
+          ? 'left-0 lg:left-auto bottom-full'
+          : 'top-full right-0'
+      } `}
     >
       {children}
     </div>
