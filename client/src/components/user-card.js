@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { follow } from 'api/follow';
@@ -7,6 +6,7 @@ import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from './avatar';
 import { TextButton } from './button';
+import { Badge } from './badge';
 
 function UserCard({ user }) {
   const { user: currentUser } = useCurrentUser();
@@ -33,11 +33,7 @@ function UserCard({ user }) {
             </TextButton>
             <div className="flex items-center space-x-2">
               <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
-              {user.isFollowed && (
-                <span className="px-1 text-xs leading-5 text-gray-500 bg-gray-200 rounded">
-                  Follows you
-                </span>
-              )}
+              {user.isFollowed && <Badge>Follows you</Badge>}
             </div>
           </div>
           <DynamicFollowBtn user={user} currentUser={currentUser} />
