@@ -82,6 +82,7 @@ function buttonIconClass(size, color) {
     {
       'p-1': size === 'sm',
       'p-2': size === 'md',
+      'p-3': size === 'lg',
       'text-white bg-blue-500 hover:bg-blue-600': color === 'primary',
       'text-blue-500 hover:bg-blue-50': color === 'primary-text',
     },
