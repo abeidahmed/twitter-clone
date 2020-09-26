@@ -3,7 +3,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { Avatar } from 'components/avatar';
-import { Button, IconButton } from 'components/button';
+import { Button, IconButton, IconWithTextButton } from 'components/button';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -128,19 +128,28 @@ function ProfileDropdown({ logout, user }) {
       <div
         className={`${
           dropActive ? 'block' : 'hidden'
-        } absolute z-50 w-48 mb-2 bg-white rounded-md shadow-xl`}
+        } absolute z-50 w-56 mb-2 bg-white rounded-md shadow-xl`}
         style={{ bottom: '100%' }}
       >
-        <ul className="py-1 rounded-md shadow-xs">
-          <button className="block w-full px-3 py-2 text-left whitespace-no-wrap transition duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue hover:bg-blue-50">
-            Settings
-          </button>
-          <button
-            onClick={handleLogout}
-            className="block w-full px-3 py-2 text-left whitespace-no-wrap transition duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue hover:bg-blue-50"
+        <ul className="py-2 rounded-md shadow-xs">
+          <IconWithTextButton
+            to="/"
+            color="white"
+            size="md"
+            icon="cog"
+            variant="menu"
           >
-            Log out
-          </button>
+            Settings
+          </IconWithTextButton>
+          <IconWithTextButton
+            color="white"
+            size="md"
+            icon="logout"
+            variant="menu"
+            onClick={handleLogout}
+          >
+            Logout
+          </IconWithTextButton>
         </ul>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { Icon } from './icon';
 
 function handleLinkWrapping(Component, props) {
   const {
@@ -94,7 +95,40 @@ function StyledIconButton({ size, color, position, children, ...props }) {
   );
 }
 
+function IconWithTextButtonClass(size, color, variant) {
+  return cn([
+    'whitespace-no-wrap transition duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue',
+    {
+      'px-3 py-2 text-sm': size === 'md',
+      'text-gray-800 hover:bg-blue-50': color === 'white',
+      'text-left flex items-center w-full': variant === 'menu',
+    },
+  ]);
+}
+
+function StyledIconWithTextButton({
+  size,
+  color,
+  variant,
+  icon,
+  children,
+  ...props
+}) {
+  return (
+    <button
+      className={IconWithTextButtonClass(size, color, variant)}
+      {...props}
+    >
+      <Icon icon={icon} className="w-5 h-5 text-gray-500" />
+      <span className="pl-2 leading-5">{children}</span>
+    </button>
+  );
+}
+
 export const Button = (props) => handleLinkWrapping(StyledButton, props);
 
 export const IconButton = (props) =>
   handleLinkWrapping(StyledIconButton, props);
+
+export const IconWithTextButton = (props) =>
+  handleLinkWrapping(StyledIconWithTextButton, props);
