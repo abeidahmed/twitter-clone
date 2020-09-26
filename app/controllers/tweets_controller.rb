@@ -6,7 +6,11 @@ class TweetsController < ApplicationController
       action: params[:action]
     ).upload_image!
 
-    @tweet = current_user.tweets.create!(body: params[:body], image: image['url'])
+    @tweet = current_user.tweets.create!(
+      body: params[:body],
+      image: image['url'],
+      reply_status: params[:reply_status]
+    )
 
     if @tweet
       render :new, status: :created
