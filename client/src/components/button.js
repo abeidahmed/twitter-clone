@@ -158,6 +158,61 @@ function StyledTextButton({ size, className, color, children, ...props }) {
   );
 }
 
+function TwitterActionButtonClass(color) {
+  return cn([
+    'inline-flex items-center text-gray-500 text-sm group focus:outline-none',
+    {
+      'hover:text-blue-500 focus:text-blue-500': color === 'blue',
+      'hover:text-red-500 focus:text-red-500': color === 'red',
+      'hover:text-green-500 focus:text-green-500': color === 'green',
+      'hover:text-teal-500 focus:text-teal-500': color === 'teal',
+    },
+  ]);
+}
+
+function TwitterActionIconButtonClass(size) {
+  return cn([
+    'rounded-full',
+    {
+      'w-5 h-5': size === 'sm',
+      'w-6 h-6': size === 'md',
+    },
+  ]);
+}
+
+function TwitterActiveIconButtonWrapper(color) {
+  return cn([
+    'p-2 rounded-full',
+    {
+      'group-hover:bg-blue-50 group-focus:bg-blue-50': color === 'blue',
+      'group-hover:bg-red-50 group-focus:bg-red-50': color === 'red',
+      'group-hover:bg-green-50 group-focus:bg-green-50': color === 'green',
+      'group-hover:bg-teal-50 group-focus:bg-teal-50': color === 'teal',
+    },
+  ]);
+}
+
+function StyledTwitterActionButton({
+  size,
+  color,
+  icon,
+  className,
+  children,
+  ...props
+}) {
+  return (
+    <button
+      className={`${TwitterActionButtonClass(color)} ${className}`}
+      {...props}
+    >
+      <i className={TwitterActiveIconButtonWrapper(color)}>
+        <Icon icon={icon} className={TwitterActionIconButtonClass(size)} />
+      </i>
+      <span>{children}</span>
+    </button>
+  );
+}
+
 export const Button = (props) => handleLinkWrapping(StyledButton, props);
 
 export const IconButton = (props) =>
@@ -168,3 +223,6 @@ export const IconWithTextButton = (props) =>
 
 export const TextButton = (props) =>
   handleLinkWrapping(StyledTextButton, props);
+
+export const TwitterActionButton = (props) =>
+  handleLinkWrapping(StyledTwitterActionButton, props);
