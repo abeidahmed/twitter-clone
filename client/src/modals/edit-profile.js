@@ -3,6 +3,8 @@ import { ModalWrapper } from 'components/modal-wrapper';
 import { useMutation, queryCache } from 'react-query';
 import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
+import { useCharTrackerState } from 'hooks/char-tracker';
+import * as limit from 'shared/char-limit';
 import { updateUser } from 'api/update-user';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
@@ -13,14 +15,29 @@ import { CharTracker } from 'components/char-tracker';
 
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
+  const {
+    name: userName = '',
+    bio: userBio = '',
+    location: userLocation = '',
+    website: userWebsite = '',
+    avatar: userAvatar = '',
+    banner: userBanner = '',
+  } = modalProps;
+
   const { setUser } = useCurrentUser();
 
-  const [name, setName] = useState(modalProps.name || '');
-  const [bio, setBio] = useState(modalProps.bio || '');
-  const [location, setLocation] = useState(modalProps.location || '');
-  const [website, setWebsite] = useState(modalProps.website || '');
-  const [avatar, setAvatar] = useState(modalProps.avatar || '');
-  const [banner, setBanner] = useState(modalProps.banner || '');
+  const [name, setName] = useCharTrackerState(userName, limit.NAME_CHAR);
+  const [bio, setBio] = useCharTrackerState(userBio, limit.BIO_CHAR);
+  const [location, setLocation] = useCharTrackerState(
+    userLocation,
+    limit.LOCATION_CHAR
+  );
+  const [website, setWebsite] = useCharTrackerState(
+    userWebsite,
+    limit.WEBSITE_CHAR
+  );
+  const [avatar, setAvatar] = useCharTrackerState(userAvatar);
+  const [banner, setBanner] = useState(userBanner);
   const [error, setError] = useState([]);
 
   const [mutate, { isLoading }] = useMutation(updateUser, {
@@ -109,12 +126,12 @@ function EditProfile() {
               value={name}
               error={error}
               errorType="name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={setName}
             />
             <CharTracker
               size="sm"
               current={name.length}
-              limit={50}
+              limit={limit.NAME_CHAR}
               className="mt-1 text-right"
             />
           </div>
@@ -129,12 +146,12 @@ function EditProfile() {
               value={bio}
               error={error}
               errorType="bio"
-              onChange={(e) => setBio(e.target.value)}
+              onChange={setBio}
             />
             <CharTracker
               size="sm"
               current={bio.length}
-              limit={160}
+              limit={limit.BIO_CHAR}
               className="mt-1 text-right"
             />
           </div>
@@ -147,12 +164,12 @@ function EditProfile() {
               value={location}
               error={error}
               errorType="location"
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={setLocation}
             />
             <CharTracker
               size="sm"
               current={location.length}
-              limit={30}
+              limit={limit.LOCATION_CHAR}
               className="mt-1 text-right"
             />
           </div>
@@ -165,12 +182,12 @@ function EditProfile() {
               value={website}
               error={error}
               errorType="website"
-              onChange={(e) => setWebsite(e.target.value)}
+              onChange={setWebsite}
             />
             <CharTracker
               size="sm"
               current={website.length}
-              limit={100}
+              limit={limit.WEBSITE_CHAR}
               className="mt-1 text-right"
             />
           </div>
