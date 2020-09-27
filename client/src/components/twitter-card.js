@@ -36,11 +36,14 @@ export function TwitterCard({ tweet }) {
               <p className="text-gray-600">{body}</p>
             </div>
             {image && (
-              <div className="mt-3 overflow-hidden rounded-lg shadow-md">
+              <div
+                className="relative mt-3 overflow-hidden rounded-lg shadow-md"
+                style={{ paddingBottom: '56.25%' }}
+              >
                 <img
                   src={image}
                   alt="twitter"
-                  className="object-cover w-full h-80"
+                  className="absolute object-cover w-full h-full overflow-hidden"
                 />
               </div>
             )}
