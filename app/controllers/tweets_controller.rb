@@ -25,6 +25,8 @@ class TweetsController < ApplicationController
 
   def destroy
     tweet = Tweet.find(params[:id])
+    return error('bad_request') unless current_user?(tweet.user)
+
     FileUpload.new(
       file: nil,
       file_location: tweet.image,

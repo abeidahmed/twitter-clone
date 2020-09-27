@@ -61,21 +61,34 @@ RSpec.describe "Tweets", type: :request do
   end
 
   describe '#destroy' do
-    let(:user) { create(:user) }
-    let(:tweet) { create(:tweet) }
-
     context 'when the user is logged in' do
       before do
-        delete tweet_url(tweet), headers: auth_header(user)
+        user = create(:user_with_tweets, tweets_count: 2)
+        delete tweet_url(user.tweets.first), headers: auth_header(user)
       end
 
       it 'is expected to delete the tweet' do
-        expect(Tweet.all.size).to be_zero
+        expect(Tweet.all.size).to eq(1)
       end
+    end
+
+    context 'when the request is not made by the author of the tweet' do
+      before do
+        user = create(:user)
+        tweet = create(:tweet)
+        delete tweet_url(tweet), headers: auth_header(user)
+      end
+
+      it 'is expected to not delete the tweet' do
+        expect(Tweet.all.size).to eq(1)
+      end
+
+      include_examples 'bad_request'
     end
 
     context 'when the user is a guest' do
       before do
+        tweet = create(:tweet)
         delete tweet_url(tweet), headers: default_header
       end
 
