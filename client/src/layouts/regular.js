@@ -21,7 +21,7 @@ export default function Regular() {
           <SidebarStore>
             <MobileSidebar />
             <Sidebar />
-            <div className="flex flex-col justify-between w-full h-screen lg:col-span-6">
+            <div className="flex flex-col justify-between w-full h-screen lg:col-span-9 xl:col-span-6">
               <Header />
               <div className="flex-1 overflow-y-auto border-l border-r border-gray-200">
                 <Switch>
