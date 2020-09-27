@@ -11,7 +11,7 @@ function Header() {
   const { user } = useCurrentUser();
 
   return (
-    <header className="sticky top-0 flex-shrink-0 border border-gray-200">
+    <header className="sticky top-0 z-10 flex-shrink-0 bg-white border border-gray-200">
       <div className="flex items-center px-4 h-14">
         <button
           onClick={setOn}

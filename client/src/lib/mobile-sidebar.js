@@ -19,7 +19,7 @@ function MobileSidebar() {
   const { setOff, isActive } = useSidebarToggle();
 
   return (
-    <div className="sm:hidden">
+    <div className="bg-white sm:hidden">
       <Aside isActive={isActive}>
         <Header setOff={setOff} />
         <div className="py-3">
@@ -127,7 +127,7 @@ function Aside({ isActive, children }) {
       <div
         className={`${
           isActive ? 'block' : 'hidden'
-        } fixed inset-0 z-10 lg:hidden`}
+        } fixed inset-0 z-50 lg:hidden`}
       >
         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
