@@ -31,3 +31,24 @@ button[disabled] {
     transform: rotate(360deg);
   }
 }
+
+/* Scrollbar */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cfd8e3 #cfd8e3;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  cursor: pointer;
+}
+*::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #cfd8e3;
+  border-radius: 20px;
+  border: 3px solid #cfd8e3;
+}
