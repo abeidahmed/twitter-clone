@@ -10,6 +10,7 @@ import { IconButton, Button } from 'components/button';
 import { Icon } from 'components/icon';
 import { FileUpload } from 'components/file-upload';
 import { CharTracker } from 'components/char-tracker';
+import { useDisplayUploadedImage } from 'hooks/display-uploaded-image';
 
 function TweetBox() {
   const { user } = useCurrentUser();
@@ -27,7 +28,10 @@ function TweetBox() {
 }
 
 function TweetForm() {
-  const [body, setBody] = useCharTrackerState('', limit.TWEET_BODY_CHAR);
+  const [body, setBody, clearBody] = useCharTrackerState(
+    '',
+    limit.TWEET_BODY_CHAR
+  );
   const [image, setImage] = useState('');
   const [replyStatus] = useState('everyone');
 
@@ -35,6 +39,8 @@ function TweetForm() {
   const imageRef = useRef(null);
 
   const { eleHeight } = useCalHeight(body, 'auto', textareaRef);
+
+  const { imageSrc, onUpload, clearImage } = useDisplayUploadedImage();
 
   const [mutate, { isLoading }] = useMutation(createTweet, {
     onSuccess() {
@@ -49,18 +55,9 @@ function TweetForm() {
       image,
       replyStatus,
     });
-  }
-
-  function handleImageAdd(e) {
-    const imageFile = e.target.files[0];
-    setImage(imageFile);
-
-    const reader = new FileReader();
-    reader.addEventListener('load', function (e) {
-      imageRef.current.src = e.target.result;
-    });
-
-    reader.readAsDataURL(imageFile);
+    clearBody();
+    setImage('');
+    clearImage();
   }
 
   return (
@@ -77,16 +74,23 @@ function TweetForm() {
         value={body}
         onChange={setBody}
       />
-      {image && (
+      {imageSrc && (
         <div className="relative">
           <img
             ref={imageRef}
             className="object-cover w-full h-56 rounded-lg"
-            src=""
+            src={imageSrc}
             alt="Uploaded"
           />
           <div className="absolute top-0 left-0 p-2">
-            <IconButton onClick={() => setImage('')} size="sm" color="primary">
+            <IconButton
+              onClick={() => {
+                setImage('');
+                clearImage();
+              }}
+              size="sm"
+              color="primary"
+            >
               <Icon icon="x" className="w-5 h-5" />
             </IconButton>
           </div>
@@ -100,7 +104,11 @@ function TweetForm() {
             size="md"
             color="white"
             name="image"
-            onChange={handleImageAdd}
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+              onUpload(e);
+              e.target.value = null;
+            }}
           />
           <IconButton size="md" color="primary-text">
             <Icon icon="smiley" className="w-6 h-6" />
