@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { useCharTrackerState } from 'hooks/char-tracker';
+import { useCalHeight } from 'hooks/calc-height';
 import * as limit from 'shared/char-limit';
 import { createTweet } from 'api/create-tweet';
 import { Avatar } from 'components/avatar';
@@ -29,30 +30,27 @@ function TweetForm() {
   const [body, setBody] = useCharTrackerState('', limit.TWEET_BODY_CHAR);
   const [image, setImage] = useState('');
   const [replyStatus] = useState('everyone');
-  const [error, setError] = useState([]);
+
+  const textareaRef = useRef(null);
+  const imageRef = useRef(null);
+
+  const { eleHeight } = useCalHeight(body, 'auto', textareaRef);
 
   const [mutate, { isLoading }] = useMutation(createTweet, {
     onSuccess() {
       queryCache.refetchQueries('fetchAllTweets');
     },
-    throwOnError: true,
   });
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      await mutate({
-        body,
-        image,
-        replyStatus,
-      });
-    } catch (err) {
-      setError(err.response.data.message);
-    }
+    await mutate({
+      body,
+      image,
+      replyStatus,
+    });
   }
 
-  const imageRef = useRef(null);
   function handleImageAdd(e) {
     const imageFile = e.target.files[0];
     setImage(imageFile);
@@ -71,10 +69,11 @@ function TweetForm() {
         Create text
       </label>
       <textarea
+        ref={textareaRef}
         id="tweet-main-textarea"
-        rows="4"
         placeholder="What's happening?"
         className="block w-full h-auto p-0 pt-2 text-lg border-none resize-none focus:shadow-none form-textarea"
+        style={{ height: eleHeight }}
         value={body}
         onChange={setBody}
       />
