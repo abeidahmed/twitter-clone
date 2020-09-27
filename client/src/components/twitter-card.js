@@ -3,42 +3,46 @@ import { Link } from 'react-router-dom';
 import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
 
-export function TwitterCard() {
+export function TwitterCard({ tweet }) {
+  const { body, createdAt, id, image, replyStatus, twitter } = tweet;
   return (
     <div className="relative border-b border-gray-200 hover:bg-gray-50">
       <Link to="/explore" className="absolute inset-0" />
       <div className="flex px-4 py-2">
         <div className="flex-shrink-0">
-          <Avatar size="md" src="" alt="" />
+          <Avatar size="md" src={twitter.avatar} alt="" />
         </div>
-        <div className="flex flex-col ml-3">
+        <div className="flex flex-col flex-1 ml-3">
           <div>
-            <div className="flex text-sm">
+            <div className="flex items-center">
               <TextButton
-                to="/iamhawaabi"
+                to={`/${twitter.twitterHandle}`}
                 color="black"
-                className="relative font-bold leading-5"
+                size="sm"
+                className="relative font-bold"
               >
-                ICC
+                {twitter.name}
               </TextButton>
-              <p className="pl-2 leading-5 text-gray-500">@icc</p>
+              <span className="pl-2 text-sm leading-5 text-gray-500">
+                @{twitter.twitterHandle}
+              </span>
               <span className="mx-1">&middot;</span>
-              <p className="leading-5 text-gray-500">11m</p>
+              <span className="text-sm leading-5 text-gray-500">
+                {createdAt}
+              </span>
             </div>
             <div className="mt-2">
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse,
-                alias aperiam in vitae, vero perferendis necessitatibus, ullam
-                recusandae nihil libero pariatur nemo odio laudantium deserunt.
-              </p>
+              <p className="text-gray-600">{body}</p>
             </div>
-            {/* <div className="mt-3 overflow-hidden rounded-lg shadow-md">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
-                alt=""
-                className="object-cover w-full h-80"
-              />
-            </div> */}
+            {image && (
+              <div className="mt-3 overflow-hidden rounded-lg shadow-md">
+                <img
+                  src={image}
+                  alt="twitter"
+                  className="object-cover w-full h-80"
+                />
+              </div>
+            )}
           </div>
           <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
             <TwitterActionButton

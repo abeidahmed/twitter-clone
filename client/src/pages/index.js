@@ -1,12 +1,17 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
 import { Divider } from 'components/divider';
 import TweetBox from 'lib/tweet-box';
 import { MobileTweetButton } from 'components/mobile-tweet-button';
 import { TwitterCard } from 'components/twitter-card';
+import { Spinner } from 'components/spinner';
+import { allTweets } from 'api/all-tweets';
 
 function Home() {
   useSetTitle('Home', null);
+
+  const { data, isLoading, isError } = useQuery('fetchAllTweets', allTweets);
 
   return (
     <main>
@@ -15,9 +20,17 @@ function Home() {
         <TweetBox />
         <Divider />
       </section>
-      <section>
-        <TwitterCard />
-      </section>
+      <div className="relative">
+        {isLoading || isError ? (
+          <Spinner />
+        ) : (
+          <section>
+            {data.data.tweets.map((tweet) => (
+              <TwitterCard key={tweet.id} tweet={tweet} />
+            ))}
+          </section>
+        )}
+      </div>
     </main>
   );
 }
