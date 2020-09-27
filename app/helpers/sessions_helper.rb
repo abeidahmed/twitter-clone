@@ -17,6 +17,6 @@ module SessionsHelper
   end
 
   def authenticate_user!
-    return render json: { message: 'Please signin to continue' }, status: :unauthorized unless user_signed_in?
+    return error('unauthorized') unless user_signed_in?
   end
 end
