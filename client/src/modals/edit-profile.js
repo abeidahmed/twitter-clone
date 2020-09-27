@@ -23,10 +23,6 @@ function EditProfile() {
   const [banner, setBanner] = useState(modalProps.banner || '');
   const [error, setError] = useState([]);
 
-  function isThreshold(current, limit) {
-    return current > limit;
-  }
-
   const [mutate, { isLoading }] = useMutation(updateUser, {
     onSuccess({ data }) {
       queryCache.refetchQueries('showUser');
