@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     end
     resources :sessions, only: [:create, :show]
     resources :relationships, only: [:create, :destroy]
-    resources :tweets, only: [:create, :destroy]
+    resources :tweets, only: [:index, :create, :destroy]
   end
 end

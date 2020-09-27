@@ -1,6 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe "Tweets", type: :request do
+  describe '#index' do
+    let(:user) { create(:user) }
+
+    context 'when the user is logged in' do
+      before do
+        create(:tweet)
+        get tweets_url, headers: auth_header(user)
+      end
+
+      it 'is expected to list all the tweets' do
+        expect(json[:tweets].length).to eq(1)
+      end
+    end
+
+    context 'when the user is logged in' do
+      before do
+        get tweets_url, headers: default_header
+      end
+
+      include_examples 'unauthorized'
+    end
+  end
+
   describe '#create' do
     let(:user) { create(:user) }
     let(:tweet) { build(:tweet) }
@@ -8,7 +31,8 @@ RSpec.describe "Tweets", type: :request do
     let(:tweet_req) {
       {
         body: tweet.body,
-        image: tweet.image
+        image: tweet.image,
+        reply_status: tweet.reply_status
       }.to_json
     }
     context 'when the user is logged in' do

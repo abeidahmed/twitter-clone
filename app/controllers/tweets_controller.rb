@@ -1,4 +1,8 @@
 class TweetsController < ApplicationController
+  def index
+    @tweets = Tweet.date_sort
+  end
+
   def create
     image = FileUpload.new(
       file: params[:image],
