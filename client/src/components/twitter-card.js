@@ -4,7 +4,8 @@ import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
 
 export function TwitterCard({ tweet }) {
-  const { body, createdAt, id, image, replyStatus, twitter } = tweet;
+  const { body, createdAt, image, twitter } = tweet;
+
   return (
     <div className="relative border-b border-gray-200 hover:bg-gray-50">
       <Link to="/explore" className="absolute inset-0" />
