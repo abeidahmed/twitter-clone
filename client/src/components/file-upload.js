@@ -23,7 +23,12 @@ export function FileUpload({ size, color, icon, ...props }) {
 
   return (
     <label className={uploadClass}>
-      <input type="file" className="hidden" {...props} />
+      <input
+        type="file"
+        className="hidden"
+        accept="image/jpg, image/jpeg, image/png"
+        {...props}
+      />
       <Icon className={uploadIconClass} icon={icon} />
     </label>
   );
