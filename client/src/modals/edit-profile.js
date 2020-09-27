@@ -9,6 +9,7 @@ import { Textarea } from 'components/textarea';
 import { Avatar } from 'components/avatar';
 import { FileUpload } from 'components/file-upload';
 import { TwitterBanner } from 'components/twitter-banner';
+import { CharTracker } from 'components/char-tracker';
 
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
@@ -70,6 +71,9 @@ function EditProfile() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <FileUpload
                   name="banner"
+                  size="sm"
+                  color="overlay"
+                  icon="camera"
                   onChange={(e) => setBanner(e.target.files[0])}
                 />
               </div>
@@ -85,6 +89,9 @@ function EditProfile() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <FileUpload
                   name="avatar"
+                  size="sm"
+                  color="overlay"
+                  icon="camera"
                   onChange={(e) => setAvatar(e.target.files[0])}
                 />
               </div>
@@ -108,13 +115,12 @@ function EditProfile() {
               errorType="name"
               onChange={(e) => setName(e.target.value)}
             />
-            <p
-              className={`${
-                isThreshold(name.length, 50) ? 'text-red-700' : 'text-gray-500'
-              } mt-1 text-sm text-right`}
-            >
-              {name.length}/50
-            </p>
+            <CharTracker
+              size="sm"
+              current={name.length}
+              limit={50}
+              className="mt-1 text-right"
+            />
           </div>
           <div>
             <Textarea
@@ -129,13 +135,12 @@ function EditProfile() {
               errorType="bio"
               onChange={(e) => setBio(e.target.value)}
             />
-            <p
-              className={`${
-                isThreshold(bio.length, 50) ? 'text-red-700' : 'text-gray-500'
-              } mt-1 text-sm text-right`}
-            >
-              {bio.length}/160
-            </p>
+            <CharTracker
+              size="sm"
+              current={bio.length}
+              limit={160}
+              className="mt-1 text-right"
+            />
           </div>
           <div>
             <Input
@@ -148,15 +153,12 @@ function EditProfile() {
               errorType="location"
               onChange={(e) => setLocation(e.target.value)}
             />
-            <p
-              className={`${
-                isThreshold(location.length, 50)
-                  ? 'text-red-700'
-                  : 'text-gray-500'
-              } mt-1 text-sm text-right`}
-            >
-              {location.length}/30
-            </p>
+            <CharTracker
+              size="sm"
+              current={location.length}
+              limit={30}
+              className="mt-1 text-right"
+            />
           </div>
           <div>
             <Input
@@ -169,15 +171,12 @@ function EditProfile() {
               errorType="website"
               onChange={(e) => setWebsite(e.target.value)}
             />
-            <p
-              className={`${
-                isThreshold(website.length, 50)
-                  ? 'text-red-700'
-                  : 'text-gray-500'
-              } mt-1 text-sm text-right`}
-            >
-              {website.length}/100
-            </p>
+            <CharTracker
+              size="sm"
+              current={website.length}
+              limit={100}
+              className="mt-1 text-right"
+            />
           </div>
         </section>
       </form>
