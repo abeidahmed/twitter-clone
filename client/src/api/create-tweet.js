@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { header } from 'header';
+import { header } from 'middleware/header';
 
 export async function createTweet({ body, image, replyStatus }) {
   const formData = new FormData();
