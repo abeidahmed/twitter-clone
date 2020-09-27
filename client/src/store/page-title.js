@@ -24,7 +24,7 @@ function headerReducer(state = initialState, action) {
 const PageTitleContext = createContext(initialState);
 
 function useSetTitle(title, description) {
-  const [state, dispatch] = useContext(PageTitleContext);
+  const [, dispatch] = useContext(PageTitleContext);
 
   const meta = {
     title,
