@@ -1,6 +1,6 @@
 import React from 'react';
-import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
+import { useRefetchMutation } from 'hooks/refetch-mutation';
 import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
@@ -51,13 +51,15 @@ function UserCard({ user }) {
 }
 
 function DynamicFollowBtn({ user, currentUser }) {
-  const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
-    onSuccess() {
-      queryCache.refetchQueries(q.ALL_USERS);
-      queryCache.refetchQueries(q.ALL_FOLLOWINGS);
-      queryCache.refetchQueries(q.ALL_FOLLOWERS);
-    },
-  });
+  const [
+    followMutate,
+    { isLoading: followLoading },
+  ] = useRefetchMutation(follow, [
+    q.ALL_USERS,
+    q.ALL_FOLLOWINGS,
+    q.ALL_FOLLOWERS,
+    q.SHOW_USER,
+  ]);
 
   async function handleFollow(id) {
     await followMutate({
@@ -65,16 +67,15 @@ function DynamicFollowBtn({ user, currentUser }) {
     });
   }
 
-  const [unfollowMutate, { isLoading: unfollowLoading }] = useMutation(
-    unfollow,
-    {
-      onSuccess() {
-        queryCache.refetchQueries(q.ALL_USERS);
-        queryCache.refetchQueries(q.ALL_FOLLOWINGS);
-        queryCache.refetchQueries(q.ALL_FOLLOWERS);
-      },
-    }
-  );
+  const [
+    unfollowMutate,
+    { isLoading: unfollowLoading },
+  ] = useRefetchMutation(unfollow, [
+    q.ALL_USERS,
+    q.ALL_FOLLOWINGS,
+    q.ALL_FOLLOWERS,
+    q.SHOW_USER,
+  ]);
 
   async function handleUnfollow(id) {
     await unfollowMutate({

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
+import { useRefetchMutation } from 'hooks/refetch-mutation';
 import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
 import { follow } from 'api/follow';
@@ -73,11 +73,10 @@ function ProfileWrapper({ user, children }) {
 }
 
 function DynamicFollowBtn({ user, currentUser }) {
-  const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
-    onSuccess() {
-      queryCache.refetchQueries(q.SHOW_USER);
-    },
-  });
+  const [
+    followMutate,
+    { isLoading: followLoading },
+  ] = useRefetchMutation(follow, [q.SHOW_USER]);
 
   async function handleFollow(id) {
     await followMutate({
@@ -85,14 +84,10 @@ function DynamicFollowBtn({ user, currentUser }) {
     });
   }
 
-  const [unfollowMutate, { isLoading: unfollowLoading }] = useMutation(
-    unfollow,
-    {
-      onSuccess() {
-        queryCache.refetchQueries(q.SHOW_USER);
-      },
-    }
-  );
+  const [
+    unfollowMutate,
+    { isLoading: unfollowLoading },
+  ] = useRefetchMutation(unfollow, [q.SHOW_USER]);
 
   async function handleUnfollow(id) {
     await unfollowMutate({
