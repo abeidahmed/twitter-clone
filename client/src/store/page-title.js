@@ -36,7 +36,7 @@ function useSetTitle(title, description) {
       type: actionTypes.updatePageTitle,
       payload: meta,
     });
-  }, []);
+  }, [title, description]);
 }
 
 function PageTitleStore({ children }) {
