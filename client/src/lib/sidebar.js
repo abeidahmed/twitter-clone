@@ -5,6 +5,7 @@ import { Icon } from 'components/icon';
 import { Button, IconButton, IconWithTextButton } from 'components/button';
 import { DropdownContainer } from 'components/container';
 import { UserButton } from 'components/user-button';
+import { useModalType } from 'store/modal';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -75,9 +76,23 @@ function Sidebar() {
 }
 
 function TweetButton() {
+  const { modalOn } = useModalType();
+
+  function openModal() {
+    modalOn({
+      modalType: 'CREATE_TWEET',
+      modalProps: {},
+    });
+  }
+
   return (
     <>
-      <IconButton size="md" color="primary" className="lg:hidden">
+      <IconButton
+        size="md"
+        color="primary"
+        className="lg:hidden"
+        onClick={openModal}
+      >
         <Icon
           icon="magic-wand"
           stroke="none"
@@ -90,6 +105,7 @@ function TweetButton() {
         color="primary"
         variant="block"
         className="hidden lg:block"
+        onClick={openModal}
       >
         Tweet
       </Button>
