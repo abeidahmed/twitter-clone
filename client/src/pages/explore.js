@@ -21,7 +21,7 @@ function Explore() {
 
   return (
     <main className="py-3">
-      <div className="px-4 mt-3 mb-6">
+      <div className="px-4 pb-6 mt-3 border-b border-gray-200">
         <SearchBar
           placeholder="Explore people"
           value={searchTerm}

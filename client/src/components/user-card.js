@@ -8,15 +8,16 @@ import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from './avatar';
 import { TextButton } from './button';
 import { Badge } from './badge';
+import { CardContainer } from './container';
 
 function UserCard({ user }) {
   const { currentUser } = useCurrentUser();
 
   return (
-    <div className="flex w-full px-4 py-5 space-x-3 transition duration-150 ease-in-out border-t border-gray-200 last:border-b hover:bg-gray-50">
+    <CardContainer to={`/${user.twitterHandle}`}>
       <div>
         <Avatar
-          size="lg"
+          size="md"
           src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
           alt=""
         />
@@ -28,7 +29,7 @@ function UserCard({ user }) {
               to={`/${user.twitterHandle}`}
               size="sm"
               color="black"
-              className="font-semibold"
+              className="relative font-semibold"
             >
               {user.name || 'Twitter user'}
             </TextButton>
@@ -46,7 +47,7 @@ function UserCard({ user }) {
           </p>
         </div>
       </div>
-    </div>
+    </CardContainer>
   );
 }
 

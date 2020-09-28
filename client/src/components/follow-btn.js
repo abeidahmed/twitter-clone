@@ -10,7 +10,7 @@ export function FollowBtn({
   size,
 }) {
   const followBtnClass = cn([
-    'font-semibold leading-5 text-blue-600 bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50',
+    'relative font-semibold leading-5 text-blue-600 bg-white border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-blue-50',
     {
       'px-3 py-1 text-sm': size === 'sm',
       'px-4 py-2 text-base': size === 'md',
@@ -18,7 +18,7 @@ export function FollowBtn({
   ]);
 
   const unfollowBtnClass = cn([
-    'font-semibold leading-5 text-white bg-blue-600 border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-pink-600 hover:border-pink-600',
+    'relative font-semibold leading-5 text-white bg-blue-600 border border-blue-600 rounded-full focus:outline-none focus:shadow-outline-blue hover:bg-pink-600 hover:border-pink-600',
     {
       'px-3 py-1 text-sm': size === 'sm',
       'px-4 py-2 text-base': size === 'md',
