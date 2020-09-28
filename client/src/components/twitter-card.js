@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from 'store/current-user';
+import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { deleteTweet } from 'api/delete-tweet';
+import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
 import { Avatar } from './avatar';
-import { TextButton, TwitterActionButton } from './button';
+import {
+  TextButton,
+  TwitterActionButton,
+  IconButton,
+  IconWithTextButton,
+} from './button';
+import { Icon } from './icon';
+import { DropdownContainer } from 'components/container';
 
 export function TwitterCard({ tweet, user }) {
-  const { body, createdAt, image, twitter = user } = tweet;
+  const { id, body, createdAt, image, twitter = user } = tweet;
+  const { user: currentUser } = useCurrentUser();
 
   return (
     <div className="relative border-b border-gray-200 hover:bg-gray-50">
@@ -16,22 +28,25 @@ export function TwitterCard({ tweet, user }) {
         </div>
         <div className="flex flex-col flex-1 ml-3">
           <div>
-            <div className="flex items-center">
-              <TextButton
-                to={`/${twitter.twitterHandle}`}
-                color="black"
-                size="sm"
-                className="relative font-bold"
-              >
-                {twitter.name || a.DEFAULT_NAME}
-              </TextButton>
-              <span className="pl-2 text-sm leading-5 text-gray-500">
-                @{twitter.twitterHandle}
-              </span>
-              <span className="mx-1">&middot;</span>
-              <span className="text-sm leading-5 text-gray-500">
-                {createdAt}
-              </span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <TextButton
+                  to={`/${twitter.twitterHandle}`}
+                  color="black"
+                  size="sm"
+                  className="relative font-bold"
+                >
+                  {twitter.name || a.DEFAULT_NAME}
+                </TextButton>
+                <span className="pl-2 text-sm leading-5 text-gray-500">
+                  @{twitter.twitterHandle}
+                </span>
+                <span className="mx-1">&middot;</span>
+                <span className="text-sm leading-5 text-gray-500">
+                  {createdAt}
+                </span>
+              </div>
+              {twitter.id === currentUser.id && <CardOptions tweetID={id} />}
             </div>
             <div className="mt-2">
               <p className="text-gray-600">{body}</p>
@@ -83,6 +98,43 @@ export function TwitterCard({ tweet, user }) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function CardOptions({ tweetID }) {
+  const [menuActive, setMenuActive] = useState(false);
+
+  const [mutate, { isLoading }] = useRefetchMutation(deleteTweet, [
+    q.ALL_TWEETS,
+    q.SHOW_USER,
+  ]);
+
+  async function handleDelete(id) {
+    await mutate({ id });
+  }
+
+  return (
+    <div className="relative">
+      <IconButton
+        size="sm"
+        color="primary-text"
+        onClick={() => setMenuActive(!menuActive)}
+      >
+        <Icon icon="chevron-down" className="w-4 h-4" />
+      </IconButton>
+      <DropdownContainer position="top" isActive={menuActive}>
+        <IconWithTextButton
+          color="danger"
+          size="md"
+          icon="trash"
+          variant="menu"
+          disabled={isLoading}
+          onClick={() => handleDelete(tweetID)}
+        >
+          Delete
+        </IconWithTextButton>
+      </DropdownContainer>
     </div>
   );
 }
