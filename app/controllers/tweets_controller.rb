@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.from_people_you_know(current_user)
   end
 
   def create
