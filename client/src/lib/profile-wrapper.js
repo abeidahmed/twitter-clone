@@ -67,7 +67,7 @@ function ProfileWrapper({ user, children }) {
           <Tab links={links} />
         </div>
       </div>
-      <div className="px-4">{children}</div>
+      {children}
     </main>
   );
 }
