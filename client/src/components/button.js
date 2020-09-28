@@ -106,7 +106,18 @@ function IconWithTextButtonClass(size, color, variant) {
     {
       'px-3 py-2 text-sm': size === 'md',
       'text-gray-800 hover:bg-blue-50': color === 'white',
+      'text-red-600 hover:bg-blue-50': color === 'danger',
       'text-left flex items-center w-full': variant === 'menu',
+    },
+  ]);
+}
+
+function IconWithTextButtonIconClass(color) {
+  return cn([
+    'w-5 h-5',
+    {
+      'text-gray-500': color === 'white',
+      'text-red-500': color === 'danger',
     },
   ]);
 }
@@ -129,7 +140,7 @@ function StyledIconWithTextButton({
       )} ${className}`}
       {...props}
     >
-      <Icon icon={icon} className="w-5 h-5 text-gray-500" />
+      <Icon icon={icon} className={IconWithTextButtonIconClass(color)} />
       <span className="pl-2 leading-5">{children}</span>
     </button>
   );
