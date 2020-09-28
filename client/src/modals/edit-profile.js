@@ -75,6 +75,7 @@ function EditProfile() {
         onSubmit: handleSubmit,
         disabled: isLoading,
       }}
+      spacing="lg"
     >
       <form onSubmit={handleSubmit} className="flex flex-col -mt-10">
         <section className="flex flex-col">
