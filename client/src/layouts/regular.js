@@ -10,6 +10,7 @@ import Sidebar from 'lib/sidebar';
 import Explore from 'pages/explore';
 import Home from 'pages';
 import Profile from 'pages/profile';
+import ShowTweet from 'pages/tweets/show-tweet';
 import ModalRoot from 'modals/modal-root';
 
 export default function Regular() {
@@ -25,8 +26,9 @@ export default function Regular() {
               <Header />
               <div className="relative flex-1 overflow-y-auto border-l border-r border-gray-200">
                 <Switch>
-                  <Route path="/explore" component={Explore} />
+                  <Route exact path="/explore" component={Explore} />
                   <Route exact path="/" component={Home} />
+                  <Route exact path="/:id/status/:uuid" component={ShowTweet} />
                   <Route path="/:id" component={Profile} />
                 </Switch>
               </div>

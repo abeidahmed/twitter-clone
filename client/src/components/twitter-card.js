@@ -15,11 +15,13 @@ import { Icon } from './icon';
 import { DropdownContainer, CardContainer } from 'components/container';
 
 export function TwitterCard({ tweet, user }) {
-  const { id, body, createdAt, image, twitter = user } = tweet;
+  // In user show page, the user details is not listed in the tweet array,
+  // and hence twitter = user.
+  const { id, uuid, body, createdAt, image, twitter = user } = tweet;
   const { currentUser } = useCurrentUser();
 
   return (
-    <CardContainer to="/explore">
+    <CardContainer to={`/${twitter.twitterHandle}/status/${uuid}`}>
       <div className="flex-shrink-0">
         <Avatar size="md" src={twitter.avatar} alt="" />
       </div>
