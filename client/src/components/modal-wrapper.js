@@ -1,20 +1,43 @@
 import React from 'react';
+import cn from 'classnames';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/icon';
 import { Button, IconButton } from './button';
 
-export function ModalWrapper({ button, modalTitle, children }) {
+export function ModalWrapper({
+  modalPosition,
+  spacingX,
+  spacingY,
+  spacing,
+  button,
+  modalTitle,
+  children,
+}) {
+  const wrapperClass = cn([
+    'fixed inset-0 z-50 flex items-center justify-center px-4 py-8',
+    {
+      'md:items-start': modalPosition === 'top',
+    },
+  ]);
+
+  const sectionClass = cn([
+    'overflow-y-auto',
+    {
+      'px-4': spacingX === 'md',
+      'py-10': spacingY === 'lg',
+      'py-10 px-4': spacing === 'lg',
+    },
+  ]);
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8">
+    <div className={wrapperClass}>
       <div className="fixed inset-0 transition-opacity">
         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
-      <div className="overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-xl sm:w-full">
+      <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+      <div className="w-full max-w-xl overflow-hidden transition-all transform bg-white rounded-lg shadow-xl">
         <Header modalTitle={modalTitle} button={button} />
-        <section
-          className="px-4 py-10 overflow-y-auto"
-          style={{ maxHeight: 600 }}
-        >
+        <section className={sectionClass} style={{ maxHeight: 600 }}>
           {children}
         </section>
       </div>
