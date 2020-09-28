@@ -26,6 +26,7 @@ class FileUpload
   end
 
   def delete_prev_image
+    return if file_location.nil?
     file_id = File.basename(file_location, '.*')
     Cloudinary::Uploader.destroy(file_id)
   end
