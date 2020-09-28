@@ -12,7 +12,7 @@ import { FileUpload } from 'components/file-upload';
 import { CharTracker } from 'components/char-tracker';
 import { useDisplayUploadedImage } from 'hooks/display-uploaded-image';
 
-function TweetBox() {
+function TweetBox({ rows }) {
   const { user } = useCurrentUser();
 
   return (
@@ -21,13 +21,13 @@ function TweetBox() {
         <Avatar size="lg" src={user.avatar} alt={user.name} />
       </div>
       <div className="flex-1 ml-3">
-        <TweetForm />
+        <TweetForm rows={rows} />
       </div>
     </div>
   );
 }
 
-function TweetForm() {
+function TweetForm({ rows }) {
   const [body, setBody, clearBody] = useCharTrackerState(
     '',
     limit.TWEET_BODY_CHAR
@@ -67,6 +67,7 @@ function TweetForm() {
       </label>
       <textarea
         ref={textareaRef}
+        rows={rows}
         id="tweet-main-textarea"
         placeholder="What's happening?"
         className="block w-full h-auto p-0 pt-2 text-lg border-none resize-none focus:shadow-none form-textarea"
