@@ -17,28 +17,28 @@ import { CharTracker } from 'components/char-tracker';
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
   const {
-    name: userName = '',
-    bio: userBio = '',
-    location: userLocation = '',
-    website: userWebsite = '',
-    avatar: userAvatar = '',
-    banner: userBanner = '',
+    name: userName,
+    bio: userBio,
+    location: userLocation,
+    website: userWebsite,
+    avatar: userAvatar,
+    banner: userBanner,
   } = modalProps;
 
   const { setUser } = useCurrentUser();
 
-  const [name, setName] = useCharTrackerState(userName, limit.NAME_CHAR);
-  const [bio, setBio] = useCharTrackerState(userBio, limit.BIO_CHAR);
+  const [name, setName] = useCharTrackerState(userName || '', limit.NAME_CHAR);
+  const [bio, setBio] = useCharTrackerState(userBio || '', limit.BIO_CHAR);
   const [location, setLocation] = useCharTrackerState(
-    userLocation,
+    userLocation || '',
     limit.LOCATION_CHAR
   );
   const [website, setWebsite] = useCharTrackerState(
-    userWebsite,
+    userWebsite || '',
     limit.WEBSITE_CHAR
   );
-  const [avatar, setAvatar] = useCharTrackerState(userAvatar);
-  const [banner, setBanner] = useState(userBanner);
+  const [avatar, setAvatar] = useCharTrackerState(userAvatar || '');
+  const [banner, setBanner] = useState(userBanner || '');
   const [error, setError] = useState([]);
 
   const [mutate, { isLoading }] = useMutation(updateUser, {
