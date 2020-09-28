@@ -10,7 +10,7 @@ import { Avatar } from 'components/avatar';
 import { IconButton } from 'components/button';
 
 function MobileSidebar() {
-  const { logout, user } = useCurrentUser();
+  const { logout, currentUser } = useCurrentUser();
 
   const history = useHistory();
   function handleLogout() {
@@ -25,20 +25,23 @@ function MobileSidebar() {
       <Aside isActive={isActive}>
         <Header setOff={setOff} />
         <div className="py-3">
-          <UserDetails user={user} />
-          <NavigationBar user={user} handleLogout={handleLogout} />
+          <UserDetails currentUser={currentUser} />
+          <NavigationBar
+            currentUser={currentUser}
+            handleLogout={handleLogout}
+          />
         </div>
       </Aside>
     </div>
   );
 }
 
-function NavigationBar({ user, handleLogout }) {
+function NavigationBar({ currentUser, handleLogout }) {
   const links = [
     {
       title: 'Profile',
       icon: 'user',
-      path: `/${user.twitterHandle}`,
+      path: `/${currentUser.twitterHandle}`,
     },
     {
       title: 'Explore',
@@ -81,26 +84,26 @@ function NavigationBar({ user, handleLogout }) {
   );
 }
 
-function UserDetails({ user }) {
+function UserDetails({ currentUser }) {
   return (
     <div className="px-4">
       <div>
         <Avatar
           size="md"
-          src={user.avatar}
-          alt={`${user.twitterHandle}'s profile`}
+          src={currentUser.avatar}
+          alt={`${currentUser.twitterHandle}'s profile`}
         />
         <div className="mt-2 text-sm">
-          <p className="font-semibold">{user.name || a.DEFAULT_NAME}</p>
-          <p className="text-gray-500">@{user.twitterHandle}</p>
+          <p className="font-semibold">{currentUser.name || a.DEFAULT_NAME}</p>
+          <p className="text-gray-500">@{currentUser.twitterHandle}</p>
         </div>
       </div>
       <div className="mt-4">
         <FollowStat
-          follower={user.followersCount}
-          following={user.followingCount}
-          followingTo={`/${user.twitterHandle}/followings`}
-          followerTo={`/${user.twitterHandle}/followers`}
+          follower={currentUser.followersCount}
+          following={currentUser.followingCount}
+          followingTo={`/${currentUser.twitterHandle}/followings`}
+          followerTo={`/${currentUser.twitterHandle}/followers`}
         />
       </div>
     </div>

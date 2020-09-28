@@ -15,7 +15,7 @@ import { UserMeta } from 'components/user-meta';
 import { Button } from 'components/button';
 
 function ProfileWrapper({ user, children }) {
-  const { user: currentUser } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   const links = [
     {

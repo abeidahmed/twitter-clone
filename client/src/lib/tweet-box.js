@@ -14,12 +14,12 @@ import { CharTracker } from 'components/char-tracker';
 import { useDisplayUploadedImage } from 'hooks/display-uploaded-image';
 
 function TweetBox({ rows }) {
-  const { user } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   return (
     <div className="flex px-4 py-2">
       <div className="flex-shrink-0">
-        <Avatar size="lg" src={user.avatar} alt={user.name} />
+        <Avatar size="lg" src={currentUser.avatar} alt={currentUser.name} />
       </div>
       <div className="flex-1 ml-3">
         <TweetForm rows={rows} />

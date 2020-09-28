@@ -10,7 +10,7 @@ import { TextButton } from './button';
 import { Badge } from './badge';
 
 function UserCard({ user }) {
-  const { user: currentUser } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   return (
     <div className="flex w-full px-4 py-5 space-x-3 transition duration-150 ease-in-out border-t border-gray-200 last:border-b hover:bg-gray-50">

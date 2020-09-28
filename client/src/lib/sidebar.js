@@ -8,7 +8,7 @@ import { DropdownContainer } from 'components/container';
 import { UserButton } from 'components/user-button';
 
 function Sidebar() {
-  const { user, logout } = useCurrentUser();
+  const { currentUser, logout } = useCurrentUser();
 
   const links = [
     {
@@ -37,7 +37,7 @@ function Sidebar() {
     },
     {
       title: 'Profile',
-      path: `/${user.twitterHandle}`,
+      path: `/${currentUser.twitterHandle}`,
       exact: false,
       icon: 'user',
     },
@@ -68,7 +68,7 @@ function Sidebar() {
             ))}
             <TweetButton />
           </nav>
-          <ProfileDropdown logout={logout} user={user} />
+          <ProfileDropdown logout={logout} currentUser={currentUser} />
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@ function TweetButton() {
   );
 }
 
-function ProfileDropdown({ logout, user }) {
+function ProfileDropdown({ logout, currentUser }) {
   const [dropActive, setDropActive] = useState(false);
 
   const history = useHistory();
@@ -124,7 +124,10 @@ function ProfileDropdown({ logout, user }) {
 
   return (
     <div className="relative flex items-center justify-center">
-      <UserButton user={user} onClick={() => setDropActive(!dropActive)} />
+      <UserButton
+        user={currentUser}
+        onClick={() => setDropActive(!dropActive)}
+      />
       <DropdownContainer position="bottom" isActive={dropActive}>
         <IconWithTextButton
           to="/"

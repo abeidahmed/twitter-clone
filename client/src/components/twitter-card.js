@@ -17,7 +17,7 @@ import { DropdownContainer } from 'components/container';
 
 export function TwitterCard({ tweet, user }) {
   const { id, body, createdAt, image, twitter = user } = tweet;
-  const { user: currentUser } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   return (
     <div className="relative border-b border-gray-200 hover:bg-gray-50">

@@ -36,13 +36,15 @@ function currentUserReducer(state = initialState, action) {
 const CurrentUserContext = createContext(initialState);
 
 function useCurrentUser() {
-  const [{ user, token }, dispatch] = useContext(CurrentUserContext);
+  const [{ user: currentUser, token }, dispatch] = useContext(
+    CurrentUserContext
+  );
 
   const logout = () => dispatch({ type: actionTypes.logout });
 
   const setUser = (payload) => dispatch({ type: actionTypes.setUser, payload });
 
-  return { logout, setUser, user, token };
+  return { logout, setUser, currentUser, token };
 }
 
 function CurrentUserStore({ children }) {
