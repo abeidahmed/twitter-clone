@@ -3,6 +3,7 @@ import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
 import * as q from 'shared/query-key';
+import * as a from 'shared/user-defaults';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { Tab } from 'components/tab';
@@ -142,7 +143,7 @@ function DynamicFollowBtn({ user, currentUser }) {
 function UserDetail({ user }) {
   return (
     <div className="mt-1">
-      <h2 className="text-lg font-semibold">{user.name || 'Twitter user'}</h2>
+      <h2 className="text-lg font-semibold">{user.name || a.DEFAULT_NAME}</h2>
       <p className="text-sm leading-5 text-gray-600">@{user.twitterHandle}</p>
       <p className="mt-2 text-gray-600">
         {user.bio || 'The user is too busy!'}

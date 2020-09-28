@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as a from 'shared/user-defaults';
 import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
 
@@ -22,7 +23,7 @@ export function TwitterCard({ tweet, user }) {
                 size="sm"
                 className="relative font-bold"
               >
-                {twitter.name}
+                {twitter.name || a.DEFAULT_NAME}
               </TextButton>
               <span className="pl-2 text-sm leading-5 text-gray-500">
                 @{twitter.twitterHandle}

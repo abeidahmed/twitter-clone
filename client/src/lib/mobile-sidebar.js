@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import cn from 'classnames';
 import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
+import * as a from 'shared/user-defaults';
 import { Icon } from 'components/icon';
 import { FollowStat } from 'components/follow-stat';
 import { Avatar } from 'components/avatar';
@@ -90,7 +91,7 @@ function UserDetails({ user }) {
           alt={`${user.twitterHandle}'s profile`}
         />
         <div className="mt-2 text-sm">
-          <p className="font-semibold">{user.name || 'Twitter user'}</p>
+          <p className="font-semibold">{user.name || a.DEFAULT_NAME}</p>
           <p className="text-gray-500">@{user.twitterHandle}</p>
         </div>
       </div>
