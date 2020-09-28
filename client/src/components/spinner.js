@@ -2,9 +2,6 @@ import React from 'react';
 
 export function Spinner() {
   return (
-    <div
-      className="absolute lds-dual-ring"
-      style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}
-    ></div>
+    <div className="absolute transform -translate-x-1/2 lds-dual-ring top-10 left-1/2"></div>
   );
 }
