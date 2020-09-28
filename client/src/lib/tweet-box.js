@@ -4,6 +4,7 @@ import { useCurrentUser } from 'store/current-user';
 import { useCharTrackerState } from 'hooks/char-tracker';
 import { useCalHeight } from 'hooks/calc-height';
 import * as limit from 'shared/char-limit';
+import * as q from 'shared/query-key';
 import { createTweet } from 'api/create-tweet';
 import { Avatar } from 'components/avatar';
 import { IconButton, Button } from 'components/button';
@@ -44,7 +45,7 @@ function TweetForm({ rows }) {
 
   const [mutate, { isLoading }] = useMutation(createTweet, {
     onSuccess() {
-      queryCache.refetchQueries('fetchAllTweets');
+      queryCache.refetchQueries(q.ALL_TWEETS);
     },
   });
 

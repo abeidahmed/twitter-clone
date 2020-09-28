@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
+import * as q from 'shared/query-key';
 import { Divider } from 'components/divider';
 import TweetBox from 'lib/tweet-box';
 import { MobileTweetButton } from 'components/mobile-tweet-button';
@@ -11,7 +12,7 @@ import { allTweets } from 'api/all-tweets';
 function Home() {
   useSetTitle('Home', null);
 
-  const { data, isLoading, isError } = useQuery('fetchAllTweets', allTweets);
+  const { data, isLoading, isError } = useQuery(q.ALL_TWEETS, allTweets);
 
   return (
     <main>

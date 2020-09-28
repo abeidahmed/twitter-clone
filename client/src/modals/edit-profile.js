@@ -5,6 +5,7 @@ import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
 import { useCharTrackerState } from 'hooks/char-tracker';
 import * as limit from 'shared/char-limit';
+import * as q from 'shared/query-key';
 import { updateUser } from 'api/update-user';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
@@ -42,7 +43,7 @@ function EditProfile() {
 
   const [mutate, { isLoading }] = useMutation(updateUser, {
     onSuccess({ data }) {
-      queryCache.refetchQueries('showUser');
+      queryCache.refetchQueries(q.SHOW_USER);
       setUser(data);
       modalOff();
     },

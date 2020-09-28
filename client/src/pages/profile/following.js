@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import * as q from 'shared/query-key';
 import { allFollowings } from 'api/all-followings';
 import { useSetTitle } from 'store/page-title';
 import UserCard from 'components/user-card';
@@ -11,7 +12,7 @@ function Following({ user }) {
 
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery(
-    ['fetchFollowings', { id }],
+    [q.ALL_FOLLOWINGS, { id }],
     allFollowings
   );
 

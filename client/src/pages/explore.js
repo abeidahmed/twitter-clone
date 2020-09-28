@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
 import { useDebounce } from 'hooks/debounce';
+import * as q from 'shared/query-key';
 import { allUsers } from 'api/all-users';
 import UserCard from 'components/user-card';
 import { Spinner } from 'components/spinner';
@@ -14,7 +15,7 @@ function Explore() {
 
   const debouncedSearchTerm = useDebounce(searchTerm);
   const { data, isLoading, isError } = useQuery(
-    ['allUsers', { q: debouncedSearchTerm }],
+    [q.ALL_USERS, { q: debouncedSearchTerm }],
     allUsers
   );
 

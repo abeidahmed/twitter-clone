@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import * as q from 'shared/query-key';
 import { showUser } from 'api/show-user';
 import Likes from './likes';
 import Tweets from './tweets';
@@ -11,7 +12,10 @@ import { Spinner } from 'components/spinner';
 
 function Profile() {
   const { id } = useParams();
-  const { data, isLoading, isError } = useQuery(['showUser', { id }], showUser);
+  const { data, isLoading, isError } = useQuery(
+    [q.SHOW_USER, { id }],
+    showUser
+  );
 
   if (isLoading || isError) return <Spinner />;
 

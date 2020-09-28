@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
+import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
@@ -52,9 +53,9 @@ function UserCard({ user }) {
 function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
     onSuccess() {
-      queryCache.refetchQueries('allUsers');
-      queryCache.refetchQueries('fetchFollowings');
-      queryCache.refetchQueries('fetchFollowers');
+      queryCache.refetchQueries(q.ALL_USERS);
+      queryCache.refetchQueries(q.ALL_FOLLOWINGS);
+      queryCache.refetchQueries(q.ALL_FOLLOWERS);
     },
   });
 
@@ -68,9 +69,9 @@ function DynamicFollowBtn({ user, currentUser }) {
     unfollow,
     {
       onSuccess() {
-        queryCache.refetchQueries('allUsers');
-        queryCache.refetchQueries('fetchFollowings');
-        queryCache.refetchQueries('fetchFollowers');
+        queryCache.refetchQueries(q.ALL_USERS);
+        queryCache.refetchQueries(q.ALL_FOLLOWINGS);
+        queryCache.refetchQueries(q.ALL_FOLLOWERS);
       },
     }
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
+import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { Tab } from 'components/tab';
@@ -73,7 +74,7 @@ function ProfileWrapper({ user, children }) {
 function DynamicFollowBtn({ user, currentUser }) {
   const [followMutate, { isLoading: followLoading }] = useMutation(follow, {
     onSuccess() {
-      queryCache.refetchQueries('showUser');
+      queryCache.refetchQueries(q.SHOW_USER);
     },
   });
 
@@ -87,7 +88,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     unfollow,
     {
       onSuccess() {
-        queryCache.refetchQueries('showUser');
+        queryCache.refetchQueries(q.SHOW_USER);
       },
     }
   );
