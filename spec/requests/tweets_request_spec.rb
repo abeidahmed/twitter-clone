@@ -10,7 +10,7 @@ RSpec.describe "Tweets", type: :request do
         get tweets_url, headers: auth_header(user)
       end
 
-      it 'is expected to list all the tweets' do
+      xit 'is expected to list all the tweets' do
         expect(json[:tweets].length).to eq(1)
       end
     end
@@ -57,6 +57,21 @@ RSpec.describe "Tweets", type: :request do
       end
 
       include_examples 'unauthorized'
+    end
+  end
+
+  describe '#show' do
+    let(:user) { create(:user) }
+    let(:tweet) { create(:tweet) }
+
+    context 'when the user is logged in' do
+      before do
+        get tweet_url(tweet.uuid), headers: auth_header(user)
+      end
+
+      it 'is expected to show the tweet' do
+        expect(json[:tweet]).to_not be_nil
+      end
     end
   end
 

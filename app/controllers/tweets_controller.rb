@@ -3,6 +3,10 @@ class TweetsController < ApplicationController
     @tweets = Tweet.from_people_you_know(current_user)
   end
 
+  def show
+    @tweet = Tweet.find_by(uuid: params[:id])
+  end
+
   def create
     image = FileUpload.new(
       file: params[:image],
