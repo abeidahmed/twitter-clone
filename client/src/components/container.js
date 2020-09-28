@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 export function DropdownContainer({ isActive, position, children }) {
   const containerClass = cn([
-    'absolute z-50 w-56 mb-2 bg-white rounded-md shadow-xl',
+    'absolute z-50 w-56 mb-2 bg-white rounded-md shadow-custom',
     {
       block: isActive,
       hidden: !isActive,
