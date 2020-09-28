@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { useMutation, queryCache } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { useCharTrackerState } from 'hooks/char-tracker';
 import { useCalHeight } from 'hooks/calc-height';
+import { useRefetchMutation } from 'hooks/refetch-mutation';
 import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';
 import { createTweet } from 'api/create-tweet';
@@ -43,11 +43,10 @@ function TweetForm({ rows }) {
 
   const { imageSrc, onUpload, clearImage } = useDisplayUploadedImage();
 
-  const [mutate, { isLoading }] = useMutation(createTweet, {
-    onSuccess() {
-      queryCache.refetchQueries(q.ALL_TWEETS);
-    },
-  });
+  const [mutate, { isLoading }] = useRefetchMutation(createTweet, [
+    q.ALL_TWEETS,
+    q.SHOW_USER,
+  ]);
 
   async function handleSubmit(e) {
     e.preventDefault();
