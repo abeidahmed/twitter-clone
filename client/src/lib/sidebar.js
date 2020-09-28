@@ -20,7 +20,7 @@ function Sidebar() {
     {
       title: 'Explore',
       path: '/explore',
-      exact: false,
+      exact: true,
       icon: 'hashtag',
     },
     {
@@ -38,7 +38,7 @@ function Sidebar() {
     {
       title: 'Profile',
       path: `/${currentUser.twitterHandle}`,
-      exact: false,
+      exact: true,
       icon: 'user',
     },
   ];
