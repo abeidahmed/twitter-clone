@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.date_sort
+    @tweets = Tweet.all
   end
 
   def create
