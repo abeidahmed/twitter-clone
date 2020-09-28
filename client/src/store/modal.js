@@ -23,7 +23,7 @@ function modalReducer(state = initialState, action) {
         initialState,
       };
     default:
-      return state;
+      throw new Error(`Unhandled type: ${action.type}`);
   }
 }
 

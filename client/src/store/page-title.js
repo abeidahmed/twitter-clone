@@ -17,7 +17,7 @@ function headerReducer(state = initialState, action) {
         description: action.payload.description,
       };
     default:
-      return state;
+      throw new Error(`Unhandled type: ${action.type}`);
   }
 }
 
