@@ -16,4 +16,12 @@ RSpec.describe Tweet, type: :model do
   describe 'associations' do
     it { should belong_to(:user) }
   end
+
+  describe "before creating a new tweet it should set uuid" do
+    it "is expected to set uuid with Secure Random hash" do
+      tweet = build :tweet, uuid: nil
+      tweet.save!
+      expect(tweet.reload.uuid).to_not be_nil
+    end
+  end
 end

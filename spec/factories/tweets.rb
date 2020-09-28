@@ -4,6 +4,7 @@ FactoryBot.define do
     body { 'hello world' }
     image { Rails.root.join('spec', 'factories', 'test_image', 'image.jpg') }
     reply_status { 'everyone' }
+    uuid { 'lashiw135135' }
 
     trait :people_you_know do
       reply_status { 'people_you_know' }
