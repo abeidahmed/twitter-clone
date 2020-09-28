@@ -126,26 +126,24 @@ function ProfileDropdown({ logout, user }) {
     <div className="relative flex items-center justify-center">
       <UserButton user={user} onClick={() => setDropActive(!dropActive)} />
       <DropdownContainer position="bottom" isActive={dropActive}>
-        <ul className="py-2 rounded-md shadow-xs">
-          <IconWithTextButton
-            to="/"
-            color="white"
-            size="md"
-            icon="cog"
-            variant="menu"
-          >
-            Settings
-          </IconWithTextButton>
-          <IconWithTextButton
-            color="white"
-            size="md"
-            icon="logout"
-            variant="menu"
-            onClick={handleLogout}
-          >
-            Logout
-          </IconWithTextButton>
-        </ul>
+        <IconWithTextButton
+          to="/"
+          color="white"
+          size="md"
+          icon="cog"
+          variant="menu"
+        >
+          Settings
+        </IconWithTextButton>
+        <IconWithTextButton
+          color="white"
+          size="md"
+          icon="logout"
+          variant="menu"
+          onClick={handleLogout}
+        >
+          Logout
+        </IconWithTextButton>
       </DropdownContainer>
     </div>
   );
