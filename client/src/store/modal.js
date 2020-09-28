@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
+import * as modalTypes from 'shared/modal-type';
 
 const actionTypes = {
   open: 'OPEN_MODAL',
@@ -29,13 +30,15 @@ function modalReducer(state = initialState, action) {
 const ModalContext = createContext(initialState);
 
 function useModalType() {
+  const types = { ...modalTypes };
+
   const [{ modalType, modalProps }, dispatch] = useContext(ModalContext);
 
   const modalOn = (payload) => dispatch({ type: actionTypes.open, payload });
 
   const modalOff = () => dispatch({ type: actionTypes.close });
 
-  return { modalOn, modalOff, modalType, modalProps };
+  return { modalOn, modalOff, modalType, modalProps, types };
 }
 
 function ModalStore({ children }) {

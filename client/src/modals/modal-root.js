@@ -1,11 +1,12 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
+import * as modal from 'shared/modal-type';
 import CreateTweet from './create-tweet';
 import EditProfile from './edit-profile';
 
 const MODAL_COMPONENTS = {
-  CREATE_TWEET: CreateTweet,
-  EDIT_PROFILE: EditProfile,
+  [modal.CREATE_TWEET]: CreateTweet,
+  [modal.EDIT_PROFILE]: EditProfile,
 };
 
 function ModalRoot() {

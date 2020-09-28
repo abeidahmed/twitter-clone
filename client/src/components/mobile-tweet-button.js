@@ -4,11 +4,11 @@ import { IconButton } from './button';
 import { Icon } from './icon';
 
 export function MobileTweetButton() {
-  const { modalOn } = useModalType();
+  const { modalOn, types } = useModalType();
 
   function openModal() {
     modalOn({
-      modalType: 'CREATE_TWEET',
+      modalType: types.CREATE_TWEET,
       modalProps: {},
     });
   }

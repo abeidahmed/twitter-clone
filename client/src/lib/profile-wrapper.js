@@ -98,11 +98,11 @@ function DynamicFollowBtn({ user, currentUser }) {
     });
   }
 
-  const { modalOn } = useModalType();
+  const { modalOn, types } = useModalType();
 
   function openModal(currentUser) {
     modalOn({
-      modalType: 'EDIT_PROFILE',
+      modalType: types.EDIT_PROFILE,
       modalProps: {
         id: currentUser.id,
         name: currentUser.name,

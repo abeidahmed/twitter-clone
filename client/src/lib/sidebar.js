@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
+import { useModalType } from 'store/modal';
 import { Icon } from 'components/icon';
 import { Button, IconButton, IconWithTextButton } from 'components/button';
 import { DropdownContainer } from 'components/container';
 import { UserButton } from 'components/user-button';
-import { useModalType } from 'store/modal';
 
 function Sidebar() {
   const { user, logout } = useCurrentUser();
@@ -76,11 +76,11 @@ function Sidebar() {
 }
 
 function TweetButton() {
-  const { modalOn } = useModalType();
+  const { modalOn, types } = useModalType();
 
   function openModal() {
     modalOn({
-      modalType: 'CREATE_TWEET',
+      modalType: types.CREATE_TWEET,
       modalProps: {},
     });
   }
