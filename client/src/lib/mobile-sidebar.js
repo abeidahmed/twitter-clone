@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import cn from 'classnames';
 import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
@@ -122,22 +123,28 @@ function Header({ setOff }) {
 }
 
 function Aside({ isActive, children }) {
+  const overlayClass = cn([
+    'fixed inset-0 z-50 lg:hidden',
+    {
+      block: isActive,
+      hidden: !isActive,
+    },
+  ]);
+
+  const asideClass = cn([
+    'fixed top-0 z-50 flex flex-col flex-shrink-0 w-64 h-screen transition duration-150 ease-in-out transform bg-white',
+    {
+      'translate-x-0': isActive,
+      '-translate-x-full': !isActive,
+    },
+  ]);
+
   return (
     <>
-      <div
-        className={`${
-          isActive ? 'block' : 'hidden'
-        } fixed inset-0 z-50 lg:hidden`}
-      >
+      <div className={overlayClass}>
         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
-      <aside
-        className={`${
-          isActive ? 'translate-x-0' : '-translate-x-full'
-        } fixed top-0 z-50 flex flex-col flex-shrink-0 w-64 h-screen transition duration-150 ease-in-out transform bg-white`}
-      >
-        {children}
-      </aside>
+      <aside className={asideClass}>{children}</aside>
     </>
   );
 }
