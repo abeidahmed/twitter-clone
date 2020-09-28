@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
 
-export function TwitterCard({ tweet }) {
-  const { body, createdAt, image, twitter } = tweet;
+export function TwitterCard({ tweet, user }) {
+  const { body, createdAt, image, twitter = user } = tweet;
 
   return (
     <div className="relative border-b border-gray-200 hover:bg-gray-50">
