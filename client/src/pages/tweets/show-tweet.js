@@ -10,6 +10,7 @@ import { Avatar } from 'components/avatar';
 import { TextButton, IconButton, TwitterActionButton } from 'components/button';
 import { Icon } from 'components/icon';
 import { Spinner } from 'components/spinner';
+import { AspectRatio } from 'components/aspect-ratio';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
@@ -62,16 +63,9 @@ function ShowTweet() {
         <section className="mt-4">
           <p className="text-xl leading-8">{tweet.body}</p>
           {tweet.image && (
-            <div
-              className="relative mt-3 overflow-hidden rounded-lg shadow-md"
-              style={{ paddingBottom: '66.66%' }}
-            >
-              <img
-                src={tweet.image}
-                alt="Attachment"
-                className="absolute object-cover w-full h-full overflow-hidden"
-              />
-            </div>
+            <figure className="mt-3">
+              <AspectRatio src={tweet.image} alt="Attachment" ratio="3:2" />
+            </figure>
           )}
           <div className="flex items-center py-3 text-sm text-gray-500 border-b border-gray-200">
             <span>{time12format(tweet.createdAt)}</span>

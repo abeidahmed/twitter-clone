@@ -14,6 +14,7 @@ import {
 } from './button';
 import { Icon } from './icon';
 import { DropdownContainer, CardContainer } from 'components/container';
+import { AspectRatio } from './aspect-ratio';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
@@ -52,16 +53,9 @@ export function TwitterCard({ tweet, user }) {
             <p className="text-gray-600">{body}</p>
           </div>
           {image && (
-            <div
-              className="relative mt-3 overflow-hidden rounded-lg shadow-md"
-              style={{ paddingBottom: '56.25%' }}
-            >
-              <img
-                src={image}
-                alt="twitter"
-                className="absolute object-cover w-full h-full overflow-hidden"
-              />
-            </div>
+            <figure className="mt-3">
+              <AspectRatio src={image} alt="attachment" ratio="16:9" />
+            </figure>
           )}
         </div>
         <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
