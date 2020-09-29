@@ -13,6 +13,7 @@ import { Spinner } from 'components/spinner';
 import { AspectRatio } from 'components/aspect-ratio';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { LikeButton } from 'components/like-button';
+import { TweetStats } from 'components/tweet-stats';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
@@ -80,18 +81,9 @@ function ShowTweet() {
             <span>{detailedDate(tweet.createdAt)}</span>
           </div>
           <div className="flex items-center py-3 space-x-4 text-sm text-gray-500 border-b border-gray-200">
-            <p>
-              <span className="font-semibold text-gray-900">32</span>
-              <span className="pl-1">Retweets</span>
-            </p>
-            <p>
-              <span className="font-semibold text-gray-900">4</span>
-              <span className="pl-1">Quote Tweets</span>
-            </p>
-            <p>
-              <span className="font-semibold text-gray-900">798</span>
-              <span className="pl-1">Likes</span>
-            </p>
+            <TweetStats count={32} title="Retweet" />
+            <TweetStats count={4} title="Quote Tweet" />
+            <TweetStats count={likes.totalLikes} title="Like" />
           </div>
           <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
             <TwitterActionButton
