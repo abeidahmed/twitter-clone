@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_voter
+
   before_create do
     email.downcase!
     twitter_handle.downcase!

@@ -75,6 +75,43 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
+  describe '#vote' do
+    let(:user) { create(:user) }
+    let(:tweet) { create(:tweet) }
+
+    context 'when the user has liked the tweet' do
+      before do
+        user.likes(tweet)
+        post vote_tweet_url(tweet.id), headers: auth_header(user)
+      end
+
+      it 'is expected to unlike the tweet' do
+        expect(tweet.get_upvotes.size).to be_zero
+      end
+    end
+
+    context 'when the user has not liked the tweet' do
+      before do
+        post vote_tweet_url(tweet.id), headers: auth_header(user)
+      end
+
+      it 'is expected to like the tweet' do
+        expect(tweet.get_upvotes.size).to eq(1)
+      end
+    end
+
+    context 'when the user has disliked the tweet' do
+      before do
+        user.dislikes(tweet)
+        post vote_tweet_url(tweet.id), headers: auth_header(user)
+      end
+
+      it 'is expected to like the tweet' do
+        expect(tweet.get_upvotes.size).to eq(1)
+      end
+    end
+  end
+
   describe '#destroy' do
     context 'when the user is logged in' do
       before do

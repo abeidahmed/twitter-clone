@@ -27,6 +27,15 @@ class TweetsController < ApplicationController
     end
   end
 
+  def vote
+    tweet = Tweet.find(params[:id])
+    if current_user.voted_up_on?(tweet)
+      tweet.unliked_by(current_user)
+    else
+      tweet.liked_by(current_user)
+    end
+  end
+
   def destroy
     tweet = Tweet.find(params[:id])
     return error('bad_request') unless current_user?(tweet.user)

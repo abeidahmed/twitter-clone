@@ -1,4 +1,6 @@
 class Tweet < ApplicationRecord
+  acts_as_votable
+
   before_create { generate_token(:uuid) }
 
   belongs_to :user

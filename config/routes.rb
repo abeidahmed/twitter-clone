@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     end
     resources :sessions, only: [:create, :show]
     resources :relationships, only: [:create, :destroy]
-    resources :tweets, only: [:index, :show, :create, :destroy]
+    resources :tweets, only: [:index, :show, :create, :destroy] do
+      member do
+        post :vote
+      end
+    end
   end
 end
