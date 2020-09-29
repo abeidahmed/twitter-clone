@@ -8,8 +8,8 @@ export function DropdownContainer({ isActive, position, children }) {
     {
       block: isActive,
       hidden: !isActive,
-      'left-0 lg:left-auto bottom-full': position === 'bottom',
-      'top-full right-0': position === 'top',
+      'left-0 lg:left-auto bottom-full mb-1': position === 'bottom',
+      'top-full right-0 mt-1': position === 'top',
     },
   ]);
 
