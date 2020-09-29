@@ -37,7 +37,10 @@ export function ModalWrapper({
       <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
       <div className="w-full max-w-xl overflow-hidden transition-all transform bg-white rounded-lg shadow-xl">
         <Header modalTitle={modalTitle} button={button} />
-        <section className={sectionClass} style={{ maxHeight: 600 }}>
+        <section
+          className={sectionClass}
+          style={{ maxHeight: 600, minHeight: 120 }}
+        >
           {children}
         </section>
       </div>
