@@ -6,6 +6,7 @@ import * as q from 'shared/query-key';
 import { IconButton, IconWithTextButton } from './button';
 import { Icon } from './icon';
 import { DropdownContainer } from './container';
+import { OutsideClickHandler } from './outside-click-handler';
 
 export function TweetCardOption({ tweetID, redirect }) {
   const [menuActive, setMenuActive] = useState(false);
@@ -22,7 +23,10 @@ export function TweetCardOption({ tweetID, redirect }) {
   }
 
   return (
-    <div className="relative">
+    <OutsideClickHandler
+      onOutsideClick={() => setMenuActive(false)}
+      className="relative"
+    >
       <IconButton
         size="sm"
         color="primary-text"
@@ -42,6 +46,6 @@ export function TweetCardOption({ tweetID, redirect }) {
           Delete
         </IconWithTextButton>
       </DropdownContainer>
-    </div>
+    </OutsideClickHandler>
   );
 }

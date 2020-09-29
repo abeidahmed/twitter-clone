@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/icon';
 import { Button, IconButton } from './button';
+import { OutsideClickHandler } from './outside-click-handler';
 
 export function ModalWrapper({
   modalPosition,
@@ -13,6 +14,8 @@ export function ModalWrapper({
   modalTitle,
   children,
 }) {
+  const { modalOff } = useModalType();
+
   const wrapperClass = cn([
     'fixed inset-0 z-50 flex items-center justify-center px-4 py-8',
     {
@@ -35,7 +38,10 @@ export function ModalWrapper({
         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
       <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
-      <div className="w-full max-w-xl overflow-hidden transition-all transform bg-white rounded-lg shadow-xl">
+      <OutsideClickHandler
+        onOutsideClick={() => modalOff()}
+        className="w-full max-w-xl overflow-hidden transition-all transform bg-white rounded-lg shadow-xl"
+      >
         <Header modalTitle={modalTitle} button={button} />
         <section
           className={sectionClass}
@@ -43,7 +49,7 @@ export function ModalWrapper({
         >
           {children}
         </section>
-      </div>
+      </OutsideClickHandler>
     </div>
   );
 }

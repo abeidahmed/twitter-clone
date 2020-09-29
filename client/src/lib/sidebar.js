@@ -6,6 +6,7 @@ import { Icon } from 'components/icon';
 import { Button, IconButton, IconWithTextButton } from 'components/button';
 import { DropdownContainer } from 'components/container';
 import { UserButton } from 'components/user-button';
+import { OutsideClickHandler } from 'components/outside-click-handler';
 
 function Sidebar() {
   const { currentUser, logout } = useCurrentUser();
@@ -123,7 +124,10 @@ function ProfileDropdown({ logout, currentUser }) {
   }
 
   return (
-    <div className="relative flex items-center justify-center">
+    <OutsideClickHandler
+      onOutsideClick={() => setDropActive(false)}
+      className="relative flex items-center justify-center"
+    >
       <UserButton
         user={currentUser}
         onClick={() => setDropActive(!dropActive)}
@@ -148,7 +152,7 @@ function ProfileDropdown({ logout, currentUser }) {
           Logout
         </IconWithTextButton>
       </DropdownContainer>
-    </div>
+    </OutsideClickHandler>
   );
 }
 
