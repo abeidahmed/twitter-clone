@@ -2,18 +2,21 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
+import { useCurrentUser } from 'store/current-user';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
-import { TextButton, IconButton, TwitterActionButton } from 'components/button';
-import { Icon } from 'components/icon';
+import { TextButton, TwitterActionButton } from 'components/button';
 import { Spinner } from 'components/spinner';
 import { AspectRatio } from 'components/aspect-ratio';
+import { TweetCardOption } from 'components/tweet-card-option';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
+
+  const { currentUser } = useCurrentUser();
 
   const { uuid } = useParams();
   const { data, isLoading, isError } = useQuery(
@@ -54,11 +57,11 @@ function ShowTweet() {
               </span>
             </div>
           </div>
-          <div>
-            <IconButton size="sm" color="primary-text">
-              <Icon icon="chevron-down" className="w-4 h-4" />
-            </IconButton>
-          </div>
+          {twitter.id === currentUser.id && (
+            <div>
+              <TweetCardOption tweetID={tweet.id} redirect={true} />
+            </div>
+          )}
         </div>
         <section className="mt-4">
           <p className="text-xl leading-8">{tweet.body}</p>

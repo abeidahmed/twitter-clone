@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useCurrentUser } from 'store/current-user';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { withPartialMonth } from 'utils/date-time';
-import { deleteTweet } from 'api/delete-tweet';
-import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
 import { Avatar } from './avatar';
-import {
-  TextButton,
-  TwitterActionButton,
-  IconButton,
-  IconWithTextButton,
-} from './button';
-import { Icon } from './icon';
-import { DropdownContainer, CardContainer } from 'components/container';
+import { TextButton, TwitterActionButton } from './button';
+import { CardContainer } from 'components/container';
 import { AspectRatio } from './aspect-ratio';
+import { TweetCardOption } from './tweet-card-option';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
@@ -47,7 +39,7 @@ export function TwitterCard({ tweet, user }) {
                 {withPartialMonth(createdAt)}
               </span>
             </div>
-            {twitter.id === currentUser.id && <CardOptions tweetID={id} />}
+            {twitter.id === currentUser.id && <TweetCardOption tweetID={id} />}
           </div>
           <div className="mt-2">
             <p className="text-gray-600">{body}</p>
@@ -92,42 +84,5 @@ export function TwitterCard({ tweet, user }) {
         </div>
       </div>
     </CardContainer>
-  );
-}
-
-function CardOptions({ tweetID }) {
-  const [menuActive, setMenuActive] = useState(false);
-
-  const [mutate, { isLoading }] = useRefetchMutation(deleteTweet, [
-    q.ALL_TWEETS,
-    q.SHOW_USER,
-  ]);
-
-  async function handleDelete(id) {
-    await mutate({ id });
-  }
-
-  return (
-    <div className="relative">
-      <IconButton
-        size="sm"
-        color="primary-text"
-        onClick={() => setMenuActive(!menuActive)}
-      >
-        <Icon icon="chevron-down" className="w-4 h-4" />
-      </IconButton>
-      <DropdownContainer position="top" isActive={menuActive}>
-        <IconWithTextButton
-          color="danger"
-          size="md"
-          icon="trash"
-          variant="menu"
-          disabled={isLoading}
-          onClick={() => handleDelete(tweetID)}
-        >
-          Delete
-        </IconWithTextButton>
-      </DropdownContainer>
-    </div>
   );
 }
