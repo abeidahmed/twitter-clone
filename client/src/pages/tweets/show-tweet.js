@@ -1,11 +1,31 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
+import { showTweet } from 'api/show-tweet';
+import * as q from 'shared/query-key';
+import * as a from 'shared/user-defaults';
+import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
 import { TextButton, IconButton, TwitterActionButton } from 'components/button';
 import { Icon } from 'components/icon';
+import { Spinner } from 'components/spinner';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
+
+  const { uuid } = useParams();
+  const { data, isLoading, isError } = useQuery(
+    [q.SHOW_TWEET, { uuid }],
+    showTweet
+  );
+
+  if (isLoading || isError) return <Spinner />;
+
+  const {
+    tweet,
+    tweet: { twitter },
+  } = data.data;
 
   return (
     <article className="py-3">
@@ -13,19 +33,23 @@ function ShowTweet() {
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Avatar size="lg" src="" alt="" />
+              <Avatar
+                size="lg"
+                src={twitter.avatar}
+                alt={twitter.twitterHandle}
+              />
             </div>
             <div className="ml-3">
               <TextButton
-                to="/"
+                to={`/${twitter.twitterHandle}`}
                 color="black"
                 size="sm"
                 className="relative font-bold"
               >
-                ICC
+                {twitter.name || a.DEFAULT_NAME}
               </TextButton>
               <span className="block text-sm leading-5 text-gray-500">
-                @icc
+                @{twitter.twitterHandle}
               </span>
             </div>
           </div>
@@ -36,26 +60,23 @@ function ShowTweet() {
           </div>
         </div>
         <section className="mt-4">
-          <p className="text-xl leading-8">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi,
-            dolor. Quae, dolorum? Nam nostrum, libero unde dolor explicabo
-            doloribus mollitia ipsum nihil minima quidem optio perferendis
-            maxime dolorum eum quisquam.
-          </p>
-          {/* <div
-            className="relative mt-3 overflow-hidden rounded-lg shadow-md"
-            style={{ paddingBottom: '66.66%' }}
-          >
-            <img
-              src=""
-              alt="twitter"
-              className="absolute object-cover w-full h-full overflow-hidden"
-            />
-          </div> */}
+          <p className="text-xl leading-8">{tweet.body}</p>
+          {tweet.image && (
+            <div
+              className="relative mt-3 overflow-hidden rounded-lg shadow-md"
+              style={{ paddingBottom: '66.66%' }}
+            >
+              <img
+                src={tweet.image}
+                alt="Attachment"
+                className="absolute object-cover w-full h-full overflow-hidden"
+              />
+            </div>
+          )}
           <div className="flex items-center py-3 text-sm text-gray-500 border-b border-gray-200">
-            <span>9:45 AM</span>
+            <span>{time12format(tweet.createdAt)}</span>
             <span className="mx-1">&middot;</span>
-            <span>Sep 29, 2020</span>
+            <span>{detailedDate(tweet.createdAt)}</span>
           </div>
           <div className="flex items-center py-3 space-x-4 text-sm text-gray-500 border-b border-gray-200">
             <p>

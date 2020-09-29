@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { withPartialMonth } from 'utils/date-time';
 import { deleteTweet } from 'api/delete-tweet';
 import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
@@ -42,7 +43,7 @@ export function TwitterCard({ tweet, user }) {
               </span>
               <span className="mx-1">&middot;</span>
               <span className="text-sm leading-5 text-gray-500">
-                {createdAt}
+                {withPartialMonth(createdAt)}
               </span>
             </div>
             {twitter.id === currentUser.id && <CardOptions tweetID={id} />}

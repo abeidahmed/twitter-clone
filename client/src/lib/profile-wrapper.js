@@ -2,6 +2,7 @@ import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { withFullMonth } from 'utils/date-time';
 import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
 import { follow } from 'api/follow';
@@ -148,7 +149,10 @@ function UserDetail({ user }) {
         {user.website && (
           <UserMeta icon="link" title={user.website} linkTo={user.website} />
         )}
-        <UserMeta icon="calendar" title={`Joined ${user.createdAt}`} />
+        <UserMeta
+          icon="calendar"
+          title={`Joined ${withFullMonth(user.createdAt)}`}
+        />
       </div>
       <FollowStat
         follower={user.followersCount}
