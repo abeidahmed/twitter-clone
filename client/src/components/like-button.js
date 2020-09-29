@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { voteTweet } from 'api/vote-tweet';
@@ -7,7 +7,6 @@ import { Icon } from './icon';
 
 export function LikeButton({ objectID, status, size, showCount, ...props }) {
   const { isLiked, totalLikes } = status;
-  const [like, setLike] = useState(isLiked);
   const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
     q.ALL_TWEETS,
     q.SHOW_TWEET,
@@ -18,19 +17,18 @@ export function LikeButton({ objectID, status, size, showCount, ...props }) {
     {
       'w-5 h-5': size === 'sm',
       'w-6 h-6': size === 'md',
-      'text-red-500': like,
+      'text-red-500': isLiked,
     },
   ]);
 
   const countTextClass = cn([
     'leading-5',
     {
-      'text-red-500': like,
+      'text-red-500': isLiked,
     },
   ]);
 
   async function handleLike() {
-    setLike(!like);
     await mutate({
       id: objectID,
     });
@@ -44,7 +42,7 @@ export function LikeButton({ objectID, status, size, showCount, ...props }) {
       onClick={handleLike}
     >
       <i className="p-2 rounded-full group-hover:bg-red-50 group-focus:bg-red-50">
-        {like ? (
+        {isLiked ? (
           <Icon
             icon="heart-solid"
             stroke="none"
