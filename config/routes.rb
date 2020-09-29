@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :tweets, only: [:index, :show, :create, :destroy] do
       member do
         post :vote
+        get :likers
       end
     end
   end
