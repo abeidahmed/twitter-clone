@@ -3,9 +3,11 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
 import { useCurrentUser } from 'store/current-user';
+import { useModalType } from 'store/modal';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
+import * as modal from 'shared/modal-type';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
 import { TextButton, TwitterActionButton } from 'components/button';
@@ -80,11 +82,7 @@ function ShowTweet() {
             <span className="mx-1">&middot;</span>
             <span>{detailedDate(tweet.createdAt)}</span>
           </div>
-          <div className="flex items-center py-3 space-x-4 text-sm text-gray-500 border-b border-gray-200">
-            <TweetStats count={32} title="Retweet" />
-            <TweetStats count={4} title="Quote Tweet" />
-            <TweetStats count={likes.totalLikes} title="Like" />
-          </div>
+          <TweetStatistics likes={likes} tweetID={tweet.id} />
           <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
             <TwitterActionButton
               icon="chat"
@@ -114,6 +112,31 @@ function ShowTweet() {
         </section>
       </div>
     </article>
+  );
+}
+
+function TweetStatistics({ tweetID, likes }) {
+  const { modalOn } = useModalType();
+
+  function openLikesModal() {
+    modalOn({
+      modalType: modal.LIKED_BY_LIST,
+      modalProps: {
+        id: tweetID,
+      },
+    });
+  }
+
+  return (
+    <div className="flex items-center py-3 space-x-4 text-sm text-gray-500 border-b border-gray-200">
+      <TweetStats count={32} title="Retweet" />
+      <TweetStats count={4} title="Quote Tweet" />
+      <TweetStats
+        count={likes.totalLikes}
+        title="Like"
+        onClick={openLikesModal}
+      />
+    </div>
   );
 }
 
