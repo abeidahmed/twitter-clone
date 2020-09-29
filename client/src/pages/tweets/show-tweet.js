@@ -12,6 +12,7 @@ import { TextButton, TwitterActionButton } from 'components/button';
 import { Spinner } from 'components/spinner';
 import { AspectRatio } from 'components/aspect-ratio';
 import { TweetCardOption } from 'components/tweet-card-option';
+import { LikeButton } from 'components/like-button';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
@@ -28,7 +29,10 @@ function ShowTweet() {
 
   const {
     tweet,
-    tweet: { twitter },
+    tweet: {
+      twitter,
+      meta: { likes },
+    },
   } = data.data;
 
   return (
@@ -102,12 +106,12 @@ function ShowTweet() {
               color="green"
               className="relative"
             ></TwitterActionButton>
-            <TwitterActionButton
-              icon="heart"
+            <LikeButton
               size="md"
-              color="red"
-              className="relative"
-            ></TwitterActionButton>
+              showCount={false}
+              objectID={tweet.id}
+              status={likes}
+            />
             <TwitterActionButton
               icon="upload"
               size="md"
