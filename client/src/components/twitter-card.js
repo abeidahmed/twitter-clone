@@ -7,11 +7,13 @@ import { TextButton, TwitterActionButton } from './button';
 import { CardContainer } from 'components/container';
 import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
+import { LikeButton } from './like-button';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
   // and hence twitter = user.
-  const { id, uuid, body, createdAt, image, twitter = user } = tweet;
+  const { id, uuid, body, createdAt, image, meta, twitter = user } = tweet;
+  const { likes } = meta;
   const { currentUser } = useCurrentUser();
 
   return (
@@ -67,14 +69,7 @@ export function TwitterCard({ tweet, user }) {
           >
             4
           </TwitterActionButton>
-          <TwitterActionButton
-            icon="heart"
-            size="sm"
-            color="red"
-            className="relative"
-          >
-            23
-          </TwitterActionButton>
+          <LikeButton size="sm" showCount={true} status={likes} objectID={id} />
           <TwitterActionButton
             icon="upload"
             size="sm"
