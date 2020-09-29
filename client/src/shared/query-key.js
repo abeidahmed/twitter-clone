@@ -4,3 +4,4 @@ export const ALL_TWEETS = 'ALL_TWEETS';
 export const ALL_USERS = 'ALL_USERS';
 export const SHOW_USER = 'SHOW_USER';
 export const SHOW_TWEET = 'SHOW_TWEET';
+export const ALL_TWEET_LIKERS = 'ALL_TWEET_LIKERS';
