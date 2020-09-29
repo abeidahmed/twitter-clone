@@ -16,11 +16,7 @@ function UserCard({ user }) {
   return (
     <CardContainer to={`/${user.twitterHandle}`}>
       <div>
-        <Avatar
-          size="md"
-          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2.25&amp;w=256&amp;h=256&amp;q=80"
-          alt=""
-        />
+        <Avatar size="md" src={user.avatar} alt={user.twitterHandle} />
       </div>
       <div className="flex flex-col flex-1">
         <div className="flex justify-between">
