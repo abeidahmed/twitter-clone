@@ -12,6 +12,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 gem 'jwt', '~> 2.2', '>= 2.2.2'
 gem 'cloudinary', '~> 1.17', '>= 1.17.1'
+gem 'acts_as_votable', '~> 0.12.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
