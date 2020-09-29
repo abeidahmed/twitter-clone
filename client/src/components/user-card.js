@@ -60,6 +60,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     q.ALL_FOLLOWINGS,
     q.ALL_FOLLOWERS,
     q.SHOW_USER,
+    q.ALL_TWEET_LIKERS,
   ]);
 
   async function handleFollow(id) {
@@ -76,6 +77,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     q.ALL_FOLLOWINGS,
     q.ALL_FOLLOWERS,
     q.SHOW_USER,
+    q.ALL_TWEET_LIKERS,
   ]);
 
   async function handleUnfollow(id) {
