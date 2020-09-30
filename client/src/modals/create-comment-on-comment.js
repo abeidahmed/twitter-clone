@@ -78,6 +78,7 @@ function CommentBox({ tweetID, rows }) {
   const textareaRef = useRef(null);
   const { eleHeight } = useCalHeight(body, 'auto', textareaRef);
 
+  const { modalOff } = useModalType();
   const [mutate, { isLoading }] = useRefetchMutation(createCommentOnTweet, [
     q.ALL_TWEETS,
   ]);
@@ -89,6 +90,7 @@ function CommentBox({ tweetID, rows }) {
       content: body,
     });
     clearBody();
+    modalOff();
   }
 
   return (
