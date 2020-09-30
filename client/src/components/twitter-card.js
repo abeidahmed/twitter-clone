@@ -14,7 +14,7 @@ export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
   // and hence twitter = user.
   const { id, uuid, body, createdAt, image, meta, twitter = user } = tweet;
-  const { likes } = meta;
+  const { likes, comments } = meta;
   const { currentUser } = useCurrentUser();
 
   return (
@@ -57,7 +57,7 @@ export function TwitterCard({ tweet, user }) {
           <CommentButton
             size="sm"
             showCount={true}
-            count={15}
+            count={comments.totalComments}
             tweet={{
               tweetID: id,
               twitterName: twitter.name,

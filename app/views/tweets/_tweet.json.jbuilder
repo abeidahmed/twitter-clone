@@ -9,4 +9,7 @@ json.meta do
     json.total_likes tweet.votes_for.size
     json.is_liked current_user.voted_up_on?(tweet)
   end
+  json.comments do
+    json.total_comments tweet.comments.size
+  end
 end
