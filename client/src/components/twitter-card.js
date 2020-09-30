@@ -1,7 +1,9 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
+import { useModalType } from 'store/modal';
 import * as a from 'shared/user-defaults';
+import * as modal from 'shared/modal-type';
 import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
 import { CardContainer } from 'components/container';
@@ -15,6 +17,8 @@ export function TwitterCard({ tweet, user }) {
   const { id, uuid, body, createdAt, image, meta, twitter = user } = tweet;
   const { likes } = meta;
   const { currentUser } = useCurrentUser();
+
+  const { modalOn } = useModalType();
 
   return (
     <CardContainer to={`/${twitter.twitterHandle}/status/${uuid}`}>
@@ -58,6 +62,12 @@ export function TwitterCard({ tweet, user }) {
             size="sm"
             color="blue"
             className="relative"
+            onClick={() =>
+              modalOn({
+                modalType: modal.CREATE_COMMENT,
+                modalProps: {},
+              })
+            }
           >
             18
           </TwitterActionButton>

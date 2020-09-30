@@ -1,11 +1,13 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
 import * as modal from 'shared/modal-type';
+import CreateComment from './create-comment';
 import CreateTweet from './create-tweet';
 import EditProfile from './edit-profile';
 import LikedByList from './liked-by-list';
 
 const MODAL_COMPONENTS = {
+  [modal.CREATE_COMMENT]: CreateComment,
   [modal.CREATE_TWEET]: CreateTweet,
   [modal.EDIT_PROFILE]: EditProfile,
   [modal.LIKED_BY_LIST]: LikedByList,
