@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { header } from 'middleware/header';
 
-export async function createCommentOnTweet({ content, tweetId }) {
+export async function createCommentOnTweet({ content, tweetID }) {
   return await axios.post(
-    `/tweets/${tweetId}/comments`,
+    `/tweets/${tweetID}/comments`,
     {
       comment: {
         content,
