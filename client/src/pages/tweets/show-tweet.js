@@ -15,6 +15,7 @@ import { AspectRatio } from 'components/aspect-ratio';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { LikeButton } from 'components/like-button';
 import { TweetStats } from 'components/tweet-stats';
+import { CommentButton } from 'components/comment-button';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
@@ -83,12 +84,18 @@ function ShowTweet() {
           </div>
           <TweetStatistics likes={likes} tweetID={tweet.id} />
           <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
-            <TwitterActionButton
-              icon="chat"
-              size="md"
-              color="blue"
-              className="relative"
-            ></TwitterActionButton>
+            <CommentButton
+              size="sm"
+              showCount={false}
+              tweet={{
+                tweetID: tweet.id,
+                twitterName: twitter.name,
+                twitterTwitterHandle: twitter.twitterHandle,
+                twitterAvatar: twitter.avatar,
+                tweetBody: tweet.body,
+                tweetCreatedAt: tweet.createdAt,
+              }}
+            />
             <TwitterActionButton
               icon="refresh"
               size="md"

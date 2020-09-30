@@ -1,7 +1,6 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
-import { useModalType } from 'store/modal';
 import * as a from 'shared/user-defaults';
 import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
@@ -9,6 +8,7 @@ import { CardContainer } from 'components/container';
 import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
 import { LikeButton } from './like-button';
+import { CommentButton } from './comment-button';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
@@ -16,8 +16,6 @@ export function TwitterCard({ tweet, user }) {
   const { id, uuid, body, createdAt, image, meta, twitter = user } = tweet;
   const { likes } = meta;
   const { currentUser } = useCurrentUser();
-
-  const { modalOn, types } = useModalType();
 
   return (
     <CardContainer to={`/${twitter.twitterHandle}/status/${uuid}`}>
@@ -56,27 +54,19 @@ export function TwitterCard({ tweet, user }) {
           )}
         </div>
         <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-          <TwitterActionButton
-            icon="chat"
+          <CommentButton
             size="sm"
-            color="blue"
-            className="relative"
-            onClick={() =>
-              modalOn({
-                modalType: types.CREATE_COMMENT_ON_COMMENT,
-                modalProps: {
-                  tweetID: id,
-                  twitterName: twitter.name,
-                  twitterTwitterHandle: twitter.twitterHandle,
-                  twitterAvatar: twitter.avatar,
-                  tweetBody: body,
-                  tweetCreatedAt: createdAt,
-                },
-              })
-            }
-          >
-            18
-          </TwitterActionButton>
+            showCount={true}
+            count={15}
+            tweet={{
+              tweetID: id,
+              twitterName: twitter.name,
+              twitterTwitterHandle: twitter.twitterHandle,
+              twitterAvatar: twitter.avatar,
+              tweetBody: body,
+              tweetCreatedAt: createdAt,
+            }}
+          />
           <TwitterActionButton
             icon="refresh"
             size="sm"
