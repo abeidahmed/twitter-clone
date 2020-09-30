@@ -64,7 +64,7 @@ export function TwitterCard({ tweet, user }) {
             className="relative"
             onClick={() =>
               modalOn({
-                modalType: modal.CREATE_COMMENT,
+                modalType: modal.CREATE_COMMENT_ON_COMMENT,
                 modalProps: {},
               })
             }
