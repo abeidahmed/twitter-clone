@@ -5,13 +5,21 @@ Rails.application.routes.draw do
         get :following, :followers
       end
     end
+
     resources :sessions, only: [:create, :show]
+
     resources :relationships, only: [:create, :destroy]
+
     resources :tweets, only: [:index, :show, :create, :destroy] do
+      resources :comments, only: [:create], module: :tweets
       member do
         post :vote
         get :likers
       end
+    end
+
+    resources :comments, only: [:create] do
+      resources :comments, only: [:create], module: :comments
     end
   end
 end

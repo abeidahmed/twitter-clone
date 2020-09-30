@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :comment do
-    content { "MyText" }
+    user
+    content { "hello world, all the comments" }
+    association :commentable, factory: :tweet
   end
 end
