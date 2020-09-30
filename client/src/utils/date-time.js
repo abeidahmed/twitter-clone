@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 
 export function detailedDate(dateTime) {
   return format(new Date(dateTime), 'MMM dd, yyyy');
@@ -14,4 +14,8 @@ export function withFullMonth(dateTime) {
 
 export function time12format(dateTime) {
   return format(new Date(dateTime), 'h:m a');
+}
+
+export function timeNow(dateTime) {
+  return formatDistanceToNow(new Date(dateTime));
 }

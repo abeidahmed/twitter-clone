@@ -1,15 +1,16 @@
 import React, { useRef } from 'react';
-import { ModalWrapper } from 'components/modal-wrapper';
-import { Avatar } from 'components/avatar';
-import { TextButton } from 'components/button';
 import { useCharTrackerState } from 'hooks/char-tracker';
-import * as limit from 'shared/char-limit';
-import * as q from 'shared/query-key';
+import { useModalType } from 'store/modal';
 import { useCalHeight } from 'hooks/calc-height';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { createCommentOnTweet } from 'api/create-comment-on-tweet';
+import * as limit from 'shared/char-limit';
+import * as q from 'shared/query-key';
+import { timeNow } from 'utils/date-time';
 import { TwitterTextarea } from 'components/twitter-textarea';
-import { useModalType } from 'store/modal';
+import { ModalWrapper } from 'components/modal-wrapper';
+import { Avatar } from 'components/avatar';
+import { TextButton } from 'components/button';
 
 function CreateCommentOnComment() {
   const {
@@ -53,7 +54,7 @@ function CreateCommentOnComment() {
                 </span>
                 <span className="mx-1">&middot;</span>
                 <span className="text-sm leading-5 text-gray-500">
-                  {tweetCreatedAt}
+                  {timeNow(tweetCreatedAt)}
                 </span>
               </div>
             </div>
