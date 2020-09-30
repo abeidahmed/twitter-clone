@@ -6,7 +6,8 @@ class User < ApplicationRecord
     twitter_handle.downcase!
   end
 
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_TWITTER_HANDLE_REGEX = /\A[a-z0-9_]+\z/i
