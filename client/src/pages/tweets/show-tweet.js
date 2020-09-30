@@ -7,7 +7,6 @@ import { useModalType } from 'store/modal';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
-import * as modal from 'shared/modal-type';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
 import { TextButton, TwitterActionButton } from 'components/button';
@@ -116,11 +115,11 @@ function ShowTweet() {
 }
 
 function TweetStatistics({ tweetID, likes }) {
-  const { modalOn } = useModalType();
+  const { modalOn, types } = useModalType();
 
   function openLikesModal() {
     modalOn({
-      modalType: modal.LIKED_BY_LIST,
+      modalType: types.LIKED_BY_LIST,
       modalProps: {
         id: tweetID,
       },
