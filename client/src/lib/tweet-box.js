@@ -41,22 +41,25 @@ function TweetBox({ rows }) {
   }
 
   return (
-    <TwitterTextarea
-      rows={rows}
-      handleSubmit={handleSubmit}
-      textareaRef={textareaRef}
-      eleHeight={eleHeight}
-      body={body}
-      setBody={setBody}
-      imageSrc={imageSrc}
-      imageRef={imageRef}
-      setImage={setImage}
-      clearImage={clearImage}
-      onUpload={onUpload}
-      isLoading={isLoading}
-      placeholder="What's happening?"
-      buttonLabel="Tweet"
-    />
+    <div className="px-4 py-2">
+      <TwitterTextarea
+        rows={rows}
+        canUploadImage={true}
+        handleSubmit={handleSubmit}
+        textareaRef={textareaRef}
+        eleHeight={eleHeight}
+        body={body}
+        setBody={setBody}
+        imageSrc={imageSrc}
+        imageRef={imageRef}
+        setImage={setImage}
+        clearImage={clearImage}
+        onUpload={onUpload}
+        isLoading={isLoading}
+        placeholder="What's happening?"
+        buttonLabel="Tweet"
+      />
+    </div>
   );
 }
 
