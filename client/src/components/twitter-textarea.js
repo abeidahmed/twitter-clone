@@ -22,11 +22,12 @@ export function TwitterTextarea({
   isLoading,
   placeholder,
   buttonLabel,
+  canUploadImage,
 }) {
   const { currentUser } = useCurrentUser();
 
   return (
-    <div className="flex px-4 py-2">
+    <div className="flex">
       <div className="flex-shrink-0">
         <Avatar size="lg" src={currentUser.avatar} alt={currentUser.name} />
       </div>
@@ -45,7 +46,7 @@ export function TwitterTextarea({
             value={body}
             onChange={setBody}
           />
-          {imageSrc && (
+          {canUploadImage && imageSrc && (
             <div className="relative">
               <img
                 ref={imageRef}
@@ -70,17 +71,19 @@ export function TwitterTextarea({
           <hr className="my-2 border-gray-200" />
           <div className="flex items-center justify-between">
             <div className="flex items-center -ml-2">
-              <FileUpload
-                icon="photograph"
-                size="md"
-                color="white"
-                name="image"
-                onChange={(e) => {
-                  setImage(e.target.files[0]);
-                  onUpload(e);
-                  e.target.value = null;
-                }}
-              />
+              {canUploadImage && (
+                <FileUpload
+                  icon="photograph"
+                  size="md"
+                  color="white"
+                  name="image"
+                  onChange={(e) => {
+                    setImage(e.target.files[0]);
+                    onUpload(e);
+                    e.target.value = null;
+                  }}
+                />
+              )}
               <IconButton size="md" color="primary-text">
                 <Icon icon="smiley" className="w-6 h-6" />
               </IconButton>
