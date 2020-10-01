@@ -31,7 +31,7 @@ function ProfileWrapper({ user, children }) {
     },
     {
       title: 'Media',
-      path: '/',
+      path: `/${user.twitterHandle}/media`,
       exact: true,
     },
     {

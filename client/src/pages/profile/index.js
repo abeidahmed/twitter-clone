@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import * as q from 'shared/query-key';
 import { showUser } from 'api/show-user';
 import Likes from './likes';
+import Media from './media';
 import Tweets from './tweets';
 import Followers from './followers';
 import Followings from './following';
@@ -37,6 +38,11 @@ function Profile() {
             exact
             path={`/${id}/likes`}
             render={(props) => <Likes {...props} user={user} />}
+          />
+          <Route
+            exact
+            path={`/${id}/media`}
+            render={(props) => <Media {...props} user={user} />}
           />
           <Route
             exact
