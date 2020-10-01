@@ -45,7 +45,11 @@ function CommentContainer({ comment, twitterID }) {
       <CardContainer to="/" bordered={false}>
         <div className="flex flex-col items-center">
           <div className="flex-shrink-0">
-            <Avatar size="md" src="" alt="" />
+            <Avatar
+              size="md"
+              src={commenter.avatar}
+              alt={commenter.twitterHandle}
+            />
           </div>
           {hasNestedComment && (
             <div className="flex-1 w-0.5 py-4 my-2 bg-gray-300"></div>
