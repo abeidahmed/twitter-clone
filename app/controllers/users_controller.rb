@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   def tweets
     user = User.find_by(twitter_handle: params[:id])
-    @tweets = user.tweets.filter_by_type(params[:filter])
+    @tweets = user.tweets.filter_user_tweet_by_type(params[:filter])
     render :index_user_tweet
   end
 

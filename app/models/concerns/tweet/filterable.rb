@@ -7,7 +7,7 @@ class Tweet
     end
 
     module ClassMethods
-      def filter_by_type(term)
+      def filter_user_tweet_by_type(term)
         if term.present?
           if term == 'media'
             consist_images
