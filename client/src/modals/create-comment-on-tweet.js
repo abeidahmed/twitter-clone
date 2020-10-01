@@ -81,6 +81,7 @@ function CommentBox({ tweetID, rows }) {
   const { modalOff } = useModalType();
   const [mutate, { isLoading }] = useRefetchMutation(createCommentOnTweet, [
     q.ALL_TWEETS,
+    q.SHOW_TWEET,
   ]);
 
   async function handleSubmit(e) {
