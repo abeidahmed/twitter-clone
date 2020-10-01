@@ -20,9 +20,16 @@ export function DropdownContainer({ isActive, position, children }) {
   );
 }
 
-export function CardContainer({ to, children, ...props }) {
+export function CardContainer({ bordered, to, children, ...props }) {
+  const containerClass = cn([
+    'relative hover:bg-gray-50',
+    {
+      'border-b border-gray-200': bordered,
+    },
+  ]);
+
   return (
-    <div className="relative border-b border-gray-200 hover:bg-gray-50">
+    <div className={containerClass}>
       <Link to={to} className="absolute inset-0"></Link>
       <div className="flex px-4 py-2 space-x-3" {...props}>
         {children}
