@@ -49,6 +49,12 @@ class UsersController < ApplicationController
     render :index_user_tweet
   end
 
+  def liked_tweets
+    user = User.find_by(twitter_handle: params[:id])
+    @tweets = user.get_voted(Tweet)
+    render :index_user_liked_tweet
+  end
+
   private
   def create_user_params
     params.require(:user).permit(
