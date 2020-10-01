@@ -3,7 +3,7 @@ import { useCharTrackerState } from 'hooks/char-tracker';
 import { useModalType } from 'store/modal';
 import { useCalHeight } from 'hooks/calc-height';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
-import { createCommentOnTweet } from 'api/create-comment-on-tweet';
+import { createCommentOnTweet } from 'api/create-comment';
 import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';
 import { timeNow } from 'utils/date-time';
