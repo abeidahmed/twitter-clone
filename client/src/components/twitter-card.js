@@ -59,14 +59,14 @@ export function TwitterCard({ tweet, user }) {
             </figure>
           )}
         </div>
-        <CardActionButtons tweet={tweet} />
+        <CardActionButtons tweet={tweet} user={user} />
       </div>
     </CardContainer>
   );
 }
 
-function CardActionButtons({ tweet }) {
-  const { id, body, createdAt, meta = {}, twitter } = tweet;
+function CardActionButtons({ tweet, user }) {
+  const { id, body, createdAt, meta = {}, twitter = user } = tweet;
   const { likes, comments } = meta;
 
   const { modalOn, types } = useModalType();
@@ -74,6 +74,7 @@ function CardActionButtons({ tweet }) {
   const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
     q.ALL_TWEETS,
     q.SHOW_TWEET,
+    q.SHOW_USER,
   ]);
 
   async function handleLike() {
