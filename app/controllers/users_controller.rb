@@ -44,13 +44,13 @@ class UsersController < ApplicationController
   end
 
   def media_tweets
-    user = User.find_by(twitter_handle: params[:id])
+    user = User.find(params[:id])
     @tweets = user.tweets.consist_images
     render :index_user_tweet
   end
 
   def liked_tweets
-    user = User.find_by(twitter_handle: params[:id])
+    user = User.find(params[:id])
     @tweets = user.get_voted(Tweet)
     render :index_user_liked_tweet
   end

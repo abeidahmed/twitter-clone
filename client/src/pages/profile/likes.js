@@ -9,10 +9,10 @@ import { Spinner } from 'components/spinner';
 
 function Likes({ user }) {
   useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
-  const { twitterHandle } = user;
+  const { id } = user;
 
   const { data: { data: { tweets } = {} } = {}, isLoading, isError } = useQuery(
-    [q.USER_LIKED_TWEETS, { id: twitterHandle }],
+    [q.USER_LIKED_TWEETS, { id }],
     allUserLikedTweets
   );
 

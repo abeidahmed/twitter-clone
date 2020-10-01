@@ -9,10 +9,10 @@ import { Spinner } from 'components/spinner';
 
 function Media({ user }) {
   useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
-  const { twitterHandle } = user;
+  const { id } = user;
 
   const { data: { data: { tweets } = {} } = {}, isLoading, isError } = useQuery(
-    [q.USER_MEDIA_TWEETS, { id: twitterHandle }],
+    [q.USER_MEDIA_TWEETS, { id }],
     allUserMediaTweets
   );
 
