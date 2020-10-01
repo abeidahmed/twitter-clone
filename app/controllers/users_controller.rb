@@ -43,6 +43,12 @@ class UsersController < ApplicationController
     render :show_follow
   end
 
+  def tweets
+    user = User.find_by(twitter_handle: params[:id])
+    @tweets = user.tweets.filter_by_type(params[:filter])
+    render :index_user_tweet
+  end
+
   private
   def create_user_params
     params.require(:user).permit(
