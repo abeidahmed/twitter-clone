@@ -14,7 +14,7 @@ function ProtectedRoute({ component: Component, ...rest }) {
 
   if (!Cookies.get(TOKEN) || isError) window.location.href = '/secure/login';
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner position="center" />;
 
   const token = data.data.token;
 
