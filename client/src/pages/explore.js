@@ -14,7 +14,7 @@ function Explore() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchTerm);
-  const { data, isLoading, isError } = useQuery(
+  const { data: { data: { users } = {} } = {}, isLoading, isError } = useQuery(
     [q.ALL_USERS, { q: debouncedSearchTerm }],
     allUsers
   );
@@ -33,7 +33,7 @@ function Explore() {
           <Spinner />
         ) : (
           <section className="w-full">
-            {data.data.users.map((user) => (
+            {users.map((user) => (
               <UserCard key={user.id} user={user} />
             ))}
           </section>

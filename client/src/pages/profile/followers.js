@@ -12,14 +12,12 @@ function Followers({ user }) {
   useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
 
   const { id } = useParams();
-  const { data, isLoading, isError } = useQuery(
+  const { data: { data: { users } = {} } = {}, isLoading, isError } = useQuery(
     [q.ALL_FOLLOWERS, { id }],
     allFollowers
   );
 
   if (isLoading || isError) return <Spinner />;
-
-  const users = data.data.users;
 
   return (
     <main>

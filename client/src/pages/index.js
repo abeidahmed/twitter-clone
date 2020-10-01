@@ -12,7 +12,10 @@ import { allTweets } from 'api/all-tweets';
 function Home() {
   useSetTitle('Home', null);
 
-  const { data, isLoading, isError } = useQuery(q.ALL_TWEETS, allTweets);
+  const { data: { data: { tweets } = {} } = {}, isLoading, isError } = useQuery(
+    q.ALL_TWEETS,
+    allTweets
+  );
 
   return (
     <main>
@@ -26,7 +29,7 @@ function Home() {
           <Spinner />
         ) : (
           <section>
-            {data.data.tweets.map((tweet) => (
+            {tweets.map((tweet) => (
               <TwitterCard key={tweet.id} tweet={tweet} />
             ))}
           </section>
