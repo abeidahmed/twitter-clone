@@ -16,8 +16,7 @@ class Tweet < ApplicationRecord
   scope :own_tweets, ->(user) { where(user_id: user.id) }
   scope :from_people_you_follow, ->(user) { where(user_id: user.following.pluck(:id)) }
   scope :from_people_you_know, ->(current_user) { from_people_you_follow(current_user).or(own_tweets(current_user)) }
-
-  include Filterable
+  scope :consist_images, -> { where.not(image: nil) }
 
   private
   def generate_token(column)

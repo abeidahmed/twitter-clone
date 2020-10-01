@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   defaults format: :json do
     resources :users, only: [:index, :create, :show, :update] do
       member do
-        get :following, :followers, :tweets, :liked_tweets, :media_tweets
+        get :following, :followers, :liked_tweets, :media_tweets
       end
     end
 

@@ -43,12 +43,6 @@ class UsersController < ApplicationController
     render :show_follow
   end
 
-  def tweets
-    user = User.find_by(twitter_handle: params[:id])
-    @tweets = user.tweets.filter_user_tweet_by_type(params[:filter])
-    render :index_user_tweet
-  end
-
   def media_tweets
     user = User.find_by(twitter_handle: params[:id])
     @tweets = user.tweets.consist_images
