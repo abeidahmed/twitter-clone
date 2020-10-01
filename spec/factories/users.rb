@@ -8,6 +8,10 @@ FactoryBot.define do
     website { 'https://localhost:3000' }
     password { 'mamakane' }
 
+    factory :random_user do
+      sequence(:email) { |n| "user#{n}@random.com" }
+    end
+
     factory :user_with_tweets do
       transient do
         tweets_count { 1 }
