@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    return error('unauthorized') unless deleteable?(comment)
+    return error('unauthorized') unless deletable?(comment)
     comment.destroy
   end
 
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content)
   end
 
-  def deleteable?(comment)
+  def deletable?(comment)
     current_user?(comment.user) || current_user?(comment.commentable.user)
   end
 end
