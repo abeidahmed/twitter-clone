@@ -13,7 +13,7 @@ json.meta do
     json.is_liked true
   end
   json.comments do
-    json.total_comments 4
+    json.total_comments comment.comments.size
   end
 end
 
