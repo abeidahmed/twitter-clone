@@ -5,6 +5,7 @@ import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
 import { voteComment } from 'api/vote-comment';
+import { deleteComment } from 'api/delete-comment';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
 import { CommentButton } from './comment-button';
@@ -73,6 +74,7 @@ function CommentContainer({ comment, twitterID }) {
               <CommentCardOption
                 commenterID={commenter.id}
                 twitterID={twitterID}
+                commentID={id}
               />
             </div>
             <div className="mt-2">
@@ -91,9 +93,17 @@ function CommentContainer({ comment, twitterID }) {
   );
 }
 
-function CommentCardOption({ commenterID, twitterID }) {
+function CommentCardOption({ commenterID, twitterID, commentID }) {
   const [isActive, setIsActive] = useState(false);
   const { currentUser } = useCurrentUser();
+
+  const [mutate, { isLoading }] = useRefetchMutation(deleteComment, [
+    q.SHOW_TWEET,
+  ]);
+
+  async function handleDelete(id) {
+    await mutate({ id });
+  }
 
   if (commenterID === currentUser.id || twitterID === currentUser.id) {
     return (
@@ -114,6 +124,8 @@ function CommentCardOption({ commenterID, twitterID }) {
             size="md"
             icon="trash"
             variant="menu"
+            onClick={() => handleDelete(commentID)}
+            disabled={isLoading}
           >
             Delete
           </IconWithTextButton>
