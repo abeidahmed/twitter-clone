@@ -60,42 +60,45 @@ function CommentContainer({ comment }) {
             </div>
           </div>
           <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-            <CommentButton
-              size="sm"
-              showCount={true}
-              count={comments.totalComments}
-              tweet={{
-                tweetID: 2,
-                twitterName: 'Abeid',
-                twitterTwitterHandle: 'hawa',
-                twitterAvatar: null,
-                tweetBody: 'hello world',
-                tweetCreatedAt: '23',
-              }}
-            />
-            <TwitterActionButton
-              icon="refresh"
-              size="sm"
-              color="green"
-              className="relative"
-            >
-              4
-            </TwitterActionButton>
-            <LikeButton
-              size="sm"
-              showCount={true}
-              status={{ isLiked: true, totalLikes: 23 }}
-              objectID={2}
-            />
-            <TwitterActionButton
-              icon="upload"
-              size="sm"
-              color="teal"
-              className="relative"
-            />
+            <CommentBtn totalComments={comments.totalComments} />
+            <RetweetBtn />
+            <LikeBtn likes={likes} />
+            <ShareBtn />
           </div>
         </div>
       </CardContainer>
     </div>
+  );
+}
+
+function CommentBtn({ totalComments }) {
+  return <CommentButton size="sm" showCount={true} count={totalComments} />;
+}
+
+function LikeBtn({ likes }) {
+  return <LikeButton size="sm" showCount={true} status={likes} />;
+}
+
+function RetweetBtn() {
+  return (
+    <TwitterActionButton
+      icon="refresh"
+      size="sm"
+      color="green"
+      className="relative"
+    >
+      4
+    </TwitterActionButton>
+  );
+}
+
+function ShareBtn() {
+  return (
+    <TwitterActionButton
+      icon="upload"
+      size="sm"
+      color="teal"
+      className="relative"
+    />
   );
 }
