@@ -97,4 +97,41 @@ RSpec.describe "Comments", type: :request do
       end
     end
   end
+
+  describe '#destroy' do
+    context 'when the request is made by the commenter' do
+      before do
+        user = create(:user)
+        comment = create(:comment, user: user)
+        delete comment_url(comment), headers: auth_header(user)
+      end
+
+      it 'is expected to delete the comment' do
+        expect(Comment.all.size).to be_zero
+      end
+    end
+
+    context 'when the request is made by tweet owner' do
+      before do
+        user = create(:user)
+        tweet = create(:tweet_with_comments)
+        delete comment_url(tweet.comments.first), headers: auth_header(user)
+      end
+
+      xit 'is expected to delete the comment' do
+        expect(Comment.all.size).to be_zero
+      end
+    end
+
+    context 'when the request is made a non-commenter' do
+      before do
+        user = create(:user)
+        user1 = create(:random_user)
+        comment = create(:comment, user: user)
+        delete comment_url(comment), headers: auth_header(user1)
+      end
+
+      include_examples 'unauthorized'
+    end
+  end
 end
