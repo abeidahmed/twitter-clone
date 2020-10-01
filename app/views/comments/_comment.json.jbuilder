@@ -9,9 +9,10 @@ end
 
 json.meta do
   json.likes do
-    json.total_likes 14
-    json.is_liked true
+    json.total_likes comment.votes_for.size
+    json.is_liked current_user.voted_up_on?(comment)
   end
+
   json.comments do
     json.total_comments comment.comments.size
   end
