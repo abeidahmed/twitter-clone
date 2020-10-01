@@ -60,4 +60,41 @@ RSpec.describe "Comments", type: :request do
       end
     end
   end
+
+  describe '#vote' do
+    let(:user) { create(:user) }
+    let(:comment) { create(:comment) }
+
+    context 'when the user has liked the comment' do
+      before do
+        user.likes(comment)
+        post vote_comment_url(comment.id), headers: auth_header(user)
+      end
+
+      it 'is expected to unlike the comment' do
+        expect(comment.get_upvotes.size).to be_zero
+      end
+    end
+
+    context 'when the user has not liked the comment' do
+      before do
+        post vote_comment_url(comment.id), headers: auth_header(user)
+      end
+
+      it 'is expected to like the comment' do
+        expect(comment.get_upvotes.size).to eq(1)
+      end
+    end
+
+    context 'when the user has disliked the comment' do
+      before do
+        user.dislikes(comment)
+        post vote_comment_url(comment.id), headers: auth_header(user)
+      end
+
+      it 'is expected to like the comment' do
+        expect(comment.get_upvotes.size).to eq(1)
+      end
+    end
+  end
 end
