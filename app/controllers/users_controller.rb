@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def media_tweets
     user = User.find(params[:id])
     @tweets = user.tweets.consist_images
-    render :index_user_tweet
+    render :index_user_media_tweet
   end
 
   def liked_tweets
