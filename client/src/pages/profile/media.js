@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
-import { allUserTweets } from 'api/all-tweets';
+import { allUserMediaTweets } from 'api/all-tweets';
 import * as a from 'shared/user-defaults';
 import * as q from 'shared/query-key';
 import { TwitterCard } from 'components/twitter-card';
@@ -12,8 +12,8 @@ function Media({ user }) {
   const { twitterHandle } = user;
 
   const { data: { data: { tweets } = {} } = {}, isLoading, isError } = useQuery(
-    [q.ALL_USER_TWEETS_MEDIA, { id: twitterHandle, filter: 'media' }],
-    allUserTweets
+    [q.USER_MEDIA_TWEETS, { id: twitterHandle }],
+    allUserMediaTweets
   );
 
   return (
