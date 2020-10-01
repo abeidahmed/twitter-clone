@@ -3,7 +3,7 @@ import { useCharTrackerState } from 'hooks/char-tracker';
 import { useModalType } from 'store/modal';
 import { useCalHeight } from 'hooks/calc-height';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
-import { createCommentOnTweet } from 'api/create-comment';
+import { createCommentonComment } from 'api/create-comment';
 import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';
 import { timeNow } from 'utils/date-time';
@@ -15,12 +15,12 @@ import { TextButton } from 'components/button';
 function CreateCommentOnComment() {
   const {
     modalProps: {
-      tweetID,
-      twitterName,
-      twitterTwitterHandle,
-      twitterAvatar,
-      tweetBody,
-      tweetCreatedAt,
+      commentID,
+      commenterName,
+      commenterTwitterHandle,
+      commenterAvatar,
+      commentBody,
+      commentCreatedAt,
     },
   } = useModalType();
 
@@ -32,8 +32,8 @@ function CreateCommentOnComment() {
             <div className="flex-shrink-0">
               <Avatar
                 size="lg"
-                src={twitterAvatar}
-                alt={twitterTwitterHandle}
+                src={commenterAvatar}
+                alt={commenterTwitterHandle}
               />
             </div>
             <div className="flex-1 w-0.5 py-4 my-2 bg-gray-300"></div>
@@ -42,34 +42,34 @@ function CreateCommentOnComment() {
             <div>
               <div className="flex items-center">
                 <TextButton
-                  to={`/${twitterTwitterHandle}`}
+                  to={`/${commenterTwitterHandle}`}
                   color="black"
                   size="sm"
                   className="relative font-bold"
                 >
-                  {twitterName}
+                  {commenterName}
                 </TextButton>
                 <span className="pl-2 text-sm leading-5 text-gray-500">
-                  @{twitterTwitterHandle}
+                  @{commenterTwitterHandle}
                 </span>
                 <span className="mx-1">&middot;</span>
                 <span className="text-sm leading-5 text-gray-500">
-                  {timeNow(tweetCreatedAt)}
+                  {timeNow(commentCreatedAt)}
                 </span>
               </div>
             </div>
             <div className="mt-2">
-              <p className="text-gray-600">{tweetBody}</p>
+              <p className="text-gray-600">{commentBody}</p>
             </div>
           </div>
         </section>
-        <CommentBox rows={4} tweetID={tweetID} />
+        <CommentBox rows={4} commentID={commentID} />
       </div>
     </ModalWrapper>
   );
 }
 
-function CommentBox({ tweetID, rows }) {
+function CommentBox({ commentID, rows }) {
   const [body, setBody, clearBody] = useCharTrackerState(
     '',
     limit.TWEET_BODY_CHAR
@@ -79,14 +79,14 @@ function CommentBox({ tweetID, rows }) {
   const { eleHeight } = useCalHeight(body, 'auto', textareaRef);
 
   const { modalOff } = useModalType();
-  const [mutate, { isLoading }] = useRefetchMutation(createCommentOnTweet, [
-    q.ALL_TWEETS,
+  const [mutate, { isLoading }] = useRefetchMutation(createCommentonComment, [
+    q.SHOW_TWEET,
   ]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     await mutate({
-      tweetID,
+      commentID,
       content: body,
     });
     clearBody();
@@ -103,7 +103,7 @@ function CommentBox({ tweetID, rows }) {
       body={body}
       setBody={setBody}
       isLoading={isLoading}
-      placeholder="Tweet your reply"
+      placeholder="Reply to this comment"
       buttonLabel="Reply"
     />
   );

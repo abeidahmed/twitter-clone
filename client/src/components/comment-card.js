@@ -1,10 +1,11 @@
 import React from 'react';
+import { useModalType } from 'store/modal';
+import { withPartialMonth } from 'utils/date-time';
 import { Avatar } from './avatar';
 import { CommentButton } from './comment-button';
 import { TwitterActionButton, TextButton } from './button';
 import { LikeButton } from './like-button';
 import { CardContainer } from './container';
-import { withPartialMonth } from 'utils/date-time';
 
 export function CommentCard({ comment }) {
   return (
@@ -19,8 +20,8 @@ export function CommentCard({ comment }) {
 }
 
 function CommentContainer({ comment }) {
-  const { body, commenter, createdAt, id, meta, hasNestedComment } = comment;
-  const { likes, comments } = meta;
+  const { body, commenter, createdAt, meta, hasNestedComment } = comment;
+  const { likes } = meta;
 
   return (
     <div>
@@ -60,7 +61,7 @@ function CommentContainer({ comment }) {
             </div>
           </div>
           <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-            <CommentBtn totalComments={comments.totalComments} />
+            <CommentBtn comment={comment} />
             <RetweetBtn />
             <LikeBtn likes={likes} />
             <ShareBtn />
@@ -71,8 +72,37 @@ function CommentContainer({ comment }) {
   );
 }
 
-function CommentBtn({ totalComments }) {
-  return <CommentButton size="sm" showCount={true} count={totalComments} />;
+function CommentBtn({ comment }) {
+  const { body, commenter, createdAt, id, meta } = comment;
+  const { name, twitterHandle, avatar } = commenter;
+  const {
+    comments: { totalComments },
+  } = meta;
+
+  const { modalOn, types } = useModalType();
+
+  function handleComment() {
+    modalOn({
+      modalType: types.CREATE_COMMENT_ON_COMMENT,
+      modalProps: {
+        commentID: id,
+        commenterName: name,
+        commenterTwitterHandle: twitterHandle,
+        commenterAvatar: avatar,
+        commentBody: body,
+        commentCreatedAt: createdAt,
+      },
+    });
+  }
+
+  return (
+    <CommentButton
+      size="sm"
+      showCount={true}
+      count={totalComments}
+      onClick={handleComment}
+    />
+  );
 }
 
 function LikeBtn({ likes }) {
