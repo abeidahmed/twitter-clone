@@ -2,6 +2,8 @@ import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useModalType } from 'store/modal';
+import { voteTweet } from 'api/vote-tweet';
 import * as a from 'shared/user-defaults';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
@@ -11,8 +13,6 @@ import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
 import { LikeButton } from './like-button';
 import { CommentButton } from './comment-button';
-import { useModalType } from 'store/modal';
-import { voteTweet } from 'api/vote-tweet';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,

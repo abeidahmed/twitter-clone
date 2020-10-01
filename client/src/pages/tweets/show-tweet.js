@@ -17,12 +17,13 @@ import { LikeButton } from 'components/like-button';
 import { TweetStats } from 'components/tweet-stats';
 import { CommentButton } from 'components/comment-button';
 import { CommentCard } from 'components/comment-card';
+import { voteTweet } from 'api/vote-tweet';
+import { useRefetchMutation } from 'hooks/refetch-mutation';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
 
   const { currentUser } = useCurrentUser();
-  const { modalOn, types } = useModalType();
 
   const { uuid } = useParams();
   const { data, isLoading, isError } = useQuery(
@@ -87,49 +88,69 @@ function ShowTweet() {
               <span>{detailedDate(tweet.createdAt)}</span>
             </div>
             <TweetStatistics likes={likes} tweetID={tweet.id} />
-            <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
-              <CommentButton
-                size="sm"
-                showCount={false}
-                onClick={() => {
-                  modalOn({
-                    modalType: types.CREATE_COMMENT_ON_TWEET,
-                    modalProps: {
-                      tweetID: tweet.id,
-                      twitterName: twitter.name,
-                      twitterTwitterHandle: twitter.twitterHandle,
-                      twitterAvatar: twitter.avatar,
-                      tweetBody: tweet.body,
-                      tweetCreatedAt: tweet.createdAt,
-                    },
-                  });
-                }}
-              />
-              <TwitterActionButton
-                icon="refresh"
-                size="md"
-                color="green"
-                className="relative"
-              ></TwitterActionButton>
-              <LikeButton
-                size="md"
-                showCount={false}
-                objectID={tweet.id}
-                status={likes}
-              />
-              <TwitterActionButton
-                icon="upload"
-                size="md"
-                color="teal"
-                className="relative"
-              />
-            </div>
+            <TweetActionButton tweet={tweet} />
           </section>
         </div>
       </article>
       {comments.map((comment) => (
         <CommentCard key={comment.id} comment={comment} />
       ))}
+    </div>
+  );
+}
+
+function TweetActionButton({ tweet }) {
+  const { id, body, createdAt, meta = {}, twitter } = tweet;
+  const { likes } = meta;
+  const { modalOn, types } = useModalType();
+
+  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
+    q.ALL_TWEETS,
+    q.SHOW_TWEET,
+  ]);
+
+  async function handleLike() {
+    await mutate({
+      id,
+    });
+  }
+
+  function handleComment() {
+    modalOn({
+      modalType: types.CREATE_COMMENT_ON_TWEET,
+      modalProps: {
+        tweetID: id,
+        twitterName: twitter.name,
+        twitterTwitterHandle: twitter.twitterHandle,
+        twitterAvatar: twitter.avatar,
+        tweetBody: body,
+        tweetCreatedAt: createdAt,
+      },
+    });
+  }
+
+  return (
+    <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
+      <CommentButton size="sm" showCount={false} onClick={handleComment} />
+      <TwitterActionButton
+        icon="refresh"
+        size="md"
+        color="green"
+        className="relative"
+      ></TwitterActionButton>
+      <LikeButton
+        size="md"
+        showCount={false}
+        status={likes}
+        onClick={handleLike}
+        disabled={isLoading}
+      />
+      <TwitterActionButton
+        icon="upload"
+        size="md"
+        color="teal"
+        className="relative"
+      />
     </div>
   );
 }
