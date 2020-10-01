@@ -12,3 +12,15 @@ export async function createCommentOnTweet({ content, tweetID }) {
     header()
   );
 }
+
+export async function createCommentonComment({ content, commentID }) {
+  return await axios.post(
+    `/comments/${commentID}/comments`,
+    {
+      comment: {
+        content,
+      },
+    },
+    header()
+  );
+}
