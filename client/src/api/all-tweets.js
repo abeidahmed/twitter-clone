@@ -19,3 +19,7 @@ export async function allUserTweets(key, { id, filter = '' }) {
 
   return await axios.get(url, header());
 }
+
+export async function allUserLikedTweets(key, { id }) {
+  return await axios.get(`/users/${id}/liked_tweets`, header());
+}
