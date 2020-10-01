@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { useModalType } from 'store/modal';
 import { withPartialMonth } from 'utils/date-time';
@@ -11,8 +12,12 @@ import { LikeButton } from './like-button';
 import { CardContainer } from './container';
 
 export function CommentCard({ comment }) {
+  const commentContainerClass = cn({
+    'border-b border-gray-200': !comment.hasNestedComment,
+  });
+
   return (
-    <div className="border-b border-gray-200">
+    <div className={commentContainerClass}>
       <CommentContainer comment={comment} />
 
       {comment.comments.map((comment) => (
