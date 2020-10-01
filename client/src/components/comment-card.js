@@ -8,7 +8,7 @@ import { withPartialMonth } from 'utils/date-time';
 
 export function CommentCard({ comment }) {
   return (
-    <div>
+    <div className="border-b border-gray-200">
       <CommentContainer comment={comment} />
 
       {comment.comments.map((comment) => (
