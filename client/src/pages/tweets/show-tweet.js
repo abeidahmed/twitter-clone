@@ -93,7 +93,11 @@ function ShowTweet() {
         </div>
       </article>
       {comments.map((comment) => (
-        <CommentCard key={comment.id} comment={comment} />
+        <CommentCard
+          key={comment.id}
+          comment={comment}
+          twitterID={twitter.id}
+        />
       ))}
     </div>
   );
