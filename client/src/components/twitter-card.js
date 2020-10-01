@@ -1,7 +1,9 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
+import { useRefetchMutation } from 'hooks/refetch-mutation';
 import * as a from 'shared/user-defaults';
+import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
 import { TextButton, TwitterActionButton } from './button';
 import { CardContainer } from 'components/container';
@@ -10,14 +12,13 @@ import { TweetCardOption } from './tweet-card-option';
 import { LikeButton } from './like-button';
 import { CommentButton } from './comment-button';
 import { useModalType } from 'store/modal';
+import { voteTweet } from 'api/vote-tweet';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
   // and hence twitter = user.
-  const { id, uuid, body, createdAt, image, meta = {}, twitter = user } = tweet;
-  const { likes, comments } = meta;
+  const { id, uuid, body, createdAt, image, twitter = user } = tweet;
   const { currentUser } = useCurrentUser();
-  const { modalOn, types } = useModalType();
 
   return (
     <CardContainer
@@ -58,42 +59,72 @@ export function TwitterCard({ tweet, user }) {
             </figure>
           )}
         </div>
-        <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-          <CommentButton
-            size="sm"
-            showCount={true}
-            count={comments.totalComments}
-            onClick={() =>
-              modalOn({
-                modalType: types.CREATE_COMMENT_ON_TWEET,
-                modalProps: {
-                  tweetID: id,
-                  twitterName: twitter.name,
-                  twitterTwitterHandle: twitter.twitterHandle,
-                  twitterAvatar: twitter.avatar,
-                  tweetBody: body,
-                  tweetCreatedAt: createdAt,
-                },
-              })
-            }
-          />
-          <TwitterActionButton
-            icon="refresh"
-            size="sm"
-            color="green"
-            className="relative"
-          >
-            4
-          </TwitterActionButton>
-          <LikeButton size="sm" showCount={true} status={likes} objectID={id} />
-          <TwitterActionButton
-            icon="upload"
-            size="sm"
-            color="teal"
-            className="relative"
-          />
-        </div>
+        <CardActionButtons tweet={tweet} />
       </div>
     </CardContainer>
+  );
+}
+
+function CardActionButtons({ tweet }) {
+  const { id, body, createdAt, meta = {}, twitter } = tweet;
+  const { likes, comments } = meta;
+
+  const { modalOn, types } = useModalType();
+
+  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
+    q.ALL_TWEETS,
+    q.SHOW_TWEET,
+  ]);
+
+  async function handleLike() {
+    await mutate({
+      id,
+    });
+  }
+
+  function handleComment() {
+    modalOn({
+      modalType: types.CREATE_COMMENT_ON_TWEET,
+      modalProps: {
+        tweetID: id,
+        twitterName: twitter.name,
+        twitterTwitterHandle: twitter.twitterHandle,
+        twitterAvatar: twitter.avatar,
+        tweetBody: body,
+        tweetCreatedAt: createdAt,
+      },
+    });
+  }
+
+  return (
+    <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
+      <CommentButton
+        size="sm"
+        showCount={true}
+        count={comments.totalComments}
+        onClick={handleComment}
+      />
+      <TwitterActionButton
+        icon="refresh"
+        size="sm"
+        color="green"
+        className="relative"
+      >
+        4
+      </TwitterActionButton>
+      <LikeButton
+        size="sm"
+        showCount={true}
+        status={likes}
+        onClick={handleLike}
+        disabled={isLoading}
+      />
+      <TwitterActionButton
+        icon="upload"
+        size="sm"
+        color="teal"
+        className="relative"
+      />
+    </div>
   );
 }

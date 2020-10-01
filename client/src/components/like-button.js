@@ -1,16 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
-import { voteTweet } from 'api/vote-tweet';
-import * as q from 'shared/query-key';
 import { Icon } from './icon';
 
-export function LikeButton({ objectID, status, size, showCount, ...props }) {
+export function LikeButton({ status, size, showCount, ...props }) {
   const { isLiked, totalLikes } = status;
-  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
-    q.ALL_TWEETS,
-    q.SHOW_TWEET,
-  ]);
 
   const iconClass = cn([
     'rounded-full',
@@ -28,18 +21,10 @@ export function LikeButton({ objectID, status, size, showCount, ...props }) {
     },
   ]);
 
-  async function handleLike() {
-    await mutate({
-      id: objectID,
-    });
-  }
-
   return (
     <button
       className="relative inline-flex items-center text-sm text-gray-500 group focus:outline-none hover:text-red-500 focus:text-red-500"
       {...props}
-      disabled={isLoading}
-      onClick={handleLike}
     >
       <i className="p-2 rounded-full group-hover:bg-red-50 group-focus:bg-red-50">
         {isLiked ? (
