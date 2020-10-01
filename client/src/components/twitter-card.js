@@ -9,16 +9,21 @@ import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
 import { LikeButton } from './like-button';
 import { CommentButton } from './comment-button';
+import { useModalType } from 'store/modal';
 
 export function TwitterCard({ tweet, user }) {
   // In user show page, the user details is not listed in the tweet array,
   // and hence twitter = user.
-  const { id, uuid, body, createdAt, image, meta, twitter = user } = tweet;
+  const { id, uuid, body, createdAt, image, meta = {}, twitter = user } = tweet;
   const { likes, comments } = meta;
   const { currentUser } = useCurrentUser();
+  const { modalOn, types } = useModalType();
 
   return (
-    <CardContainer to={`/${twitter.twitterHandle}/status/${uuid}`}>
+    <CardContainer
+      to={`/${twitter.twitterHandle}/status/${uuid}`}
+      bordered={true}
+    >
       <div className="flex-shrink-0">
         <Avatar size="md" src={twitter.avatar} alt="" />
       </div>
@@ -58,14 +63,19 @@ export function TwitterCard({ tweet, user }) {
             size="sm"
             showCount={true}
             count={comments.totalComments}
-            tweet={{
-              tweetID: id,
-              twitterName: twitter.name,
-              twitterTwitterHandle: twitter.twitterHandle,
-              twitterAvatar: twitter.avatar,
-              tweetBody: body,
-              tweetCreatedAt: createdAt,
-            }}
+            onClick={() =>
+              modalOn({
+                modalType: types.CREATE_COMMENT_ON_TWEET,
+                modalProps: {
+                  tweetID: id,
+                  twitterName: twitter.name,
+                  twitterTwitterHandle: twitter.twitterHandle,
+                  twitterAvatar: twitter.avatar,
+                  tweetBody: body,
+                  tweetCreatedAt: createdAt,
+                },
+              })
+            }
           />
           <TwitterActionButton
             icon="refresh"
