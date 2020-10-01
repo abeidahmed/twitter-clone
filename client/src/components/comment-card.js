@@ -1,33 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { useModalType } from 'store/modal';
+import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
 import { voteComment } from 'api/vote-comment';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
 import { CommentButton } from './comment-button';
-import { TwitterActionButton, TextButton } from './button';
+import {
+  TwitterActionButton,
+  TextButton,
+  IconButton,
+  IconWithTextButton,
+} from './button';
 import { LikeButton } from './like-button';
-import { CardContainer } from './container';
+import { CardContainer, DropdownContainer } from './container';
+import { Icon } from './icon';
+import { OutsideClickHandler } from './outside-click-handler';
 
-export function CommentCard({ comment }) {
+export function CommentCard({ comment, twitterID }) {
   const commentContainerClass = cn({
     'border-b border-gray-200': !comment.hasNestedComment,
   });
 
   return (
     <div className={commentContainerClass}>
-      <CommentContainer comment={comment} />
+      <CommentContainer comment={comment} twitterID={twitterID} />
 
       {comment.comments.map((comment) => (
-        <CommentCard key={comment.id} comment={comment} />
+        <CommentCard key={comment.id} comment={comment} twitterID={twitterID} />
       ))}
     </div>
   );
 }
 
-function CommentContainer({ comment }) {
+function CommentContainer({ comment, twitterID }) {
   const { body, commenter, createdAt, meta, id, hasNestedComment } = comment;
   const { likes } = meta;
 
@@ -62,7 +70,10 @@ function CommentContainer({ comment }) {
                   {withPartialMonth(createdAt)}
                 </span>
               </div>
-              {/* {twitter.id === currentUser.id && <TweetCardOption tweetID={id} />} */}
+              <CommentCardOption
+                commenterID={commenter.id}
+                twitterID={twitterID}
+              />
             </div>
             <div className="mt-2">
               <p className="text-gray-600">{body}</p>
@@ -78,6 +89,39 @@ function CommentContainer({ comment }) {
       </CardContainer>
     </div>
   );
+}
+
+function CommentCardOption({ commenterID, twitterID }) {
+  const [isActive, setIsActive] = useState(false);
+  const { currentUser } = useCurrentUser();
+
+  if (commenterID === currentUser.id || twitterID === currentUser.id) {
+    return (
+      <OutsideClickHandler
+        onOutsideClick={() => setIsActive(false)}
+        className="relative"
+      >
+        <IconButton
+          size="sm"
+          color="primary-text"
+          onClick={() => setIsActive(!isActive)}
+        >
+          <Icon icon="chevron-down" className="w-4 h-4" />
+        </IconButton>
+        <DropdownContainer position="top" isActive={isActive}>
+          <IconWithTextButton
+            color="danger"
+            size="md"
+            icon="trash"
+            variant="menu"
+          >
+            Delete
+          </IconWithTextButton>
+        </DropdownContainer>
+      </OutsideClickHandler>
+    );
+  }
+  return null;
 }
 
 function CommentBtn({ comment }) {
