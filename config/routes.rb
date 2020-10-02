@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   defaults format: :json do
     resources :users, only: [:index, :create, :show, :update] do
+      resources :bookmarks, only: [:index]
       member do
         get :following, :followers, :liked_tweets, :media_tweets, :commented_tweets
       end
@@ -9,8 +10,6 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create, :show]
 
     resources :relationships, only: [:create, :destroy]
-
-    resources :bookmarks, only: [:index]
 
     resources :tweets, only: [:index, :show, :create, :destroy] do
       resources :comments, only: [:create], module: :tweets
