@@ -16,14 +16,16 @@ function Replies({ user }) {
     allUserCommentedTweets
   );
 
-  if (isLoading || isError) return <Spinner />;
-
   return (
-    <>
-      {tweets.map((tweet) => (
-        <TwitterCard key={tweet.id} tweet={tweet} showComments={true} />
-      ))}
-    </>
+    <div className="relative">
+      {isLoading || isError ? (
+        <Spinner />
+      ) : (
+        tweets.map((tweet) => (
+          <TwitterCard key={tweet.id} tweet={tweet} showComments={true} />
+        ))
+      )}
+    </div>
   );
 }
 
