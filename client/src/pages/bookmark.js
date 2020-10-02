@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
-import { useCurrentUser } from 'store/current-user';
 import { allBookmarks } from 'api/all-bookmarks';
 import * as q from 'shared/query-key';
 import { TwitterCard } from 'components/twitter-card';
@@ -9,10 +9,8 @@ import { CommentCard } from 'components/comment-card';
 import { Spinner } from 'components/spinner';
 
 function Bookmark() {
-  const {
-    currentUser: { twitterHandle, id },
-  } = useCurrentUser();
-  useSetTitle('Bookmarks', `@${twitterHandle}`);
+  const { id } = useParams();
+  useSetTitle('Bookmarks', `@${id}`);
 
   const {
     data: { data: { bookmarks } = {} } = {},

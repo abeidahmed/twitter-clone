@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
   def index
-    user = User.find(params[:user_id])
+    user = User.find_by(twitter_handle: params[:user_id])
     @bookmarks = user.bookmarks.all
   end
 
