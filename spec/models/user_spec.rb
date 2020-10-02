@@ -57,6 +57,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:tweets) }
 
     it { should have_many(:comments) }
+
+    it { should have_many(:bookmarks) }
   end
 
   describe 'user profile validations' do
