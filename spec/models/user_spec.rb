@@ -117,4 +117,21 @@ RSpec.describe User, type: :model do
       expect(user1.following?(user2)).to be_truthy
     end
   end
+
+  describe '#bookmarked?' do
+    it 'is expected to return truthy if object is bookmarked' do
+      user = create(:user)
+      tweet = create(:tweet)
+      tweet.bookmarks.create! user_id: user.id
+
+      expect(user.bookmarked?(tweet)).to be_truthy
+    end
+
+    it 'is expected to return falsy if object is not bookmarked' do
+      user = create(:user)
+      tweet = create(:tweet)
+
+      expect(user.bookmarked?(tweet)).to be_falsy
+    end
+  end
 end

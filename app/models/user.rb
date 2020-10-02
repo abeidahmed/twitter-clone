@@ -33,4 +33,8 @@ class User < ApplicationRecord
   include Authentication
   include Filterable
   include Friendship
+
+  def bookmarked?(object)
+    self.bookmarks.map(&:bookmarkable).include?(object)
+  end
 end
