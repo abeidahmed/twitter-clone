@@ -26,7 +26,7 @@ function ProfileWrapper({ user, children }) {
     },
     {
       title: 'Tweets & replies',
-      path: '/',
+      path: `/${user.twitterHandle}/tweets_replies`,
       exact: true,
     },
     {

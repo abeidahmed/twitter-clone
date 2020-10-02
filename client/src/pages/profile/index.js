@@ -5,6 +5,7 @@ import * as q from 'shared/query-key';
 import { showUser } from 'api/show-user';
 import Likes from './likes';
 import Media from './media';
+import Replies from './replies';
 import Tweets from './tweets';
 import Followers from './followers';
 import Followings from './following';
@@ -41,6 +42,11 @@ function Profile() {
             exact
             path={`/${id}/media`}
             render={(props) => <Media {...props} user={user} />}
+          />
+          <Route
+            exact
+            path={`/${id}/tweets_replies`}
+            render={(props) => <Replies {...props} user={user} />}
           />
           <Route
             exact
