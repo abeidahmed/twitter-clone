@@ -103,6 +103,9 @@ function CommentCardOption({ commenterID, twitterID, commentID }) {
 
   const [mutate, { isLoading }] = useRefetchMutation(deleteComment, [
     q.SHOW_TWEET,
+    q.USER_COMMENTED_TWEETS,
+    q.USER_LIKED_TWEETS,
+    q.USER_MEDIA_TWEETS,
   ]);
 
   async function handleDelete(id) {

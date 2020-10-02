@@ -126,6 +126,9 @@ function LikeBtn({ tweet }) {
     q.ALL_TWEETS,
     q.SHOW_TWEET,
     q.SHOW_USER,
+    q.USER_COMMENTED_TWEETS,
+    q.USER_LIKED_TWEETS,
+    q.USER_MEDIA_TWEETS,
   ]);
 
   async function handleLike() {
