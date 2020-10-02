@@ -5,13 +5,9 @@ class BookmarksController < ApplicationController
   end
 
   def create
+    return error('bad_request') if current_user.bookmarked?(@bookmarkable)
     @bookmark = @bookmarkable.bookmarks.build
     @bookmark.user_id = current_user.id
-
-    if @bookmark.save
-      render :new, status: :created
-    else
-      render json: { message: @bookmark.errors.full_messages }, status: :bad_request
-    end
+    render :new, status: :created if @bookmark.save
   end
 end
