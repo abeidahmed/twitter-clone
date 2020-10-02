@@ -9,6 +9,7 @@ import Header from 'lib/header';
 import Sidebar from 'lib/sidebar';
 import Explore from 'pages/explore';
 import Home from 'pages';
+import Bookmark from 'pages/bookmark';
 import Profile from 'pages/profile';
 import ShowTweet from 'pages/tweets/show-tweet';
 import ModalRoot from 'modals/modal-root';
@@ -29,6 +30,7 @@ export default function Regular() {
                   <Route exact path="/explore" component={Explore} />
                   <Route exact path="/" component={Home} />
                   <Route exact path="/:id/status/:uuid" component={ShowTweet} />
+                  <Route exact path="/bookmarks" component={Bookmark} />
                   <Route path="/:id" component={Profile} />
                 </Switch>
               </div>

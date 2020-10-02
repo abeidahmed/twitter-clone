@@ -32,7 +32,7 @@ function Sidebar() {
     },
     {
       title: 'Bookmarks',
-      path: '/asd',
+      path: '/bookmarks',
       exact: false,
       icon: 'bookmark',
     },

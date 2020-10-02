@@ -51,7 +51,7 @@ function NavigationBar({ currentUser, handleLogout }) {
     {
       title: 'Bookmarks',
       icon: 'bookmark',
-      path: '/',
+      path: '/bookmarks',
     },
     {
       title: 'Settings and Privacy',
