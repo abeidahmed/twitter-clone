@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     resources :tweets, only: [:index, :show, :create, :destroy] do
       resources :comments, only: [:create], module: :tweets
+      resources :bookmarks, only: [:create], module: :tweets
       member do
         post :vote
         get :likers
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     end
 
     resources :comments, only: [:create, :destroy] do
+      resources :bookmarks, only: [:create], module: :comments
       member do
         post :vote
       end
