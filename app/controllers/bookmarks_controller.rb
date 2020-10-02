@@ -10,4 +10,9 @@ class BookmarksController < ApplicationController
     @bookmark.user_id = current_user.id
     render :new, status: :created if @bookmark.save
   end
+
+  def destroy
+    bookmark = Bookmark.find(params[:id])
+    bookmark.destroy
+  end
 end

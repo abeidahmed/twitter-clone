@@ -57,4 +57,20 @@ RSpec.describe "Bookmarks", type: :request do
       include_examples 'bad_request'
     end
   end
+
+  describe '#destroy' do
+    let(:user) { create(:user) }
+
+    context 'when the request is made' do
+      before do
+        tweet = create(:tweet)
+        bookmark = tweet.bookmarks.create! user_id: user.id
+        delete bookmark_url(bookmark), headers: auth_header(user)
+      end
+
+      it 'is expected to delete the bookmark' do
+        expect(Bookmark.all.size).to be_zero
+      end
+    end
+  end
 end

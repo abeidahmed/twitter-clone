@@ -27,5 +27,7 @@ Rails.application.routes.draw do
       end
       resources :comments, only: [:create], module: :comments
     end
+
+    resources :bookmarks, only: [:destroy]
   end
 end
