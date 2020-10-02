@@ -12,3 +12,7 @@ export async function allUserMediaTweets(key, { id }) {
 export async function allUserLikedTweets(key, { id }) {
   return await axios.get(`/users/${id}/liked_tweets`, header());
 }
+
+export async function allUserCommentedTweets(key, { id }) {
+  return await axios.get(`/users/${id}/commented_tweets`, header());
+}
