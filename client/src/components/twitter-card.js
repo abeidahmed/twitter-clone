@@ -68,7 +68,13 @@ export function TwitterCard({ tweet, user, showComments }) {
               </figure>
             )}
           </div>
-          <CardActionButtons tweet={tweet} user={user} />
+          {/* <CardActionButtons tweet={tweet} user={user} /> */}
+          <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
+            <CommentBtn tweet={tweet} user={user} />
+            <RetweetBtn />
+            <LikeBtn tweet={tweet} />
+            <ShareBtn />
+          </div>
         </div>
       </CardContainer>
       {showComments &&
@@ -83,23 +89,11 @@ export function TwitterCard({ tweet, user, showComments }) {
   );
 }
 
-function CardActionButtons({ tweet, user }) {
+function CommentBtn({ tweet, user }) {
   const { id, body, createdAt, meta = {}, twitter = user } = tweet;
-  const { likes, comments } = meta;
+  const { comments } = meta;
 
   const { modalOn, types } = useModalType();
-
-  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
-    q.ALL_TWEETS,
-    q.SHOW_TWEET,
-    q.SHOW_USER,
-  ]);
-
-  async function handleLike() {
-    await mutate({
-      id,
-    });
-  }
 
   function handleComment() {
     modalOn({
@@ -116,34 +110,62 @@ function CardActionButtons({ tweet, user }) {
   }
 
   return (
-    <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-      <CommentButton
-        size="sm"
-        showCount={true}
-        count={comments.totalComments}
-        onClick={handleComment}
-      />
-      <TwitterActionButton
-        icon="refresh"
-        size="sm"
-        color="green"
-        className="relative"
-      >
-        4
-      </TwitterActionButton>
-      <LikeButton
-        size="sm"
-        showCount={true}
-        status={likes}
-        onClick={handleLike}
-        disabled={isLoading}
-      />
-      <TwitterActionButton
-        icon="upload"
-        size="sm"
-        color="teal"
-        className="relative"
-      />
-    </div>
+    <CommentButton
+      size="sm"
+      showCount={true}
+      count={comments.totalComments}
+      onClick={handleComment}
+    />
+  );
+}
+
+function LikeBtn({ tweet }) {
+  const { id, meta = {} } = tweet;
+  const { likes } = meta;
+
+  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
+    q.ALL_TWEETS,
+    q.SHOW_TWEET,
+    q.SHOW_USER,
+  ]);
+
+  async function handleLike() {
+    await mutate({
+      id,
+    });
+  }
+
+  return (
+    <LikeButton
+      size="sm"
+      showCount={true}
+      status={likes}
+      onClick={handleLike}
+      disabled={isLoading}
+    />
+  );
+}
+
+function RetweetBtn() {
+  return (
+    <TwitterActionButton
+      icon="refresh"
+      size="sm"
+      color="green"
+      className="relative"
+    >
+      4
+    </TwitterActionButton>
+  );
+}
+
+function ShareBtn() {
+  return (
+    <TwitterActionButton
+      icon="upload"
+      size="sm"
+      color="teal"
+      className="relative"
+    />
   );
 }
