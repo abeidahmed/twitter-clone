@@ -9,14 +9,16 @@ import { CommentCard } from 'components/comment-card';
 import { Spinner } from 'components/spinner';
 
 function Bookmark() {
-  const { currentUser } = useCurrentUser();
-  useSetTitle('Bookmarks', `@${currentUser.twitterHandle}`);
+  const {
+    currentUser: { twitterHandle, id },
+  } = useCurrentUser();
+  useSetTitle('Bookmarks', `@${twitterHandle}`);
 
   const {
     data: { data: { bookmarks } = {} } = {},
     isLoading,
     isError,
-  } = useQuery(q.ALL_BOOKMARKS, allBookmarks);
+  } = useQuery([q.ALL_BOOKMARKS, { user_id: id }], allBookmarks);
 
   if (isLoading || isError) return <Spinner />;
 
