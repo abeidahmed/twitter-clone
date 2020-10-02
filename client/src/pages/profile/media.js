@@ -6,6 +6,7 @@ import * as a from 'shared/user-defaults';
 import * as q from 'shared/query-key';
 import { TwitterCard } from 'components/twitter-card';
 import { Spinner } from 'components/spinner';
+import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function Media({ user }) {
   useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
@@ -22,12 +23,24 @@ function Media({ user }) {
         {isLoading || isError ? (
           <Spinner />
         ) : (
-          tweets.map((tweet) => (
-            <TwitterCard key={tweet.id} tweet={tweet} user={user} />
-          ))
+          <DisplayTweets tweets={tweets} user={user} />
         )}
       </section>
     </div>
+  );
+}
+
+function DisplayTweets({ tweets, user }) {
+  return (
+    <>
+      {tweets.length ? (
+        tweets.map((tweet) => (
+          <TwitterCard key={tweet.id} tweet={tweet} user={user} />
+        ))
+      ) : (
+        <ObjectNotFound description="Tweets that you have tweeted with an image will show up here." />
+      )}
+    </>
   );
 }
 

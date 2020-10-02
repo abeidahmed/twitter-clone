@@ -2,6 +2,7 @@ import React from 'react';
 import { useSetTitle } from 'store/page-title';
 import * as a from 'shared/user-defaults';
 import { TwitterCard } from 'components/twitter-card';
+import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function Tweets({ user }) {
   useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
@@ -10,11 +11,23 @@ function Tweets({ user }) {
   return (
     <div className="relative">
       <section>
-        {tweets.map((tweet) => (
-          <TwitterCard key={tweet.id} tweet={tweet} user={user} />
-        ))}
+        <DisplayTweets tweets={tweets} user={user} />
       </section>
     </div>
+  );
+}
+
+function DisplayTweets({ tweets, user }) {
+  return (
+    <>
+      {tweets.length ? (
+        tweets.map((tweet) => (
+          <TwitterCard key={tweet.id} tweet={tweet} user={user} />
+        ))
+      ) : (
+        <ObjectNotFound description="You do not have any tweets. Try tweeting about what's happening." />
+      )}
+    </>
   );
 }
 
