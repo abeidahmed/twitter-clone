@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { useModalType } from 'store/modal';
 import { voteTweet } from 'api/vote-tweet';
+import { bookmarkTweet } from 'api/create-bookmark';
 import * as a from 'shared/user-defaults';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
-import { TextButton, TwitterActionButton } from './button';
-import { CardContainer } from 'components/container';
+import { TextButton, TwitterActionButton, IconWithTextButton } from './button';
+import { CardContainer, DropdownContainer } from 'components/container';
 import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
 import { LikeButton } from './like-button';
 import { CommentButton } from './comment-button';
 import { CommentCard } from './comment-card';
+import { OutsideClickHandler } from './outside-click-handler';
 
 export function TwitterCard({ tweet, user, showComments }) {
   // In user show page, the user details is not listed in the tweet array,
@@ -72,7 +74,7 @@ export function TwitterCard({ tweet, user, showComments }) {
             <CommentBtn tweet={tweet} user={user} />
             <RetweetBtn />
             <LikeBtn tweet={tweet} />
-            <ShareBtn />
+            <ShareBtn tweet={tweet} />
           </div>
         </div>
       </CardContainer>
@@ -161,13 +163,58 @@ function RetweetBtn() {
   );
 }
 
-function ShareBtn() {
+function ShareBtn({ tweet }) {
+  const { id, meta: { isBookmarked } = {} } = tweet;
+
+  const [isActive, setIsActive] = useState(false);
+  const [mutate, { isLoading }] = useRefetchMutation(bookmarkTweet);
+
+  async function handleBookmark() {
+    await mutate({
+      tweetID: id,
+    });
+  }
+
+  const links = [
+    {
+      title: isBookmarked ? 'Remove from bookmarks' : 'Add tweet to bookmarks',
+      icon: 'bookmark',
+      onClick: () => handleBookmark(),
+      disabled: isLoading,
+    },
+    {
+      title: 'Copy link to tweet',
+      icon: 'link',
+    },
+  ];
+
   return (
-    <TwitterActionButton
-      icon="upload"
-      size="sm"
-      color="teal"
+    <OutsideClickHandler
+      onOutsideClick={() => setIsActive(false)}
       className="relative"
-    />
+    >
+      <TwitterActionButton
+        icon="upload"
+        size="sm"
+        color="teal"
+        className="relative"
+        onClick={() => setIsActive(!isActive)}
+      />
+      <DropdownContainer position="top" isActive={isActive}>
+        {links.map((link) => (
+          <IconWithTextButton
+            key={link.title}
+            color="white"
+            size="md"
+            icon={link.icon}
+            variant="menu"
+            onClick={link.onClick ? link.onClick : null}
+            disabled={link.disabled && link.disabled}
+          >
+            {link.title}
+          </IconWithTextButton>
+        ))}
+      </DropdownContainer>
+    </OutsideClickHandler>
   );
 }
