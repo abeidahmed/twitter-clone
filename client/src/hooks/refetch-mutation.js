@@ -1,6 +1,6 @@
 import { useMutation, queryCache } from 'react-query';
 
-export function useRefetchMutation(deleteTweetApi, [...queries]) {
+export function useRefetchMutation(deleteTweetApi, [...queries] = []) {
   const [mutate, { isLoading }] = useMutation(deleteTweetApi, {
     onSuccess() {
       for (let query of queries) {
