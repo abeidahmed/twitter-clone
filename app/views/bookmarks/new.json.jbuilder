@@ -1,3 +1,3 @@
 json.bookmark do
-  json.id @bookmark.id
+  json.partial! 'bookmark', bookmark: @bookmark
 end

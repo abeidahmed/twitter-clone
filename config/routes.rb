@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
     resources :relationships, only: [:create, :destroy]
 
+    resources :bookmarks, only: [:index]
+
     resources :tweets, only: [:index, :show, :create, :destroy] do
       resources :comments, only: [:create], module: :tweets
       resources :bookmarks, only: [:create], module: :tweets

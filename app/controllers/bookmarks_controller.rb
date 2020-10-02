@@ -1,4 +1,8 @@
 class BookmarksController < ApplicationController
+  def index
+    @bookmarks = Bookmark.all
+  end
+
   def create
     @bookmark = @bookmarkable.bookmarks.build
     @bookmark.user_id = current_user.id
