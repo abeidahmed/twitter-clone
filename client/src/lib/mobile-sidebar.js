@@ -51,7 +51,7 @@ function NavigationBar({ currentUser, handleLogout }) {
     {
       title: 'Bookmarks',
       icon: 'bookmark',
-      path: '/bookmarks',
+      path: `/${currentUser.twitterHandle}/bookmarks`,
     },
     {
       title: 'Settings and Privacy',

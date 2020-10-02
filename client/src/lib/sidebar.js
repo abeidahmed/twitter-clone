@@ -32,7 +32,7 @@ function Sidebar() {
     },
     {
       title: 'Bookmarks',
-      path: '/bookmarks',
+      path: `/${currentUser.twitterHandle}/bookmarks`,
       exact: false,
       icon: 'bookmark',
     },
