@@ -60,7 +60,7 @@ function CommentContainer({ comment, twitterID }) {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <TextButton
-                  to={`/${comment.twitterHandle}`}
+                  to={`/${commenter.twitterHandle}`}
                   color="black"
                   size="sm"
                   className="relative font-bold"
