@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :bookmark do
-    user
+    user factory: :user
 
     trait :for_tweet do
       association :bookmarkable, factory: :tweet
