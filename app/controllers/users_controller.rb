@@ -55,6 +55,12 @@ class UsersController < ApplicationController
     render :index_user_liked_tweet
   end
 
+  def commented_tweets
+    user = User.find(params[:id])
+    @tweets = Tweet.with_comments_from(user)
+    render :index_user_commented_tweet
+  end
+
   private
   def create_user_params
     params.require(:user).permit(
