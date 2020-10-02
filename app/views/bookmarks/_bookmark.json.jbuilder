@@ -8,4 +8,7 @@ if bookmark.bookmarkable_type == 'Tweet'
   end
 else
   json.partial! 'comments/comment', comment: bookmark.bookmarkable
+  # Bookmarks should not have nested comments and should only display if bookmarked explicitly
+  json.has_nested_comment false
+  json.comments []
 end
