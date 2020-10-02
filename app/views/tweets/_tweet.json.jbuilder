@@ -6,6 +6,8 @@ json.reply_status tweet.reply_status
 json.created_at tweet.created_at
 
 json.meta do
+  json.is_bookmarked current_user.bookmarked?(tweet)
+
   json.likes do
     json.total_likes tweet.votes_for.size
     json.is_liked current_user.voted_up_on?(tweet)

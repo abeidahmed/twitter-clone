@@ -8,6 +8,8 @@ json.commenter do
 end
 
 json.meta do
+  json.is_bookmarked current_user.bookmarked?(comment)
+
   json.likes do
     json.total_likes comment.votes_for.size
     json.is_liked current_user.voted_up_on?(comment)
