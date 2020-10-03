@@ -13,5 +13,7 @@ RSpec.describe Comment, type: :model do
     it { should have_many(:comments) }
 
     it { should have_many(:bookmarks) }
+
+    it { should have_many(:retweets) }
   end
 end
