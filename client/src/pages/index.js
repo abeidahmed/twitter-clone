@@ -8,6 +8,7 @@ import { MobileTweetButton } from 'components/mobile-tweet-button';
 import { TwitterCard } from 'components/twitter-card';
 import { Spinner } from 'components/spinner';
 import { allTweets } from 'api/all-tweets';
+import { RetweetCard } from 'components/retweet-card';
 
 function Home() {
   useSetTitle('Home', null);
@@ -25,6 +26,7 @@ function Home() {
         <Divider />
       </section>
       <div className="relative">
+        <RetweetCard />
         {isLoading || isError ? (
           <Spinner />
         ) : (
