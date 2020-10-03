@@ -43,6 +43,20 @@ RSpec.describe "Retweets", type: :request do
 
       include_examples 'created'
     end
+
+    context 'when the object is already retweeted by the current user' do
+      before do
+        tweet = create(:tweet, user: user)
+        tweet.retweets.create! user_id: user.id
+        post tweet_retweets_url(tweet), params: retweet, headers: auth_header(user)
+      end
+
+      it 'is expected to not retweet' do
+        expect(Retweet.all.size).to be(1)
+      end
+
+      include_examples 'bad_request'
+    end
   end
 
   describe '#destroy' do

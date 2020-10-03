@@ -38,4 +38,8 @@ class User < ApplicationRecord
   def bookmarked?(object)
     self.bookmarks.map(&:bookmarkable).include?(object)
   end
+
+  def already_retweeted?(object)
+    self.retweets.map(&:retweetable).include?(object)
+  end
 end

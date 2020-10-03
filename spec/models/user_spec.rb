@@ -136,4 +136,23 @@ RSpec.describe User, type: :model do
       expect(user.bookmarked?(tweet)).to be_falsy
     end
   end
+
+  describe '#already_retweeted?' do
+    it 'is expected to return truthy if object is already retweeted' do
+      user = create(:user)
+      tweet = create(:tweet)
+      retweet = tweet.retweets.create! user_id: user.id
+
+      expect(user.already_retweeted?(retweet.retweetable)).to be_truthy
+    end
+
+    it 'is expected to return falsy if object is not already retweeted' do
+      user = create(:user)
+      user1 = create(:user)
+      tweet = create(:tweet)
+      retweet = tweet.retweets.create! user_id: user1.id
+
+      expect(user.already_retweeted?(retweet.retweetable)).to be_falsy
+    end
+  end
 end

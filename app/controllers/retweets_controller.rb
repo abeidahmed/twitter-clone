@@ -2,6 +2,7 @@ class RetweetsController < ApplicationController
   def create
     @retweet = @retweetable.retweets.build(retweet_params)
     @retweet.user_id = current_user.id
+    return error('bad_request') if current_user.already_retweeted?(@retweet.retweetable)
 
     if @retweet.save
       render :new, status: :created
