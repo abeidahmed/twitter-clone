@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { Icon } from './icon';
 
-export function CommentButton({ tweet, showCount, count, size, ...props }) {
+export function CommentButton({ showCount, count, size, ...props }) {
   const iconClass = cn([
     'rounded-full',
     {
