@@ -17,5 +17,18 @@ RSpec.describe "Retweets", type: :request do
 
       include_examples 'created'
     end
+
+    context 'when the comment is retweeted by a logged in user' do
+      before do
+        comment = create(:comment)
+        post comment_retweets_url(comment), params: retweet, headers: auth_header(user)
+      end
+
+      it 'is expected to retweet' do
+        expect(Retweet.first.body).to eq('hello world')
+      end
+
+      include_examples 'created'
+    end
   end
 end

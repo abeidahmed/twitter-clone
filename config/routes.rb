@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:create, :destroy] do
       resources :bookmarks, only: [:create], module: :comments
+      resources :retweets, only: [:create], module: :comments
       member do
         post :vote
       end
