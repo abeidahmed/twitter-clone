@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_083519) do
+ActiveRecord::Schema.define(version: 2020_10_03_101618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 2020_10_02_083519) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "retweets", force: :cascade do |t|
+    t.string "retweetable_type", null: false
+    t.bigint "retweetable_id", null: false
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["retweetable_type", "retweetable_id"], name: "index_retweets_on_retweetable_type_and_retweetable_id"
+    t.index ["user_id"], name: "index_retweets_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -92,5 +103,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_083519) do
 
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "retweets", "users"
   add_foreign_key "tweets", "users"
 end
