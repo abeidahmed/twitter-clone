@@ -102,6 +102,12 @@ function ShareBtn({ tweet, size }) {
   const [isActive, setIsActive] = useState(false);
   const [mutate, { isLoading }] = useRefetchMutation(bookmarkTweet, [
     q.ALL_TWEETS,
+    q.SHOW_TWEET,
+    q.SHOW_USER,
+    q.USER_COMMENTED_TWEETS,
+    q.USER_LIKED_TWEETS,
+    q.USER_MEDIA_TWEETS,
+    q.ALL_BOOKMARKS,
   ]);
 
   async function handleBookmark() {
@@ -113,7 +119,15 @@ function ShareBtn({ tweet, size }) {
   const [
     removeBookmark,
     { isLoading: removingBookmark },
-  ] = useRefetchMutation(deleteBookmark, [q.ALL_BOOKMARKS, q.ALL_TWEETS]);
+  ] = useRefetchMutation(deleteBookmark, [
+    q.ALL_TWEETS,
+    q.SHOW_TWEET,
+    q.SHOW_USER,
+    q.USER_COMMENTED_TWEETS,
+    q.USER_LIKED_TWEETS,
+    q.USER_MEDIA_TWEETS,
+    q.ALL_BOOKMARKS,
+  ]);
 
   async function handleRemoveBookmark() {
     await removeBookmark({
