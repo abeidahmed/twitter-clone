@@ -15,32 +15,34 @@ function UserCard({ user }) {
 
   return (
     <CardContainer to={`/${user.twitterHandle}`}>
-      <div>
-        <Avatar size="md" src={user.avatar} alt={user.twitterHandle} />
-      </div>
-      <div className="flex flex-col flex-1">
-        <div className="flex justify-between">
-          <div>
-            <TextButton
-              to={`/${user.twitterHandle}`}
-              size="sm"
-              color="black"
-              className="relative font-semibold"
-            >
-              {user.name || 'Twitter user'}
-            </TextButton>
-            <div className="flex items-center space-x-2">
-              <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
-              {user.isFollowed && <Badge>Follows you</Badge>}
-            </div>
-          </div>
-          <DynamicFollowBtn user={user} currentUser={currentUser} />
+      <div className="flex space-x-3">
+        <div className="flex-shrink-0">
+          <Avatar size="md" src={user.avatar} alt={user.twitterHandle} />
         </div>
-        <div className="mt-1">
-          <p className="text-sm text-gray-700">
-            {user.bio ||
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, a.'}
-          </p>
+        <div className="flex flex-col flex-1">
+          <div className="flex justify-between">
+            <div>
+              <TextButton
+                to={`/${user.twitterHandle}`}
+                size="sm"
+                color="black"
+                className="relative font-semibold"
+              >
+                {user.name || 'Twitter user'}
+              </TextButton>
+              <div className="flex items-center space-x-2">
+                <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
+                {user.isFollowed && <Badge>Follows you</Badge>}
+              </div>
+            </div>
+            <DynamicFollowBtn user={user} currentUser={currentUser} />
+          </div>
+          <div className="mt-1">
+            <p className="text-sm text-gray-700">
+              {user.bio ||
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, a.'}
+            </p>
+          </div>
         </div>
       </div>
     </CardContainer>
