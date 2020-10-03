@@ -14,11 +14,14 @@ Rails.application.routes.draw do
     resources :tweets, only: [:index, :show, :create, :destroy] do
       resources :comments, only: [:create], module: :tweets
       resources :bookmarks, only: [:create], module: :tweets
+      resources :retweets, only: [:create], module: :tweets
       member do
         post :vote
         get :likers
       end
     end
+
+    resources :retweets, only: [:create]
 
     resources :comments, only: [:create, :destroy] do
       resources :bookmarks, only: [:create], module: :comments
