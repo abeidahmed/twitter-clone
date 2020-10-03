@@ -12,6 +12,7 @@ export function Avatar({ src, alt, size, variant, ...props }) {
   const avatarClass = cn([
     'flex-shrink-0 rounded-full',
     {
+      'w-5 h-5': size === 'xs',
       'w-8 h-8': size === 'sm',
       'w-10 h-10': size === 'md',
       'w-12 h-12': size === 'lg',
