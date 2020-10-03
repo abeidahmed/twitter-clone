@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
-import { useModalType } from 'store/modal';
-import { voteTweet } from 'api/vote-tweet';
-import { bookmarkTweet } from 'api/create-bookmark';
-import { deleteBookmark } from 'api/delete-bookmark';
 import * as a from 'shared/user-defaults';
-import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
-import { TextButton, TwitterActionButton, IconWithTextButton } from './button';
-import { CardContainer, DropdownContainer } from 'components/container';
+import { TextButton } from './button';
+import { CardContainer } from 'components/container';
 import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
-import { LikeButton } from './like-button';
-import { CommentButton } from './comment-button';
 import { CommentCard } from './comment-card';
-import { OutsideClickHandler } from './outside-click-handler';
+import { TweetActionBtn } from './tweet-action-btn';
 
 export function TwitterCard({ tweet, user, showComments }) {
   // In user show page, the user details is not listed in the tweet array,
@@ -72,10 +64,12 @@ export function TwitterCard({ tweet, user, showComments }) {
             )}
           </div>
           <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-            <CommentBtn tweet={tweet} user={user} />
-            <RetweetBtn />
-            <LikeBtn tweet={tweet} />
-            <ShareBtn tweet={tweet} />
+            <TweetActionBtn
+              tweet={tweet}
+              user={user}
+              size="sm"
+              showCount={true}
+            />
           </div>
         </div>
       </CardContainer>
@@ -88,150 +82,5 @@ export function TwitterCard({ tweet, user, showComments }) {
           />
         ))}
     </>
-  );
-}
-
-function CommentBtn({ tweet, user }) {
-  const { id, body, createdAt, meta = {}, twitter = user } = tweet;
-  const { comments } = meta;
-
-  const { modalOn, types } = useModalType();
-
-  function handleComment() {
-    modalOn({
-      modalType: types.CREATE_COMMENT_ON_TWEET,
-      modalProps: {
-        tweetID: id,
-        twitterName: twitter.name,
-        twitterTwitterHandle: twitter.twitterHandle,
-        twitterAvatar: twitter.avatar,
-        tweetBody: body,
-        tweetCreatedAt: createdAt,
-      },
-    });
-  }
-
-  return (
-    <CommentButton
-      size="sm"
-      showCount={true}
-      count={comments.totalComments}
-      onClick={handleComment}
-    />
-  );
-}
-
-function LikeBtn({ tweet }) {
-  const { id, meta = {} } = tweet;
-  const { likes } = meta;
-
-  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
-    q.ALL_TWEETS,
-    q.SHOW_TWEET,
-    q.SHOW_USER,
-    q.USER_COMMENTED_TWEETS,
-    q.USER_LIKED_TWEETS,
-    q.USER_MEDIA_TWEETS,
-    q.ALL_BOOKMARKS,
-  ]);
-
-  async function handleLike() {
-    await mutate({
-      id,
-    });
-  }
-
-  return (
-    <LikeButton
-      size="sm"
-      showCount={true}
-      status={likes}
-      onClick={handleLike}
-      disabled={isLoading}
-    />
-  );
-}
-
-function RetweetBtn() {
-  return (
-    <TwitterActionButton
-      icon="refresh"
-      size="sm"
-      color="green"
-      className="relative"
-    >
-      4
-    </TwitterActionButton>
-  );
-}
-
-function ShareBtn({ tweet }) {
-  const { id, bookmarkId, meta: { isBookmarked } = {} } = tweet;
-
-  const [isActive, setIsActive] = useState(false);
-  const [mutate, { isLoading }] = useRefetchMutation(bookmarkTweet, [
-    q.ALL_TWEETS,
-  ]);
-
-  async function handleBookmark() {
-    await mutate({
-      tweetID: id,
-    });
-  }
-
-  const [
-    removeBookmark,
-    { isLoading: removingBookmark },
-  ] = useRefetchMutation(deleteBookmark, [q.ALL_BOOKMARKS]);
-
-  async function handleRemoveBookmark() {
-    await removeBookmark({
-      id: bookmarkId,
-    });
-  }
-
-  const links = [
-    {
-      title: isBookmarked ? 'Remove from bookmarks' : 'Add tweet to bookmarks',
-      icon: 'bookmark',
-      onClick: isBookmarked
-        ? () => handleRemoveBookmark()
-        : () => handleBookmark(),
-      disabled: isBookmarked ? removingBookmark : isLoading,
-    },
-    {
-      title: 'Copy link to tweet',
-      icon: 'link',
-    },
-  ];
-
-  return (
-    <OutsideClickHandler
-      onOutsideClick={() => setIsActive(false)}
-      className="relative"
-    >
-      <TwitterActionButton
-        icon="upload"
-        size="sm"
-        color="teal"
-        className="relative"
-        onClick={() => setIsActive(!isActive)}
-      />
-      <DropdownContainer position="top" isActive={isActive}>
-        {links.map((link) => (
-          <IconWithTextButton
-            key={link.title}
-            color="white"
-            size="md"
-            icon={link.icon}
-            variant="menu"
-            onClick={link.onClick ? link.onClick : null}
-            disabled={link.disabled && link.disabled}
-          >
-            {link.title}
-          </IconWithTextButton>
-        ))}
-      </DropdownContainer>
-    </OutsideClickHandler>
   );
 }
