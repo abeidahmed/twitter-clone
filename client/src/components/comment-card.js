@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
-import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
-import { voteComment } from 'api/vote-comment';
 import { deleteComment } from 'api/delete-comment';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
-import { CommentButton } from './comment-button';
-import {
-  TwitterActionButton,
-  TextButton,
-  IconButton,
-  IconWithTextButton,
-} from './button';
-import { LikeButton } from './like-button';
+import { TextButton, IconButton, IconWithTextButton } from './button';
 import { CardContainer, DropdownContainer } from './container';
 import { Icon } from './icon';
 import { OutsideClickHandler } from './outside-click-handler';
+import { CommentActionBtn } from './comment-action-btn';
 
 export function CommentCard({ comment, twitterID }) {
   const commentContainerClass = cn({
@@ -37,8 +29,7 @@ export function CommentCard({ comment, twitterID }) {
 }
 
 function CommentContainer({ comment, twitterID }) {
-  const { body, commenter, createdAt, meta, id, hasNestedComment } = comment;
-  const { likes } = meta;
+  const { body, commenter, createdAt, id, hasNestedComment } = comment;
 
   return (
     <div>
@@ -86,10 +77,7 @@ function CommentContainer({ comment, twitterID }) {
             </div>
           </div>
           <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-            <CommentBtn comment={comment} />
-            <RetweetBtn />
-            <LikeBtn likes={likes} commentID={id} />
-            <ShareBtn />
+            <CommentActionBtn comment={comment} />
           </div>
         </div>
       </CardContainer>
@@ -142,83 +130,4 @@ function CommentCardOption({ commenterID, twitterID, commentID }) {
     );
   }
   return null;
-}
-
-function CommentBtn({ comment }) {
-  const { body, commenter, createdAt, id, meta } = comment;
-  const { name, twitterHandle, avatar } = commenter;
-  const {
-    comments: { totalComments },
-  } = meta;
-
-  const { modalOn, types } = useModalType();
-
-  function handleComment() {
-    modalOn({
-      modalType: types.CREATE_COMMENT_ON_COMMENT,
-      modalProps: {
-        commentID: id,
-        commenterName: name,
-        commenterTwitterHandle: twitterHandle,
-        commenterAvatar: avatar,
-        commentBody: body,
-        commentCreatedAt: createdAt,
-      },
-    });
-  }
-
-  return (
-    <CommentButton
-      size="sm"
-      showCount={true}
-      count={totalComments}
-      onClick={handleComment}
-    />
-  );
-}
-
-function LikeBtn({ likes, commentID }) {
-  const [mutate, { isLoading }] = useRefetchMutation(voteComment, [
-    q.SHOW_TWEET,
-  ]);
-
-  async function handleLike() {
-    await mutate({
-      id: commentID,
-    });
-  }
-
-  return (
-    <LikeButton
-      size="sm"
-      showCount={true}
-      status={likes}
-      disabled={isLoading}
-      onClick={handleLike}
-    />
-  );
-}
-
-function RetweetBtn() {
-  return (
-    <TwitterActionButton
-      icon="refresh"
-      size="sm"
-      color="green"
-      className="relative"
-    >
-      4
-    </TwitterActionButton>
-  );
-}
-
-function ShareBtn() {
-  return (
-    <TwitterActionButton
-      icon="upload"
-      size="sm"
-      color="teal"
-      className="relative"
-    />
-  );
 }
