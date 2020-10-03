@@ -10,14 +10,14 @@ function makeRatio(ratio) {
 export function AspectRatio({ src, alt, ratio, ...props }) {
   return (
     <div
-      className="relative overflow-hidden rounded-lg shadow-md"
-      style={{ paddingBottom: `${makeRatio(ratio) * 100}%` }}
+      className="overflow-hidden rounded-lg shadow-md"
+      style={{ height: `${makeRatio(ratio) * 100}%` }}
     >
       <img
         {...props}
         src={src}
         alt={alt}
-        className="absolute object-cover w-full h-full overflow-hidden"
+        className="object-cover w-full h-full overflow-hidden"
       />
     </div>
   );
