@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :retweets, only: [:create, :destroy] do
+    resources :retweets, only: [:index, :create, :destroy] do
       resources :retweets, only: [:create], module: :retweets
     end
 

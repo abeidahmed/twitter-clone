@@ -1,4 +1,8 @@
 class RetweetsController < ApplicationController
+  def index
+    @retweets = Retweet.all
+  end
+
   def create
     @retweet = @retweetable.retweets.build(retweet_params)
     @retweet.user_id = current_user.id
