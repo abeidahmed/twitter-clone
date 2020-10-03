@@ -1,4 +1,5 @@
 json.type bookmark.bookmarkable_type
+json.bookmark_id bookmark.id
 
 if bookmark.bookmarkable_type == 'Tweet'
   json.partial! 'tweets/tweet', tweet: bookmark.bookmarkable

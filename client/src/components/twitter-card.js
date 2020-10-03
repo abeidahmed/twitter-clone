@@ -5,6 +5,7 @@ import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { useModalType } from 'store/modal';
 import { voteTweet } from 'api/vote-tweet';
 import { bookmarkTweet } from 'api/create-bookmark';
+import { deleteBookmark } from 'api/delete-bookmark';
 import * as a from 'shared/user-defaults';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
@@ -164,10 +165,12 @@ function RetweetBtn() {
 }
 
 function ShareBtn({ tweet }) {
-  const { id, meta: { isBookmarked } = {} } = tweet;
+  const { id, bookmarkId, meta: { isBookmarked } = {} } = tweet;
 
   const [isActive, setIsActive] = useState(false);
-  const [mutate, { isLoading }] = useRefetchMutation(bookmarkTweet);
+  const [mutate, { isLoading }] = useRefetchMutation(bookmarkTweet, [
+    q.ALL_TWEETS,
+  ]);
 
   async function handleBookmark() {
     await mutate({
@@ -175,12 +178,25 @@ function ShareBtn({ tweet }) {
     });
   }
 
+  const [
+    removeBookmark,
+    { isLoading: removingBookmark },
+  ] = useRefetchMutation(deleteBookmark, [q.ALL_BOOKMARKS]);
+
+  async function handleRemoveBookmark() {
+    await removeBookmark({
+      id: bookmarkId,
+    });
+  }
+
   const links = [
     {
       title: isBookmarked ? 'Remove from bookmarks' : 'Add tweet to bookmarks',
       icon: 'bookmark',
-      onClick: () => handleBookmark(),
-      disabled: isLoading,
+      onClick: isBookmarked
+        ? () => handleRemoveBookmark()
+        : () => handleBookmark(),
+      disabled: isBookmarked ? removingBookmark : isLoading,
     },
     {
       title: 'Copy link to tweet',
