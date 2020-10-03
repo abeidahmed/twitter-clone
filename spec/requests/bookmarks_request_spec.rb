@@ -65,7 +65,7 @@ RSpec.describe "Bookmarks", type: :request do
       before do
         tweet = create(:tweet)
         bookmark = tweet.bookmarks.create! user_id: user.id
-        delete bookmark_url(bookmark), headers: auth_header(user)
+        delete bookmark_url(tweet), headers: auth_header(user)
       end
 
       it 'is expected to delete the bookmark' do
