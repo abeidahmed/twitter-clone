@@ -50,11 +50,13 @@ ActiveRecord::Schema.define(version: 2020_10_03_101618) do
     t.string "retweetable_type", null: false
     t.bigint "retweetable_id", null: false
     t.text "body"
+    t.string "uuid"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["retweetable_type", "retweetable_id"], name: "index_retweets_on_retweetable_type_and_retweetable_id"
     t.index ["user_id"], name: "index_retweets_on_user_id"
+    t.index ["uuid"], name: "index_retweets_on_uuid"
   end
 
   create_table "tweets", force: :cascade do |t|
