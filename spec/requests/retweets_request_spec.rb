@@ -44,4 +44,20 @@ RSpec.describe "Retweets", type: :request do
       include_examples 'created'
     end
   end
+
+  describe '#destroy' do
+    let(:user) { create(:user) }
+
+    context 'when the request is made on retweeted tweet' do
+      before do
+        tweet = create(:tweet)
+        retweet = tweet.retweets.create! user_id: user.id
+        delete retweet_url(retweet), headers: auth_header(user)
+      end
+
+      it 'is expected to delete the retweeted tweet' do
+        expect(Retweet.all.size).to be_zero
+      end
+    end
+  end
 end

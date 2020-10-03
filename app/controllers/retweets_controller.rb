@@ -10,6 +10,11 @@ class RetweetsController < ApplicationController
     end
   end
 
+  def destroy
+    retweet = Retweet.find(params[:id])
+    retweet.destroy
+  end
+
   private
   def retweet_params
     params.require(:retweet).permit(:body)
