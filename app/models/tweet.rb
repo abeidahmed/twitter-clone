@@ -1,7 +1,9 @@
 class Tweet < ApplicationRecord
+  include Helpers::DbHelper
+
   acts_as_votable
 
-  before_create { generate_token(:uuid) }
+  before_create { generate_token(:uuid, Tweet) }
 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
@@ -20,11 +22,4 @@ class Tweet < ApplicationRecord
   scope :from_people_you_know, ->(current_user) { from_people_you_follow(current_user).or(own_tweets(current_user)) }
   scope :consist_images, -> { where.not(image: nil) }
   scope :with_comments_from, ->(user) { includes(:comments).where('comments.user_id': user.id) }
-
-  private
-  def generate_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while Tweet.exists?(column => self[column])
-  end
 end
