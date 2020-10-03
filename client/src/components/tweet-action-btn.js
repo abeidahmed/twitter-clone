@@ -153,7 +153,7 @@ function ShareBtn({ tweet, size }) {
   return (
     <OutsideClickHandler
       onOutsideClick={() => setIsActive(false)}
-      className="relative"
+      className="relative flex items-center justify-center"
     >
       <TwitterActionButton
         icon="upload"
