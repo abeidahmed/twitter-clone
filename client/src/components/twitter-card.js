@@ -22,54 +22,56 @@ export function TwitterCard({ tweet, user, showComments }) {
         to={`/${twitter.twitterHandle}/status/${uuid}`}
         bordered={!showComments}
       >
-        <div className="flex flex-col items-center">
-          <div className="flex-shrink-0">
-            <Avatar size="md" src={twitter.avatar} alt="" />
-          </div>
-          {showComments && (
-            <div className="flex-1 w-0.5 py-4 my-2 bg-gray-300"></div>
-          )}
-        </div>
-        <div className="flex flex-col flex-1">
-          <div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <TextButton
-                  to={`/${twitter.twitterHandle}`}
-                  color="black"
-                  size="sm"
-                  className="relative font-bold"
-                >
-                  {twitter.name || a.DEFAULT_NAME}
-                </TextButton>
-                <span className="pl-2 text-sm leading-5 text-gray-500">
-                  @{twitter.twitterHandle}
-                </span>
-                <span className="mx-1">&middot;</span>
-                <span className="text-sm leading-5 text-gray-500">
-                  {withPartialMonth(createdAt)}
-                </span>
-              </div>
-              {twitter.id === currentUser.id && (
-                <TweetCardOption tweetID={id} />
-              )}
+        <div className="flex space-x-3">
+          <div className="flex flex-col items-center">
+            <div className="flex-shrink-0">
+              <Avatar size="md" src={twitter.avatar} alt="" />
             </div>
-            <div>
-              <p className="text-gray-600">{body}</p>
-            </div>
-            {image && (
-              <figure className="mt-3">
-                <AspectRatio src={image} alt="attachment" ratio="16:9" />
-              </figure>
+            {showComments && (
+              <div className="flex-1 w-0.5 py-4 my-2 bg-gray-300"></div>
             )}
           </div>
-          <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-            <TweetActionBtn
-              tweet={tweet}
-              user={user}
-              size="sm"
-              showCount={true}
-            />
+          <div className="flex flex-col flex-1">
+            <div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <TextButton
+                    to={`/${twitter.twitterHandle}`}
+                    color="black"
+                    size="sm"
+                    className="relative font-bold"
+                  >
+                    {twitter.name || a.DEFAULT_NAME}
+                  </TextButton>
+                  <span className="pl-2 text-sm leading-5 text-gray-500">
+                    @{twitter.twitterHandle}
+                  </span>
+                  <span className="mx-1">&middot;</span>
+                  <span className="text-sm leading-5 text-gray-500">
+                    {withPartialMonth(createdAt)}
+                  </span>
+                </div>
+                {twitter.id === currentUser.id && (
+                  <TweetCardOption tweetID={id} />
+                )}
+              </div>
+              <div>
+                <p className="text-gray-600">{body}</p>
+              </div>
+              {image && (
+                <figure className="mt-3">
+                  <AspectRatio src={image} alt="attachment" ratio="16:9" />
+                </figure>
+              )}
+            </div>
+            <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
+              <TweetActionBtn
+                tweet={tweet}
+                user={user}
+                size="sm"
+                showCount={true}
+              />
+            </div>
           </div>
         </div>
       </CardContainer>

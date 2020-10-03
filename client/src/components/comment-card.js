@@ -34,50 +34,52 @@ function CommentContainer({ comment, twitterID }) {
   return (
     <div>
       <CardContainer to="/" bordered={false}>
-        <div className="flex flex-col items-center">
-          <div className="flex-shrink-0">
-            <Avatar
-              size="md"
-              src={commenter.avatar}
-              alt={commenter.twitterHandle}
-            />
-          </div>
-          {hasNestedComment && (
-            <div className="flex-1 w-0.5 py-4 my-2 bg-gray-300"></div>
-          )}
-        </div>
-        <div className="flex flex-col flex-1">
-          <div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <TextButton
-                  to={`/${commenter.twitterHandle}`}
-                  color="black"
-                  size="sm"
-                  className="relative font-bold"
-                >
-                  {commenter.name}
-                </TextButton>
-                <span className="pl-2 text-sm leading-5 text-gray-500">
-                  @{commenter.twitterHandle}
-                </span>
-                <span className="mx-1">&middot;</span>
-                <span className="text-sm leading-5 text-gray-500">
-                  {withPartialMonth(createdAt)}
-                </span>
-              </div>
-              <CommentCardOption
-                commenterID={commenter.id}
-                twitterID={twitterID}
-                commentID={id}
+        <div className="flex space-x-3">
+          <div className="flex flex-col items-center">
+            <div className="flex-shrink-0">
+              <Avatar
+                size="md"
+                src={commenter.avatar}
+                alt={commenter.twitterHandle}
               />
             </div>
-            <div>
-              <p className="text-gray-600">{body}</p>
-            </div>
+            {hasNestedComment && (
+              <div className="flex-1 w-0.5 py-4 my-2 bg-gray-300"></div>
+            )}
           </div>
-          <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-            <CommentActionBtn comment={comment} />
+          <div className="flex flex-col flex-1">
+            <div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <TextButton
+                    to={`/${commenter.twitterHandle}`}
+                    color="black"
+                    size="sm"
+                    className="relative font-bold"
+                  >
+                    {commenter.name}
+                  </TextButton>
+                  <span className="pl-2 text-sm leading-5 text-gray-500">
+                    @{commenter.twitterHandle}
+                  </span>
+                  <span className="mx-1">&middot;</span>
+                  <span className="text-sm leading-5 text-gray-500">
+                    {withPartialMonth(createdAt)}
+                  </span>
+                </div>
+                <CommentCardOption
+                  commenterID={commenter.id}
+                  twitterID={twitterID}
+                  commentID={id}
+                />
+              </div>
+              <div>
+                <p className="text-gray-600">{body}</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
+              <CommentActionBtn comment={comment} />
+            </div>
           </div>
         </div>
       </CardContainer>
