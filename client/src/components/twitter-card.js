@@ -54,7 +54,7 @@ export function TwitterCard({ tweet, user, showComments }) {
                 <TweetCardOption tweetID={id} />
               )}
             </div>
-            <div className="mt-2">
+            <div>
               <p className="text-gray-600">{body}</p>
             </div>
             {image && (
