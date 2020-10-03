@@ -91,7 +91,7 @@ function RetweetBtn({ size, showCount }) {
       color="green"
       className="relative"
     >
-      {showCount}
+      {showCount && 4}
     </TwitterActionButton>
   );
 }
