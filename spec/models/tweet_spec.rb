@@ -19,6 +19,8 @@ RSpec.describe Tweet, type: :model do
     it { should have_many(:comments) }
 
     it { should have_many(:bookmarks) }
+
+    it { should have_many(:retweets) }
   end
 
   describe "before creating a new tweet it should set uuid" do
