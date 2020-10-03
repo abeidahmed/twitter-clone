@@ -9,16 +9,13 @@ import * as q from 'shared/query-key';
 import * as a from 'shared/user-defaults';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
-import { TextButton, TwitterActionButton } from 'components/button';
+import { TextButton } from 'components/button';
 import { Spinner } from 'components/spinner';
 import { AspectRatio } from 'components/aspect-ratio';
 import { TweetCardOption } from 'components/tweet-card-option';
-import { LikeButton } from 'components/like-button';
 import { TweetStats } from 'components/tweet-stats';
-import { CommentButton } from 'components/comment-button';
 import { CommentCard } from 'components/comment-card';
-import { voteTweet } from 'api/vote-tweet';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { TweetActionBtn } from 'components/tweet-action-btn';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
@@ -88,7 +85,9 @@ function ShowTweet() {
               <span>{detailedDate(tweet.createdAt)}</span>
             </div>
             <TweetStatistics likes={likes} tweetID={tweet.id} />
-            <TweetActionButton tweet={tweet} />
+            <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
+              <TweetActionBtn tweet={tweet} size="md" showCount={false} />
+            </div>
           </section>
         </div>
       </article>
@@ -99,62 +98,6 @@ function ShowTweet() {
           twitterID={twitter.id}
         />
       ))}
-    </div>
-  );
-}
-
-function TweetActionButton({ tweet }) {
-  const { id, body, createdAt, meta = {}, twitter } = tweet;
-  const { likes } = meta;
-  const { modalOn, types } = useModalType();
-
-  const [mutate, { isLoading }] = useRefetchMutation(voteTweet, [
-    q.ALL_TWEETS,
-    q.SHOW_TWEET,
-  ]);
-
-  async function handleLike() {
-    await mutate({
-      id,
-    });
-  }
-
-  function handleComment() {
-    modalOn({
-      modalType: types.CREATE_COMMENT_ON_TWEET,
-      modalProps: {
-        tweetID: id,
-        twitterName: twitter.name,
-        twitterTwitterHandle: twitter.twitterHandle,
-        twitterAvatar: twitter.avatar,
-        tweetBody: body,
-        tweetCreatedAt: createdAt,
-      },
-    });
-  }
-
-  return (
-    <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
-      <CommentButton size="sm" showCount={false} onClick={handleComment} />
-      <TwitterActionButton
-        icon="refresh"
-        size="md"
-        color="green"
-        className="relative"
-      ></TwitterActionButton>
-      <LikeButton
-        size="md"
-        showCount={false}
-        status={likes}
-        onClick={handleLike}
-        disabled={isLoading}
-      />
-      <TwitterActionButton
-        icon="upload"
-        size="md"
-        color="teal"
-        className="relative"
-      />
     </div>
   );
 }
