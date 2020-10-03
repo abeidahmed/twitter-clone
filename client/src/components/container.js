@@ -31,7 +31,7 @@ export function CardContainer({ bordered, to, children, ...props }) {
   return (
     <div className={containerClass}>
       <Link to={to} className="absolute inset-0"></Link>
-      <div className="flex px-4 py-2 space-x-3" {...props}>
+      <div className="px-4 py-2" {...props}>
         {children}
       </div>
     </div>
