@@ -12,4 +12,12 @@ RSpec.describe Retweet, type: :model do
 
     it { should have_many(:retweets) }
   end
+
+  describe "before retweeting it should set uuid" do
+    it "is expected to set uuid with Secure Random hash" do
+      retweet = build :retweet, uuid: nil
+      retweet.save!
+      expect(retweet.reload.uuid).to_not be_nil
+    end
+  end
 end

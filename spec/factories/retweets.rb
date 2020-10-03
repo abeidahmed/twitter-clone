@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :retweet do
-    retweetable { nil }
-    body { "MyText" }
-    user { nil }
+    user
+    body { 'Retweetable tweet' }
+    uuid { 'awgh3t3t3' }
+    association :retweetable, factory: :tweet
   end
 end
