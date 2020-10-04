@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/icon';
 import { CardContainer } from './container';
 import { TextButton, TwitterActionButton, IconButton } from './button';
@@ -183,7 +184,8 @@ function ActionButtons() {
 }
 
 function Retweeter({ user }) {
-  const { name, twitterHandle } = user;
+  const { currentUser } = useCurrentUser();
+  const { id, name, twitterHandle } = user;
 
   return (
     <div className="relative inline-flex items-center mb-1 space-x-3 text-xs text-gray-500 ml-7">
@@ -191,7 +193,7 @@ function Retweeter({ user }) {
       <UserHoverableCard
         hoverTo={
           <Link to={`/users/${twitterHandle}`} className="hover:underline">
-            {`${name} Retweeted`}
+            {currentUser.id === id ? 'You Retweeted' : `${name} Retweeted`}
           </Link>
         }
         user={user}
