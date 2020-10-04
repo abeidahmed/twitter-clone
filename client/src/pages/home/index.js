@@ -6,6 +6,20 @@ import Tweets from './tweets';
 import { Divider } from 'components/divider';
 import TweetBox from 'lib/tweet-box';
 import { MobileTweetButton } from 'components/mobile-tweet-button';
+import { Tab } from 'components/tab';
+
+const links = [
+  {
+    title: 'Tweets',
+    path: '/',
+    exact: true,
+  },
+  {
+    title: 'Retweets',
+    path: '/retweets',
+    exact: true,
+  },
+];
 
 function Home() {
   useSetTitle('Home', null);
@@ -17,6 +31,9 @@ function Home() {
         <TweetBox />
         <Divider />
       </section>
+      <div className="border-b border-gray-200">
+        <Tab links={links} />
+      </div>
       <div className="relative">
         <Switch>
           <Route path="/retweets" component={Retweets} />
