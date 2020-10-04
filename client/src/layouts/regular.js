@@ -8,7 +8,7 @@ import MobileMenu from 'lib/mobile-menu';
 import Header from 'lib/header';
 import Sidebar from 'lib/sidebar';
 import Explore from 'pages/explore';
-import Home from 'pages';
+import Home from 'pages/home';
 import Bookmark from 'pages/bookmark';
 import Profile from 'pages/profile';
 import ShowTweet from 'pages/tweets/show-tweet';
