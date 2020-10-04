@@ -23,7 +23,9 @@ function Follows({ user }) {
 
   return (
     <div>
-      <Tab links={links} />
+      <div className="border-b border-gray-200">
+        <Tab links={links} />
+      </div>
       <Switch>
         <Route path="/users/:id/followers" component={Followers} />
         <Route path="/users/:id/followings" component={Following} />
