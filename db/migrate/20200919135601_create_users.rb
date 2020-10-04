@@ -13,6 +13,6 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :users, :email
+    add_index :users, [:email, :twitter_handle]
   end
 end

@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 2020_10_03_101618) do
   end
 
   create_table "retweets", force: :cascade do |t|
-    t.string "retweetable_type", null: false
-    t.bigint "retweetable_id", null: false
     t.text "body"
     t.string "uuid"
+    t.string "retweetable_type", null: false
+    t.bigint "retweetable_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_10_03_101618) do
     t.string "banner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email", "twitter_handle"], name: "index_users_on_email_and_twitter_handle"
   end
 
   create_table "votes", force: :cascade do |t|
