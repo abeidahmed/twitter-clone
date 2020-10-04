@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { allRetweets } from 'api/all-retweets';
+import * as q from 'shared/query-key';
 import { RetweetCollection } from 'components/retweet-card';
 import { Spinner } from 'components/spinner';
 
@@ -9,7 +10,7 @@ function Retweets() {
     data: { data: { retweets } = {} } = {},
     isLoading,
     isError,
-  } = useQuery('allRetweets', allRetweets);
+  } = useQuery(q.ALL_RETWEETS, allRetweets);
 
   return (
     <>

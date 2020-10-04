@@ -1,6 +1,7 @@
 export const ALL_BOOKMARKS = 'ALL_BOOKMARKS';
 export const ALL_FOLLOWINGS = 'ALL_FOLLOWINGS';
 export const ALL_FOLLOWERS = 'ALL_FOLLOWERS';
+export const ALL_RETWEETS = 'ALL_RETWEETS';
 export const ALL_TWEETS = 'ALL_TWEETS';
 export const ALL_USERS = 'ALL_USERS';
 export const USER_MEDIA_TWEETS = 'USER_MEDIA_TWEETS';
