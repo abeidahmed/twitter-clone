@@ -38,7 +38,7 @@ export function TwitterCard({ tweet, user, showComments }) {
                   <UserHoverableCard
                     hoverTo={
                       <TextButton
-                        to={`/${twitter.twitterHandle}`}
+                        to={`/users/${twitter.twitterHandle}`}
                         color="black"
                         size="sm"
                         className="relative font-bold"

@@ -23,7 +23,7 @@ function UserCard({ user }) {
   } = user;
 
   return (
-    <CardContainer to={`/${twitterHandle}`} bordered={true}>
+    <CardContainer to={`/users/${twitterHandle}`} bordered={true}>
       <div className="flex space-x-3">
         <div className="flex-shrink-0">
           <Avatar size="md" src={avatar} alt={twitterHandle} />
@@ -34,7 +34,7 @@ function UserCard({ user }) {
               <UserHoverableCard
                 hoverTo={
                   <TextButton
-                    to={`/${twitterHandle}`}
+                    to={`/users/${twitterHandle}`}
                     size="sm"
                     color="black"
                     className="relative font-semibold"

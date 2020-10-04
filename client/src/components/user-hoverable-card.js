@@ -44,7 +44,7 @@ export function UserHoverableCard({ hoverTo, user }) {
                 <Avatar size="lg" src={avatar} alt={twitterHandle} />
                 <div className="mt-1">
                   <TextButton
-                    to={`/${twitterHandle}`}
+                    to={`/users/${twitterHandle}`}
                     color="black"
                     size="sm"
                     className="relative font-bold"
