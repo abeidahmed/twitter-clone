@@ -9,6 +9,7 @@ import { Avatar } from './avatar';
 import { TextButton } from './button';
 import { Badge } from './badge';
 import { CardContainer } from './container';
+import { UserHoverableCard } from './user-hoverable-card';
 
 function UserCard({ user }) {
   const {
@@ -30,14 +31,19 @@ function UserCard({ user }) {
         <div className="flex flex-col flex-1">
           <div className="flex justify-between">
             <div className="flex-1">
-              <TextButton
-                to={`/${twitterHandle}`}
-                size="sm"
-                color="black"
-                className="relative font-semibold"
-              >
-                {name || 'Twitter user'}
-              </TextButton>
+              <UserHoverableCard
+                hoverTo={
+                  <TextButton
+                    to={`/${twitterHandle}`}
+                    size="sm"
+                    color="black"
+                    className="relative font-semibold"
+                  >
+                    {name || 'Twitter user'}
+                  </TextButton>
+                }
+                user={user}
+              />
               <div className="flex items-center space-x-2">
                 <p className="text-sm text-gray-500">@{twitterHandle}</p>
                 {isFollowed && <Badge>Follows you</Badge>}
