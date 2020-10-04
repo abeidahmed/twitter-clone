@@ -69,7 +69,7 @@ function RetweetCard({ tweet }) {
                   {nestedTweet.image && (
                     <figure className="mt-3">
                       <AspectRatio
-                        src="https://images.unsplash.com/photo-1552435053-01c010307582?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+                        src={nestedTweet.image}
                         alt="attachment"
                         ratio="16:9"
                       />
@@ -80,7 +80,7 @@ function RetweetCard({ tweet }) {
               {retweetable.image && (
                 <figure className="mt-3">
                   <AspectRatio
-                    src="https://images.unsplash.com/photo-1552435053-01c010307582?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+                    src={retweetable.image}
                     alt="attachment"
                     ratio="16:9"
                   />
@@ -140,7 +140,7 @@ function QuoteTweetCard({ tweet }) {
               {retweetable.image && (
                 <figure className="mt-3">
                   <AspectRatio
-                    src="https://images.unsplash.com/photo-1552435053-01c010307582?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+                    src={retweetable.image}
                     alt="attachment"
                     ratio="16:9"
                   />
