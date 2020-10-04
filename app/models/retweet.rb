@@ -8,4 +8,6 @@ class Retweet < ApplicationRecord
   has_many :retweets, as: :retweetable, dependent: :destroy
 
   validates_length_of :body, maximum: 240
+
+  default_scope { order(created_at: :desc) }
 end
