@@ -1,6 +1,6 @@
 class RetweetsController < ApplicationController
   def index
-    @retweets = Retweet.all
+    @retweets = Retweet.from_people_you_know(current_user)
   end
 
   def create
