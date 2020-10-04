@@ -22,10 +22,10 @@ export function UserHoverableCard({ hoverTo, user }) {
   } = user;
 
   const wrapperClass = cn([
-    'absolute pt-1 top-full',
+    'absolute pt-1 top-full transition duration-150 ease-in-out',
     {
-      hidden: !isActive,
-      block: isActive,
+      'invisible opacity-0': !isActive,
+      'visible opacity-100': isActive,
     },
   ]);
 
