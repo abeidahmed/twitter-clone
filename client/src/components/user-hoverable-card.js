@@ -66,8 +66,8 @@ export function UserHoverableCard({ hoverTo, user }) {
                 <FollowStat
                   follower={followersCount}
                   following={followingCount}
-                  followerTo={`/${twitterHandle}/followers`}
-                  followingTo={`/${twitterHandle}/followings`}
+                  followerTo={`/users/${twitterHandle}/followers`}
+                  followingTo={`/users/${twitterHandle}/followings`}
                 />
               </div>
             </div>

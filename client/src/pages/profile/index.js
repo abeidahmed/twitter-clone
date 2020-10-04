@@ -25,32 +25,32 @@ function Profile() {
     <div>
       <Switch>
         <Route
-          path="/:id/followers"
+          path="/users/:id/followers"
           render={(props) => <Followers {...props} user={user} />}
         />
         <Route
-          path="/:id/followings"
+          path="/users/:id/followings"
           render={(props) => <Followings {...props} user={user} />}
         />
         <ProfileWrapper user={user}>
           <Route
             exact
-            path={`/${id}/likes`}
+            path={`/users/${id}/likes`}
             render={(props) => <Likes {...props} user={user} />}
           />
           <Route
             exact
-            path={`/${id}/media`}
+            path={`/users/${id}/media`}
             render={(props) => <Media {...props} user={user} />}
           />
           <Route
             exact
-            path={`/${id}/tweets_replies`}
+            path={`/users/${id}/tweets_replies`}
             render={(props) => <Replies {...props} user={user} />}
           />
           <Route
             exact
-            path={`/${id}`}
+            path={`/users/${id}`}
             render={(props) => <Tweets {...props} user={user} />}
           />
         </ProfileWrapper>

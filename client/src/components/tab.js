@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export function Tab({ links }) {
   return (
-    <nav className="flex items-center justify-between min-w-0 mt-3">
+    <nav className="flex items-center justify-between min-w-0">
       {links.map(({ title, path, exact }) => (
         <NavLink
           key={title}

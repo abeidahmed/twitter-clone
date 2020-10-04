@@ -39,7 +39,7 @@ function NavigationBar() {
     {
       title: 'Profile',
       icon: 'user',
-      path: `/${twitterHandle}`,
+      path: `/users/${twitterHandle}`,
     },
     {
       title: 'Explore',
@@ -105,8 +105,8 @@ function UserDetails() {
         <FollowStat
           follower={followersCount}
           following={followingCount}
-          followingTo={`/${twitterHandle}/followings`}
-          followerTo={`/${twitterHandle}/followers`}
+          followingTo={`/users/${twitterHandle}/followings`}
+          followerTo={`/users/${twitterHandle}/followers`}
         />
       </div>
     </div>

@@ -28,10 +28,10 @@ export default function Regular() {
               <div className="relative flex-1 overflow-y-auto border-l border-r border-gray-200">
                 <Switch>
                   <Route exact path="/explore" component={Explore} />
-                  <Route exact path="/" component={Home} />
                   <Route exact path="/:id/status/:uuid" component={ShowTweet} />
                   <Route exact path="/:id/bookmarks" component={Bookmark} />
-                  <Route path="/:id" component={Profile} />
+                  <Route path="/users/:id" component={Profile} />
+                  <Route path="/" component={Home} />
                 </Switch>
               </div>
               <MobileMenu />

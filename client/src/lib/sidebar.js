@@ -38,7 +38,7 @@ function Sidebar() {
     },
     {
       title: 'Profile',
-      path: `/${currentUser.twitterHandle}`,
+      path: `/users/${currentUser.twitterHandle}`,
       exact: true,
       icon: 'user',
     },

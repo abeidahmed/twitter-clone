@@ -21,22 +21,22 @@ function ProfileWrapper({ user, children }) {
   const links = [
     {
       title: 'Tweets',
-      path: `/${twitterHandle}`,
+      path: `/users/${twitterHandle}`,
       exact: true,
     },
     {
       title: 'Tweets & replies',
-      path: `/${twitterHandle}/tweets_replies`,
+      path: `/users/${twitterHandle}/tweets_replies`,
       exact: true,
     },
     {
       title: 'Media',
-      path: `/${twitterHandle}/media`,
+      path: `/users/${twitterHandle}/media`,
       exact: true,
     },
     {
       title: 'Likes',
-      path: `/${twitterHandle}/likes`,
+      path: `/users/${twitterHandle}/likes`,
       exact: true,
     },
   ];
@@ -64,7 +64,7 @@ function ProfileWrapper({ user, children }) {
           </div>
         </div>
         <UserDetail user={user} />
-        <div className="-mx-4">
+        <div className="mt-3 -mx-4">
           <Tab links={links} />
         </div>
       </div>
@@ -173,8 +173,8 @@ function UserDetail({ user }) {
       <FollowStat
         follower={followersCount}
         following={followingCount}
-        followingTo={`/${twitterHandle}/followings`}
-        followerTo={`/${twitterHandle}/followers`}
+        followingTo={`/users/${twitterHandle}/followings`}
+        followerTo={`/users/${twitterHandle}/followers`}
       />
     </div>
   );
