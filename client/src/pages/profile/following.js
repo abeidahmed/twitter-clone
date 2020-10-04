@@ -2,14 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import * as q from 'shared/query-key';
-import * as a from 'shared/user-defaults';
 import { allFollowings } from 'api/all-followings';
 import { useSetTitle } from 'store/page-title';
 import UserCard from 'components/user-card';
 import { Spinner } from 'components/spinner';
 
 function Following({ user }) {
-  useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
+  useSetTitle(user.name, `@${user.twitterHandle}`);
 
   const { id } = useParams();
   const { data: { data: { users } = {} } = {}, isLoading, isError } = useQuery(

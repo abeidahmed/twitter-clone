@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSetTitle } from 'store/page-title';
-import * as a from 'shared/user-defaults';
 import { TwitterCard } from 'components/twitter-card';
 import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function Tweets({ user }) {
-  useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
+  useSetTitle(user.name, `@${user.twitterHandle}`);
   const { tweets } = user;
 
   return (

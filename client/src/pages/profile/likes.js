@@ -2,14 +2,13 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
 import { allUserLikedTweets } from 'api/all-tweets';
-import * as a from 'shared/user-defaults';
 import * as q from 'shared/query-key';
 import { TwitterCard } from 'components/twitter-card';
 import { Spinner } from 'components/spinner';
 import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function Likes({ user }) {
-  useSetTitle(user.name || a.DEFAULT_NAME, `@${user.twitterHandle}`);
+  useSetTitle(user.name, `@${user.twitterHandle}`);
   const { id } = user;
 
   const { data: { data: { tweets } = {} } = {}, isLoading, isError } = useQuery(

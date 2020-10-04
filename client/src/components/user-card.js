@@ -52,9 +52,7 @@ function UserCard({ user }) {
             <DynamicFollowBtn user={user} />
           </div>
           <div className="mt-1">
-            <p className="text-sm text-gray-700">
-              {bio || 'This user is too busy!'}
-            </p>
+            <p className="text-sm text-gray-700">{bio}</p>
           </div>
         </div>
       </div>

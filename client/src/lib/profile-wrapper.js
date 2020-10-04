@@ -4,7 +4,6 @@ import { useModalType } from 'store/modal';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { withFullMonth } from 'utils/date-time';
 import * as q from 'shared/query-key';
-import * as a from 'shared/user-defaults';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { Tab } from 'components/tab';
@@ -159,9 +158,9 @@ function UserDetail({ user }) {
 
   return (
     <div className="mt-1">
-      <h2 className="text-lg font-semibold">{name || a.DEFAULT_NAME}</h2>
+      <h2 className="text-lg font-semibold">{name}</h2>
       <p className="text-sm leading-5 text-gray-600">@{twitterHandle}</p>
-      <p className="mt-2 text-gray-600">{bio || 'The user is too busy!'}</p>
+      <p className="mt-2 text-gray-600">{bio}</p>
       <div className="py-2 space-y-2 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:space-x-3">
         {location && <UserMeta icon="location" title={location} />}
         {website && <UserMeta icon="link" title={website} linkTo={website} />}

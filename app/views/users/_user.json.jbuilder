@@ -1,8 +1,8 @@
 json.id user.id
 json.twitter_handle user.twitter_handle
 json.email user.email
-json.name user.name
-json.bio user.bio
+json.name user.name || 'Twitter User'
+json.bio user.bio || 'Time to spare? Update your bio!'
 json.location user.location
 json.website user.website
 json.avatar get_file_url(user.avatar, width: 200, height: 200, gravity: 'face', crop: 'thumb')

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
-import * as a from 'shared/user-defaults';
 import { Avatar } from './avatar';
 import { TextButton } from './button';
 import { CardContainer } from 'components/container';
@@ -44,7 +43,7 @@ export function TwitterCard({ tweet, user, showComments }) {
                         size="sm"
                         className="relative font-bold"
                       >
-                        {twitter.name || a.DEFAULT_NAME}
+                        {twitter.name}
                       </TextButton>
                     }
                     user={twitter}

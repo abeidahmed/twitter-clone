@@ -6,7 +6,6 @@ import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
-import * as a from 'shared/user-defaults';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
 import { TextButton } from 'components/button';
@@ -59,7 +58,7 @@ function ShowTweet() {
                   size="sm"
                   className="relative font-bold"
                 >
-                  {twitter.name || a.DEFAULT_NAME}
+                  {twitter.name}
                 </TextButton>
                 <span className="block text-sm leading-5 text-gray-500">
                   @{twitter.twitterHandle}
