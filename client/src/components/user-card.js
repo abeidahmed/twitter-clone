@@ -30,7 +30,7 @@ function UserCard({ user }) {
         </div>
         <div className="flex flex-col flex-1">
           <div className="flex justify-between">
-            <div className="flex-1">
+            <div>
               <UserHoverableCard
                 hoverTo={
                   <TextButton
