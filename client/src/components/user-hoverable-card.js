@@ -61,7 +61,7 @@ export function UserHoverableCard({ hoverTo, user }) {
               </div>
             </div>
             <div className="mt-2">
-              <p className="text-gray-600">{bio}</p>
+              <p className="text-base text-gray-600">{bio}</p>
               <div className="mt-2">
                 <FollowStat
                   follower={followersCount}
