@@ -7,8 +7,7 @@ import Likes from './likes';
 import Media from './media';
 import Replies from './replies';
 import Tweets from './tweets';
-import Followers from './followers';
-import Followings from './following';
+import Follows from './follows';
 import ProfileWrapper from 'lib/profile-wrapper';
 import { Spinner } from 'components/spinner';
 
@@ -25,12 +24,8 @@ function Profile() {
     <div>
       <Switch>
         <Route
-          path="/users/:id/followers"
-          render={(props) => <Followers {...props} user={user} />}
-        />
-        <Route
-          path="/users/:id/followings"
-          render={(props) => <Followings {...props} user={user} />}
+          path="/users/:id/(follow[ers|ings]\w+)"
+          render={(props) => <Follows {...props} user={user} />}
         />
         <ProfileWrapper user={user}>
           <Route
