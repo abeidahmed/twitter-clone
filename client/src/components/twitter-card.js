@@ -9,6 +9,7 @@ import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
 import { CommentCard } from './comment-card';
 import { TweetActionBtn } from './tweet-action-btn';
+import { UserHoverableCard } from './user-hoverable-card';
 
 export function TwitterCard({ tweet, user, showComments }) {
   // In user show page, the user details is not listed in the tweet array,
@@ -35,14 +36,19 @@ export function TwitterCard({ tweet, user, showComments }) {
             <div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <TextButton
-                    to={`/${twitter.twitterHandle}`}
-                    color="black"
-                    size="sm"
-                    className="relative font-bold"
-                  >
-                    {twitter.name || a.DEFAULT_NAME}
-                  </TextButton>
+                  <UserHoverableCard
+                    hoverTo={
+                      <TextButton
+                        to={`/${twitter.twitterHandle}`}
+                        color="black"
+                        size="sm"
+                        className="relative font-bold"
+                      >
+                        {twitter.name || a.DEFAULT_NAME}
+                      </TextButton>
+                    }
+                    user={twitter}
+                  />
                   <span className="pl-2 text-sm leading-5 text-gray-500">
                     @{twitter.twitterHandle}
                   </span>
