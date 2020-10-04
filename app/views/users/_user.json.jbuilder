@@ -14,7 +14,7 @@ json.includes do
     json.followers_count user.followers.count
     json.following_count user.following.count
 
-    json.is_following current_user.following?(user)
-    json.is_followed user.following?(current_user)
+    json.is_following current_user.following?(user) if user_signed_in?
+    json.is_followed user.following?(current_user) if user_signed_in?
   end
 end
