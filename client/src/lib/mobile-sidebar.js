@@ -10,14 +10,6 @@ import { Avatar } from 'components/avatar';
 import { IconButton } from 'components/button';
 
 function MobileSidebar() {
-  const { logout, currentUser } = useCurrentUser();
-
-  const history = useHistory();
-  function handleLogout() {
-    logout();
-    history.push('/secure/login');
-  }
-
   const { setOff, isActive } = useSidebarToggle();
 
   return (
@@ -25,23 +17,29 @@ function MobileSidebar() {
       <Aside isActive={isActive}>
         <Header setOff={setOff} />
         <div className="py-3">
-          <UserDetails currentUser={currentUser} />
-          <NavigationBar
-            currentUser={currentUser}
-            handleLogout={handleLogout}
-          />
+          <UserDetails />
+          <NavigationBar />
         </div>
       </Aside>
     </div>
   );
 }
 
-function NavigationBar({ currentUser, handleLogout }) {
+function NavigationBar() {
+  const { logout, currentUser } = useCurrentUser();
+  const { twitterHandle } = currentUser;
+
+  const history = useHistory();
+  function handleLogout() {
+    logout();
+    history.push('/secure/login');
+  }
+
   const links = [
     {
       title: 'Profile',
       icon: 'user',
-      path: `/${currentUser.twitterHandle}`,
+      path: `/${twitterHandle}`,
     },
     {
       title: 'Explore',
@@ -51,7 +49,7 @@ function NavigationBar({ currentUser, handleLogout }) {
     {
       title: 'Bookmarks',
       icon: 'bookmark',
-      path: `/${currentUser.twitterHandle}/bookmarks`,
+      path: `/${twitterHandle}/bookmarks`,
     },
     {
       title: 'Settings and Privacy',
@@ -84,26 +82,31 @@ function NavigationBar({ currentUser, handleLogout }) {
   );
 }
 
-function UserDetails({ currentUser }) {
+function UserDetails() {
+  const { currentUser } = useCurrentUser();
+
+  const {
+    avatar,
+    twitterHandle,
+    name,
+    includes: { followStat: { followersCount, followingCount } = {} } = {},
+  } = currentUser;
+
   return (
     <div className="px-4">
       <div>
-        <Avatar
-          size="md"
-          src={currentUser.avatar}
-          alt={`${currentUser.twitterHandle}'s profile`}
-        />
+        <Avatar size="md" src={avatar} alt={`${twitterHandle}'s profile`} />
         <div className="mt-2 text-sm">
-          <p className="font-semibold">{currentUser.name || a.DEFAULT_NAME}</p>
-          <p className="text-gray-500">@{currentUser.twitterHandle}</p>
+          <p className="font-semibold">{name || a.DEFAULT_NAME}</p>
+          <p className="text-gray-500">@{twitterHandle}</p>
         </div>
       </div>
       <div className="mt-4">
         <FollowStat
-          follower={currentUser.followersCount}
-          following={currentUser.followingCount}
-          followingTo={`/${currentUser.twitterHandle}/followings`}
-          followerTo={`/${currentUser.twitterHandle}/followers`}
+          follower={followersCount}
+          following={followingCount}
+          followingTo={`/${twitterHandle}/followings`}
+          followerTo={`/${twitterHandle}/followers`}
         />
       </div>
     </div>

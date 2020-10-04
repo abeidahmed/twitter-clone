@@ -10,7 +10,7 @@ import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function LikedByList() {
   const { modalProps } = useModalType();
-  const { data, isLoading, isError } = useQuery(
+  const { data: { data: { users } = {} } = {}, isLoading, isError } = useQuery(
     [q.ALL_TWEET_LIKERS, { id: modalProps.id }],
     likedBy
   );
@@ -18,21 +18,17 @@ function LikedByList() {
   return (
     <ModalWrapper modalTitle="Liked by">
       <div className="relative">
-        {isLoading || isError ? <Spinner /> : <ListResult data={data} />}
+        {isLoading || isError ? <Spinner /> : <ListResult users={users} />}
       </div>
     </ModalWrapper>
   );
 }
 
-function ListResult({ data }) {
-  const {
-    data: { users },
-  } = data;
-
+function ListResult({ users }) {
   return (
     <>
       {users.length ? (
-        users.map((user) => <UserCard user={user} />)
+        users.map((user) => <UserCard key={user.id} user={user} />)
       ) : (
         <ObjectNotFound
           description="We're sorry, no one has liked the tweet. People who has liked the

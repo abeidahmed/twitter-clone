@@ -26,7 +26,7 @@ function Home() {
         <Divider />
       </section>
       <div className="relative">
-        <RetweetCard />
+        {/* <RetweetCard /> */}
         {isLoading || isError ? (
           <Spinner />
         ) : (

@@ -11,36 +11,43 @@ import { Badge } from './badge';
 import { CardContainer } from './container';
 
 function UserCard({ user }) {
-  const { currentUser } = useCurrentUser();
+  const {
+    name,
+    twitterHandle,
+    avatar,
+    bio,
+    includes: {
+      followStat: { isFollowed },
+    },
+  } = user;
 
   return (
-    <CardContainer to={`/${user.twitterHandle}`}>
+    <CardContainer to={`/${twitterHandle}`} bordered={true}>
       <div className="flex space-x-3">
         <div className="flex-shrink-0">
-          <Avatar size="md" src={user.avatar} alt={user.twitterHandle} />
+          <Avatar size="md" src={avatar} alt={twitterHandle} />
         </div>
         <div className="flex flex-col flex-1">
           <div className="flex justify-between">
-            <div>
+            <div className="flex-1">
               <TextButton
-                to={`/${user.twitterHandle}`}
+                to={`/${twitterHandle}`}
                 size="sm"
                 color="black"
                 className="relative font-semibold"
               >
-                {user.name || 'Twitter user'}
+                {name || 'Twitter user'}
               </TextButton>
               <div className="flex items-center space-x-2">
-                <p className="text-sm text-gray-500">@{user.twitterHandle}</p>
-                {user.isFollowed && <Badge>Follows you</Badge>}
+                <p className="text-sm text-gray-500">@{twitterHandle}</p>
+                {isFollowed && <Badge>Follows you</Badge>}
               </div>
             </div>
-            <DynamicFollowBtn user={user} currentUser={currentUser} />
+            <DynamicFollowBtn user={user} />
           </div>
           <div className="mt-1">
             <p className="text-sm text-gray-700">
-              {user.bio ||
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, a.'}
+              {bio || 'This user is too busy!'}
             </p>
           </div>
         </div>
@@ -49,7 +56,15 @@ function UserCard({ user }) {
   );
 }
 
-function DynamicFollowBtn({ user, currentUser }) {
+function DynamicFollowBtn({ user }) {
+  const { currentUser } = useCurrentUser();
+  const {
+    id,
+    includes: {
+      followStat: { isFollowing },
+    },
+  } = user;
+
   const [
     followMutate,
     { isLoading: followLoading },
@@ -61,7 +76,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     q.ALL_TWEET_LIKERS,
   ]);
 
-  async function handleFollow(id) {
+  async function handleFollow() {
     await followMutate({
       id,
     });
@@ -78,20 +93,20 @@ function DynamicFollowBtn({ user, currentUser }) {
     q.ALL_TWEET_LIKERS,
   ]);
 
-  async function handleUnfollow(id) {
+  async function handleUnfollow() {
     await unfollowMutate({
       id,
     });
   }
 
-  if (user.id === currentUser.id) return null;
+  if (id === currentUser.id) return null;
 
   return (
     <div>
       <FollowBtn
-        isFollowing={user.isFollowing}
-        onFollow={() => handleFollow(user.id)}
-        onUnfollow={() => handleUnfollow(user.id)}
+        isFollowing={isFollowing}
+        onFollow={() => handleFollow()}
+        onUnfollow={() => handleUnfollow()}
         followLoading={followLoading}
         unfollowLoading={unfollowLoading}
         size="sm"

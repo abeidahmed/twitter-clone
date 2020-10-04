@@ -16,27 +16,27 @@ import { UserMeta } from 'components/user-meta';
 import { Button } from 'components/button';
 
 function ProfileWrapper({ user, children }) {
-  const { currentUser } = useCurrentUser();
+  const { twitterHandle, avatar } = user;
 
   const links = [
     {
       title: 'Tweets',
-      path: `/${user.twitterHandle}`,
+      path: `/${twitterHandle}`,
       exact: true,
     },
     {
       title: 'Tweets & replies',
-      path: `/${user.twitterHandle}/tweets_replies`,
+      path: `/${twitterHandle}/tweets_replies`,
       exact: true,
     },
     {
       title: 'Media',
-      path: `/${user.twitterHandle}/media`,
+      path: `/${twitterHandle}/media`,
       exact: true,
     },
     {
       title: 'Likes',
-      path: `/${user.twitterHandle}/likes`,
+      path: `/${twitterHandle}/likes`,
       exact: true,
     },
   ];
@@ -47,7 +47,7 @@ function ProfileWrapper({ user, children }) {
         <div className="-mx-4">
           <TwitterBanner
             src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
-            alt={`${user.twitterHandle}'s twitter banner`}
+            alt={`${twitterHandle}'s twitter banner`}
           />
         </div>
         <div className="flex justify-between">
@@ -55,12 +55,12 @@ function ProfileWrapper({ user, children }) {
             <Avatar
               size="xl"
               variant="bordered"
-              src={user.avatar}
-              alt={`${user.twitterHandle}'s profile`}
+              src={avatar}
+              alt={`${twitterHandle}'s profile`}
             />
           </div>
           <div className="py-2">
-            <DynamicFollowBtn user={user} currentUser={currentUser} />
+            <DynamicFollowBtn user={user} />
           </div>
         </div>
         <UserDetail user={user} />
@@ -73,13 +73,21 @@ function ProfileWrapper({ user, children }) {
   );
 }
 
-function DynamicFollowBtn({ user, currentUser }) {
+function DynamicFollowBtn({ user }) {
+  const { currentUser } = useCurrentUser();
+  const {
+    id,
+    includes: {
+      followStat: { isFollowing },
+    },
+  } = user;
+
   const [
     followMutate,
     { isLoading: followLoading },
   ] = useRefetchMutation(follow, [q.SHOW_USER]);
 
-  async function handleFollow(id) {
+  async function handleFollow() {
     await followMutate({
       id,
     });
@@ -90,7 +98,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     { isLoading: unfollowLoading },
   ] = useRefetchMutation(unfollow, [q.SHOW_USER]);
 
-  async function handleUnfollow(id) {
+  async function handleUnfollow() {
     await unfollowMutate({
       id,
     });
@@ -113,7 +121,7 @@ function DynamicFollowBtn({ user, currentUser }) {
     });
   }
 
-  if (user.id === currentUser.id) {
+  if (id === currentUser.id) {
     return (
       <Button
         size="md"
@@ -126,9 +134,9 @@ function DynamicFollowBtn({ user, currentUser }) {
   }
   return (
     <FollowBtn
-      isFollowing={user.isFollowing}
-      onFollow={() => handleFollow(user.id)}
-      onUnfollow={() => handleUnfollow(user.id)}
+      isFollowing={isFollowing}
+      onFollow={() => handleFollow()}
+      onUnfollow={() => handleUnfollow()}
       followLoading={followLoading}
       unfollowLoading={unfollowLoading}
       size="md"
@@ -137,28 +145,36 @@ function DynamicFollowBtn({ user, currentUser }) {
 }
 
 function UserDetail({ user }) {
+  const {
+    name,
+    twitterHandle,
+    bio,
+    location,
+    website,
+    createdAt,
+    includes: {
+      followStat: { followersCount, followingCount },
+    },
+  } = user;
+
   return (
     <div className="mt-1">
-      <h2 className="text-lg font-semibold">{user.name || a.DEFAULT_NAME}</h2>
-      <p className="text-sm leading-5 text-gray-600">@{user.twitterHandle}</p>
-      <p className="mt-2 text-gray-600">
-        {user.bio || 'The user is too busy!'}
-      </p>
+      <h2 className="text-lg font-semibold">{name || a.DEFAULT_NAME}</h2>
+      <p className="text-sm leading-5 text-gray-600">@{twitterHandle}</p>
+      <p className="mt-2 text-gray-600">{bio || 'The user is too busy!'}</p>
       <div className="py-2 space-y-2 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:space-x-3">
-        {user.location && <UserMeta icon="location" title={user.location} />}
-        {user.website && (
-          <UserMeta icon="link" title={user.website} linkTo={user.website} />
-        )}
+        {location && <UserMeta icon="location" title={location} />}
+        {website && <UserMeta icon="link" title={website} linkTo={website} />}
         <UserMeta
           icon="calendar"
-          title={`Joined ${withFullMonth(user.createdAt)}`}
+          title={`Joined ${withFullMonth(createdAt)}`}
         />
       </div>
       <FollowStat
-        follower={user.followersCount}
-        following={user.followingCount}
-        followingTo={`/${user.twitterHandle}/followings`}
-        followerTo={`/${user.twitterHandle}/followers`}
+        follower={followersCount}
+        following={followingCount}
+        followingTo={`/${twitterHandle}/followings`}
+        followerTo={`/${twitterHandle}/followers`}
       />
     </div>
   );
