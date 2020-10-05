@@ -4,9 +4,8 @@ import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/Icon';
 import { Button, IconButton, MenuButton } from 'components/Button';
-import { DropdownContainer } from 'components/Container';
+import { DropdownContainer, OutsideClickHandler } from 'components/Container';
 import { UserButton } from 'components/user-button';
-import { OutsideClickHandler } from 'components/outside-click-handler';
 
 function Sidebar() {
   const { currentUser, logout } = useCurrentUser();

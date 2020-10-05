@@ -8,8 +8,7 @@ import * as q from 'shared/query-key';
 import { CommentButton } from './comment-button';
 import { LikeButton } from './like-button';
 import { TwitterActionButton, MenuButton } from './Button';
-import { OutsideClickHandler } from './outside-click-handler';
-import { DropdownContainer } from './Container';
+import { DropdownContainer, OutsideClickHandler } from './Container';
 
 export function CommentActionBtn({ comment }) {
   const { meta, id } = comment;

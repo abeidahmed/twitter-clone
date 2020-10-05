@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { CommentButton } from './comment-button';
 import { TwitterActionButton, MenuButton } from './Button';
 import { LikeButton } from './like-button';
-import { OutsideClickHandler } from './outside-click-handler';
-import { DropdownContainer } from './Container';
+import { DropdownContainer, OutsideClickHandler } from './Container';
 
 export function RetweetActionBtn() {
   return (

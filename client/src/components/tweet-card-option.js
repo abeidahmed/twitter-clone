@@ -5,8 +5,7 @@ import { deleteTweet } from 'api/delete-tweet';
 import * as q from 'shared/query-key';
 import { IconButton, MenuButton } from './Button';
 import { Icon } from './Icon';
-import { DropdownContainer } from './Container';
-import { OutsideClickHandler } from './outside-click-handler';
+import { DropdownContainer, OutsideClickHandler } from './Container';
 
 export function TweetCardOption({ tweetID, redirect }) {
   const [menuActive, setMenuActive] = useState(false);

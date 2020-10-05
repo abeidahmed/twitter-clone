@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useEffect } from 'react';
 
-export function OutsideClickHandler({ onOutsideClick, children, ...props }) {
+function OutsideClickHandler({ onOutsideClick, children, ...props }) {
   const containerRef = useRef(null);
 
   const escapeListener = useCallback(
@@ -37,3 +37,5 @@ export function OutsideClickHandler({ onOutsideClick, children, ...props }) {
     </div>
   );
 }
+
+export default OutsideClickHandler;

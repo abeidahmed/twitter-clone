@@ -8,9 +8,8 @@ import * as q from 'shared/query-key';
 import { Avatar } from './Avatar';
 import { TextButton, IconButton, MenuButton } from './Button';
 import { CardContainer } from './container';
-import { DropdownContainer } from './Container';
+import { DropdownContainer, OutsideClickHandler } from './Container';
 import { Icon } from './Icon';
-import { OutsideClickHandler } from './outside-click-handler';
 import { CommentActionBtn } from './comment-action-btn';
 
 export function CommentCard({ comment, twitterID }) {

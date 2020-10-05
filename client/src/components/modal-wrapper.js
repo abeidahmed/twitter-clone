@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/Icon';
 import { Button, IconButton } from './Button';
-import { OutsideClickHandler } from './outside-click-handler';
+import { OutsideClickHandler } from './Container';
 
 export function ModalWrapper({
   modalPosition,
