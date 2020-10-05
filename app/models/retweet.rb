@@ -1,6 +1,8 @@
 class Retweet < ApplicationRecord
   include Helpers::DbHelper
 
+  acts_as_votable
+
   before_create { generate_token(:uuid, Retweet) }
 
   belongs_to :retweetable, polymorphic: true

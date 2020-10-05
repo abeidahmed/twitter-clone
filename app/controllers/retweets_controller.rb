@@ -15,6 +15,15 @@ class RetweetsController < ApplicationController
     end
   end
 
+  def vote
+    retweet = Retweet.find(params[:id])
+    if current_user.voted_up_on?(retweet)
+      retweet.unliked_by(current_user)
+    else
+      retweet.liked_by(current_user)
+    end
+  end
+
   def destroy
     retweet = Retweet.find(params[:id])
     retweet.destroy
