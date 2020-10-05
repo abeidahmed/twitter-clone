@@ -9,7 +9,7 @@ import { unfollow } from 'api/unfollow';
 import { Tab } from 'components/tab';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
-import { Avatar } from 'components/avatar';
+import { Avatar } from 'components/Avatar';
 import { TwitterBanner } from 'components/twitter-banner';
 import { UserMeta } from 'components/user-meta';
 import { Button } from 'components/Button';

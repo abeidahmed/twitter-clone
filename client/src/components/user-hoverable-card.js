@@ -5,7 +5,7 @@ import { useCurrentUser } from 'store/current-user';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import * as q from 'shared/query-key';
-import { Avatar } from './avatar';
+import { Avatar } from './Avatar';
 import { TextButton } from './Button';
 import { FollowStat } from './follow-stat';
 import { FollowBtn } from './follow-btn';

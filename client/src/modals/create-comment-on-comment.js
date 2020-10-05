@@ -9,7 +9,7 @@ import * as q from 'shared/query-key';
 import { timeNow } from 'utils/date-time';
 import { TwitterTextarea } from 'components/twitter-textarea';
 import { ModalWrapper } from 'components/modal-wrapper';
-import { Avatar } from 'components/avatar';
+import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
 
 function CreateCommentOnComment() {

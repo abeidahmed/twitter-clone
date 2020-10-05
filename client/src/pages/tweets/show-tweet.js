@@ -7,7 +7,7 @@ import { useModalType } from 'store/modal';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import { detailedDate, time12format } from 'utils/date-time';
-import { Avatar } from 'components/avatar';
+import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
 import { Spinner } from 'components/spinner';
 import { AspectRatio } from 'components/AspectRatio';

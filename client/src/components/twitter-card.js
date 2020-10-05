@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
-import { Avatar } from './avatar';
+import { Avatar } from './Avatar';
 import { TextButton } from './Button';
 import { CardContainer } from 'components/container';
 import { AspectRatio } from './AspectRatio';

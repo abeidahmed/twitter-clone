@@ -5,7 +5,7 @@ import { Icon } from './Icon';
 import { FileUpload } from './file-upload';
 import { CharTracker } from './char-tracker';
 import * as limit from 'shared/char-limit';
-import { Avatar } from './avatar';
+import { Avatar } from './Avatar';
 
 export function TwitterTextarea({
   rows,

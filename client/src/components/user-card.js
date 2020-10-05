@@ -5,7 +5,7 @@ import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
-import { Avatar } from './avatar';
+import { Avatar } from './Avatar';
 import { TextButton } from './Button';
 import { Badge } from './badge';
 import { CardContainer } from './container';

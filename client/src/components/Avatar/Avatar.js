@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-export function Avatar({ src, alt, size, variant, ...props }) {
+function Avatar({ src, alt, size, variant, ...props }) {
   const wrapperClass = cn([
     'bg-gray-300',
     {
@@ -26,3 +26,5 @@ export function Avatar({ src, alt, size, variant, ...props }) {
     </div>
   );
 }
+
+export default Avatar;

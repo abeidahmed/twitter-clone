@@ -5,7 +5,7 @@ import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
 import { deleteComment } from 'api/delete-comment';
 import * as q from 'shared/query-key';
-import { Avatar } from './avatar';
+import { Avatar } from './Avatar';
 import { TextButton, IconButton, MenuButton } from './Button';
 import { CardContainer, DropdownContainer } from './container';
 import { Icon } from './Icon';

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PageTitleContext } from 'store/page-title';
 import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
-import { Avatar } from 'components/avatar';
+import { Avatar } from 'components/Avatar';
 
 function Header() {
   const [{ title, description }] = useContext(PageTitleContext);

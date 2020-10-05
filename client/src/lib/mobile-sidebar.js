@@ -5,7 +5,7 @@ import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/Icon';
 import { FollowStat } from 'components/follow-stat';
-import { Avatar } from 'components/avatar';
+import { Avatar } from 'components/Avatar';
 import { IconButton } from 'components/Button';
 
 function MobileSidebar() {

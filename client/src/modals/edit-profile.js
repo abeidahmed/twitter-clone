@@ -8,7 +8,7 @@ import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';
 import { updateUser } from 'api/update-user';
 import { Input, Textarea } from 'components/Field';
-import { Avatar } from 'components/avatar';
+import { Avatar } from 'components/Avatar';
 import { FileUpload } from 'components/file-upload';
 import { TwitterBanner } from 'components/twitter-banner';
 import { CharTracker } from 'components/char-tracker';

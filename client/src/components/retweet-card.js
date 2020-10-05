@@ -4,7 +4,7 @@ import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/Icon';
 import { CardContainer } from './container';
 import { TextButton, IconButton } from './Button';
-import { Avatar } from './avatar';
+import { Avatar } from './Avatar';
 import { AspectRatio } from './AspectRatio';
 import { withPartialMonth } from 'utils/date-time';
 import { UserHoverableCard } from './user-hoverable-card';
