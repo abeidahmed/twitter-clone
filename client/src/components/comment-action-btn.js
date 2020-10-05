@@ -9,7 +9,7 @@ import { CommentButton } from './comment-button';
 import { LikeButton } from './like-button';
 import { TwitterActionButton, MenuButton } from './Button';
 import { OutsideClickHandler } from './outside-click-handler';
-import { DropdownContainer } from './container';
+import { DropdownContainer } from './Container';
 
 export function CommentActionBtn({ comment }) {
   const { meta, id } = comment;

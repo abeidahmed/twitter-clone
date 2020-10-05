@@ -3,7 +3,7 @@ import { CommentButton } from './comment-button';
 import { TwitterActionButton, MenuButton } from './Button';
 import { LikeButton } from './like-button';
 import { OutsideClickHandler } from './outside-click-handler';
-import { DropdownContainer } from './container';
+import { DropdownContainer } from './Container';
 
 export function RetweetActionBtn() {
   return (

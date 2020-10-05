@@ -7,7 +7,7 @@ import { deleteBookmark } from 'api/delete-bookmark';
 import * as q from 'shared/query-key';
 import { OutsideClickHandler } from './outside-click-handler';
 import { TwitterActionButton, MenuButton } from './Button';
-import { DropdownContainer } from './container';
+import { DropdownContainer } from './Container';
 import { CommentButton } from './comment-button';
 import { LikeButton } from './like-button';
 
