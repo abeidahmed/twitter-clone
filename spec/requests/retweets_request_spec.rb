@@ -38,7 +38,7 @@ RSpec.describe "Retweets", type: :request do
       end
 
       it 'is expected to retweet' do
-        expect(Retweet.second.body).to eq('hello world')
+        expect(Retweet.first.body).to eq('hello world')
       end
 
       include_examples 'created'
