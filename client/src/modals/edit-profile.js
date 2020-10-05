@@ -9,7 +9,7 @@ import * as q from 'shared/query-key';
 import { updateUser } from 'api/update-user';
 import { Input, Textarea } from 'components/Field';
 import { Avatar } from 'components/Avatar';
-import { FileUpload } from 'components/file-upload';
+import { File } from 'components/Field';
 import { TwitterBanner } from 'components/twitter-banner';
 import { CharTracker } from 'components/char-tracker';
 
@@ -83,10 +83,10 @@ function EditProfile() {
             <div className="relative">
               <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <FileUpload
+                <File
                   name="banner"
                   size="sm"
-                  color="overlay"
+                  appearance="overlay"
                   icon="camera"
                   onChange={(e) => setBanner(e.target.files[0])}
                 />
@@ -101,10 +101,10 @@ function EditProfile() {
             <div className="relative w-20 h-20 overflow-hidden border-4 border-white rounded-full lg:w-32 lg:h-32">
               <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <FileUpload
+                <File
                   name="avatar"
                   size="sm"
-                  color="overlay"
+                  appearance="overlay"
                   icon="camera"
                   onChange={(e) => setAvatar(e.target.files[0])}
                 />

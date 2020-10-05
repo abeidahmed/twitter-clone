@@ -1,15 +1,15 @@
 import React from 'react';
 import cn from 'classnames';
-import { Icon } from './Icon';
+import { Icon } from 'components/Icon';
 
-export function FileUpload({ size, color, icon, ...props }) {
+function File({ size, appearance, icon, ...props }) {
   const uploadClass = cn([
     'p-2 transition duration-150 ease-in-out rounded-full cursor-pointer focus:outline-none',
     {
       'text-white hover:bg-gray-600 focus:shadow-outline-gray':
-        color === 'overlay',
+        appearance === 'overlay',
       'text-blue-500 hover:bg-blue-50 focus:shadow-outline-blue':
-        color === 'white',
+        appearance === 'minimal',
     },
   ]);
 
@@ -33,3 +33,5 @@ export function FileUpload({ size, color, icon, ...props }) {
     </label>
   );
 }
+
+export default File;

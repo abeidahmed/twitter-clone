@@ -2,7 +2,7 @@ import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { IconButton, Button } from './Button';
 import { Icon } from './Icon';
-import { FileUpload } from './file-upload';
+import { File } from './Field';
 import { CharTracker } from './char-tracker';
 import * as limit from 'shared/char-limit';
 import { Avatar } from './Avatar';
@@ -72,10 +72,10 @@ export function TwitterTextarea({
           <div className="flex items-center justify-between">
             <div className="flex items-center -ml-2">
               {canUploadImage && (
-                <FileUpload
+                <File
                   icon="photograph"
                   size="md"
-                  color="white"
+                  appearance="minimal"
                   name="image"
                   onChange={(e) => {
                     setImage(e.target.files[0]);
