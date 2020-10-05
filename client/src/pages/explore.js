@@ -6,7 +6,7 @@ import * as q from 'shared/query-key';
 import { allUsers } from 'api/all-users';
 import UserCard from 'components/user-card';
 import { Spinner } from 'components/Loader';
-import { SearchBar } from 'components/search-bar';
+import { SearchBar } from 'components/Field';
 
 function Explore() {
   useSetTitle('Explore', null);

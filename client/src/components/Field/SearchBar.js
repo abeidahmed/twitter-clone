@@ -1,7 +1,7 @@
 import React from 'react';
-import { Icon } from './Icon';
+import { Icon } from 'components/Icon';
 
-export function SearchBar({ ...props }) {
+function SearchBar({ ...props }) {
   return (
     <div className="relative flex items-center text-gray-400 focus-within:text-blue-500">
       <input
@@ -15,3 +15,5 @@ export function SearchBar({ ...props }) {
     </div>
   );
 }
+
+export default SearchBar;
