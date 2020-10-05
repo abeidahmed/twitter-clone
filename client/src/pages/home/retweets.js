@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { allRetweets } from 'api/all-retweets';
 import * as q from 'shared/query-key';
 import { RetweetCollection } from 'components/retweet-card';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 
 function Retweets() {
   const {

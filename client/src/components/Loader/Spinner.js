@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-export function Spinner({ position = 'top' }) {
+function Spinner({ position = 'top' }) {
   const spinnerClass = cn([
     'absolute transform -translate-x-1/2 lds-dual-ring top-10 left-1/2',
     {
@@ -12,3 +12,5 @@ export function Spinner({ position = 'top' }) {
 
   return <div className={spinnerClass}></div>;
 }
+
+export default Spinner;

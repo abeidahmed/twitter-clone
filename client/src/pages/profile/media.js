@@ -4,7 +4,7 @@ import { useSetTitle } from 'store/page-title';
 import { allUserMediaTweets } from 'api/all-tweets';
 import * as q from 'shared/query-key';
 import { TwitterCard } from 'components/twitter-card';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function Media({ user }) {

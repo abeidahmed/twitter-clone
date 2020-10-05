@@ -9,7 +9,7 @@ import Replies from './replies';
 import Tweets from './tweets';
 import Follows from './follows';
 import ProfileWrapper from 'lib/profile-wrapper';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 
 function Profile() {
   const { id } = useParams();

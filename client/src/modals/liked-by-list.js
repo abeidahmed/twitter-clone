@@ -5,7 +5,7 @@ import * as q from 'shared/query-key';
 import { likedBy } from 'api/liked-by';
 import { ModalWrapper } from 'components/modal-wrapper';
 import UserCard from 'components/user-card';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function LikedByList() {

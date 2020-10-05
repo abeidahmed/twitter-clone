@@ -6,7 +6,7 @@ import { allBookmarks } from 'api/all-bookmarks';
 import * as q from 'shared/query-key';
 import { TwitterCard } from 'components/twitter-card';
 import { CommentCard } from 'components/comment-card';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 
 function Bookmark() {
   const { id } = useParams();

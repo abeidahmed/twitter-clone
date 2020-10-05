@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import Cookies from 'js-cookie';
 import { currentUser } from 'api/current-user';
 import { TOKEN } from 'store/current-user';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 
 function ProtectedRoute({ component: Component, ...rest }) {
   const { data, isLoading, isError } = useQuery(

@@ -9,7 +9,7 @@ import * as q from 'shared/query-key';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 import { AspectRatio } from 'components/AspectRatio';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { TweetStats } from 'components/tweet-stats';

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import * as q from 'shared/query-key';
 import { allTweets } from 'api/all-tweets';
 import { TwitterCard } from 'components/twitter-card';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 
 function Tweets() {
   const { data: { data: { tweets } = {} } = {}, isLoading, isError } = useQuery(

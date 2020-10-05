@@ -5,7 +5,7 @@ import { useDebounce } from 'hooks/debounce';
 import * as q from 'shared/query-key';
 import { allUsers } from 'api/all-users';
 import UserCard from 'components/user-card';
-import { Spinner } from 'components/spinner';
+import { Spinner } from 'components/Loader';
 import { SearchBar } from 'components/search-bar';
 
 function Explore() {
