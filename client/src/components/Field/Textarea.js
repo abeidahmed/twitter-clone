@@ -1,8 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
-import { fieldValidation } from 'utils/helpers';
+import { ErrorMessage } from './components';
 
-export function Textarea({ id, label, error, errorType, resize, ...props }) {
+function Textarea({ id, label, error, errorType, resize, ...props }) {
   const textareaClass = cn([
     'block w-full mt-1 shadow-sm form-textarea',
     {
@@ -16,11 +16,9 @@ export function Textarea({ id, label, error, errorType, resize, ...props }) {
         {label}
       </label>
       <textarea id={id} {...props} className={textareaClass} />
-      {fieldValidation(error, errorType) && (
-        <p className="mt-1 text-sm font-medium text-red-700">
-          {fieldValidation(error, errorType)}
-        </p>
-      )}
+      <ErrorMessage error={error} errorType={errorType} />
     </div>
   );
 }
+
+export default Textarea;

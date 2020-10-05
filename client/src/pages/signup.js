@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { signupUser } from 'api/signup-user';
 import { Icon } from 'components/icon';
-import { Input } from 'components/input';
+import { Input } from 'components/Field';
 
 function Signup() {
   const [email, setEmail] = useState('');

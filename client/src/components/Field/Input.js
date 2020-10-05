@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { fieldValidation } from 'utils/helpers';
+import { ErrorMessage } from './components';
 
-export function Input({ label, id, extraLink, error, errorType, ...props }) {
-  let to, name;
-  if (extraLink) {
-    to = extraLink.to;
-    name = extraLink.name;
+function Input({ label, id, to, error, errorType, ...props }) {
+  let pathname, title;
+  if (to) {
+    pathname = to.pathname;
+    title = to.title;
   }
 
   return (
@@ -15,12 +15,12 @@ export function Input({ label, id, extraLink, error, errorType, ...props }) {
         <label htmlFor={id} className="block text-sm font-medium text-gray-700">
           {label}
         </label>
-        {extraLink && (
+        {to && (
           <Link
-            to={to}
+            to={pathname}
             className="text-sm font-medium text-blue-600 transition duration-150 ease-in-out hover:text-blue-500"
           >
-            {name}
+            {title}
           </Link>
         )}
       </div>
@@ -29,11 +29,9 @@ export function Input({ label, id, extraLink, error, errorType, ...props }) {
         className="block w-full mt-1 shadow-sm form-input"
         {...props}
       />
-      {fieldValidation(error, errorType) && (
-        <p className="mt-1 text-sm font-medium text-red-700">
-          {fieldValidation(error, errorType)}
-        </p>
-      )}
+      <ErrorMessage error={error} errorType={errorType} />
     </div>
   );
 }
+
+export default Input;

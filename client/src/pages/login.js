@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import { useCurrentUser } from 'store/current-user';
 import { loginUser } from 'api/login-user';
 import { Icon } from 'components/icon';
-import { Input } from 'components/input';
+import { Input } from 'components/Field';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -52,7 +52,7 @@ function Login() {
               type="password"
               id="login-password"
               label="Password"
-              extraLink={{ to: '/', name: 'Forgot password?' }}
+              to={{ pathname: '/', title: 'Forgot password?' }}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
