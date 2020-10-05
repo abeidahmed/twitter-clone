@@ -43,6 +43,19 @@ RSpec.describe "Bookmarks", type: :request do
       include_examples 'created'
     end
 
+    context 'when the retweet is bookmarked' do
+      before do
+        retweet = create(:retweet)
+        post retweet_bookmarks_url(retweet), params: nil, headers: auth_header(user)
+      end
+
+      it 'is expected to save the bookmark' do
+        expect(Bookmark.all.size).to eq(1)
+      end
+
+      include_examples 'created'
+    end
+
     context 'when the request is made on already bookmarked object' do
       before do
         tweet = create(:tweet)
