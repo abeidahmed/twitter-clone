@@ -34,7 +34,7 @@ export function TweetCardOption({ tweetID, redirect }) {
       >
         <Icon icon="chevron-down" className="w-4 h-4" />
       </IconButton>
-      <DropdownContainer position="top" isActive={menuActive}>
+      <DropdownContainer isActive={menuActive}>
         <IconWithTextButton
           color="danger"
           size="md"

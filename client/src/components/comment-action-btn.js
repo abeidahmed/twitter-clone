@@ -154,7 +154,7 @@ function ShareBtn({ comment }) {
         className="relative"
         onClick={() => setIsActive(!isActive)}
       />
-      <DropdownContainer isActive={isActive} position="top">
+      <DropdownContainer isActive={isActive}>
         {links.map((link) => (
           <IconWithTextButton
             key={link.title}

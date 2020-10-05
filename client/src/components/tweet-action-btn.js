@@ -162,7 +162,7 @@ function ShareBtn({ tweet, size }) {
         className="relative"
         onClick={() => setIsActive(!isActive)}
       />
-      <DropdownContainer position="top" isActive={isActive}>
+      <DropdownContainer isActive={isActive}>
         {links.map((link) => (
           <IconWithTextButton
             key={link.title}

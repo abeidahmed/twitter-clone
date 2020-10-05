@@ -134,7 +134,7 @@ function ProfileDropdown({ logout, currentUser }) {
       />
       <DropdownContainer
         isActive={dropActive}
-        className="lg:right-auto lg:left-auto"
+        className="left-0 lg:right-auto lg:left-auto"
       >
         <IconWithTextButton
           to="/"

@@ -116,7 +116,7 @@ function CommentCardOption({ commenterID, twitterID, commentID }) {
         >
           <Icon icon="chevron-down" className="w-4 h-4" />
         </IconButton>
-        <DropdownContainer position="top" isActive={isActive}>
+        <DropdownContainer isActive={isActive}>
           <IconWithTextButton
             color="danger"
             size="md"
