@@ -6,7 +6,7 @@ import { withFullMonth } from 'utils/date-time';
 import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
-import { Tab } from 'components/tab';
+import { Tab } from 'components/Tab';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/Avatar';

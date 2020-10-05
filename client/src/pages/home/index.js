@@ -6,7 +6,7 @@ import Tweets from './tweets';
 import { Divider } from 'components/Divider';
 import TweetBox from 'lib/tweet-box';
 import { MobileTweetButton } from 'components/mobile-tweet-button';
-import { Tab } from 'components/tab';
+import { Tab } from 'components/Tab';
 
 const links = [
   {

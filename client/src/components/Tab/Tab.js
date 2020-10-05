@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export function Tab({ links }) {
+function Tab({ links }) {
   return (
     <nav className="flex items-center justify-between min-w-0">
       {links.map(({ title, path, exact }) => (
@@ -18,3 +18,5 @@ export function Tab({ links }) {
     </nav>
   );
 }
+
+export default Tab;

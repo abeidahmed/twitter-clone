@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
 import Followers from './followers';
 import Following from './following';
-import { Tab } from 'components/tab';
+import { Tab } from 'components/Tab';
 
 function Follows({ user }) {
   useSetTitle(user.name, `@${user.twitterHandle}`);
