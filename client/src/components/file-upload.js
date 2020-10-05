@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 
 export function FileUpload({ size, color, icon, ...props }) {
   const uploadClass = cn([

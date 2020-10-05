@@ -8,7 +8,7 @@ import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
 import { TextButton, IconButton, IconWithTextButton } from './button';
 import { CardContainer, DropdownContainer } from './container';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 import { OutsideClickHandler } from './outside-click-handler';
 import { CommentActionBtn } from './comment-action-btn';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 
 function handleLinkWrapping(Component, props) {
   const {

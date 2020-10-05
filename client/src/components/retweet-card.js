@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
-import { Icon } from 'components/icon';
+import { Icon } from 'components/Icon';
 import { CardContainer } from './container';
 import { TextButton, TwitterActionButton, IconButton } from './button';
 import { Avatar } from './avatar';

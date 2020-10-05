@@ -1,7 +1,7 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
 import { IconButton } from './button';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 
 export function MobileTweetButton() {
   const { modalOn, types } = useModalType();

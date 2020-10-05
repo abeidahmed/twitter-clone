@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 
 export function CommentButton({ showCount, count, size, ...props }) {
   const iconClass = cn([

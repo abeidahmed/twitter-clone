@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 
 export function LikeButton({ status, size, showCount, ...props }) {
   const { isLiked, totalLikes } = status;

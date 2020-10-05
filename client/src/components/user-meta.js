@@ -1,6 +1,6 @@
 import React from 'react';
 import { normalizeLink } from 'utils/helpers';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 import { TextButton } from './button';
 
 export function UserMeta({ title, icon, linkTo }) {

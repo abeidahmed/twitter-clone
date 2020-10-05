@@ -4,7 +4,7 @@ import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { deleteTweet } from 'api/delete-tweet';
 import * as q from 'shared/query-key';
 import { IconButton, IconWithTextButton } from './button';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 import { DropdownContainer } from './container';
 import { OutsideClickHandler } from './outside-click-handler';
 

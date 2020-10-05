@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import cn from 'classnames';
 import { useSidebarToggle } from 'store/sidebar';
 import { useCurrentUser } from 'store/current-user';
-import { Icon } from 'components/icon';
+import { Icon } from 'components/Icon';
 import { FollowStat } from 'components/follow-stat';
 import { Avatar } from 'components/avatar';
 import { IconButton } from 'components/button';

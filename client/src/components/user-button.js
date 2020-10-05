@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from './avatar';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 
 export function UserButton({ user, onClick }) {
   return (

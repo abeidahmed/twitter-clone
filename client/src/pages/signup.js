@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { Link, useHistory } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { signupUser } from 'api/signup-user';
-import { Icon } from 'components/icon';
+import { Icon } from 'components/Icon';
 import { Input } from 'components/Field';
 
 function Signup() {

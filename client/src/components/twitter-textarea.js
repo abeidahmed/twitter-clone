@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { IconButton, Button } from './button';
-import { Icon } from './icon';
+import { Icon } from './Icon';
 import { FileUpload } from './file-upload';
 import { CharTracker } from './char-tracker';
 import * as limit from 'shared/char-limit';

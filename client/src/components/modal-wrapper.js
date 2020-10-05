@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { useModalType } from 'store/modal';
-import { Icon } from 'components/icon';
+import { Icon } from 'components/Icon';
 import { Button, IconButton } from './button';
 import { OutsideClickHandler } from './outside-click-handler';
 
