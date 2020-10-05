@@ -7,7 +7,7 @@ import { TOKEN } from 'store/current-user';
 import { Spinner } from 'components/Loader';
 
 function ProtectedRoute({ component: Component, ...rest }) {
-  const { data, isLoading, isError } = useQuery(
+  const { data: { data: { token } = {} } = {}, isLoading, isError } = useQuery(
     'fetchCurrentUser',
     currentUser
   );
@@ -15,8 +15,6 @@ function ProtectedRoute({ component: Component, ...rest }) {
   if (!Cookies.get(TOKEN) || isError) window.location.href = '/secure/login';
 
   if (isLoading) return <Spinner position="center" />;
-
-  const token = data.data.token;
 
   return (
     <Route
