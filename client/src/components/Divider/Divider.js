@@ -1,5 +1,7 @@
 import React from 'react';
 
-export function Divider() {
+function Divider() {
   return <div className="h-2.5 bg-gray-200"></div>;
 }
+
+export default Divider;

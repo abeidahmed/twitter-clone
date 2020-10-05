@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
 import Retweets from './retweets';
 import Tweets from './tweets';
-import { Divider } from 'components/divider';
+import { Divider } from 'components/Divider';
 import TweetBox from 'lib/tweet-box';
 import { MobileTweetButton } from 'components/mobile-tweet-button';
 import { Tab } from 'components/tab';
