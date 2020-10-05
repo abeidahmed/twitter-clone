@@ -10,6 +10,7 @@ import { CommentButton } from './comment-button';
 import { AspectRatio } from './aspect-ratio';
 import { withPartialMonth } from 'utils/date-time';
 import { UserHoverableCard } from './user-hoverable-card';
+import { RetweetActionBtn } from './retweet-action-btn';
 
 export function RetweetCollection({ tweet }) {
   const { body } = tweet;
@@ -89,7 +90,7 @@ function RetweetCard({ tweet }) {
               )}
             </div>
           </div>
-          <ActionButtons />
+          <RetweetActionBtn />
         </div>
       </div>
     </CardContainer>
@@ -149,37 +150,10 @@ function QuoteTweetCard({ tweet }) {
               )}
             </section>
           </div>
-          <ActionButtons />
+          <RetweetActionBtn />
         </div>
       </div>
     </CardContainer>
-  );
-}
-
-function ActionButtons() {
-  return (
-    <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-      <CommentButton size="sm" showCount={true} count={2} />
-      <TwitterActionButton
-        icon="refresh"
-        size="sm"
-        color="green"
-        className="relative"
-      >
-        4
-      </TwitterActionButton>
-      <LikeButton
-        size="sm"
-        showCount={true}
-        status={{ isLiked: true, totalLikes: 41 }}
-      />
-      <TwitterActionButton
-        icon="upload"
-        size="sm"
-        color="teal"
-        className="relative"
-      />
-    </div>
   );
 }
 
