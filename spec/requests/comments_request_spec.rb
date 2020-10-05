@@ -30,6 +30,34 @@ RSpec.describe "Comments", type: :request do
       end
     end
 
+    describe 'comment on retweet' do
+      let(:user) { create(:user) }
+      let(:retweet) { create(:retweet) }
+      let(:comment) { build(:comment) }
+
+      let(:valid_comment) { { content: comment.content, retweet_id: retweet.id }.to_json }
+
+      context 'when the comment on retweet request is valid' do
+        before do
+          post retweet_comments_url(retweet), params: valid_comment, headers: auth_header(user)
+        end
+
+        it 'is expected to create a comment' do
+          expect(Comment.all.size).to eq(1)
+        end
+
+        include_examples 'created'
+      end
+
+      context 'when the comment on retweet request is made by guest' do
+        before do
+          post retweet_comments_url(retweet), params: valid_comment, headers: default_header
+        end
+
+        include_examples 'unauthorized'
+      end
+    end
+
     describe 'comment on comment' do
       let(:user) { create(:user) }
       let(:tweet) { create(:tweet) }

@@ -9,6 +9,7 @@ class Retweet < ApplicationRecord
   belongs_to :user
   has_many :retweets, as: :retweetable, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates_length_of :body, maximum: 240
 

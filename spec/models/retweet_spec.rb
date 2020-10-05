@@ -13,6 +13,8 @@ RSpec.describe Retweet, type: :model do
     it { should have_many(:retweets) }
 
     it { should have_many(:bookmarks) }
+
+    it { should have_many(:comments) }
   end
 
   describe "before retweeting it should set uuid" do
