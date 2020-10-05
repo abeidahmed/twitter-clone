@@ -7,7 +7,7 @@ import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from './Avatar';
 import { TextButton } from './Button';
-import { Badge } from './badge';
+import { Badge } from './Badge';
 import { CardContainer } from './container';
 import { UserHoverableCard } from './user-hoverable-card';
 
