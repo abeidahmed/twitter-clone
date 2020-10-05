@@ -3,7 +3,7 @@ import { useCurrentUser } from 'store/current-user';
 import { IconButton, Button } from './Button';
 import { Icon } from './Icon';
 import { File } from './Field';
-import { CharTracker } from './char-tracker';
+import { CharTracker } from './CharTracker';
 import * as limit from 'shared/char-limit';
 import { Avatar } from './Avatar';
 

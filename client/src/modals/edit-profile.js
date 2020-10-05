@@ -11,7 +11,7 @@ import { Input, Textarea } from 'components/Field';
 import { Avatar } from 'components/Avatar';
 import { File } from 'components/Field';
 import { TwitterBanner } from 'components/twitter-banner';
-import { CharTracker } from 'components/char-tracker';
+import { CharTracker } from 'components/CharTracker';
 
 function EditProfile() {
   const { modalProps, modalOff } = useModalType();
