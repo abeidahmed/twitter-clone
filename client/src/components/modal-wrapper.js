@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/Icon';
-import { Button, IconButton } from './button';
+import { Button, IconButton } from './Button';
 import { OutsideClickHandler } from './outside-click-handler';
 
 export function ModalWrapper({
@@ -69,7 +69,7 @@ function Header({ modalTitle, button }) {
       <div className="flex items-center">
         <IconButton
           size="md"
-          color="primary-text"
+          appearance="minimal"
           onClick={modalOff}
           className="-ml-2"
         >
@@ -82,7 +82,7 @@ function Header({ modalTitle, button }) {
       {button && (
         <Button
           size="sm"
-          color="primary"
+          appearance="primary"
           onClick={onSubmit}
           disabled={disabled}
         >

@@ -6,7 +6,7 @@ import { bookmarkTweet } from 'api/create-bookmark';
 import { deleteBookmark } from 'api/delete-bookmark';
 import * as q from 'shared/query-key';
 import { OutsideClickHandler } from './outside-click-handler';
-import { TwitterActionButton, IconWithTextButton } from './button';
+import { TwitterActionButton, MenuButton } from './Button';
 import { DropdownContainer } from './container';
 import { CommentButton } from './comment-button';
 import { LikeButton } from './like-button';
@@ -88,7 +88,7 @@ function RetweetBtn({ size, showCount }) {
     <TwitterActionButton
       icon="refresh"
       size={size}
-      color="green"
+      appearance="green"
       className="relative"
     >
       {showCount && 4}
@@ -158,15 +158,14 @@ function ShareBtn({ tweet, size }) {
       <TwitterActionButton
         icon="upload"
         size={size}
-        color="teal"
+        appearance="teal"
         className="relative"
         onClick={() => setIsActive(!isActive)}
       />
       <DropdownContainer isActive={isActive}>
         {links.map((link) => (
-          <IconWithTextButton
+          <MenuButton
             key={link.title}
-            color="white"
             size="md"
             icon={link.icon}
             variant="menu"
@@ -174,7 +173,7 @@ function ShareBtn({ tweet, size }) {
             disabled={link.disabled && link.disabled}
           >
             {link.title}
-          </IconWithTextButton>
+          </MenuButton>
         ))}
       </DropdownContainer>
     </OutsideClickHandler>

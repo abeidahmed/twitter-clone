@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
-import { IconButton, Button } from './button';
+import { IconButton, Button } from './Button';
 import { Icon } from './Icon';
 import { FileUpload } from './file-upload';
 import { CharTracker } from './char-tracker';
@@ -61,7 +61,7 @@ export function TwitterTextarea({
                     clearImage();
                   }}
                   size="sm"
-                  color="primary"
+                  appearance="primary"
                 >
                   <Icon icon="x" className="w-5 h-5" />
                 </IconButton>
@@ -84,10 +84,10 @@ export function TwitterTextarea({
                   }}
                 />
               )}
-              <IconButton size="md" color="primary-text">
+              <IconButton size="md" appearance="minimal">
                 <Icon icon="smiley" className="w-6 h-6" />
               </IconButton>
-              <IconButton size="md" color="primary-text">
+              <IconButton size="md" appearance="minimal">
                 <Icon icon="calendar" className="w-6 h-6" />
               </IconButton>
             </div>
@@ -99,7 +99,7 @@ export function TwitterTextarea({
               />
               <Button
                 disabled={isLoading || !body.length}
-                color="primary"
+                appearance="primary"
                 size="md"
               >
                 {buttonLabel}

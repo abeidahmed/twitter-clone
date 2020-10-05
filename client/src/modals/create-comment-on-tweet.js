@@ -10,7 +10,7 @@ import { timeNow } from 'utils/date-time';
 import { TwitterTextarea } from 'components/twitter-textarea';
 import { ModalWrapper } from 'components/modal-wrapper';
 import { Avatar } from 'components/avatar';
-import { TextButton } from 'components/button';
+import { TextButton } from 'components/Button';
 
 function CreateCommentOnTweet() {
   const {
@@ -43,7 +43,7 @@ function CreateCommentOnTweet() {
               <div className="flex items-center">
                 <TextButton
                   to={`/${twitterTwitterHandle}`}
-                  color="black"
+                  appearance="black"
                   size="sm"
                   className="relative font-bold"
                 >

@@ -6,7 +6,7 @@ import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/Icon';
 import { FollowStat } from 'components/follow-stat';
 import { Avatar } from 'components/avatar';
-import { IconButton } from 'components/button';
+import { IconButton } from 'components/Button';
 
 function MobileSidebar() {
   const { setOff, isActive } = useSidebarToggle();
@@ -118,7 +118,7 @@ function Header({ setOff }) {
       <h2 className="text-lg font-extrabold">Account info</h2>
       <IconButton
         size="md"
-        color="primary-text"
+        appearance="primary-text"
         onClick={setOff}
         className="-mr-2"
       >

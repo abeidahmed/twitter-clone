@@ -2,7 +2,7 @@ import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { withPartialMonth } from 'utils/date-time';
 import { Avatar } from './avatar';
-import { TextButton } from './button';
+import { TextButton } from './Button';
 import { CardContainer } from 'components/container';
 import { AspectRatio } from './aspect-ratio';
 import { TweetCardOption } from './tweet-card-option';
@@ -39,7 +39,7 @@ export function TwitterCard({ tweet, user, showComments }) {
                     hoverTo={
                       <TextButton
                         to={`/users/${twitter.twitterHandle}`}
-                        color="black"
+                        appearance="black"
                         size="sm"
                         className="relative font-bold"
                       >

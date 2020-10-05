@@ -6,7 +6,7 @@ import { withPartialMonth } from 'utils/date-time';
 import { deleteComment } from 'api/delete-comment';
 import * as q from 'shared/query-key';
 import { Avatar } from './avatar';
-import { TextButton, IconButton, IconWithTextButton } from './button';
+import { TextButton, IconButton, MenuButton } from './Button';
 import { CardContainer, DropdownContainer } from './container';
 import { Icon } from './Icon';
 import { OutsideClickHandler } from './outside-click-handler';
@@ -53,7 +53,7 @@ function CommentContainer({ comment, twitterID }) {
                 <div className="flex items-center">
                   <TextButton
                     to={`/users/${commenter.twitterHandle}`}
-                    color="black"
+                    appearance="black"
                     size="sm"
                     className="relative font-bold"
                   >
@@ -111,14 +111,14 @@ function CommentCardOption({ commenterID, twitterID, commentID }) {
       >
         <IconButton
           size="sm"
-          color="primary-text"
+          appearance="primary-text"
           onClick={() => setIsActive(!isActive)}
         >
           <Icon icon="chevron-down" className="w-4 h-4" />
         </IconButton>
         <DropdownContainer isActive={isActive}>
-          <IconWithTextButton
-            color="danger"
+          <MenuButton
+            appearance="danger"
             size="md"
             icon="trash"
             variant="menu"
@@ -126,7 +126,7 @@ function CommentCardOption({ commenterID, twitterID, commentID }) {
             disabled={isLoading}
           >
             Delete
-          </IconWithTextButton>
+          </MenuButton>
         </DropdownContainer>
       </OutsideClickHandler>
     );

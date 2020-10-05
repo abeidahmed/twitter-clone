@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from 'components/Icon';
-import { IconButton } from 'components/button';
+import { IconButton } from 'components/Button';
 
 const links = [
   {

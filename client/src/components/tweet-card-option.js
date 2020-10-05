@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { deleteTweet } from 'api/delete-tweet';
 import * as q from 'shared/query-key';
-import { IconButton, IconWithTextButton } from './button';
+import { IconButton, MenuButton } from './Button';
 import { Icon } from './Icon';
 import { DropdownContainer } from './container';
 import { OutsideClickHandler } from './outside-click-handler';
@@ -29,14 +29,14 @@ export function TweetCardOption({ tweetID, redirect }) {
     >
       <IconButton
         size="sm"
-        color="primary-text"
+        appearance="minimal"
         onClick={() => setMenuActive(!menuActive)}
       >
         <Icon icon="chevron-down" className="w-4 h-4" />
       </IconButton>
       <DropdownContainer isActive={menuActive}>
-        <IconWithTextButton
-          color="danger"
+        <MenuButton
+          appearance="danger"
           size="md"
           icon="trash"
           variant="menu"
@@ -44,7 +44,7 @@ export function TweetCardOption({ tweetID, redirect }) {
           onClick={() => handleDelete(tweetID)}
         >
           Delete
-        </IconWithTextButton>
+        </MenuButton>
       </DropdownContainer>
     </OutsideClickHandler>
   );

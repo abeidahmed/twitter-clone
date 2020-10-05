@@ -8,7 +8,7 @@ import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
-import { TextButton } from 'components/button';
+import { TextButton } from 'components/Button';
 import { Spinner } from 'components/spinner';
 import { AspectRatio } from 'components/aspect-ratio';
 import { TweetCardOption } from 'components/tweet-card-option';
@@ -54,7 +54,7 @@ function ShowTweet() {
               <div className="ml-3">
                 <TextButton
                   to={`/${twitter.twitterHandle}`}
-                  color="black"
+                  appearance="black"
                   size="sm"
                   className="relative font-bold"
                 >

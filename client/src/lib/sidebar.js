@@ -3,7 +3,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { useModalType } from 'store/modal';
 import { Icon } from 'components/Icon';
-import { Button, IconButton, IconWithTextButton } from 'components/button';
+import { Button, IconButton, MenuButton } from 'components/Button';
 import { DropdownContainer } from 'components/container';
 import { UserButton } from 'components/user-button';
 import { OutsideClickHandler } from 'components/outside-click-handler';
@@ -90,7 +90,7 @@ function TweetButton() {
     <>
       <IconButton
         size="md"
-        color="primary"
+        appearance="primary"
         className="lg:hidden"
         onClick={openModal}
       >
@@ -103,8 +103,8 @@ function TweetButton() {
       </IconButton>
       <Button
         size="lg"
-        color="primary"
-        variant="block"
+        appearance="primary"
+        width="full"
         className="hidden lg:block"
         onClick={openModal}
       >
@@ -136,24 +136,24 @@ function ProfileDropdown({ logout, currentUser }) {
         isActive={dropActive}
         className="left-0 lg:right-auto lg:left-auto"
       >
-        <IconWithTextButton
+        <MenuButton
           to="/"
-          color="white"
+          appearance="white"
           size="md"
           icon="cog"
           variant="menu"
         >
           Settings
-        </IconWithTextButton>
-        <IconWithTextButton
-          color="white"
+        </MenuButton>
+        <MenuButton
+          appearance="white"
           size="md"
           icon="logout"
           variant="menu"
           onClick={handleLogout}
         >
           Logout
-        </IconWithTextButton>
+        </MenuButton>
       </DropdownContainer>
     </OutsideClickHandler>
   );

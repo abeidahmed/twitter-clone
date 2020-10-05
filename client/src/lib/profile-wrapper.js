@@ -12,7 +12,7 @@ import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/avatar';
 import { TwitterBanner } from 'components/twitter-banner';
 import { UserMeta } from 'components/user-meta';
-import { Button } from 'components/button';
+import { Button } from 'components/Button';
 
 function ProfileWrapper({ user, children }) {
   const { twitterHandle, avatar } = user;
@@ -124,7 +124,7 @@ function DynamicFollowBtn({ user }) {
     return (
       <Button
         size="md"
-        color="primary-outline"
+        appearance="minimal"
         onClick={() => openModal(currentUser)}
       >
         Edit profile

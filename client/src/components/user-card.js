@@ -6,7 +6,7 @@ import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from './avatar';
-import { TextButton } from './button';
+import { TextButton } from './Button';
 import { Badge } from './badge';
 import { CardContainer } from './container';
 import { UserHoverableCard } from './user-hoverable-card';
@@ -36,7 +36,7 @@ function UserCard({ user }) {
                   <TextButton
                     to={`/users/${twitterHandle}`}
                     size="sm"
-                    color="black"
+                    appearance="black"
                     className="relative font-semibold"
                   >
                     {name || 'Twitter user'}

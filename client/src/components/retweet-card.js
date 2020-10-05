@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/Icon';
 import { CardContainer } from './container';
-import { TextButton, TwitterActionButton, IconButton } from './button';
+import { TextButton, IconButton } from './Button';
 import { Avatar } from './avatar';
-import { LikeButton } from './like-button';
-import { CommentButton } from './comment-button';
 import { AspectRatio } from './aspect-ratio';
 import { withPartialMonth } from 'utils/date-time';
 import { UserHoverableCard } from './user-hoverable-card';
@@ -44,7 +42,7 @@ function RetweetCard({ tweet }) {
                 date={withPartialMonth(retweetable.createdAt)}
               />
               <div className="relative">
-                <IconButton size="sm" color="primary-text">
+                <IconButton size="sm" appearance="minimal">
                   <Icon icon="chevron-down" className="w-4 h-4" />
                 </IconButton>
               </div>
@@ -115,7 +113,7 @@ function QuoteTweetCard({ tweet }) {
             <div className="flex items-center justify-between">
               <UserDetail user={retweeter} date={withPartialMonth(createdAt)} />
               <div className="relative">
-                <IconButton size="sm" color="primary-text">
+                <IconButton size="sm" appearance="minimal">
                   <Icon icon="chevron-down" className="w-4 h-4" />
                 </IconButton>
               </div>
@@ -185,7 +183,7 @@ function UserDetail({ user, date }) {
         hoverTo={
           <TextButton
             to={`/users/${twitterHandle}`}
-            color="black"
+            appearance="black"
             size="sm"
             className="relative font-bold"
           >
