@@ -5,7 +5,7 @@ import { Icon } from 'components/Icon';
 import { CardContainer } from './container';
 import { TextButton, IconButton } from './Button';
 import { Avatar } from './avatar';
-import { AspectRatio } from './aspect-ratio';
+import { AspectRatio } from './AspectRatio';
 import { withPartialMonth } from 'utils/date-time';
 import { UserHoverableCard } from './user-hoverable-card';
 import { RetweetActionBtn } from './retweet-action-btn';

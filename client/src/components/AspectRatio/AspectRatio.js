@@ -1,13 +1,7 @@
 import React from 'react';
+import { makeRatio } from './utils';
 
-function makeRatio(ratio) {
-  return ratio
-    .split(':')
-    .map((el) => +el)
-    .reduce((prev, curr) => curr / prev);
-}
-
-export function AspectRatio({ src, alt, ratio, ...props }) {
+function AspectRatio({ src, alt, ratio, ...props }) {
   return (
     <div
       className="overflow-hidden rounded-lg shadow-md"
@@ -22,3 +16,5 @@ export function AspectRatio({ src, alt, ratio, ...props }) {
     </div>
   );
 }
+
+export default AspectRatio;

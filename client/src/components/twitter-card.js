@@ -4,7 +4,7 @@ import { withPartialMonth } from 'utils/date-time';
 import { Avatar } from './avatar';
 import { TextButton } from './Button';
 import { CardContainer } from 'components/container';
-import { AspectRatio } from './aspect-ratio';
+import { AspectRatio } from './AspectRatio';
 import { TweetCardOption } from './tweet-card-option';
 import { CommentCard } from './comment-card';
 import { TweetActionBtn } from './tweet-action-btn';

@@ -10,7 +10,7 @@ import { detailedDate, time12format } from 'utils/date-time';
 import { Avatar } from 'components/avatar';
 import { TextButton } from 'components/Button';
 import { Spinner } from 'components/spinner';
-import { AspectRatio } from 'components/aspect-ratio';
+import { AspectRatio } from 'components/AspectRatio';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { TweetStats } from 'components/tweet-stats';
 import { CommentCard } from 'components/comment-card';
