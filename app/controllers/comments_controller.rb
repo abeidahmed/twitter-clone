@@ -12,12 +12,7 @@ class CommentsController < ApplicationController
 
   def vote
     comment = Comment.find(params[:id])
-
-    if current_user.voted_up_on?(comment)
-      comment.unliked_by(current_user)
-    else
-      comment.liked_by(current_user)
-    end
+    Vote.new(voter: current_user, object: comment).toggle_like
   end
 
   def destroy

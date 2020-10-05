@@ -29,16 +29,12 @@ class TweetsController < ApplicationController
 
   def vote
     tweet = Tweet.find(params[:id])
-    if current_user.voted_up_on?(tweet)
-      tweet.unliked_by(current_user)
-    else
-      tweet.liked_by(current_user)
-    end
+    Vote.new(voter: current_user, object: tweet).toggle_like
   end
 
   def likers
     tweet = Tweet.find(params[:id])
-    @likers = tweet.votes_for.up.voters
+    @likers = Vote.new(object: tweet).get_upvoters
     render :likers
   end
 
