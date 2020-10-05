@@ -132,7 +132,10 @@ function ProfileDropdown({ logout, currentUser }) {
         user={currentUser}
         onClick={() => setDropActive(!dropActive)}
       />
-      <DropdownContainer position="bottom" isActive={dropActive}>
+      <DropdownContainer
+        isActive={dropActive}
+        className="lg:right-auto lg:left-auto"
+      >
         <IconWithTextButton
           to="/"
           color="white"
