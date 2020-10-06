@@ -31,7 +31,7 @@ function CardOption({ commenterID, twitterID, commentID }) {
       >
         <IconButton
           size="sm"
-          appearance="primary-text"
+          appearance="minimal"
           onClick={() => setIsActive(!isActive)}
         >
           <Icon icon="chevron-down" className="w-4 h-4" />
