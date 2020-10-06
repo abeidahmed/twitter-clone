@@ -4,9 +4,8 @@ import { useRefetchMutation } from 'hooks/refetch-mutation';
 import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
-import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/Avatar';
-import { TextButton } from 'components/Button';
+import { TextButton, FollowButton } from 'components/Button';
 import { Badge } from 'components/Badge';
 import { CardContainer } from '../shared';
 import { UserHoverableCard } from 'components/Card';
@@ -106,8 +105,8 @@ function DynamicFollowBtn({ user }) {
   if (id === currentUser.id) return null;
 
   return (
-    <div>
-      <FollowBtn
+    <div className="relative">
+      <FollowButton
         isFollowing={isFollowing}
         onFollow={() => handleFollow()}
         onUnfollow={() => handleUnfollow()}

@@ -6,9 +6,8 @@ import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import * as q from 'shared/query-key';
 import { Avatar } from 'components/Avatar';
-import { TextButton } from 'components/Button';
+import { TextButton, FollowButton } from 'components/Button';
 import { FollowStat } from 'components/follow-stat';
-import { FollowBtn } from 'components/follow-btn';
 import { Content } from '../shared';
 
 function UserCard({ hoverTo, user }) {
@@ -122,7 +121,7 @@ function DynamicFollowBtn({ user }) {
 
   return (
     <div>
-      <FollowBtn
+      <FollowButton
         isFollowing={isFollowing}
         onFollow={() => handleFollow()}
         onUnfollow={() => handleUnfollow()}

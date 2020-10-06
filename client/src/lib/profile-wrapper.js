@@ -8,11 +8,10 @@ import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { Tab } from 'components/Tab';
 import { FollowStat } from 'components/follow-stat';
-import { FollowBtn } from 'components/follow-btn';
 import { Avatar } from 'components/Avatar';
 import { TwitterBanner } from 'components/twitter-banner';
 import { UserMeta } from 'components/user-meta';
-import { Button } from 'components/Button';
+import { Button, FollowButton } from 'components/Button';
 
 function ProfileWrapper({ user, children }) {
   const { twitterHandle, avatar } = user;
@@ -132,7 +131,7 @@ function DynamicFollowBtn({ user }) {
     );
   }
   return (
-    <FollowBtn
+    <FollowButton
       isFollowing={isFollowing}
       onFollow={() => handleFollow()}
       onUnfollow={() => handleUnfollow()}

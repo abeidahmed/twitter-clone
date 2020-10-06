@@ -1,5 +1,6 @@
 export { Button } from './Button';
 export { default as CommentButton } from './CommentButton';
+export { default as FollowButton } from './FollowButton';
 export { IconButton } from './IconButton';
 export { default as LikeButton } from './LikeButton';
 export { MenuButton } from './MenuButton';
