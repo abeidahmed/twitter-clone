@@ -3,16 +3,14 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
 import { useCurrentUser } from 'store/current-user';
-import { useModalType } from 'store/modal';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import { detailedDate, time12format } from 'utils/date-time';
-import { Avatar } from 'components/Avatar';
-import { TextButton } from 'components/Button';
 import { Spinner } from 'components/Loader';
 import { AspectRatio } from 'components/AspectRatio';
 import { CardOption as TweetOption } from 'components/Card/TweetCard/components';
-import { TweetStats } from 'components/tweet-stats';
+import TweetMeta from './TweetMeta';
+import UserInfo from './UserInfo';
 import { CommentCard } from 'components/Card';
 import { TweetActionButtons } from 'components/ReactiveButton';
 
@@ -22,49 +20,21 @@ function ShowTweet() {
   const { currentUser } = useCurrentUser();
 
   const { uuid } = useParams();
-  const { data, isLoading, isError } = useQuery(
+  const { data: { data: { tweet } = {} } = {}, isLoading, isError } = useQuery(
     [q.SHOW_TWEET, { uuid }],
     showTweet
   );
 
   if (isLoading || isError) return <Spinner />;
 
-  const {
-    tweet,
-    tweet: {
-      twitter,
-      comments,
-      meta: { likes },
-    },
-  } = data.data;
+  const { twitter, comments } = tweet;
 
   return (
     <div>
       <article className="py-3">
         <div className="px-4 border-b border-gray-200">
           <div className="flex justify-between">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <Avatar
-                  size="lg"
-                  src={twitter.avatar}
-                  alt={twitter.twitterHandle}
-                />
-              </div>
-              <div className="ml-3">
-                <TextButton
-                  to={`/${twitter.twitterHandle}`}
-                  appearance="black"
-                  size="sm"
-                  className="relative font-bold"
-                >
-                  {twitter.name}
-                </TextButton>
-                <span className="block text-sm leading-5 text-gray-500">
-                  @{twitter.twitterHandle}
-                </span>
-              </div>
-            </div>
+            <UserInfo user={twitter} />
             {twitter.id === currentUser.id && (
               <div>
                 <TweetOption tweetID={tweet.id} redirect={true} />
@@ -83,7 +53,7 @@ function ShowTweet() {
               <span className="mx-1">&middot;</span>
               <span>{detailedDate(tweet.createdAt)}</span>
             </div>
-            <TweetStatistics likes={likes} tweetID={tweet.id} />
+            <TweetMeta tweet={tweet} />
             <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
               <TweetActionButtons tweet={tweet} size="md" showCount={false} />
             </div>
@@ -97,31 +67,6 @@ function ShowTweet() {
           twitterID={twitter.id}
         />
       ))}
-    </div>
-  );
-}
-
-function TweetStatistics({ tweetID, likes }) {
-  const { modalOn, types } = useModalType();
-
-  function openLikesModal() {
-    modalOn({
-      modalType: types.LIKED_BY_LIST,
-      modalProps: {
-        id: tweetID,
-      },
-    });
-  }
-
-  return (
-    <div className="flex items-center py-3 space-x-4 text-sm text-gray-500 border-b border-gray-200">
-      <TweetStats count={32} title="Retweet" />
-      <TweetStats count={4} title="Quote Tweet" />
-      <TweetStats
-        count={likes.totalLikes}
-        title="Like"
-        onClick={openLikesModal}
-      />
     </div>
   );
 }
