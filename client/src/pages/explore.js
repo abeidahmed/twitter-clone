@@ -4,7 +4,7 @@ import { useSetTitle } from 'store/page-title';
 import { useDebounce } from 'hooks/debounce';
 import * as q from 'shared/query-key';
 import { allUsers } from 'api/all-users';
-import UserCard from 'components/user-card';
+import { UserCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 import { SearchBar } from 'components/Field';
 

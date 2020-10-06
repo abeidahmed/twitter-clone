@@ -4,7 +4,7 @@ import { useModalType } from 'store/modal';
 import * as q from 'shared/query-key';
 import { likedBy } from 'api/liked-by';
 import { ModalWrapper } from 'components/modal-wrapper';
-import UserCard from 'components/user-card';
+import { UserCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 import ObjectNotFound from 'shared/not-found/object-not-found';
 

@@ -5,11 +5,11 @@ import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import { FollowBtn } from 'components/follow-btn';
-import { Avatar } from './Avatar';
-import { TextButton } from './Button';
-import { Badge } from './Badge';
-import { CardContainer } from './container';
-import { UserHoverableCard } from './user-hoverable-card';
+import { Avatar } from 'components/Avatar';
+import { TextButton } from 'components/Button';
+import { Badge } from 'components/Badge';
+import { CardContainer } from '../shared';
+import { UserHoverableCard } from 'components/user-hoverable-card';
 
 function UserCard({ user }) {
   const {

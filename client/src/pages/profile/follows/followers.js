@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import * as q from 'shared/query-key';
 import { allFollowers } from 'api/all-followers';
-import UserCard from 'components/user-card';
+import { UserCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 
 function Followers() {
