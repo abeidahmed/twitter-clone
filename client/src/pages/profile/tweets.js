@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSetTitle } from 'store/page-title';
-import { TwitterCard } from 'components/twitter-card';
+import { TweetCard } from 'components/Card';
 import ObjectNotFound from 'shared/not-found/object-not-found';
 
 function Tweets({ user }) {
@@ -21,7 +21,7 @@ function DisplayTweets({ tweets, user }) {
     <>
       {tweets.length ? (
         tweets.map((tweet) => (
-          <TwitterCard key={tweet.id} tweet={tweet} user={user} />
+          <TweetCard key={tweet.id} tweet={tweet} user={user} />
         ))
       ) : (
         <ObjectNotFound description="You do not have any tweets. Try tweeting about what's happening." />

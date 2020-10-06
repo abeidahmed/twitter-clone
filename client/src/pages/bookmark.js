@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
 import { allBookmarks } from 'api/all-bookmarks';
 import * as q from 'shared/query-key';
-import { TwitterCard } from 'components/twitter-card';
+import { TweetCard } from 'components/Card';
 import { CommentCard } from 'components/comment-card';
 import { Spinner } from 'components/Loader';
 
@@ -24,7 +24,7 @@ function Bookmark() {
     <main>
       {bookmarks.map((bookmark) =>
         bookmark.type === 'Tweet' ? (
-          <TwitterCard key={bookmark.id} tweet={bookmark} />
+          <TweetCard key={bookmark.id} tweet={bookmark} />
         ) : (
           <CommentCard key={bookmark.id} comment={bookmark} />
         )

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import * as q from 'shared/query-key';
 import { allTweets } from 'api/all-tweets';
-import { TwitterCard } from 'components/twitter-card';
+import { TweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 
 function Tweets() {
@@ -18,7 +18,7 @@ function Tweets() {
       ) : (
         <section>
           {tweets.map((tweet) => (
-            <TwitterCard key={tweet.id} tweet={tweet} />
+            <TweetCard key={tweet.id} tweet={tweet} />
           ))}
         </section>
       )}
