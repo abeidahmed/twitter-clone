@@ -135,17 +135,10 @@ function ProfileDropdown({ logout, currentUser }) {
         isActive={dropActive}
         className="left-0 lg:right-auto lg:left-auto"
       >
-        <MenuButton
-          to="/"
-          appearance="white"
-          size="md"
-          icon="cog"
-          variant="menu"
-        >
+        <MenuButton to="/" size="md" icon="cog" variant="menu">
           Settings
         </MenuButton>
         <MenuButton
-          appearance="white"
           size="md"
           icon="logout"
           variant="menu"

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from './index';
 
 function FollowButton({
@@ -48,5 +49,14 @@ function FollowButton({
     </>
   );
 }
+
+FollowButton.propTypes = {
+  isFollowing: PropTypes.bool,
+  onFollow: PropTypes.func,
+  onUnfollow: PropTypes.func,
+  unfollowLoading: PropTypes.bool,
+  followLoading: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+};
 
 export default FollowButton;

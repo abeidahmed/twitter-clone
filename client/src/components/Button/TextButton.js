@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { handleLinkWrapping } from './utils';
 
@@ -25,6 +26,11 @@ function StyledTextButton({
     </button>
   );
 }
+
+StyledTextButton.propTypes = {
+  size: PropTypes.oneOf(['sm', 'md']),
+  appearance: PropTypes.oneOf(['primary', 'black']),
+};
 
 export const TextButton = (props) =>
   handleLinkWrapping(StyledTextButton, props);

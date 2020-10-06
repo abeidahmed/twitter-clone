@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 function Avatar({ src, alt, size, variant, ...props }) {
@@ -26,5 +27,12 @@ function Avatar({ src, alt, size, variant, ...props }) {
     </div>
   );
 }
+
+Avatar.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  variant: PropTypes.oneOf(['bordered']),
+};
 
 export default Avatar;

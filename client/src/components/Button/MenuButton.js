@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { handleLinkWrapping } from './utils';
 import { Icon } from 'components/Icon';
@@ -45,6 +46,13 @@ function StyledMenuButton({
     </button>
   );
 }
+
+StyledMenuButton.propTypes = {
+  size: PropTypes.oneOf(['md']),
+  appearance: PropTypes.oneOf(['danger']),
+  intent: PropTypes.oneOf(['intent']),
+  icon: PropTypes.string,
+};
 
 export const MenuButton = (props) =>
   handleLinkWrapping(StyledMenuButton, props);

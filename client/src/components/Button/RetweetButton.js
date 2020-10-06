@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Icon } from 'components/Icon';
 
@@ -43,5 +44,14 @@ function RetweetButton({ status = {}, size = 'sm', showCount, ...props }) {
     </button>
   );
 }
+
+RetweetButton.propTypes = {
+  status: PropTypes.exact({
+    isRetweeted: PropTypes.bool,
+    totalRetweets: PropTypes.number,
+  }),
+  size: PropTypes.oneOf(['sm', 'md']),
+  showCount: PropTypes.bool,
+};
 
 export default RetweetButton;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Icon } from 'components/Icon';
 
@@ -23,5 +24,11 @@ function CommentButton({ showCount, count, size = 'sm', ...props }) {
     </button>
   );
 }
+
+CommentButton.propTypes = {
+  showCount: PropTypes.bool,
+  count: PropTypes.number,
+  size: PropTypes.oneOf(['sm', 'md']),
+};
 
 export default CommentButton;

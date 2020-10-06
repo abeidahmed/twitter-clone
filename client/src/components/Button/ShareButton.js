@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Icon } from 'components/Icon';
 
@@ -22,5 +23,9 @@ function ShareButton({ size = 'sm', ...props }) {
     </button>
   );
 }
+
+ShareButton.propTypes = {
+  size: PropTypes.oneOf(['sm', 'md']),
+};
 
 export default ShareButton;

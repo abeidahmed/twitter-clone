@@ -118,7 +118,7 @@ function Header({ setOff }) {
       <h2 className="text-lg font-extrabold">Account info</h2>
       <IconButton
         size="md"
-        appearance="primary-text"
+        appearance="minimal"
         onClick={setOff}
         className="-mr-2"
       >

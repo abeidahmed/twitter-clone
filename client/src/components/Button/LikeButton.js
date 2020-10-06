@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Icon } from 'components/Icon';
 
@@ -43,5 +44,14 @@ function LikeButton({ status = {}, size = 'sm', showCount, ...props }) {
     </button>
   );
 }
+
+LikeButton.propTypes = {
+  status: PropTypes.exact({
+    isLiked: PropTypes.bool,
+    totalLikes: PropTypes.number,
+  }),
+  size: PropTypes.oneOf(['sm', 'md']),
+  showCount: PropTypes.bool,
+};
 
 export default LikeButton;

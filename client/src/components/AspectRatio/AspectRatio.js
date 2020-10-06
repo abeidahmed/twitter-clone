@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeRatio } from './utils';
 
 function AspectRatio({ src, alt, ratio, ...props }) {
@@ -16,5 +17,11 @@ function AspectRatio({ src, alt, ratio, ...props }) {
     </div>
   );
 }
+
+AspectRatio.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  ratio: PropTypes.string,
+};
 
 export default AspectRatio;
