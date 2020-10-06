@@ -13,13 +13,13 @@ function Following() {
     allFollowings
   );
 
-  if (isLoading || isError) return <Spinner />;
-
   return (
-    <main>
-      {users.map((user) => (
-        <UserCard key={user.id} user={user} />
-      ))}
+    <main className="relative">
+      {isLoading || isError ? (
+        <Spinner />
+      ) : (
+        users.map((user) => <UserCard key={user.id} user={user} />)
+      )}
     </main>
   );
 }
