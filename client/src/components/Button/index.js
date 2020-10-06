@@ -6,4 +6,3 @@ export { MenuButton } from './MenuButton';
 export { default as RetweetButton } from './RetweetButton';
 export { default as ShareButton } from './ShareButton';
 export { TextButton } from './TextButton';
-export { TwitterActionButton } from './TwitterActionButton';
