@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSetTitle } from 'store/page-title';
-import { TweetCard } from 'components/Card';
-import ObjectNotFound from 'shared/not-found/object-not-found';
+import DisplayTweets from './DisplayTweet';
 
 function Tweets({ user }) {
   useSetTitle(user.name, `@${user.twitterHandle}`);
@@ -13,20 +12,6 @@ function Tweets({ user }) {
         <DisplayTweets tweets={tweets} user={user} />
       </section>
     </div>
-  );
-}
-
-function DisplayTweets({ tweets, user }) {
-  return (
-    <>
-      {tweets.length ? (
-        tweets.map((tweet) => (
-          <TweetCard key={tweet.id} tweet={tweet} user={user} />
-        ))
-      ) : (
-        <ObjectNotFound description="You do not have any tweets. Try tweeting about what's happening." />
-      )}
-    </>
   );
 }
 

@@ -3,9 +3,8 @@ import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
 import { allUserLikedTweets } from 'api/all-tweets';
 import * as q from 'shared/query-key';
-import { TweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
-import ObjectNotFound from 'shared/not-found/object-not-found';
+import DisplayTweets from './DisplayTweet';
 
 function Likes({ user }) {
   useSetTitle(user.name, `@${user.twitterHandle}`);
@@ -22,20 +21,6 @@ function Likes({ user }) {
         {isLoading || isError ? <Spinner /> : <DisplayTweets tweets={tweets} />}
       </section>
     </div>
-  );
-}
-
-function DisplayTweets({ tweets }) {
-  return (
-    <>
-      {tweets.length ? (
-        tweets.map((tweet) => (
-          <TweetCard key={tweet.id} tweet={tweet} user={tweet.user} />
-        ))
-      ) : (
-        <ObjectNotFound description="You have not liked any tweets. The tweets that you like will show up here." />
-      )}
-    </>
   );
 }
 

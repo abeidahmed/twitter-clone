@@ -3,9 +3,8 @@ import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
 import { allUserCommentedTweets } from 'api/all-tweets';
 import * as q from 'shared/query-key';
-import { TweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
-import ObjectNotFound from 'shared/not-found/object-not-found';
+import DisplayTweets from './DisplayTweet';
 
 function Replies({ user }) {
   useSetTitle(user.name, `@${user.twitterHandle}`);
@@ -18,22 +17,12 @@ function Replies({ user }) {
 
   return (
     <div className="relative">
-      {isLoading || isError ? <Spinner /> : <DisplayReplies tweets={tweets} />}
-    </div>
-  );
-}
-
-function DisplayReplies({ tweets }) {
-  return (
-    <>
-      {tweets.length ? (
-        tweets.map((tweet) => (
-          <TweetCard key={tweet.id} tweet={tweet} showComments={true} />
-        ))
+      {isLoading || isError ? (
+        <Spinner />
       ) : (
-        <ObjectNotFound description="The tweets that you have replied to will show up here." />
+        <DisplayTweets tweets={tweets} showComments={true} />
       )}
-    </>
+    </div>
   );
 }
 

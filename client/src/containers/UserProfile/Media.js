@@ -3,9 +3,8 @@ import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
 import { allUserMediaTweets } from 'api/all-tweets';
 import * as q from 'shared/query-key';
-import { TweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
-import ObjectNotFound from 'shared/not-found/object-not-found';
+import DisplayTweets from './DisplayTweet';
 
 function Media({ user }) {
   useSetTitle(user.name, `@${user.twitterHandle}`);
@@ -26,20 +25,6 @@ function Media({ user }) {
         )}
       </section>
     </div>
-  );
-}
-
-function DisplayTweets({ tweets, user }) {
-  return (
-    <>
-      {tweets.length ? (
-        tweets.map((tweet) => (
-          <TweetCard key={tweet.id} tweet={tweet} user={user} />
-        ))
-      ) : (
-        <ObjectNotFound description="Tweets that you have tweeted with an image will show up here." />
-      )}
-    </>
   );
 }
 
