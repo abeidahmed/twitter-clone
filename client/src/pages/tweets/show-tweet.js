@@ -11,7 +11,7 @@ import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
 import { Spinner } from 'components/Loader';
 import { AspectRatio } from 'components/AspectRatio';
-import { TweetCardOption } from 'components/tweet-card-option';
+import { CardOption as TweetOption } from 'components/Card/TweetCard/components';
 import { TweetStats } from 'components/tweet-stats';
 import { CommentCard } from 'components/Card';
 import { TweetActionButtons } from 'components/ReactiveButton';
@@ -67,7 +67,7 @@ function ShowTweet() {
             </div>
             {twitter.id === currentUser.id && (
               <div>
-                <TweetCardOption tweetID={tweet.id} redirect={true} />
+                <TweetOption tweetID={tweet.id} redirect={true} />
               </div>
             )}
           </div>

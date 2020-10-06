@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { deleteTweet } from 'api/delete-tweet';
 import * as q from 'shared/query-key';
-import { IconButton, MenuButton } from './Button';
-import { Icon } from './Icon';
-import { DropdownContainer, OutsideClickHandler } from './Container';
+import { IconButton, MenuButton } from 'components/Button';
+import { Icon } from 'components/Icon';
+import { DropdownContainer, OutsideClickHandler } from 'components/Container';
 
-export function TweetCardOption({ tweetID, redirect }) {
+function CardOption({ tweetID, redirect }) {
   const [menuActive, setMenuActive] = useState(false);
 
   const [mutate, { isLoading }] = useRefetchMutation(deleteTweet, [
@@ -48,3 +48,5 @@ export function TweetCardOption({ tweetID, redirect }) {
     </OutsideClickHandler>
   );
 }
+
+export default CardOption;
