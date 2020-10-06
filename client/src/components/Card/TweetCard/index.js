@@ -2,7 +2,7 @@ import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { CommentCard } from 'components/Card';
-import { TweetActionBtn } from 'components/tweet-action-btn';
+import { TweetActionButtons } from 'components/ReactiveButton';
 import {
   CardContainer,
   UserInfo,
@@ -37,7 +37,7 @@ function TweetCard({ tweet, user, showComments }) {
               <Figure image={image} />
             </div>
             <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-              <TweetActionBtn
+              <TweetActionButtons
                 tweet={tweet}
                 user={user}
                 size="sm"

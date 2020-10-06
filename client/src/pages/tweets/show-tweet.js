@@ -14,7 +14,7 @@ import { AspectRatio } from 'components/AspectRatio';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { TweetStats } from 'components/tweet-stats';
 import { CommentCard } from 'components/Card';
-import { TweetActionBtn } from 'components/tweet-action-btn';
+import { TweetActionButtons } from 'components/ReactiveButton';
 
 function ShowTweet() {
   useSetTitle('Tweet', null);
@@ -85,7 +85,7 @@ function ShowTweet() {
             </div>
             <TweetStatistics likes={likes} tweetID={tweet.id} />
             <div className="flex items-center justify-between w-full max-w-lg py-1 mx-auto">
-              <TweetActionBtn tweet={tweet} size="md" showCount={false} />
+              <TweetActionButtons tweet={tweet} size="md" showCount={false} />
             </div>
           </section>
         </div>
