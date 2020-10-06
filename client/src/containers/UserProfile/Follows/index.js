@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useSetTitle } from 'store/page-title';
-import Followers from './followers';
-import Following from './following';
+import Followers from './Followers';
+import Following from './Following';
 import { Tab } from 'components/Tab';
 
 function Follows({ user }) {

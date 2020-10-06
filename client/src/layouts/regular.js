@@ -7,11 +7,11 @@ import MobileSidebar from 'lib/mobile-sidebar';
 import MobileMenu from 'lib/mobile-menu';
 import Header from 'lib/header';
 import Sidebar from 'lib/sidebar';
-import Explore from 'pages/explore';
-import Home from 'pages/home';
-import Bookmark from 'pages/bookmark';
-import Profile from 'pages/profile';
-import ShowTweet from 'pages/tweets/show-tweet';
+import Explore from 'containers/ExplorePage';
+import Home from 'containers/HomePage';
+import Bookmark from 'containers/BookmarkPage';
+import Profile from 'containers/UserProfile';
+import ShowTweet from 'containers/ShowTweet';
 import ModalRoot from 'modals/modal-root';
 
 export default function Regular() {
