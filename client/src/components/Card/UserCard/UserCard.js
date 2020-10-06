@@ -9,7 +9,7 @@ import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
 import { Badge } from 'components/Badge';
 import { CardContainer } from '../shared';
-import { UserHoverableCard } from 'components/user-hoverable-card';
+import { UserHoverableCard } from 'components/Card';
 
 function UserCard({ user }) {
   const {

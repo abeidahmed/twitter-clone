@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { Icon } from 'components/Icon';
-import { UserHoverableCard } from 'components/user-hoverable-card';
+import { UserHoverableCard } from 'components/Card';
 
 function RetweeterInfo({ user }) {
   const { currentUser } = useCurrentUser();

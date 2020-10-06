@@ -1,6 +1,6 @@
 import React from 'react';
 import { withPartialMonth } from 'utils/date-time';
-import { UserHoverableCard } from 'components/user-hoverable-card';
+import { UserHoverableCard } from 'components/Card';
 import { TextButton } from 'components/Button';
 
 function UserInfo({ user, tweet }) {

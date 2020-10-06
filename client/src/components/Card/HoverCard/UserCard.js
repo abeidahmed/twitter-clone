@@ -5,12 +5,12 @@ import { useCurrentUser } from 'store/current-user';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import * as q from 'shared/query-key';
-import { Avatar } from './Avatar';
-import { TextButton } from './Button';
-import { FollowStat } from './follow-stat';
-import { FollowBtn } from './follow-btn';
+import { Avatar } from 'components/Avatar';
+import { TextButton } from 'components/Button';
+import { FollowStat } from 'components/follow-stat';
+import { FollowBtn } from 'components/follow-btn';
 
-export function UserHoverableCard({ hoverTo, user }) {
+function UserCard({ hoverTo, user }) {
   const [isActive, setIsActive] = useState(false);
 
   const {
@@ -134,3 +134,5 @@ function DynamicFollowBtn({ user }) {
     </div>
   );
 }
+
+export default UserCard;
