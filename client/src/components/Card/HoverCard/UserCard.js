@@ -9,6 +9,7 @@ import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
 import { FollowStat } from 'components/follow-stat';
 import { FollowBtn } from 'components/follow-btn';
+import { Content } from '../shared';
 
 function UserCard({ hoverTo, user }) {
   const [isActive, setIsActive] = useState(false);
@@ -56,12 +57,10 @@ function UserCard({ hoverTo, user }) {
                   </span>
                 </div>
               </div>
-              <div>
-                <DynamicFollowBtn user={user} />
-              </div>
+              <DynamicFollowBtn user={user} />
             </div>
             <div className="mt-2">
-              <p className="text-base text-gray-600">{bio}</p>
+              <Content body={bio} />
               <div className="mt-2">
                 <FollowStat
                   follower={followersCount}
