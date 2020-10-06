@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardContainer, UserAvatar, UserInfo, Content } from '../../shared';
-import { CommentActionBtn } from 'components/comment-action-btn';
 import CardOption from './CardOption';
+import { CommentActionButtons } from 'components/ReactiveButton';
 
 function CommentContainer({ comment, twitterID }) {
   const { body, commenter, createdAt, id, hasNestedComment } = comment;
@@ -24,7 +24,7 @@ function CommentContainer({ comment, twitterID }) {
               <Content body={body} />
             </div>
             <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-              <CommentActionBtn comment={comment} />
+              <CommentActionButtons comment={comment} />
             </div>
           </div>
         </div>
