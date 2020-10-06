@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Icon } from 'components/Icon';
 
-function ObjectNotFound({ description }) {
+function SadFaceNotFound({ description }) {
   return (
     <section className="p-4">
       <div className="w-full max-w-md mx-auto">
@@ -12,4 +13,8 @@ function ObjectNotFound({ description }) {
   );
 }
 
-export default ObjectNotFound;
+SadFaceNotFound.propTypes = {
+  description: PropTypes.string,
+};
+
+export default SadFaceNotFound;

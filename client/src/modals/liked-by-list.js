@@ -6,7 +6,7 @@ import { likedBy } from 'api/liked-by';
 import { ModalWrapper } from 'components/modal-wrapper';
 import { UserCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
-import ObjectNotFound from 'shared/not-found/object-not-found';
+import { SadFaceNotFound } from 'components/NotFound';
 
 function LikedByList() {
   const { modalProps } = useModalType();
@@ -30,7 +30,7 @@ function ListResult({ users }) {
       {users.length ? (
         users.map((user) => <UserCard key={user.id} user={user} />)
       ) : (
-        <ObjectNotFound
+        <SadFaceNotFound
           description="We're sorry, no one has liked the tweet. People who has liked the
         tweet will show up here."
         />

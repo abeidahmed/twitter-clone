@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TweetCard } from 'components/Card';
-import ObjectNotFound from 'shared/not-found/object-not-found';
+import { SadFaceNotFound } from 'components/NotFound';
 
 function DisplayTweets({ tweets, user, description, showComments }) {
   if (tweets.length) {
@@ -14,7 +14,7 @@ function DisplayTweets({ tweets, user, description, showComments }) {
       />
     ));
   }
-  return <ObjectNotFound description={description} />;
+  return <SadFaceNotFound description={description} />;
 }
 
 DisplayTweets.propTypes = {
