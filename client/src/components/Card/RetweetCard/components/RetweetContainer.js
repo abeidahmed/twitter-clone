@@ -3,7 +3,7 @@ import { UserInfo, Figure, CardContainer, Content } from '../../shared';
 import { Avatar } from 'components/Avatar';
 import { IconButton } from 'components/Button';
 import { Icon } from 'components/Icon';
-import { RetweetActionBtn } from 'components/retweet-action-btn';
+import { RetweetActionButtons } from 'components/ReactiveButton';
 import RetweeterInfo from './RetweeterInfo';
 import NestedTweet from './NestedTweet';
 
@@ -41,7 +41,7 @@ function RetweetCard({ tweet }) {
               <Figure image={retweetable.image} />
             </div>
           </div>
-          <RetweetActionBtn />
+          <RetweetActionButtons />
         </div>
       </div>
     </CardContainer>

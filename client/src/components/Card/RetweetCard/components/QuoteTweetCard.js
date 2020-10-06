@@ -2,7 +2,7 @@ import React from 'react';
 import { UserInfo, CardContainer, Content } from '../../shared';
 import { IconButton } from 'components/Button';
 import { Avatar } from 'components/Avatar';
-import { RetweetActionBtn } from 'components/retweet-action-btn';
+import { RetweetActionButtons } from 'components/ReactiveButton';
 import { Icon } from 'components/Icon';
 import NestedTweet from './NestedTweet';
 
@@ -32,7 +32,7 @@ function QuoteTweetCard({ tweet }) {
             <Content body={body} />
             <NestedTweet nestedTweet={retweetable} />
           </div>
-          <RetweetActionBtn />
+          <RetweetActionButtons />
         </div>
       </div>
     </CardContainer>

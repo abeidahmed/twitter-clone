@@ -1,46 +1,6 @@
 import React, { useState } from 'react';
-import { CommentButton } from './comment-button';
-import { TwitterActionButton, MenuButton } from './Button';
-import { LikeButton } from './like-button';
-import { DropdownContainer, OutsideClickHandler } from './Container';
-
-export function RetweetActionBtn() {
-  return (
-    <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-      <CommentBtn />
-      <RetweetBtn />
-      <LikeBtn />
-      <ShareBtn />
-    </div>
-  );
-}
-
-function CommentBtn() {
-  return <CommentButton size="sm" showCount={true} count={2} />;
-}
-
-function RetweetBtn() {
-  return (
-    <TwitterActionButton
-      icon="refresh"
-      size="sm"
-      appearance="green"
-      className="relative"
-    >
-      4
-    </TwitterActionButton>
-  );
-}
-
-function LikeBtn() {
-  return (
-    <LikeButton
-      size="sm"
-      showCount={true}
-      status={{ isLiked: true, totalLikes: 41 }}
-    />
-  );
-}
+import { OutsideClickHandler, DropdownContainer } from 'components/Container';
+import { MenuButton, ShareButton } from 'components/Button';
 
 function ShareBtn() {
   const [isActive, setIsActive] = useState(false);
@@ -65,13 +25,7 @@ function ShareBtn() {
       onOutsideClick={() => setIsActive(false)}
       className="relative flex items-center justify-center"
     >
-      <TwitterActionButton
-        icon="upload"
-        size="sm"
-        appearance="teal"
-        className="relative"
-        onClick={() => setIsActive(!isActive)}
-      />
+      <ShareButton size="sm" onClick={() => setIsActive(!isActive)} />
       <DropdownContainer isActive={isActive}>
         {links.map((link) => (
           <MenuButton
@@ -89,3 +43,5 @@ function ShareBtn() {
     </OutsideClickHandler>
   );
 }
+
+export default ShareBtn;
