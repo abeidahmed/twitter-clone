@@ -13,7 +13,7 @@ import { Spinner } from 'components/Loader';
 import { AspectRatio } from 'components/AspectRatio';
 import { TweetCardOption } from 'components/tweet-card-option';
 import { TweetStats } from 'components/tweet-stats';
-import { CommentCard } from 'components/comment-card';
+import { CommentCard } from 'components/Card';
 import { TweetActionBtn } from 'components/tweet-action-btn';
 
 function ShowTweet() {

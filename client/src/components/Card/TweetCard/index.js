@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { TweetCardOption } from 'components/tweet-card-option';
-import { CommentCard } from 'components/comment-card';
+import { CommentCard } from 'components/Card';
 import { TweetActionBtn } from 'components/tweet-action-btn';
 import {
   CardContainer,

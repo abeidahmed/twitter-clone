@@ -5,7 +5,7 @@ import { useSetTitle } from 'store/page-title';
 import { allBookmarks } from 'api/all-bookmarks';
 import * as q from 'shared/query-key';
 import { TweetCard } from 'components/Card';
-import { CommentCard } from 'components/comment-card';
+import { CommentCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 
 function Bookmark() {
