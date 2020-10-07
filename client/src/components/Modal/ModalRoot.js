@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { useModalType } from 'store/modal';
 import * as modal from './types';
 import { CreateCommentOnComment } from './Comment';
@@ -21,7 +22,10 @@ function ModalRoot() {
   if (!modalType) return null;
 
   const SpecificModal = MODAL_COMPONENTS[modalType];
-  return <SpecificModal {...modalProps} />;
+  return ReactDOM.createPortal(
+    <SpecificModal {...modalProps} />,
+    document.getElementById('portal')
+  );
 }
 
 export default ModalRoot;

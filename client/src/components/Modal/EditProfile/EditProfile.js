@@ -132,7 +132,7 @@ function EditProfile() {
             label="Bio"
             placeholder="Add your bio"
             id="profile-bio"
-            rows="4"
+            rows={4}
             resize={false}
             value={bio}
             error={error}

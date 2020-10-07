@@ -1,5 +1,1 @@
-export const CREATE_COMMENT_ON_TWEET = 'CREATE_COMMENT_ON_TWEET';
-export const CREATE_COMMENT_ON_COMMENT = 'CREATE_COMMENT_ON_COMMENT';
-export const CREATE_TWEET = 'CREATE_TWEET';
-export const EDIT_PROFILE = 'EDIT_PROFILE';
-export const LIKED_BY_LIST = 'LIKED_BY_LIST';
+export { default as ModalRoot } from './ModalRoot';

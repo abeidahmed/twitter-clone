@@ -10,7 +10,7 @@ import Home from 'containers/HomePage';
 import Bookmark from 'containers/BookmarkPage';
 import Profile from 'containers/UserProfile';
 import ShowTweet from 'containers/ShowTweet';
-import ModalRoot from 'modals/modal-root';
+import { ModalRoot } from 'components/Modal';
 
 export default function Regular() {
   return (
