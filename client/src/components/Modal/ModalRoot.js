@@ -1,8 +1,8 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
 import * as modal from './types';
-import CreateCommentOnComment from './create-comment-on-comment';
-import CreateCommentOnTweet from './create-comment-on-tweet';
+import { CreateCommentOnComment } from './Comment';
+import { CreateCommentOnTweet } from './Comment';
 import { CreateTweet } from './CreateTweet';
 import { EditProfile } from './EditProfile';
 import { LikedByList } from './LikedByList';
