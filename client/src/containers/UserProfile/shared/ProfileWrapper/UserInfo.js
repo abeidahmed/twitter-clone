@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withFullMonth } from 'utils/date-time';
 import UserMeta from './UserMeta';
-import { FollowStat } from 'components/follow-stat';
+import { FollowStat } from 'components/FollowStat';
 
 function UserInfo({ user }) {
   const {

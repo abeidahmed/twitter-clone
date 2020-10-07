@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { pluralize } from 'utils/helpers';
 
-export function FollowStat({ follower, following, followerTo, followingTo }) {
+function FollowStat({ follower, following, followerTo, followingTo }) {
   return (
     <div className="flex items-center space-x-4 text-sm">
       <Link
@@ -21,3 +22,12 @@ export function FollowStat({ follower, following, followerTo, followingTo }) {
     </div>
   );
 }
+
+FollowStat.propTypes = {
+  follower: PropTypes.number,
+  following: PropTypes.number,
+  followerTo: PropTypes.string,
+  followingTo: PropTypes.string,
+};
+
+export default FollowStat;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
 import { Avatar } from 'components/Avatar';
-import { FollowStat } from 'components/follow-stat';
+import { FollowStat } from 'components/FollowStat';
 
 function UserInfo() {
   const { currentUser } = useCurrentUser();

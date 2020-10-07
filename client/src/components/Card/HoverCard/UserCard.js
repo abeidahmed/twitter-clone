@@ -7,7 +7,7 @@ import { unfollow } from 'api/unfollow';
 import * as q from 'shared/query-key';
 import { Avatar } from 'components/Avatar';
 import { TextButton, FollowButton } from 'components/Button';
-import { FollowStat } from 'components/follow-stat';
+import { FollowStat } from 'components/FollowStat';
 import { Content } from '../shared';
 
 function UserCard({ hoverTo, user }) {
