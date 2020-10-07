@@ -3,10 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import { ModalStore } from 'store/modal';
 import { PageTitleStore } from 'store/page-title';
 import { SidebarStore } from 'store/sidebar';
-import { MobileSidebar } from 'components/Sidebar';
+import { MobileSidebar, DesktopSidebar } from 'components/Sidebar';
 import MobileMenu from 'lib/mobile-menu';
 import Header from 'lib/header';
-import Sidebar from 'lib/sidebar';
 import Explore from 'containers/ExplorePage';
 import Home from 'containers/HomePage';
 import Bookmark from 'containers/BookmarkPage';
@@ -22,7 +21,7 @@ export default function Regular() {
         <div className="sm:flex sm:max-w-7xl sm:mx-auto lg:grid lg:grid-cols-12">
           <SidebarStore>
             <MobileSidebar />
-            <Sidebar />
+            <DesktopSidebar />
             <div className="flex flex-col justify-between w-full h-screen lg:col-span-9 xl:col-span-6">
               <Header />
               <div className="relative flex-1 overflow-y-auto border-l border-r border-gray-200">
