@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ModalStore } from 'store/modal';
 import { PageTitleStore } from 'store/page-title';
 import { SidebarStore } from 'store/sidebar';
-import MobileSidebar from 'lib/mobile-sidebar';
+import { MobileSidebar } from 'components/Sidebar';
 import MobileMenu from 'lib/mobile-menu';
 import Header from 'lib/header';
 import Sidebar from 'lib/sidebar';
