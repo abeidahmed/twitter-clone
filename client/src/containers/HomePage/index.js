@@ -4,7 +4,7 @@ import { useSetTitle } from 'store/page-title';
 import Retweets from './Retweets';
 import Tweets from './Tweets';
 import { Divider } from 'components/Divider';
-import TweetBox from 'lib/tweet-box';
+import { TweetBox } from 'components/TwitterBox';
 import { MobileTweetButton } from 'components/mobile-tweet-button';
 import { Tab } from 'components/Tab';
 

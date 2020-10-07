@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModalWrapper } from 'components/modal-wrapper';
-import TweetBox from 'lib/tweet-box';
+import { TweetBox } from 'components/TwitterBox';
 
 function CreateTweet() {
   return (
