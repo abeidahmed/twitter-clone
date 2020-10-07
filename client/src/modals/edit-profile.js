@@ -10,7 +10,7 @@ import { updateUser } from 'api/update-user';
 import { Input, Textarea } from 'components/Field';
 import { Avatar } from 'components/Avatar';
 import { File } from 'components/Field';
-import { TwitterBanner } from 'components/twitter-banner';
+import { Banner } from 'components/Banner';
 import { CharTracker } from 'components/CharTracker';
 
 function EditProfile() {
@@ -91,7 +91,7 @@ function EditProfile() {
                   onChange={(e) => setBanner(e.target.files[0])}
                 />
               </div>
-              <TwitterBanner
+              <Banner
                 src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80"
                 alt="User twitter banner"
               />
