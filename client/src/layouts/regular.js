@@ -5,7 +5,7 @@ import { PageTitleStore } from 'store/page-title';
 import { SidebarStore } from 'store/sidebar';
 import { MobileSidebar, DesktopSidebar } from 'components/Sidebar';
 import MobileMenu from 'lib/mobile-menu';
-import Header from 'lib/header';
+import { Header } from 'components/Menu';
 import Explore from 'containers/ExplorePage';
 import Home from 'containers/HomePage';
 import Bookmark from 'containers/BookmarkPage';

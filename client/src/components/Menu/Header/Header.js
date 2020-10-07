@@ -8,7 +8,9 @@ function Header() {
   const [{ title, description }] = useContext(PageTitleContext);
   const { setOn } = useSidebarToggle();
 
-  const { currentUser } = useCurrentUser();
+  const {
+    currentUser: { avatar, twitterHandle },
+  } = useCurrentUser();
 
   return (
     <header className="sticky top-0 z-10 flex-shrink-0 bg-white border border-gray-200">
@@ -17,11 +19,7 @@ function Header() {
           onClick={setOn}
           className="rounded-full sm:hidden focus:outline-none focus:shadow-outline-blue"
         >
-          <Avatar
-            size="sm"
-            src={currentUser.avatar}
-            alt={`${currentUser.twitterHandle}'s profile`}
-          />
+          <Avatar size="sm" src={avatar} alt={`${twitterHandle}'s profile`} />
         </button>
         <div className="px-4 sm:px-0">
           <h1 className="text-lg font-extrabold leading-6">{title}</h1>
