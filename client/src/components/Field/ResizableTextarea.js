@@ -12,7 +12,7 @@ function ResizableTextarea({ value, ...props }) {
       </label>
       <textarea
         id="tweet-main-textarea"
-        className="block w-full h-auto p-0 pt-2 text-lg border-none resize-none focus:shadow-none form-textarea"
+        className="block w-full h-auto p-0 pt-2 overflow-hidden text-lg border-none resize-none focus:shadow-none form-textarea"
         {...props}
         value={value}
         ref={textareaRef}
