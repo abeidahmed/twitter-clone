@@ -1,9 +1,9 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
-import { IconButton } from './Button';
-import { Icon } from './Icon';
+import { IconButton } from 'components/Button';
+import { Icon } from 'components/Icon';
 
-export function MobileTweetButton() {
+function MobileTweetButton() {
   const { modalOn, types } = useModalType();
 
   function openModal() {
@@ -21,3 +21,5 @@ export function MobileTweetButton() {
     </div>
   );
 }
+
+export default MobileTweetButton;

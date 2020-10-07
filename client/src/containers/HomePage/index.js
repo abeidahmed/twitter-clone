@@ -5,7 +5,7 @@ import Retweets from './Retweets';
 import Tweets from './Tweets';
 import { Divider } from 'components/Divider';
 import { TweetBox } from 'components/TwitterBox';
-import { MobileTweetButton } from 'components/mobile-tweet-button';
+import MobileTweetButton from './MobileTweetButton';
 import { Tab } from 'components/Tab';
 
 const links = [
