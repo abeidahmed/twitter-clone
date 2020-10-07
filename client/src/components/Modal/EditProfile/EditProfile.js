@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ModalWrapper } from 'components/modal-wrapper';
 import { useMutation, queryCache } from 'react-query';
 import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
@@ -7,6 +6,7 @@ import { useCharTrackerState } from 'hooks/char-tracker';
 import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';
 import { updateUser } from 'api/update-user';
+import { ModalWrapper } from '../ModalWrapper';
 import { Avatar } from 'components/Avatar';
 import { File } from 'components/Field';
 import { Banner } from 'components/Banner';

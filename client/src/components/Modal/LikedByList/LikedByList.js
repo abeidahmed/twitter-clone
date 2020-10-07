@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { useModalType } from 'store/modal';
 import * as q from 'shared/query-key';
 import { likedBy } from 'api/liked-by';
-import { ModalWrapper } from 'components/modal-wrapper';
+import { ModalWrapper } from '../ModalWrapper';
 import { Spinner } from 'components/Loader';
 import { DisplayList } from './components';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalWrapper } from 'components/modal-wrapper';
+import { ModalWrapper } from '../ModalWrapper';
 import { TweetBox } from 'components/TwitterBox';
 
 function CreateTweet() {
