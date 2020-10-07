@@ -5,7 +5,7 @@ import { useSetTitle } from 'store/page-title';
 import { useCurrentUser } from 'store/current-user';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
-import { detailedDate, time12format } from 'utils/date-time';
+import { detailedDate, time12format } from 'utils/dateTime';
 import { Spinner } from 'components/Loader';
 import { AspectRatio } from 'components/AspectRatio';
 import { CardOption as TweetOption } from 'components/Card/TweetCard/components';

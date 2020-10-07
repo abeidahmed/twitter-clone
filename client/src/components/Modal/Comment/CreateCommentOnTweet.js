@@ -1,6 +1,6 @@
 import React from 'react';
 import { useModalType } from 'store/modal';
-import { timeNow } from 'utils/date-time';
+import { timeNow } from 'utils/dateTime';
 import { ModalWrapper } from '../ModalWrapper';
 import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';

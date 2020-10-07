@@ -1,5 +1,5 @@
 import React from 'react';
-import { withPartialMonth } from 'utils/date-time';
+import { withPartialMonth } from 'utils/dateTime';
 import { UserHoverableCard } from 'components/Card';
 import { TextButton } from 'components/Button';
 

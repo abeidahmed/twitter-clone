@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withFullMonth } from 'utils/date-time';
+import { withFullMonth } from 'utils/dateTime';
 import UserMeta from './UserMeta';
 import { FollowStat } from 'components/FollowStat';
 
