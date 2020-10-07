@@ -8,7 +8,7 @@ import Media from './Media';
 import Replies from './Replies';
 import Tweets from './Tweets';
 import Follows from './Follows';
-import ProfileWrapper from 'lib/profile-wrapper';
+import { ProfileWrapper } from './shared';
 import { Spinner } from 'components/Loader';
 
 function Profile() {

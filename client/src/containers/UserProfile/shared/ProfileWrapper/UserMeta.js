@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { normalizeLink } from 'utils/helpers';
-import { Icon } from './Icon';
-import { TextButton } from './Button';
+import { Icon } from 'components/Icon';
+import { TextButton } from 'components/Button';
 
-export function UserMeta({ title, icon, linkTo }) {
+function UserMeta({ title, icon, linkTo }) {
   return (
     <p className="flex items-center space-x-1 text-sm text-gray-500">
       <Icon icon={icon} className="w-5 h-5 text-gray-400" />
@@ -17,3 +18,11 @@ export function UserMeta({ title, icon, linkTo }) {
     </p>
   );
 }
+
+UserMeta.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.string,
+  linkTo: PropTypes.string,
+};
+
+export default UserMeta;
