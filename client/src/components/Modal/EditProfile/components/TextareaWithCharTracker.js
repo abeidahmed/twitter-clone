@@ -34,7 +34,7 @@ TextareaWithCharTracker.propTypes = {
   charLength: PropTypes.number,
   charLimit: PropTypes.number,
   size: PropTypes.oneOf(['sm', 'md']),
-  rows: PropTypes.integer,
+  rows: PropTypes.number,
   resize: PropTypes.bool,
   autoComplete: PropTypes.oneOf(['on', 'off']),
 };
