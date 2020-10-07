@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ProtectedRoute from 'lib/protected-route';
+import { ProtectedRoute } from 'components/ProtectedRoute';
 import Regular from 'layouts/regular';
 import Slate from 'layouts/slate';
 import { currentUser } from 'api/current-user';
