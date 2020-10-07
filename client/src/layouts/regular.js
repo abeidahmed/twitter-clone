@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ModalStore } from 'store/modal';
-import { PageTitleStore } from 'store/page-title';
+import { PageTitleStore } from 'store/pageTitle';
 import { SidebarStore } from 'store/sidebar';
 import { MobileSidebar, DesktopSidebar } from 'components/Sidebar';
 import { Header, MobileMenu } from 'components/Menu';

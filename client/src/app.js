@@ -4,7 +4,7 @@ import { ProtectedRoute } from 'components/ProtectedRoute';
 import Regular from 'layouts/regular';
 import Slate from 'layouts/slate';
 import { currentUser } from 'api/current-user';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 
 export default function App() {
   const { setUser, token } = useCurrentUser();

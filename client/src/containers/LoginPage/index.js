@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { loginUser } from 'api/login-user';
 import { Input } from 'components/Field';
 import Footer from './Footer';

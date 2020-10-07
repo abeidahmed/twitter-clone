@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, queryCache } from 'react-query';
 import { useModalType } from 'store/modal';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { useCharTracker } from 'hooks/useCharTracker';
 import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { Icon } from 'components/Icon';
 import { UserHoverableCard } from 'components/Card';
 

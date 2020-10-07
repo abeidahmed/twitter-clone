@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';
 import UserButton from './UserButton';
 import { MenuButton } from 'components/Button';

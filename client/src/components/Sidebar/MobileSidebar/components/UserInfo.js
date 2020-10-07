@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { Avatar } from 'components/Avatar';
 import { FollowStat } from 'components/FollowStat';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { deleteComment } from 'api/delete-comment';
 import * as q from 'shared/query-key';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';

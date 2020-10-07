@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Cookies from 'js-cookie';
 import { currentUser } from 'api/current-user';
-import { TOKEN } from 'store/current-user';
+import { TOKEN } from 'store/currentUser';
 import { Spinner } from 'components/Loader';
 
 function ProtectedRoute({ component: Component, ...rest }) {

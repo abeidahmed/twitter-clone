@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { TOKEN } from 'store/current-user';
+import { TOKEN } from 'store/currentUser';
 
 export function header() {
   const token = Cookies.get(TOKEN);

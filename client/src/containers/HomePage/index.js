@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { useSetTitle } from 'store/page-title';
+import { useSetTitle } from 'store/pageTitle';
 import Retweets from './Retweets';
 import Tweets from './Tweets';
 import { Divider } from 'components/Divider';

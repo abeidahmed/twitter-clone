@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { useSetTitle } from 'store/page-title';
-import { useCurrentUser } from 'store/current-user';
+import { useSetTitle } from 'store/pageTitle';
+import { useCurrentUser } from 'store/currentUser';
 import { showTweet } from 'api/show-tweet';
 import * as q from 'shared/query-key';
 import { detailedDate, time12format } from 'utils/dateTime';

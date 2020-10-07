@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { useSetTitle } from 'store/page-title';
+import { useSetTitle } from 'store/pageTitle';
 import { allBookmarks } from 'api/all-bookmarks';
 import * as q from 'shared/query-key';
 import { TweetCard } from 'components/Card';

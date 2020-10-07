@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSetTitle } from 'store/page-title';
+import { useSetTitle } from 'store/pageTitle';
 import DisplayTweets from './DisplayTweet';
 
 function Tweets({ user }) {

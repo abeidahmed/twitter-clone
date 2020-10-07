@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
 import * as q from 'shared/query-key';

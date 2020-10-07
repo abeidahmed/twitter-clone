@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { CardOption } from './components';
 import { CommentCard } from 'components/Card';
 import { TweetActionButtons } from 'components/ReactiveButton';

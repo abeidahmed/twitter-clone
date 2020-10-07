@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { PageTitleContext } from 'store/page-title';
+import { PageTitleContext } from 'store/pageTitle';
 import { useSidebarToggle } from 'store/sidebar';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { Avatar } from 'components/Avatar';
 
 function Header() {

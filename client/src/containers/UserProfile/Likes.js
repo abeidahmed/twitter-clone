@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { useSetTitle } from 'store/page-title';
+import { useSetTitle } from 'store/pageTitle';
 import { allUserLikedTweets } from 'api/all-tweets';
 import * as q from 'shared/query-key';
 import { Spinner } from 'components/Loader';

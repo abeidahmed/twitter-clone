@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';

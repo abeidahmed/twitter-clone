@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { useCurrentUser } from 'store/current-user';
+import { useCurrentUser } from 'store/currentUser';
 import { useDisplayUploadedImage } from 'hooks/useDisplayUploadedImage';
 import * as limit from 'shared/char-limit';
 import { IconButton, Button } from 'components/Button';
