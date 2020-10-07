@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
+import { UserHoverableCard } from 'components/Card';
 
 function UserInfo({ user }) {
   const { avatar, twitterHandle, name } = user;
@@ -12,14 +13,19 @@ function UserInfo({ user }) {
         <Avatar size="lg" src={avatar} alt={twitterHandle} />
       </div>
       <div>
-        <TextButton
-          to={`/${twitterHandle}`}
-          appearance="black"
-          size="sm"
-          className="relative font-bold"
-        >
-          {name}
-        </TextButton>
+        <UserHoverableCard
+          hoverTo={
+            <TextButton
+              to={`/${twitterHandle}`}
+              appearance="black"
+              size="sm"
+              className="relative font-bold"
+            >
+              {name}
+            </TextButton>
+          }
+          user={user}
+        />
         <span className="block text-sm leading-5 text-gray-500">
           @{twitterHandle}
         </span>
