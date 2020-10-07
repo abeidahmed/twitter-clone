@@ -21,5 +21,5 @@ class Tweet < ApplicationRecord
   scope :from_people_you_follow, ->(user) { where(user_id: user.following.pluck(:id)) }
   scope :from_people_you_know, ->(user) { from_people_you_follow(user).or(own_tweets(user)) }
   scope :consist_images, -> { where.not(image: nil) }
-  scope :with_comments_from, ->(user) { includes(:comments).where('comments.user_id': user.id) }
+  scope :with_comments_from, ->(user) { includes(:comments).where(comments: { user_id: user.id }) }
 end
