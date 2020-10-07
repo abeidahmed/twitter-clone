@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import TwitterBox from './TwitterBox';
 import { createCommentonComment } from 'api/create-comment';
 import { useModalType } from 'store/modal';

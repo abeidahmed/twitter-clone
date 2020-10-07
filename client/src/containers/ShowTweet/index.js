@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/pageTitle';
 import { useCurrentUser } from 'store/currentUser';
 import { showTweet } from 'api/show-tweet';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { detailedDate, time12format } from 'utils/dateTime';
 import { Spinner } from 'components/Loader';
 import { AspectRatio } from 'components/AspectRatio';

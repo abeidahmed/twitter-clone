@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { showUser } from 'api/show-user';
 import Likes from './Likes';
 import Media from './Media';

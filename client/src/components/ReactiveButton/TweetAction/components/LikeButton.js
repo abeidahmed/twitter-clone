@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { voteTweet } from 'api/vote-tweet';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { LikeButton } from 'components/Button';
 
 function LikeBtn({ tweet, size, showCount }) {

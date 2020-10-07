@@ -4,7 +4,7 @@ import { useCurrentUser } from 'store/currentUser';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { useModalType } from 'store/modal';
 import { Button, FollowButton } from 'components/Button';
 

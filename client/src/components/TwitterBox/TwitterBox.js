@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { useCurrentUser } from 'store/currentUser';
 import { useDisplayUploadedImage } from 'hooks/useDisplayUploadedImage';
-import * as limit from 'shared/char-limit';
+import * as limit from 'shared/charLimit';
 import { IconButton, Button } from 'components/Button';
 import { Icon } from 'components/Icon';
 import { ResizableTextarea } from 'components/Field';

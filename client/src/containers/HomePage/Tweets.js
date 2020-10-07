@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { allTweets } from 'api/all-tweets';
 import { TweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';

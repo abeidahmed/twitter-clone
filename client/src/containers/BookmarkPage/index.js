@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/pageTitle';
 import { allBookmarks } from 'api/all-bookmarks';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { TweetCard } from 'components/Card';
 import { CommentCard } from 'components/Card';
 import { Spinner } from 'components/Loader';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useModalType } from 'store/modal';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { likedBy } from 'api/liked-by';
 import { ModalWrapper } from '../ModalWrapper';
 import { Spinner } from 'components/Loader';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { deleteTweet } from 'api/delete-tweet';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { IconButton, MenuButton } from 'components/Button';
 import { Icon } from 'components/Icon';
 import { DropdownContainer, OutsideClickHandler } from 'components/Container';

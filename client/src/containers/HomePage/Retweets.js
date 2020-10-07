@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { allRetweets } from 'api/all-retweets';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { RetweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 

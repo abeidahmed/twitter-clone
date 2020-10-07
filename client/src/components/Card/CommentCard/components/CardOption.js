@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { useCurrentUser } from 'store/currentUser';
 import { deleteComment } from 'api/delete-comment';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';
 import { IconButton, MenuButton } from 'components/Button';
 import { Icon } from 'components/Icon';

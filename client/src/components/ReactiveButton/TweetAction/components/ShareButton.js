@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { bookmarkTweet } from 'api/create-bookmark';
 import { deleteBookmark } from 'api/delete-bookmark';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { ShareButton, MenuButton } from 'components/Button';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';
 

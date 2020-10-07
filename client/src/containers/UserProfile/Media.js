@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/pageTitle';
 import { allUserMediaTweets } from 'api/all-tweets';
-import * as q from 'shared/query-key';
+import * as q from 'shared/queryKey';
 import { Spinner } from 'components/Loader';
 import DisplayTweets from './DisplayTweet';
 
