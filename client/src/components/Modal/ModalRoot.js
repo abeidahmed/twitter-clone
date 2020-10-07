@@ -4,8 +4,8 @@ import * as modal from './types';
 import CreateCommentOnComment from './create-comment-on-comment';
 import CreateCommentOnTweet from './create-comment-on-tweet';
 import CreateTweet from './create-tweet';
-import EditProfile from './EditProfile';
-import LikedByList from './liked-by-list';
+import { EditProfile } from './EditProfile';
+import { LikedByList } from './LikedByList';
 
 const MODAL_COMPONENTS = {
   [modal.CREATE_COMMENT_ON_COMMENT]: CreateCommentOnComment,
