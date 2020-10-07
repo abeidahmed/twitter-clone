@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import * as modalTypes from 'shared/modal-type';
+import * as modalTypes from 'components/Modal/types';
 
 const actionTypes = {
   open: 'OPEN_MODAL',
