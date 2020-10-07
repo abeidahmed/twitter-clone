@@ -45,7 +45,7 @@ function UserCard({ hoverTo, user }) {
                 <div className="mt-1">
                   <TextButton
                     to={`/users/${twitterHandle}`}
-                    color="black"
+                    appearance="black"
                     size="sm"
                     className="relative font-bold"
                   >
