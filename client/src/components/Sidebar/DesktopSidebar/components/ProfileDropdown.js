@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCurrentUser } from 'store/current-user';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';
-import { UserButton } from 'components/user-button';
+import UserButton from './UserButton';
 import { MenuButton } from 'components/Button';
 
 function ProfileDropdown() {
