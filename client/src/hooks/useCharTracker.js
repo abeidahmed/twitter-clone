@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useCharTrackerState(initialState, limit) {
+export function useCharTracker(initialState, limit) {
   const [field, setField] = useState(initialState);
 
   function validator(e) {

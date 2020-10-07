@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import cn from 'classnames';
-import { useSmartPosition } from 'hooks/smart-position';
+import { useSmartPosition } from 'hooks/useSmartPosition';
 
 function DropdownContainer({ isActive, className, children }) {
   const dropdownRef = useRef(null);

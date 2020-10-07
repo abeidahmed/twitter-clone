@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { useCurrentUser } from 'store/current-user';
 import { deleteComment } from 'api/delete-comment';
 import * as q from 'shared/query-key';

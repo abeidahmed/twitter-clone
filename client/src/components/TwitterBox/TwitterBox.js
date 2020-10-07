@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { useCurrentUser } from 'store/current-user';
-import { useDisplayUploadedImage } from 'hooks/display-uploaded-image';
+import { useDisplayUploadedImage } from 'hooks/useDisplayUploadedImage';
 import * as limit from 'shared/char-limit';
 import { IconButton, Button } from 'components/Button';
 import { Icon } from 'components/Icon';

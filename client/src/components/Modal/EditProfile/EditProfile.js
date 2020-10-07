@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation, queryCache } from 'react-query';
 import { useModalType } from 'store/modal';
 import { useCurrentUser } from 'store/current-user';
-import { useCharTrackerState } from 'hooks/char-tracker';
+import { useCharTracker } from 'hooks/useCharTracker';
 import * as limit from 'shared/char-limit';
 import * as q from 'shared/query-key';
 import { updateUser } from 'api/update-user';
@@ -25,17 +25,17 @@ function EditProfile() {
 
   const { setUser } = useCurrentUser();
 
-  const [name, setName] = useCharTrackerState(userName || '', limit.NAME_CHAR);
-  const [bio, setBio] = useCharTrackerState(userBio || '', limit.BIO_CHAR);
-  const [location, setLocation] = useCharTrackerState(
+  const [name, setName] = useCharTracker(userName || '', limit.NAME_CHAR);
+  const [bio, setBio] = useCharTracker(userBio || '', limit.BIO_CHAR);
+  const [location, setLocation] = useCharTracker(
     userLocation || '',
     limit.LOCATION_CHAR
   );
-  const [website, setWebsite] = useCharTrackerState(
+  const [website, setWebsite] = useCharTracker(
     userWebsite || '',
     limit.WEBSITE_CHAR
   );
-  const [avatar, setAvatar] = useCharTrackerState(userAvatar || '');
+  const [avatar, setAvatar] = useCharTracker(userAvatar || '');
   const [banner, setBanner] = useState(userBanner || '');
   const [error, setError] = useState([]);
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSetTitle } from 'store/page-title';
-import { useDebounce } from 'hooks/debounce';
+import { useDebounce } from 'hooks/useDebounce';
 import * as q from 'shared/query-key';
 import { allUsers } from 'api/all-users';
 import { UserCard } from 'components/Card';

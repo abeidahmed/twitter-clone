@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { voteComment } from 'api/vote-comment';
 import * as q from 'shared/query-key';
 import { LikeButton } from 'components/Button';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { deleteTweet } from 'api/delete-tweet';
 import * as q from 'shared/query-key';
 import { IconButton, MenuButton } from 'components/Button';

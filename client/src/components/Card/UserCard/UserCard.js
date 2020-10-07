@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCurrentUser } from 'store/current-user';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import * as q from 'shared/query-key';
 import { follow } from 'api/follow';
 import { unfollow } from 'api/unfollow';

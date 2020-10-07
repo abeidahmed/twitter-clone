@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import * as q from 'shared/query-key';
 import TwitterBox from './TwitterBox';
 import { createCommentOnTweet } from 'api/create-comment';

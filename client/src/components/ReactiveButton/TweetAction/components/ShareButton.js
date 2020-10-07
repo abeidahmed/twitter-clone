@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
+import { useRefetchMutation } from 'hooks/useRefetchMutation';
 import { bookmarkTweet } from 'api/create-bookmark';
 import { deleteBookmark } from 'api/delete-bookmark';
 import * as q from 'shared/query-key';
