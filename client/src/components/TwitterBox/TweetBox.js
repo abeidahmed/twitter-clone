@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRefetchMutation } from 'hooks/refetch-mutation';
 import { createTweet } from 'api/create-tweet';
 import * as q from 'shared/query-key';
-import { TwitterBox } from './index';
+import TwitterBox from './TwitterBox';
 
 function TweetBox({ rows }) {
   const [body, setBody] = useState('');
