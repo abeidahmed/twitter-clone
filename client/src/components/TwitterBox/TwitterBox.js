@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { useCurrentUser } from 'store/current-user';
 import { useDisplayUploadedImage } from 'hooks/display-uploaded-image';
 import * as limit from 'shared/char-limit';
@@ -19,7 +20,16 @@ function TwitterBox({
   setBody,
   setImage,
   isLoading,
+  noPadding,
 }) {
+  const wrapperClass = cn([
+    'py-2',
+    {
+      'px-0': noPadding,
+      'px-4': !noPadding,
+    },
+  ]);
+
   const {
     currentUser: { avatar, name },
   } = useCurrentUser();
@@ -32,7 +42,7 @@ function TwitterBox({
   };
 
   return (
-    <div className="px-4 py-2">
+    <div className={wrapperClass}>
       <div className="flex">
         <div className="flex-shrink-0">
           <Avatar size="lg" src={avatar} alt={name} />

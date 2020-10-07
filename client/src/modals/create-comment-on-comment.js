@@ -1,16 +1,10 @@
-import React, { useRef } from 'react';
-import { useCharTrackerState } from 'hooks/char-tracker';
+import React from 'react';
 import { useModalType } from 'store/modal';
-import { useCalHeight } from 'hooks/calc-height';
-import { useRefetchMutation } from 'hooks/refetch-mutation';
-import { createCommentonComment } from 'api/create-comment';
-import * as limit from 'shared/char-limit';
-import * as q from 'shared/query-key';
 import { timeNow } from 'utils/date-time';
-import { TwitterTextarea } from 'components/twitter-textarea';
 import { ModalWrapper } from 'components/modal-wrapper';
 import { Avatar } from 'components/Avatar';
 import { TextButton } from 'components/Button';
+import { CommentOnCommentBox } from 'components/TwitterBox';
 
 function CreateCommentOnComment() {
   const {
@@ -63,49 +57,9 @@ function CreateCommentOnComment() {
             </div>
           </div>
         </section>
-        <CommentBox rows={4} commentID={commentID} />
+        <CommentOnCommentBox rows={4} commentID={commentID} />
       </div>
     </ModalWrapper>
-  );
-}
-
-function CommentBox({ commentID, rows }) {
-  const [body, setBody, clearBody] = useCharTrackerState(
-    '',
-    limit.TWEET_BODY_CHAR
-  );
-
-  const textareaRef = useRef(null);
-  const { eleHeight } = useCalHeight(body, 'auto', textareaRef);
-
-  const { modalOff } = useModalType();
-  const [mutate, { isLoading }] = useRefetchMutation(createCommentonComment, [
-    q.SHOW_TWEET,
-  ]);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    await mutate({
-      commentID,
-      content: body,
-    });
-    clearBody();
-    modalOff();
-  }
-
-  return (
-    <TwitterTextarea
-      rows={rows}
-      canUploadImage={false}
-      handleSubmit={handleSubmit}
-      textareaRef={textareaRef}
-      eleHeight={eleHeight}
-      body={body}
-      setBody={setBody}
-      isLoading={isLoading}
-      placeholder="Reply to this comment"
-      buttonLabel="Reply"
-    />
   );
 }
 
