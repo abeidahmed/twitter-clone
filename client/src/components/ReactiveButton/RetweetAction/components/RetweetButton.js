@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { RetweetButton, MenuButton } from 'components/Button';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';
 
-function RetweetBtn() {
+function RetweetBtn({ showCount }) {
   const [menuActive, setMenuActive] = useState(false);
 
   return (
     <OutsideClickHandler
       onOutsideClick={() => setMenuActive(false)}
-      className="relative"
+      className="relative flex items-center"
     >
       <RetweetButton
         status={{ isRetweeted: false, totalRetweets: 4 }}
         size="sm"
+        showCount={showCount}
         onClick={() => setMenuActive(!menuActive)}
       />
       <DropdownContainer isActive={menuActive}>
