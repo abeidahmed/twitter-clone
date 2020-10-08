@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useModalType } from 'store/modal';
 import * as modal from './types';
-import { CreateCommentOnComment, CreateCommentOnTweet } from './Comment';
+import {
+  CreateCommentOnComment,
+  CreateCommentOnTweet,
+  CreateCommentOnRetweet,
+} from './Comment';
 import { CreateTweet } from './CreateTweet';
 import { CreateTweetRetweet, CreateRetweetRetweet } from './Retweet';
 import { EditProfile } from './EditProfile';
@@ -11,6 +15,7 @@ import { LikedByList } from './LikedByList';
 const MODAL_COMPONENTS = {
   [modal.CREATE_COMMENT_ON_COMMENT]: CreateCommentOnComment,
   [modal.CREATE_COMMENT_ON_TWEET]: CreateCommentOnTweet,
+  [modal.CREATE_COMMENT_ON_RETWEET]: CreateCommentOnRetweet,
   [modal.CREATE_TWEET]: CreateTweet,
   [modal.CREATE_TWEET_RETWEET]: CreateTweetRetweet,
   [modal.CREATE_RETWEET_RETWEET]: CreateRetweetRetweet,
