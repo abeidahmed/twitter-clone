@@ -16,7 +16,11 @@ function RetweetBtn({ tweet, showCount }) {
   const [
     createRetweet,
     { isLoading: retweeting },
-  ] = useRefetchMutation(createTweetRetweet, [q.ALL_RETWEETS, q.ALL_TWEETS]);
+  ] = useRefetchMutation(createTweetRetweet, [
+    q.ALL_RETWEETS,
+    q.ALL_TWEETS,
+    q.SHOW_TWEET,
+  ]);
   async function handleRetweet() {
     await createRetweet({
       tweetID: id,
@@ -27,7 +31,7 @@ function RetweetBtn({ tweet, showCount }) {
   const [
     undoRetweet,
     { isLoading: deleting },
-  ] = useRefetchMutation(deleteRetweet, [q.ALL_TWEETS]);
+  ] = useRefetchMutation(deleteRetweet, [q.ALL_TWEETS, q.SHOW_TWEET]);
   async function handleUndoRetweet() {
     await undoRetweet({
       id,
