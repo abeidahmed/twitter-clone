@@ -15,6 +15,7 @@ function TweetRetweet({ rows }) {
 
   const [mutate, { isLoading }] = useRefetchMutation(createTweetRetweet, [
     q.ALL_TWEETS,
+    q.SHOW_TWEET,
   ]);
 
   async function handleSubmit() {
