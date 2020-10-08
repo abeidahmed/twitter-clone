@@ -9,9 +9,9 @@ import {
 function RetweetAction({ showCount, tweet }) {
   return (
     <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
-      <CommentButton />
+      <CommentButton showCount={showCount} tweet={tweet} />
       <RetweetButton showCount={showCount} tweet={tweet} />
-      <LikeButton />
+      <LikeButton showCount={showCount} tweet={tweet} />
       <ShareButton />
     </div>
   );

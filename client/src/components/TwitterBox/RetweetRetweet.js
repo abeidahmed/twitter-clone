@@ -19,7 +19,7 @@ function RetweetRetweet({ rows }) {
 
   async function handleSubmit() {
     await mutate({
-      tweetID,
+      retweetID: tweetID,
       body,
     });
     setBody('');

@@ -13,9 +13,9 @@ export async function createTweetRetweet({ tweetID, body }) {
   );
 }
 
-export async function createRetweetRetweet({ tweetID, body }) {
+export async function createRetweetRetweet({ retweetID, body }) {
   return await axios.post(
-    `/retweets/${tweetID}/retweets`,
+    `/retweets/${retweetID}/retweets`,
     {
       retweet: {
         body,

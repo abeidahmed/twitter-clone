@@ -1,14 +1,10 @@
 import React from 'react';
 import { LikeButton } from 'components/Button';
 
-function LikeBtn() {
-  return (
-    <LikeButton
-      size="sm"
-      showCount={true}
-      status={{ isLiked: true, totalLikes: 41 }}
-    />
-  );
+function LikeBtn({ showCount, tweet }) {
+  const { meta: { likes } = {} } = tweet;
+
+  return <LikeButton size="sm" showCount={showCount} status={likes} />;
 }
 
 export default LikeBtn;
