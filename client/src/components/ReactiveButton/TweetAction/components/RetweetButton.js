@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRefetchMutation } from 'hooks/useRefetchMutation';
+import { useModalType } from 'store/modal';
 import { createTweetRetweet } from 'api/create-retweet';
 import { deleteRetweet } from 'api/delete-retweet';
 import * as q from 'shared/queryKey';
@@ -10,6 +11,7 @@ function RetweetBtn({ tweet, showCount }) {
   const { id, meta: { retweets } = {} } = tweet;
   const { isRetweeted } = retweets;
   const [menuActive, setMenuActive] = useState(false);
+  const { modalOn, types } = useModalType();
 
   const [
     createRetweet,
@@ -32,6 +34,15 @@ function RetweetBtn({ tweet, showCount }) {
     });
   }
 
+  function handleQuoteTweet() {
+    modalOn({
+      modalType: types.CREATE_TWEET_RETWEET,
+      modalProps: {
+        tweetID: id,
+      },
+    });
+  }
+
   const links = [
     {
       title: isRetweeted ? 'Undo Retweet' : 'Retweet',
@@ -42,8 +53,8 @@ function RetweetBtn({ tweet, showCount }) {
     {
       title: 'Quote Tweet',
       icon: 'pencil',
-      // onClick: handleRetweet,
-      // disabled: isLoading,
+      onClick: handleQuoteTweet,
+      disabled: isRetweeted,
     },
   ];
 

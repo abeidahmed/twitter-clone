@@ -5,6 +5,7 @@ import * as modal from './types';
 import { CreateCommentOnComment } from './Comment';
 import { CreateCommentOnTweet } from './Comment';
 import { CreateTweet } from './CreateTweet';
+import { CreateTweetRetweet } from './Retweet';
 import { EditProfile } from './EditProfile';
 import { LikedByList } from './LikedByList';
 
@@ -12,6 +13,7 @@ const MODAL_COMPONENTS = {
   [modal.CREATE_COMMENT_ON_COMMENT]: CreateCommentOnComment,
   [modal.CREATE_COMMENT_ON_TWEET]: CreateCommentOnTweet,
   [modal.CREATE_TWEET]: CreateTweet,
+  [modal.CREATE_TWEET_RETWEET]: CreateTweetRetweet,
   [modal.EDIT_PROFILE]: EditProfile,
   [modal.LIKED_BY_LIST]: LikedByList,
 };
