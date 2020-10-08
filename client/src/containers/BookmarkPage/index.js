@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSetTitle } from 'store/pageTitle';
 import { allBookmarks } from 'api/all-bookmarks';
 import * as q from 'shared/queryKey';
-import { TweetCard } from 'components/Card';
-import { CommentCard } from 'components/Card';
+import { TweetCard, CommentCard, RetweetCard } from 'components/Card';
 import { Spinner } from 'components/Loader';
 
 function Bookmark() {
@@ -22,15 +21,24 @@ function Bookmark() {
 
   return (
     <main>
-      {bookmarks.map((bookmark) =>
-        bookmark.type === 'Tweet' ? (
-          <TweetCard key={bookmark.id} tweet={bookmark} />
-        ) : (
-          <CommentCard key={bookmark.id} comment={bookmark} />
-        )
-      )}
+      {bookmarks.map((bookmark) => (
+        <DisplayBookmark key={bookmark.id} bookmark={bookmark} />
+      ))}
     </main>
   );
+}
+
+function DisplayBookmark({ bookmark }) {
+  switch (bookmark.type) {
+    case 'Tweet':
+      return <TweetCard tweet={bookmark} />;
+    case 'Retweet':
+      return <RetweetCard tweet={bookmark} />;
+    case 'Comment':
+      return <CommentCard comment={bookmark} />;
+    default:
+      throw new Error(`Unhandled type: ${bookmark.type}`);
+  }
 }
 
 export default Bookmark;

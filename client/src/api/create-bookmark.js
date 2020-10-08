@@ -8,3 +8,7 @@ export async function bookmarkTweet({ tweetID }) {
 export async function bookmarkComment({ commentID }) {
   return await axios.post(`/comments/${commentID}/bookmarks`, null, header());
 }
+
+export async function bookmarkRetweet({ retweetID }) {
+  return await axios.post(`/retweets/${retweetID}/bookmarks`, null, header());
+}
