@@ -18,4 +18,6 @@ class Retweet < ApplicationRecord
   scope :own_retweets, ->(user) { where(user_id: user.id) }
   scope :from_people_you_follow, ->(user) { where(user_id: user.following.pluck(:id)) }
   scope :from_people_you_know, ->(user) { from_people_you_follow(user).or(own_retweets(user)) }
+  scope :retweets_count, -> { where(body: nil).count }
+  scope :quote_tweets_count, -> { where.not(body: nil).count }
 end
