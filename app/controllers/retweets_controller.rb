@@ -21,8 +21,8 @@ class RetweetsController < ApplicationController
   end
 
   def destroy
-    retweet = Retweet.find(params[:id])
-    retweet.destroy
+    retweet = Retweet.find_by(retweetable_id: params[:id])
+    current_user.retweets.find(retweet.id).destroy
   end
 
   private
