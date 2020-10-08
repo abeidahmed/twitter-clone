@@ -24,3 +24,15 @@ export async function createCommentonComment({ content, commentID }) {
     header()
   );
 }
+
+export async function createCommentonRetweet({ retweetID, content }) {
+  return await axios.post(
+    `/retweets/${retweetID}/comments`,
+    {
+      comment: {
+        content,
+      },
+    },
+    header()
+  );
+}
