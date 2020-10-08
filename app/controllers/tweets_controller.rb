@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.from_people_you_know(current_user)
+    @tweets = Tweet.from_people_you_know(current_user).includes(:user)
   end
 
   def show
