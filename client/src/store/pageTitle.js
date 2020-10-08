@@ -1,4 +1,10 @@
-import React, { useReducer, createContext, useEffect, useContext } from 'react';
+import React, {
+  useReducer,
+  createContext,
+  useEffect,
+  useContext,
+  useMemo,
+} from 'react';
 
 const actionTypes = {
   updatePageTitle: 'UPDATE_PAGE_TITLE',
@@ -26,17 +32,21 @@ const PageTitleContext = createContext(initialState);
 function useSetTitle(title, description) {
   const [, dispatch] = useContext(PageTitleContext);
 
-  const meta = {
-    title,
-    description,
-  };
+  const meta = useMemo(() => {
+    return {
+      title,
+      description,
+    };
+  }, [title, description]);
 
+  /* eslint-disable */
   useEffect(() => {
     dispatch({
       type: actionTypes.updatePageTitle,
       payload: meta,
     });
-  }, [title, description]);
+  }, [meta]);
+  /* eslint-enable */
 }
 
 function PageTitleStore({ children }) {

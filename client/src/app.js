@@ -9,6 +9,7 @@ import { useCurrentUser } from 'store/currentUser';
 export default function App() {
   const { setUser, token } = useCurrentUser();
 
+  /* eslint-disable */
   useEffect(() => {
     async function getCurrentUser() {
       if (token) {
@@ -19,7 +20,7 @@ export default function App() {
 
     getCurrentUser();
   }, [token]);
-
+  /* eslint-enable */
   return (
     <div className="min-h-screen text-gray-900 bg-white">
       <Router>
