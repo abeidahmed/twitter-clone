@@ -46,10 +46,7 @@ function RetweetButton({ status = {}, size = 'sm', showCount, ...props }) {
 }
 
 RetweetButton.propTypes = {
-  status: PropTypes.exact({
-    isRetweeted: PropTypes.bool,
-    totalRetweets: PropTypes.number,
-  }),
+  status: PropTypes.object,
   size: PropTypes.oneOf(['sm', 'md']),
   showCount: PropTypes.bool,
 };
