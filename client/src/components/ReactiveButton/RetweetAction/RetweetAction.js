@@ -12,7 +12,7 @@ function RetweetAction({ showCount, tweet }) {
       <CommentButton showCount={showCount} tweet={tweet} />
       <RetweetButton showCount={showCount} tweet={tweet} />
       <LikeButton showCount={showCount} tweet={tweet} />
-      <ShareButton />
+      <ShareButton tweet={tweet} />
     </div>
   );
 }

@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { OutsideClickHandler, DropdownContainer } from 'components/Container';
 import { MenuButton, ShareButton } from 'components/Button';
 
-function ShareBtn() {
+function ShareBtn({ tweet }) {
+  const { meta: { isBookmarked } = {} } = tweet;
   const [isActive, setIsActive] = useState(false);
 
   const links = [
     {
-      title: true ? 'Remove from bookmarks' : 'Add tweet to bookmarks',
+      title: isBookmarked ? 'Remove from bookmarks' : 'Add tweet to bookmarks',
       icon: 'bookmark',
       // onClick: isBookmarked
       //   ? () => handleRemoveBookmark()

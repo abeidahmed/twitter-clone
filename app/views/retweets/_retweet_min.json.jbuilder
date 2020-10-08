@@ -3,7 +3,7 @@ json.body retweet.body
 json.created_at retweet.created_at
 
 json.meta do
-  json.is_bookmarked false
+  json.is_bookmarked current_user.bookmarked?(retweet)
 
   json.likes do
     json.total_likes retweet.votes_for.size
