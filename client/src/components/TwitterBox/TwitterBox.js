@@ -48,7 +48,7 @@ function TwitterBox({
           <Avatar size="lg" src={avatar} alt={name} />
         </div>
         <div className="flex-1 ml-3">
-          <form className="flex flex-col">
+          <form onSubmit={makeSubmission} className="flex flex-col">
             <ResizableTextarea
               rows={rows}
               value={body}
