@@ -16,4 +16,9 @@ json.meta do
   json.comments do
     json.total_comments tweet.comments.size
   end
+
+  json.retweets do
+    json.total_retweets tweet.retweets.count
+    json.is_retweeted current_user.already_retweeted?(tweet)
+  end
 end
