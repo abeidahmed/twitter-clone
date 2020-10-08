@@ -6,11 +6,11 @@ import {
   ShareButton,
 } from './components';
 
-function RetweetAction() {
+function RetweetAction({ showCount, tweet }) {
   return (
     <div className="flex items-center justify-between w-full max-w-md mt-1 -ml-2">
       <CommentButton />
-      <RetweetButton />
+      <RetweetButton showCount={showCount} tweet={tweet} />
       <LikeButton />
       <ShareButton />
     </div>

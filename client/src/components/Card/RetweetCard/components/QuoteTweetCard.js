@@ -32,7 +32,7 @@ function QuoteTweetCard({ tweet }) {
             <Content body={body} />
             <NestedTweet nestedTweet={retweetable} />
           </div>
-          <RetweetActionButtons />
+          <RetweetActionButtons showCount={true} tweet={tweet} />
         </div>
       </div>
     </CardContainer>

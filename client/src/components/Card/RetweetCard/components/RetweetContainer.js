@@ -41,7 +41,7 @@ function RetweetCard({ tweet }) {
               <Figure image={retweetable.image} />
             </div>
           </div>
-          <RetweetActionButtons />
+          <RetweetActionButtons showCount={true} tweet={tweet} />
         </div>
       </div>
     </CardContainer>

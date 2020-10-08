@@ -12,3 +12,15 @@ export async function createTweetRetweet({ tweetID, body }) {
     header()
   );
 }
+
+export async function createRetweetRetweet({ retweetID, body }) {
+  return await axios.post(
+    `/retweets/${retweetID}/retweets`,
+    {
+      retweet: {
+        body,
+      },
+    },
+    header()
+  );
+}
