@@ -15,7 +15,7 @@ function TweetAction({ tweet, user, size, showCount }) {
         size={size}
         showCount={showCount}
       />
-      <RetweetButton size={size} showCount={showCount} />
+      <RetweetButton size={size} showCount={showCount} tweet={tweet} />
       <LikeButton tweet={tweet} size={size} showCount={showCount} />
       <ShareButton tweet={tweet} size={size} />
     </>
